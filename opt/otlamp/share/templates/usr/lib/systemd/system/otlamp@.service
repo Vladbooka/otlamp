@@ -1,0 +1,26 @@
+[Unit]
+Description=otlamp.%i
+After=syslog.target network.target remote-fs.target nss-lookup.target
+ConditionPathIsDirectory=/etc/opt/otlamp/%i
+#Wants=redis.service
+
+[Service]
+OOMScoreAdjust=-100
+
+Type=forking
+#PIDFile=/var/lock/otlamp/w1.pid
+WorkingDirectory=/opt/otlamp/bin
+
+User=root
+Group=root
+
+Environment=APACHE_CONFDIR=/etc/opt/otlamp/%i APACHE_STARTED_BY_SYSTEMD=true
+ExecStart=/usr/sbin/apachectl start
+ExecStop=/usr/sbin/apachectl stop
+ExecReload=/usr/sbin/apachectl graceful
+PrivateTmp=true
+Restart=on-abort
+TimeoutSec=120
+
+[Install]
+WantedBy=multi-user.target

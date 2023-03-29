@@ -1,0 +1,7 @@
+ ErrorDocument 404 /404.php
+
+ php_admin_value post_max_size "512M"
+ php_admin_value upload_max_filesize "512M"
+ php_value memory_limit "320M"
+ php_value max_execution_time "600"
+

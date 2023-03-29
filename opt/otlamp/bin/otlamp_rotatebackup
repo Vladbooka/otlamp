@@ -1,0 +1,172 @@
+#!/bin/bash
+
+# пример использования скрипта
+usage.otlamp_rotatebackup()
+{
+    echo "    Использование: $0 [-h],[--dbonly] [instance] [host]
+    
+    Пример:
+        бекап с ротацией БД и фалов
+        
+        /opt/otlamp/bin/$0  w1 с1000
+
+        Бекап с ротацией только БД 
+
+        /opt/otlamp/bin/$0 --dbonly w1 с1000
+
+    cron:
+        30 3 * * * bash /opt/otlamp/bin/otlamp_rotatebackup w1 с1000 > /var/log/opt/otlamp/backup/\`date +\%Y-\%m-\%d-\%H_\%M_\%S\`rotate
+        
+    Обязательные параметры:
+    [instance] например w1
+    [host] например с1000
+    
+    Не обязательные параметры:
+    -h          выводит это сообщение
+    --dbonly    Бекап с ротацией только БД 
+    "
+}
+
+
+
+if [ -z "$1" ]; then
+{
+    echo "No enough parameters received!"
+    echo "" && usage.otlamp_rotatebackup && exit 0
+}
+fi
+
+
+DBONLYMOD=false
+
+case "$1" in
+ -h) echo "" && usage.otlamp_rotatebackupt && exit 0 ;;
+--dbonly) echo "Enable DBonly mod" 
+        DBONLYMOD=true
+        shift;;
+*) echo "Normalmod";;
+esac
+
+
+INSTANCE=$1
+HOST=$2
+#Проверим передан ли код экземпляра
+if [ ! -z "$INSTANCE" ] && [ -z "$HOST" ]; then
+{
+    if [ -d "/etc/opt/otlamp/"$INSTANCE ]; then
+    {
+        echo "Installation with name "$INSTANCE" exists!"
+    }
+    else
+    {
+        echo "Installation with name "$INSTANCE" does not exists!"
+        exit 1
+    }
+    fi
+}
+fi
+#Проверим передан ли код экземпляра и хоста
+if [  ! -z "$HOST" ] && [ ! -z "$INSTANCE" ]; then
+{
+    if [ -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+    {
+        echo "Host with name "$HOST" exist!"
+    }
+    else
+    {
+        echo "Host with name "$HOST" not exist!"
+        exit 1
+    }
+    fi
+}
+fi
+
+
+
+#целевой каталог
+OTLAMPDIR=/var/opt/otlamp/$1
+BACKUPDATE=`date +%Y%m%d%H%M%S`
+BACKUPSFOLDER=/var/opt/otlamp/_storage/backup/rotate/$INSTANCE/$HOST
+mkdir -p $BACKUPSFOLDER
+
+#сколько файлов оставить в живых
+limit=2
+
+################################
+n=1
+for i in `ls $BACKUPSFOLDER -t`
+do
+ if [ $n -gt $limit ]
+ then
+  rm -Rvf $BACKUPSFOLDER/$i
+ fi
+ n=$(($n+1))
+done
+
+
+CURRENTBACKUPSFOLDER=$BACKUPSFOLDER"/"$BACKUPDATE
+mkdir -p $CURRENTBACKUPSFOLDER
+echo "Сбор Дампа БД"
+bash /opt/otlamp/bin/otlamp_savedb $INSTANCE $HOST
+
+cd $OTLAMPDIR"/"$HOST
+#копирование БД
+echo "Архивирование Дампа БД"
+
+tar cvzf  $CURRENTBACKUPSFOLDER"/sql.tar.gz" "./sqldump"
+
+if [ "${DBONLYMOD}" == false ]; then
+	{
+        echo "Y"
+		echo "копирование modledata"
+        cd $OTLAMPDIR"/"$HOST"/www"
+        tar --exclude="./data/temp"         \
+            --exclude="./data/cache"        \
+            --exclude="./data/trashdir"     \
+            --exclude="./data/localcache"   \
+            -zcvf $CURRENTBACKUPSFOLDER"/data.tar.gz" "./data"
+    }
+    else
+    {
+        echo "копирование modledata пропущено DBONLYMOD"
+
+    }
+    fi 			
+echo "_____________ end _____________"
+
+
+#################################################################################################
+#TODO авторизация на папку с бекапами
+n=1
+unset i
+for i in `ls /var/opt/otlamp/${INSTANCE}/0000default/www/htdocs/rotate/${INSTANCE}/${HOST} -t `
+do
+ if [ $n -gt $limit ]
+ then
+  rm -Rvf /var/opt/otlamp/${INSTANCE}/0000default/www/htdocs/rotate/${INSTANCE}/${HOST}/$i
+ fi
+ n=$(($n+1))
+done
+
+HTTPBACKUPDIR=/var/opt/otlamp/${INSTANCE}/0000default/www/htdocs/rotate/${INSTANCE}/${HOST}/$BACKUPDATE
+mkdir -p $HTTPBACKUPDIR
+
+
+ln -s $CURRENTBACKUPSFOLDER"/data.tar.gz"  $HTTPBACKUPDIR"/data.tar.gz"
+ln -s $CURRENTBACKUPSFOLDER"/sql.tar.gz" $HTTPBACKUPDIR"/sql.tar.gz"
+chown -R ${INSTANCE}. $HTTPBACKUPDIR
+
+
+HOSTNAME=`cat /etc/hostname`
+if [ -f "$HTTPBACKUPDIR/data.tar.gz" ]; then
+{
+    echo "http://${HOSTNAME}/rotate/${INSTANCE}/${HOST}/$BACKUPDATE/data.tar.gz"
+}
+fi
+if [ -f "$HTTPBACKUPDIR/sql.tar.gz" ]; then
+{
+    echo "http://${HOSTNAME}/rotate/${INSTANCE}/${HOST}/$BACKUPDATE/sql.tar.gz"
+}
+fi
+
+exit 0

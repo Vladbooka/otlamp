@@ -1,0 +1,172 @@
+#!/bin/bash
+INSTANCE=$1
+HOST=$2
+#бэкап хоста
+source /opt/otlamp/bin/otlamp_lib
+
+if [  -z "$3" ] ; then
+	{
+	 ignorerror="false"
+	}
+else
+    {
+	case "$3" in 
+		--ignorerror) 
+			ignorerror="true"
+			echo "activate ignoreerror mode!!!!!"
+		;;
+		*)
+			echo "$3 is not an option"
+		;;
+	esac		
+	}
+fi
+
+     
+
+
+
+restore_host_dump()
+{
+    instance=$1
+    host=$2
+    
+        echo "mysql restore"
+        error=''
+        #проверяем работает ли БД
+        stcdb=$(checkdb mysql)
+        if [ $? -ne 0 ] ; then
+        	error="${stcdb}"
+        	echo $error
+        	else echo "MYSQL run"
+        fi
+        
+        
+        
+        #проверяем дамп 
+        stcd=$(checkdump "/var/opt/otlamp/${instance}/${host}/sqldump/mysql.sql" mysql)
+        if [ $? -ne 0 ] ; then
+        	error="${error} ${stcd}"
+        	echo $error
+        	else echo "DUMP no error"
+        fi
+        
+        echo "-----"
+        echo $error
+        echo "_____"
+        
+        
+        if [  -z "$error" ] || [ $ignorerror = "true" ] ; then
+        {
+            if [ $ignorerror = "true" ] ; then 
+            {
+            echo "IRNORE ERROR!!!!"
+            }
+            fi
+            
+	        echo 'Dump restore for HOST:'$host' INSTANCE:'$instance' begin!'
+	
+	
+	        # MYSQLUSER=`cat /etc/opt/otlamp/$instance/vhosts/$host/mysqluser`
+	        # MYSQLDB=`cat /etc/opt/otlamp/$instance/vhosts/$host/mysqldb`
+	        # MYSQLPASS=`cat /etc/opt/otlamp/$instance/vhosts/$host/mysqlpass`
+	        source /var/opt/otlamp/$instance/$host/www/local/mysql
+	        # удаляем базу
+	        mysql -u $MYSQLUSER -p$MYSQLPASS -e "DROP DATABASE IF EXISTS $MYSQLDB;"
+	        mysql -u $MYSQLUSER -p$MYSQLPASS  -e "CREATE DATABASE IF NOT EXISTS $MYSQLDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;"
+	        #    mysql -u $MYSQLUSER -p$MYSQLPASS -e "GRANT ALL PRIVILEGES ON $MYSQLDB.* TO $MYSQLUSER@localhost IDENTIFIED BY '$MYSQLPASS' WITH GRANT OPTION;"
+	        mysql -u $MYSQLUSER -p$MYSQLPASS $MYSQLDB < /var/opt/otlamp/$instance/$host/sqldump/mysql.sql
+	       echo 'Dump restore for HOST:'$host' INSTANCE:'$instance' complete!'
+	    
+	      }
+	      else 
+	      {
+	      echo "MYSQL got ERROR!!!! ABORT RESTORE MYSQL"
+	      }
+        fi
+      #смотрим есть ли дамп
+      FILEPGDUMP=psql.sql
+    
+    echo "postgresql restore"
+    #проверяем работает ли БД
+        error=''
+        stcdb=$(checkdb psql)
+        if [ $? -ne 0 ] ; then
+        	error="${stcdb}"
+        	echo $error
+        	else echo "psql run"
+        fi
+        
+        
+    if [ -e /var/opt/otlamp/$instance/$host/www/local/postgresql ]
+    then 
+      
+        stcd=$(checkdump "/var/opt/otlamp/${instance}/${host}/sqldump/${FILEPGDUMP}" psql)
+        if [ $? -ne 0 ] ; then
+            error="${error} ${stcd}"
+        	echo $error
+        	else echo "DUMP no error"
+        fi
+        
+        echo "-----"
+        echo $error
+        echo "_____"
+        
+        
+      	source /var/opt/otlamp/$instance/$host/www/local/postgresql
+      	if [  -z "$error" ] || [ $ignorerror = "true" ] ; then
+        {
+            if [ $ignorerror = "true" ] ; then 
+            {
+            echo "IRNORE ERROR!!!!"
+            }
+            fi
+      	
+        cd /var/opt/otlamp/$instance/$host/sqldump/
+          
+        sudo -u postgres -i psql -c "drop database  $POSTGRESQLDB"
+        sudo -u postgres -i psql -c "CREATE DATABASE $POSTGRESQLDB"
+        sudo -u postgres psql $POSTGRESQLDB < "${FILEPGDUMP}"
+    	
+    	
+    	for table in `sudo -u postgres psql -c "select tablename from pg_tables where schemaname = 'public';" ${POSTGRESQLDB}` ;
+    	do
+    	  sudo -u postgres psql -c "alter table public.${table} owner to ${POSTGRESQLUSER}" ${POSTGRESQLDB} ; 
+          echo "public.${table} owner to ${POSTGRESQLUSER} ${POSTGRESQLDB}" 
+    	done
+    	echo 'PGDump restore for HOST:'$host' INSTANCE:'$instance' complete!'
+    	}
+    	fi
+	      else 
+	      {
+	      echo "postgresql got ERROR!!!! ABORT RESTORE postgresql"
+	      }
+    fi
+    
+    
+    
+    
+}
+
+#Проверим передан ли код экземпляра и хоста
+if [ -z "$INSTANCE" ] || [ -z "$HOST" ]; then
+{
+    echo "Wrong parameters! Input <code> and <host> to begin restore!"   
+    exit 1
+}
+fi
+#проверим, есть ли такая инсталляция
+if [ ! -d "/etc/opt/otlamp/"$INSTANCE ]; then
+    echo "Installation with name "$INSTANCE" does not exists!"
+    exit 1
+fi
+
+#проверим существование хоста
+if [ ! -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+    echo "Host with name "$HOST" do not exists!"
+    exit 1
+fi
+
+restore_host_dump $INSTANCE $HOST
+
+

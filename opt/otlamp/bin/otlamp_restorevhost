@@ -1,0 +1,82 @@
+#!/bin/bash
+INSTANCE=$1
+HOST=$2
+TAG=$3
+
+restore_vhost()
+{
+
+    instance=$1
+    host=$2
+    tag=$3
+
+    WORKDIRECTORY=/var/opt/otlamp/$instance/$host
+    TAGS=(`git --git-dir=$WORKDIRECTORY/.git tag -l`)
+    if [[ "${#TAGS[@]}" -gt "0" ]]; then
+        #Считываем теги
+        for itag in "${TAGS[@]}"
+        do
+            #такой тег существует
+            if [ "$itag" == "$tag" ]; then
+                #чекаут тега в рабочую директорию
+                echo "INSTANCE:$instance HOST:$host"
+                echo 'Restoring workcopy to tag '\"$TAG\"'process...'
+                cd $WORKDIRECTORY && git checkout $tag .
+                echo 'Restoring workcopy to tag'\"$TAG\"'complete!'
+                return
+            fi
+        done
+        echo 'Error!No tag with name '\"$TAG\"'! Please, input correct tag!'
+		exit 1
+    fi
+}
+
+restore_vhost_from_lasttag()
+{
+	instance=$1
+    host=$2
+    WORKDIRECTORY=/var/opt/otlamp/$instance/$host
+    LASTTAG=(`cd $WORKDIRECTORY && git describe --abbrev=0 --tags`)
+    echo 'Last tag is '$LASTTAG
+	echo 'Restoring workcopy to tag '\"$LASTTAG\"'process...'
+    cd $WORKDIRECTORY && git checkout $LASTTAG .
+    echo 'Restoring workcopy to tag'\"$LASTTAG\"'complete!'
+    return
+		
+}
+######################################################################################################################################
+
+
+#Проверим передан ли код экземпляра и хоста
+if [ -z "$INSTANCE" ] || [ -z "$HOST" ]; then
+{
+    echo "Wrong parameters! Input <code> and <host> to begin restore!"   
+    exit 1
+}
+fi
+#проверим, есть ли такая инсталляция
+if [ ! -d "/etc/opt/otlamp/"$INSTANCE ]; then
+    echo "Installation with name "$INSTANCE" does not exists!"
+    exit 1
+fi
+
+#проверим существование хоста
+if [ ! -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+    echo "Host with name "$HOST" do not exists!"
+    exit 1
+fi
+#Проверим передан ли тег
+if [ -z "$TAG" ]; then
+{
+	#если нет - восстановим из последнего тега
+    echo "Parameter <tag> not received. Restoring last tag..."   
+    restore_vhost_from_lasttag $INSTANCE $HOST
+}
+else
+{
+	restore_vhost $INSTANCE $HOST $TAG
+}
+fi
+
+bash /opt/otlamp/bin/otlamp_restoremysql $INSTANCE $HOST
+bash /opt/otlamp/bin/otlamp_fixmode $INSTANCE $HOST

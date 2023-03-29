@@ -1,0 +1,45 @@
+#!/bin/bash
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+INSTANCE=$1
+HOST=$2
+
+	if [  -z "$INSTANCE" ]; then
+	{
+		echo "No enough parameters received!"
+		echo "Auto detect INSTANCE"
+		dir=`pwd | sed 's/\/var\/opt\/otlamp\///g' | sed 's/\/.*//g'`
+		echo $dir
+		if [  -z "$dir" ]; then 
+		{
+			echo "ERROR INSTANCE NOT DETECTED"
+			exit 1
+		}
+		else
+		{
+			INSTANCE=$dir
+		}
+		fi
+	}
+	fi
+
+
+
+	if [ ! -d "/etc/opt/otlamp/${INSTANCE}" ]; then 
+	{
+		echo "Installation with name ${INSTANCE} does not exists!"
+		exit 1
+	} 
+	fi 
+
+	if [ -f "/etc/opt/otlamp/${INSTANCE}/php-cli" ]; then
+	{
+		/etc/opt/otlamp/$INSTANCE/php-cli ../htdocs/admin/cli/cron.php
+	}
+	else
+	{
+		php ../htdocs/admin/cli/cron.php
+	}
+	fi
+
+exit 0

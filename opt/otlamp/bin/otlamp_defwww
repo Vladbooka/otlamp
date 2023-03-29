@@ -1,0 +1,66 @@
+#!/bin/bash
+#параметры
+INSTANCE=$1
+# Проверка полномочий
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+#Проверим передан ли код экземпляра
+if [  -z "$INSTANCE" ]; then
+{
+    echo "No enough parameters received!Instance code expected!Fail.."
+    exit 1
+}
+fi
+
+#проверим, есть ли такая инсталляция
+if [ ! -d "/etc/opt/otlamp/"$INSTANCE ]; then
+    echo "Installation with name "$INSTANCE" do not exists!"
+    exit 1
+fi
+
+echo 'OTLAMP DEFWWW STARTED: '`date`
+
+#путь к шаблонам,которые будем править
+TEMPLATES_DIR=/tmp/otlamp/templates.$INSTANCE
+
+# Временная директория для шаблонов
+mkdir -p $TEMPLATES_DIR
+
+#Скопируем папку с шаблонами(в них созданы текстовые подстановки-их будем править)
+cp -f -vR /opt/otlamp/share/templates/* $TEMPLATES_DIR/
+
+#путь к конфигам отламп(экранируем слеш!)
+OTLAMP_CONFDIR='\/etc\/opt\/otlamp\/'$INSTANCE'\/'
+#Правим демон otlamp, чтобы он запускался с нашими конфигами
+#sed -r -i 's/\{OTLAMP_CONFDIR\}/'$OTLAMP_CONFDIR'/g' $TEMPLATES_DIR/etc/init.d/apache2
+sed -r -i 's/\{OTLAMP_INSTANCE\}/'$INSTANCE'/g' $TEMPLATES_DIR/etc/init.d/apache2
+
+#копируем демона в init.d
+cp -f $TEMPLATES_DIR/etc/init.d/apache2 /etc/init.d/otlamp.$INSTANCE
+/etc/init.d/apache2 stop
+#удаляем апач из автозагрузки
+update-rc.d -f apache2 remove
+systemctl disable apache2
+rm /etc/init.d/apache2
+
+#добавляем наш сервис в автозагрузку
+echo "add to autostart"
+#update-rc.d -f otlamp.$INSTANCE defaults 91
+/etc/init.d/otlamp.$INSTANCE start
+systemctl  enable otlamp@${INSTANCE}
+
+#добавление логротейт
+echo "add logrotate otlamp."$INSTANCE
+
+sed -r -i 's/\{OTLAMP_INSTANCE\}/'$INSTANCE'/g' $TEMPLATES_DIR/etc/logrotate.d/otlamp
+cp -f $TEMPLATES_DIR/etc/logrotate.d/otlamp /etc/logrotate.d/otlamp.$INSTANCE
+chown root:root /etc/logrotate.d/otlamp.$INSTANCE
+chmod 600  /etc/logrotate.d/otlamp.$INSTANCE
+logrotate -d /etc/logrotate.d/otlamp.$INSTANCE
+
+
+bash /opt/otlamp/bin/otlamp_fixmode $INSTANCE
+echo 'OTLAMP DEFWWW END: '`date`
+exit 0

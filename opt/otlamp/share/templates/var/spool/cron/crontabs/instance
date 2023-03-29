@@ -1,0 +1,5 @@
+#OTLAMP {INSTANCE} cron
+*/15 3-23 * * * /usr/bin/ionice -c 3 /bin/bash /opt/otlamp/bin/otlamp_cron {INSTANCE} &> /var/log/opt/otlamp/{INSTANCE}/lastcron.log
+#OTLAMP {INSTANCE} backup
+30 1 * * * /usr/bin/ionice -c 3 /bin/bash /opt/otlamp/bin/otlamp_savevhost {INSTANCE} &> /var/log/opt/otlamp/{INSTANCE}/lastbackup.log
+

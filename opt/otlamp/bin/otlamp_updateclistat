@@ -1,0 +1,141 @@
+#!/bin/bash
+
+
+FORCEMOD=false
+
+while [ -n "$1" ]
+do
+    case "$1" in
+        -force) echo "Enable force mod"
+            FORCEMOD=true
+        break;;
+        
+        *) echo "$1 is not an option";;
+    esac
+    shift
+done
+
+
+
+create_statlink()
+{
+    instance=$1
+    host=$2
+    type="default"
+    #/etc/opt/otlamp/w1/vhosts/divanov/type
+    if [ -e "/etc/opt/otlamp/${instance}/vhosts/${host}/type" ]; then
+        {
+            type=`cat /etc/opt/otlamp/${instance}/vhosts/${host}/type`
+            echo "ТИП ХОСТА: ${type}"
+        }
+    else
+        {
+            echo "	FILE /etc/opt/otlamp/${instance}/vhosts/${host}/type NOT FOUND!!!!"
+            echo "	ничего не делаем, т.к. такого по идее быть не должно"
+            echo "	но в аларм нужно записать"
+        }
+    fi
+    
+    
+    #смотрим все файлы КЛИ соответтвующего типа
+    #проверяем если ли такой файл в папке хоста, если нет сделать символическую ссылку.
+    
+    #/opt/otlamp/share/other/cli/moodle
+    if [ -d /opt/otlamp/share/other/cli/$type ]; then
+        {
+            CLIFILES=(`ls /opt/otlamp/share/other/cli/$type | tr " " "\n"`)
+            
+            if [[ "${#CLIFILES[@]}" -gt "0" ]]; then
+                #Считываем названия файлов в массив через пробел
+                for clifiles in "${CLIFILES[@]}"
+                do
+                    echo "File: ${clifiles}"
+                    hostclifile=/var/opt/otlamp/${instance}/${host}/www/cli/${clifiles}
+                    templclifile=/opt/otlamp/share/other/cli/${type}/${clifiles}
+                    
+                    if [ -e "$hostclifile" ]; then
+                        {
+                            echo "	FILE ${hostclifile} EXIST"
+                            #сравниваем с образцом
+                            if cmp -s $hostclifile $templclifile ; then
+                                {
+                                    echo "	Равны заменяем на ссылку"
+                                    rm -v /var/opt/otlamp/${instance}/${host}/www/cli/$clifiles
+                                    cd /opt/otlamp/share/other/cli/$type/
+                                    #ln ./$clifiles /var/opt/otlamp/${instance}/${host}/www/cli/$clifiles
+                                    cp -v ./$clifiles /var/opt/otlamp/${instance}/${host}/www/cli/$clifiles
+                                }
+                            else
+                                {
+                                    echo "	Файлы отличаются"
+                                    
+                                    if [ "${FORCEMOD}" == true ]; then
+                                        {
+                                            echo "	    FORCE режим ${FORCEMOD}"
+                                            echo "		Принудительная замена файла на символичискую ссылку"
+                                            rm -v /var/opt/otlamp/${instance}/${host}/www/cli/$clifiles
+                                            #ln  /opt/otlamp/share/other/cli/$type/$clifiles /var/opt/otlamp/${instance}/${host}/www/cli/$clifiles
+                                            cp -v  /opt/otlamp/share/other/cli/$type/$clifiles /var/opt/otlamp/${instance}/${host}/www/cli/$clifiles
+                                        }
+                                    else
+                                        {
+                                            echo "	    FORCE режим ${FORCEMOD} чего не делаем"
+                                        }
+                                    fi
+                                }
+                            fi
+                        }
+                    else
+                        {
+                            echo "	FILE /var/opt/otlamp/${instance}/${host}/www/cli/$clifiles NOT EXIST!!!"
+                            #ln  /opt/otlamp/share/other/cli/$type/$clifiles /var/opt/otlamp/${instance}/${host}/www/cli/$clifiles
+                            cp -v  /opt/otlamp/share/other/cli/$type/$clifiles /var/opt/otlamp/${instance}/${host}/www/cli/$clifiles
+                        }
+                    fi
+                    
+                    
+                done
+                
+            fi
+            chown -R ${instance}:${instance} /var/opt/otlamp/${instance}/${host}/www/cli/
+        }
+    else
+        {
+            echo "	Нет шаблона скриптов такого типа."
+        }
+    fi
+}
+
+
+#######################################################################################################################
+
+
+
+
+
+#получим список инсталляций
+FOLDERS=(`ls /etc/opt/otlamp | tr " " "\n"`)
+
+if [[ "${#FOLDERS[@]}" -gt "0" ]]; then
+    #Считываем названия инсталляций в массив через пробел
+    for instance in "${FOLDERS[@]}"
+    do
+        if [ -d /etc/opt/otlamp/$instance ];
+        then
+            HOSTS=(`ls /var/opt/otlamp/$instance | tr " " "\n"`)
+            #Запускаем для каждого хоста
+            for host in "${HOSTS[@]}"
+            do
+                echo "Инстанс ${instance}  хост ${host}"
+                create_statlink ${instance} ${host}
+                echo "---------------------------------------"
+            done
+        fi
+    done
+    
+fi
+
+
+
+
+

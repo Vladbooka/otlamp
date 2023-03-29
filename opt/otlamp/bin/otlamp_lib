@@ -1,0 +1,274 @@
+#!/bin/bash
+
+#die()
+# {
+#    echo $BASH_SOURCE
+#	echo -e >&2 "
+#    \e[1;31m$1\e[0m"
+#    echo ""
+#    [ -z "$2" ] || usage
+#    exit 1
+#}
+
+spinner="/-\|"
+
+checkinstance () {
+    instance=$1
+    if [  -z "$instance" ]; then
+        {
+            echo "No enough parameters received!Instance code expected!Fail.." >&2
+            exit 1
+        }
+    fi
+    
+    if [ ! -d "/etc/opt/otlamp/"$instance ]; then
+        {
+            echo "Installation with name "$instance" does not exists!" >&2
+            exit 1
+        }
+    fi
+}
+
+checkhost () {
+    host=$1
+    #Проверим передан ли код [хоста]]
+    if [  -z "$host" ]; then
+        {
+            echo "No enough parameters received!Host name expected!Fail.." >&2
+            exit 1
+        }
+    fi
+}
+
+
+
+
+
+
+#проверка дампа БД
+checkdump () {
+    
+    dumpfile=$1
+    dbtype=$2
+    
+    if [  -z "$dumpfile" ]; then
+        {
+            echo "Путь до файла дампа не передан"
+            false
+        }
+    fi
+    
+    if [  -z "$dbtype" ]; then
+        {
+            echo "Тип БД не передан"
+            false
+        }
+    fi
+    
+    
+    echo "Проверка дампа"
+    
+    if [ ! -f $dumpfile ]; then
+        {
+            echo "ERROR!Dump file ${dumpfile} not found!"
+            false
+        }
+    fi
+    
+    
+    if [ ! -s $dumpfile ]
+    then
+        echo "ERROR!Dump file ${dumpfile} is empty!"
+        false
+    fi
+    
+    #uname2="$(stat --format '%U' stat --format '%U')"
+    #if [ "x${uname2}" = "x${USER}" ]; then
+    #  echo owner
+    #else
+    # echo no owner
+    #fi
+    
+    case "$dbtype" in
+        mysql)
+            dumptail=`tail -n1 $dumpfile`
+            
+            if [[ $dumptail != *"Dump completed"* ]]; then
+                echo "ERROR!Dump file ${dumpfile} is not complited!!"
+                false
+            else
+                echo $dumpfile
+                echo "tail:"
+                echo $dumptail
+                echo "OK"
+                true
+            fi
+        ;;
+        
+        psql)
+            dumptail=`tail -n5 $dumpfile`
+            
+            if [[ $dumptail != *"PostgreSQL database dump complete"* ]]; then
+                echo "ERROR!Dump file ${dumpfile} is not complited!!"
+                false
+            else
+                
+                echo $dumpfile
+                echo "tail:"
+                echo $dumptail
+                echo "OK"
+                true
+            fi
+        ;;
+        *)
+            echo "неверный тип БД"
+            false
+            
+        ;;
+    esac
+    
+    
+}
+
+checkdb () {
+    
+    dbtype=$1
+    if [  -z "$dbtype" ]; then
+        {
+            echo "Тип БД не передан"
+            false
+        }
+    fi
+    
+    case "$dbtype" in
+        mysql)
+            MYSQLSTATUS=$(service mysql status | grep "Active: active")
+            
+            if [ ! -z "$MYSQLSTATUS" ]; then
+                {
+                    echo "MYSQLSTATUS OK"
+                    true
+                }
+            else
+                {
+                    echo "MYSQLSTATUS NOT OK"
+                    false
+                }
+            fi
+        ;;
+        
+        psql)
+            
+            POSTGRESQLSTATUS=$(service postgresql status | grep "Active: active")
+            
+            if [ ! -z "$POSTGRESQLSTATUS" ]; then
+                {
+                    echo "POSTGRESQLSTATUS OK"
+                    true
+                }
+            else
+                {
+                    echo "POSTGRESQLSTATUS NOT OK"
+                    false
+                }
+            fi
+        ;;
+        *)
+            echo "неверный тип БД"
+            false
+            
+        ;;
+    esac
+    
+}
+
+otlampalert ()
+{
+    #echo $0
+    NOW=$(date +%Y-%m-%d' '%H:%M:%S)
+    MESSAGE=$1
+    echo "${NOW} ${0} ${MESSAGE}" >> /var/log/opt/otlamp/alert.log
+}
+
+otlamp.message ()
+{
+    #echo $0
+    NOW=$(date +%Y-%m-%d' '%H:%M:%S)
+    MESSAGE=$1
+    echo "${NOW} ${MESSAGE}"
+}
+
+redecho ()
+{
+    echo -e "\e[32${1}\e[0m"
+}
+
+
+otlamp.archivehost ()
+{
+    archivebasedir=$1
+    instance=$2
+    host=$3
+    typearchive="FULL"
+    #TODO  проверка сущ-ва параметров
+    BACKUPDATE=`date +%Y%m%d%H%M%S`
+    BACKUPFILENAME="${BACKUPDATE}.${instance}.${host}"
+    curdir=`pwd`
+    archivehostdir=$archivebasedir/$instance/$host
+    otlamp.message $archivehostdir
+    mkdir -p $archivehostdir
+    
+    otlamp.message "сделать бекап БД"
+    /opt/otlamp/bin/otlamp_savedb $instance $host
+    
+    otlamp.message "скопировать дамп бд в папку (либо сразу перенести)"
+    
+    otlamp.message "заархивировать дампы"
+    #TODO  бекап всего что нужно, 3 вида архива DBONLY NORMAL FULL
+    #TODO имя архива дата.сорержимое.tar.gz
+    cd /var/opt/otlamp/$instance/$host
+    tar cvzf  $archivehostdir"/${BACKUPFILENAME}.sqldump.tar.gz" "./sqldump"
+    check_result $? "заархивировать дампы"
+    
+    otlamp.message "заархивировать мудлдату"
+    cd /var/opt/otlamp/$instance/$host/www
+    tar --exclude="./data/temp"       \
+    --exclude="./data/cache"      \
+    --exclude="./data/trashdir"   \
+    --exclude="./data/localcache" \
+    -cf $archivehostdir"/${BACKUPFILENAME}.data.tar" "./data"
+    check_result $? "заархивировать мудлдату"
+    
+    otlamp.message "заархивировать htdocs"
+    cd /var/opt/otlamp/$instance/$host/www
+    tar --exclude="./data" \
+    --exclude="./local" \
+    --exclude="./tmp" \
+    --exclude="./cli" \
+    -zcf $archivehostdir"/${BACKUPFILENAME}.htdocs.tar.gz" "./"
+    check_result $? "заархивировать htdocs"
+    
+    cd $curdir
+}
+
+otlamp.waitpid ()
+{
+    
+    OLAMP_PID=$1
+    spin_i=1
+    while kill -0 $OLAMP_PID > /dev/null 2>&1 ; do
+        printf "\b${spinner:spin_i++%${#spinner}:1}"
+        sleep 0.5
+    done
+    printf "\b"
+    
+}
+
+check_result() {
+    if [ $1 -ne 0 ]; then
+        otlamp.message "[Error]: $2"
+        #    exit $1
+    else
+        otlamp.message "[OK]: $2"
+    fi
+}

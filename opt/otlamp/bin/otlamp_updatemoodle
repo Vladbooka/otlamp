@@ -1,0 +1,176 @@
+#!/bin/bash
+source /opt/otlamp/bin/otlamp_lib
+
+usage.otlamp_updatemoodle()
+{
+    echo "    Использование: $0 [-h],[--distrver] [instance] [host]
+
+    Пример:
+
+        /opt/otlamp/bin/otlamp_updatemoodle --distrver russianmoodle.3.9.13a.release.tar.gz w1 с1000
+
+
+    Обязательные параметры:
+    [--distrver] имя архива сборки из папки /opt/otlamp/share/distr/russianmoodle
+    [instance] например w1
+    [host] например с1000
+
+    Не обязательные параметры:
+    -h  выводит это сообщение
+    "
+}
+
+
+DISTRVER=0000
+# -distrver lms4 w1 host address
+
+while [ -n "$1" ]
+do
+    case "$1" in
+        --distrver) echo "FOund distrver"
+            DISTRVER=$2
+            echo $DISTRVER
+            shift
+            shift
+        break;;
+        
+        -h) usage.otlamp_updatemoodle
+        exit 0;;
+        *) echo ""
+        break;;
+    esac
+done
+
+INSTANCE=$1
+HOST=$2
+#SERVERNAME=$3
+
+OTLAMP_LOGFILE=/var/log/opt/otlamp/$INSTANCE/$HOST/upgrade.log
+OTLAMP_DISTR=/opt/otlamp/share/distr/russianmoodle/$DISTRVER
+
+
+
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+
+
+#Проверим передан ли код экземпляра
+if [  -z "$INSTANCE" ]; then
+    {
+        echo "No enough parameters received!Instance code expected!Fail.."
+        exit 1
+    }
+fi
+#Проверим передан ли код экземпляра
+if [  -z "$HOST" ]; then
+    {
+        echo "No enough parameters received!Host name expected!Fail.."
+        exit 1
+    }
+fi
+
+
+
+#Проверим передан ли Server name
+#if [  -z "$SERVERNAME" ]; then
+# {
+#    echo "No enough parameters received!Server name expected!Fail.."
+#    exit 1
+# }
+#fi
+
+#проверим, есть ли такая инсталляция
+if [ ! -d "/etc/opt/otlamp/"$INSTANCE ]; then
+    echo "Installation with name "$INSTANCE" does not exists!"
+    exit 1
+fi
+
+#проверим есть ли хоста с таким именем
+if [ ! -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+    echo "Host with name "$HOST" does not exists!"
+    exit 1
+fi
+
+
+#Проверим есть ли шаблон
+if [ ! -f $OTLAMP_DISTR ]; then
+    echo "Templatet moodle does not exists!!"
+    exit 1
+fi
+#exit 1
+
+#проверить пришло ли тип инсталляции
+
+
+#переводим в режим обслуживания
+otlamp.message ""
+php /var/opt/otlamp/$INSTANCE/$HOST/www/htdocs/admin/cli/maintenance.php --enable
+
+#делаем бекап
+###bash /opt/otlamp/bin/otlamp_savevhost $INSTANCE $HOST autoupdate
+
+#создаем папку для новой версии
+otlamp.message ""
+mv -f /var/opt/otlamp/$INSTANCE/$HOST/www/htdocs /var/opt/otlamp/$INSTANCE/$HOST/www/old
+
+otlamp.message "unzip"
+tar -xvzf $OTLAMP_DISTR  -C /var/opt/otlamp/$INSTANCE/$HOST/www/
+#копируем новые хтдокс
+
+#cp -r -f $OTLAMP_DISTR/www/htdocs/* /var/opt/otlamp/$INSTANCE/$HOST/www/new
+
+
+#копируем старый конфиг
+otlamp.message "copy config________ "
+cp -f /var/opt/otlamp/$INSTANCE/$HOST/www/old/config.php /var/opt/otlamp/$INSTANCE/$HOST/www/htdocs/config.php
+
+
+
+#переносим старый код в отдельную папку
+otlamp.message "create old"
+DAY=`date +\%Y\%m\%d\%H\%M\%S`
+mkdir -p /var/opt/otlamp/$INSTANCE/$HOST/old/$DAY
+otlamp.message "mv to old"
+mv -f  /var/opt/otlamp/$INSTANCE/$HOST/www/old /var/opt/otlamp/$INSTANCE/$HOST/old/$DAY
+
+#оставить сколько там последних версий, чтоб не забивать место.
+
+#переименовываем новую папку
+#echo "rename new________"
+#mv -f /var/opt/otlamp/$INSTANCE/$HOST/www/new /var/opt/otlamp/$INSTANCE/$HOST/www/htdocs
+
+
+#выстиавляем нужные права
+otlamp.message "fixmode____________"
+chown -R $INSTANCE:$INSTANCE /var/opt/otlamp/$INSTANCE/$HOST/www/htdocs/
+chown -R $INSTANCE:$INSTANCE /var/opt/otlamp/$INSTANCE/$HOST/www/cli/
+
+#запускаем апдейт
+otlamp.message "updata____________"
+cd /var/opt/otlamp/$INSTANCE/$HOST/www/cli/
+bash upgrade $INSTANCE $HOST
+
+
+#сброс кеша
+otlamp.message "purge____________"
+php /var/opt/otlamp/$INSTANCE/$HOST/www/htdocs/admin/cli/purge_caches.php
+
+
+
+#перезапуск отламп
+otlamp.message "otlamp restart____________"
+service otlamp.$INSTANCE restart
+
+otlamp.message "--collation=utf8mb4_unicode_ci"
+php /var/opt/otlamp/$INSTANCE/$HOST/www/htdocs/admin/cli/mysql_collation.php --collation=utf8mb4_unicode_ci
+
+#выключаем режим обслуживания
+otlamp.message "maintance disable____________"
+php /var/opt/otlamp/$INSTANCE/$HOST/www/htdocs/admin/cli/maintenance.php --disable
+
+#сброс кеша
+otlamp.message "purge____________"
+php /var/opt/otlamp/$INSTANCE/$HOST/www/htdocs/admin/cli/purge_caches.php
+

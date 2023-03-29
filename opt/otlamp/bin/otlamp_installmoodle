@@ -1,0 +1,97 @@
+#!/bin/bash
+
+
+DISTRVER=0000
+# -distrver lms4 w1 host address
+
+while [ -n "$1" ]
+do
+    case "$1" in
+        --distrver) echo "FOund distrver"
+            DISTRVER=$2
+            echo $DISTRVER
+            shift
+            shift
+        break;;
+        
+        *) echo "$1 is not an option"
+        break;;
+    esac
+done
+
+
+
+
+INSTANCE=$1
+HOST=$2
+SERVERNAME=$3
+
+
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+#Проверим передан ли код экземпляра
+if [  -z "$INSTANCE" ]; then
+    {
+        echo "No enough parameters received!Instance code expected!Fail.."
+        exit 1
+    }
+fi
+#Проверим передан ли код экземпляра
+if [  -z "$HOST" ]; then
+    {
+        echo "No enough parameters received!Host name expected!Fail.."
+        exit 1
+    }
+fi
+#Проверим передан ли Server name
+if [  -z "$SERVERNAME" ]; then
+    {
+        echo "No enough parameters received!Server name expected!Fail.."
+        exit 1
+    }
+fi
+#проверим, есть ли такая инсталляция
+if [ ! -d "/etc/opt/otlamp/"$INSTANCE ]; then
+    echo "Installation with name "$INSTANCE" does not exists!"
+    exit 1
+fi
+
+#проверим нет ли хоста с таким именем
+if [ -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+    echo "Host with name "$HOST" also exists!"
+    exit 1
+fi
+
+
+#проверим, есть ли такой дистрибутив
+if [ ! -d "/opt/otlamp/share/distr/russianmoodle/"$DISTRVER ]; then
+    echo "DISTR with name "$DISTRVER" does not exists!"
+    exit 1
+fi
+
+#exit 1
+
+
+bash /opt/otlamp/bin/otlamp_addvhost $INSTANCE $HOST $SERVERNAME
+
+echo "type____________"
+bash /opt/otlamp/bin/otlamp_setvhosttype $INSTANCE $HOST moodle
+echo moodle > /etc/opt/otlamp/$INSTANCE/vhosts/$HOST/type
+
+OTLAMP_DISTR="/opt/otlamp/share/distr/russianmoodle/"$DISTRVER
+otlamp.message "unzip"
+tar -xvzf $OTLAMP_DISTR  -C /var/opt/otlamp/$INSTANCE/$HOST/www/
+
+echo "copy OK"
+echo "mysql__________"
+bash /opt/otlamp/bin/otlamp_restoremysql $INSTANCE $HOST
+
+echo "fixmode____________"
+bash /opt/otlamp/bin/otlamp_fixmode $INSTANCE $HOST
+
+php /var/opt/otlamp/$INSTANCE/$HOST/www/htdocs/admin/cli/upgrade.php  --non-interactive
+
+/opt/otlamp/bin/otlampd stop
+/opt/otlamp/bin/otlampd start

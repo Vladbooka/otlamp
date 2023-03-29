@@ -1,0 +1,25 @@
+#!/bin/bash
+#Выводит историю коммитов для хоста
+#параметры
+INSTANCE=$1
+HOST=$2
+#Проверим передан ли код экземпляра
+if [  -z "$INSTANCE" ]; then
+{
+    echo "No enough parameters received!Instance code expected!Fail.."
+    exit 1
+}
+fi
+#Проверим передан ли код хоста
+if [  -z "$HOST" ]; then
+{
+    echo "No enough parameters received!Host name expected!Fail.."
+    exit 1
+}
+fi
+#текущий каталог
+PATH=`pwd`
+cd /var/opt/otlamp/$INSTANCE/$HOST
+echo 'List of tags:'
+/usr/bin/git tag -l -n9
+cd $PATH

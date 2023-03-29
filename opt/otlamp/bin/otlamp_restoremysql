@@ -1,0 +1,55 @@
+#!/bin/bash
+INSTANCE=$1
+HOST=$2
+#бэкап хоста
+restore_host_dump()
+{
+    instance=$1
+    host=$2
+    #смотрим есть ли дамп
+    if [ ! -s /var/opt/otlamp/$instance/$host/sqldump/mysql.sql ]; then
+        {
+            echo 'ERROR!Dump file mysql.sql not found!'
+            exit 1
+        }
+    fi
+    echo 'Dump restore for HOST:'$host' INSTANCE:'$instance' begin!'
+    # удаляем базу
+    
+    # MYSQLUSER=`cat /etc/opt/otlamp/$instance/vhosts/$host/mysqluser`
+    # MYSQLDB=`cat /etc/opt/otlamp/$instance/vhosts/$host/mysqldb`
+    # MYSQLPASS=`cat /etc/opt/otlamp/$instance/vhosts/$host/mysqlpass`
+    source /var/opt/otlamp/$instance/$host/www/local/mysql
+    
+    mysql -u $MYSQLUSER -p$MYSQLPASS -e "DROP DATABASE IF EXISTS $MYSQLDB;"
+    
+    mysql -u $MYSQLUSER -p$MYSQLPASS  -e "CREATE DATABASE IF NOT EXISTS $MYSQLDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;"
+    #    mysql -u $MYSQLUSER -p$MYSQLPASS -e "GRANT ALL PRIVILEGES ON $MYSQLDB.* TO $MYSQLUSER@localhost IDENTIFIED BY '$MYSQLPASS' WITH GRANT OPTION;"
+    
+    mysql -u $MYSQLUSER -p$MYSQLPASS $MYSQLDB < /var/opt/otlamp/$instance/$host/sqldump/mysql.sql
+    echo 'Dump restore for HOST:'$host' INSTANCE:'$instance' complete!'
+    
+}
+
+#Проверим передан ли код экземпляра и хоста
+if [ -z "$INSTANCE" ] || [ -z "$HOST" ]; then
+    {
+        echo "Wrong parameters! Input <code> and <host> to begin restore!"
+        exit 1
+    }
+fi
+#проверим, есть ли такая инсталляция
+if [ ! -d "/etc/opt/otlamp/"$INSTANCE ]; then
+    echo "Installation with name "$INSTANCE" does not exists!"
+    exit 1
+fi
+
+#проверим существование хоста
+if [ ! -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+    echo "Host with name "$HOST" do not exists!"
+    exit 1
+fi
+
+restore_host_dump $INSTANCE $HOST
+
+

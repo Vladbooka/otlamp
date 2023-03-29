@@ -1,0 +1,48 @@
+#!/bin/bash
+
+inst_path="/etc/opt/otlamp"
+#для начала нужно вывести все директории в пути, вывод записываем в переменную 
+dir_list="$(ls -l $inst_path | awk '{print $9}')" 
+dir_vhosts="vhosts"
+MACRO_INSTANCE="#INSTANCENAME"
+MACRO_VHOST="#VHOSTNAME"
+
+printf '%s' '{"data":['
+
+#читаем строку из dir_list
+while IFS= read -r line 
+do
+    #если строка пустая, то пропускаем итерацию
+    if [[ $line == '' ]]; then 
+            continue
+    fi
+    
+    #собираем строку и записываем в переменную 
+    vhost_path="${inst_path}/${line}/${dir_vhosts}" 
+    
+    #пропускаем итерацию, если директории не существует
+    if [ ! -d "$vhost_path" ]; then 
+        continue 
+    fi
+
+    #вывод всех директорий по пути, записываем в переменную
+    dir_list_vhost="$(ls -l $vhost_path | awk '/.conf$/{ print $9 }' | awk -F'.'  '{print $1}')" 
+    # читаем строку из $dir_list_vhost
+    while IFS= read -r vhost 
+    do
+        if [[ $vhost == '' ]]; then
+                continue
+        fi
+        inst_vhost_path="${vhost_path}/${vhost}" #
+        if [[ "$inst_vhost_path" ]]; then
+                printf '%s' "$comma{\"{$MACRO_VHOST}\":\"$vhost\", \"{$MACRO_INSTANCE}\":\"$line\" }"
+                comma=","
+        fi
+    #тут передаётся строка vhost, которая будет читаться    
+    done <<< "$dir_list_vhost" 
+
+#тут передаётся строка line, которая будет читаться
+done <<< "$dir_list" 
+printf '%s' ']}'
+
+exit 0

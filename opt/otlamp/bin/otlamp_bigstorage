@@ -1,0 +1,119 @@
+#!/bin/bash
+
+
+
+INSTANCE=$1
+FSTAB=/etc/fstab
+#примонтированный большой диск
+BIGDIR=/var/opt/otlamp/_storage/
+
+#папка отлампа
+OTLAMPPATH=/var/opt/otlamp/$INSTANCE/
+
+HOST=$2
+
+if [  -z "$INSTANCE" ]; then
+{
+    echo "No enough parameters received!Instance code expected!Fail.."
+    exit 1
+}
+fi
+#Проверим передан ли код экземпляра
+if [  -z "$HOST" ]; then
+{
+    echo "No enough parameters received!Host name expected!Fail.."
+    exit 1
+}
+fi
+
+
+
+
+
+
+
+HOST_BACKUP_FOLDER=$BIGDIR"backup/"$INSTANCE/$HOST/
+ 
+#папки для бекапов
+mkdir -p $HOST_BACKUP_FOLDER".git"
+mkdir -p $HOST_BACKUP_FOLDER"sqldump"
+ 
+chown -R $INSTANCE:$INSTANCE $HOST_BACKUP_FOLDER".git"
+chown -R $INSTANCE:$INSTANCE $HOST_BACKUP_FOLDER"sqldump"
+
+
+
+# Создаются тогда же, но не биндятся
+# папки для статики и кеша 
+HOST_STATIC=$BIGDIR"static/$INSTANCE/$HOST/"
+HOST_CACHE=$BIGDIR"cache/$INSTANCE/$HOST/"
+HOST_TMP=$BIGDIR"tmp/$INSTANCE/$HOST/"
+
+ mkdir -p $HOST_STATIC
+ mkdir -p $HOST_CACHE
+ mkdir -p $HOST_TMP 
+
+
+
+
+
+ #Создаются и биндятся в момент, когда виртуальный хост типизируется, как Moodle:
+ mkdir -p $HOST_STATIC"www/data/filedir"
+ mkdir -p $HOST_STATIC"www/data/trashdir"
+ mkdir -p $HOST_TMP"www/data/temp"
+ mkdir -p $HOST_CACHE"www/data/cache"
+ mkdir -p $HOST_CACHE"www/data/localcache"
+ mkdir -p $HOST_CACHE"www/data/lock"
+
+
+
+chown -R $INSTANCE:$INSTANCE $HOST_STATIC
+chown -R $INSTANCE:$INSTANCE $HOST_CACHE
+chown -R $INSTANCE:$INSTANCE $HOST_TMP
+
+chmod -R 777 $HOST_STATIC
+chmod -R 777 $HOST_CACHE
+chmod -R 777 $HOST_TMP
+
+
+
+
+FSTAB_OPTONS="	none bind 0 0"
+#echo "#____"$HOST"_____" >> $FSTAB
+#echo $HOST_BACKUP_FOLDER"sqldump/		"$OTLAMPPATH$HOST"/sqldump/"$FSTAB_OPTONS 				>> $FSTAB
+#echo $HOST_BACKUP_FOLDER".git/			"$OTLAMPPATH$HOST"/.git/"$FSTAB_OPTONS 					>> $FSTAB
+echo $HOST_STATIC"www/data/filedir/		"$OTLAMPPATH$HOST"/www/data/filedir/"$FSTAB_OPTONS 		>> $FSTAB
+echo $HOST_STATIC"www/data/trashdir/	"$OTLAMPPATH$HOST"/www/data/trashdir/"$FSTAB_OPTONS 	>> $FSTAB
+echo $HOST_TMP"www/data/temp/			"$OTLAMPPATH$HOST"/www/data/temp/"$FSTAB_OPTONS 		>> $FSTAB
+echo $HOST_CACHE"www/data/cache/ 		"$OTLAMPPATH$HOST"/www/data/cache/"$FSTAB_OPTONS 		>> $FSTAB
+echo $HOST_CACHE"www/data/localcache/		"$OTLAMPPATH$HOST"/www/data/localcache/ "$FSTAB_OPTONS 	>> $FSTAB
+echo $HOST_CACHE"www/data/lock/			"$OTLAMPPATH$HOST"/www/data/lock/"$FSTAB_OPTONS 		>> $FSTAB
+
+
+
+
+
+
+
+
+
+
+
+#echo $BIGDIR$HOST"/www/data/filedir/ "$OTLAMPPATH$HOST"/www/data/filedir/ none bind 0 0" >> $FSTAB
+
+ mkdir -p $OTLAMPPATH$HOST"/www/data/filedir"
+ mkdir -p $OTLAMPPATH$HOST"/www/data/trashdir"
+ mkdir -p $OTLAMPPATH$HOST"/www/data/temp"
+ mkdir -p $OTLAMPPATH$HOST"/www/data/cache"
+ mkdir -p $OTLAMPPATH$HOST"/www/data/localcache"
+ mkdir -p $OTLAMPPATH$HOST"/www/data/lock"
+
+
+mount -a
+
+#если папки назначения пусты то маунтим в противном случае  нужен перенос
+#case `find $OTLAMPPATH$HOST"/www/data/filedir" | wc -l` in
+#0 ) mount -a ;; #Если файлов нет - выводится сообщение (или можно подставить любой ваш скрипт или команду)
+#* ) echo " ПАПКИ НЕ ПУСТЫ НЕОБХОДИМ ПЕРЕНОС!!!" ;; #если файлы в каталоге есть - ждем 5 секунд и дальше проверяем по-новому (к первому шагу)
+#esac
+

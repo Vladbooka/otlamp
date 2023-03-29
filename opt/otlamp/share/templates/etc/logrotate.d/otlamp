@@ -1,0 +1,14 @@
+/var/log/opt/otlamp/{OTLAMP_INSTANCE}/*/*.log {
+        size=30M
+	weekly
+	missingok
+	rotate 5
+	compress
+	delaycompress
+	notifempty
+	create 640 {OTLAMP_INSTANCE} {OTLAMP_INSTANCE}
+	sharedscripts
+	postrotate
+		service otlamp.{OTLAMP_INSTANCE} restart
+	endscript
+}

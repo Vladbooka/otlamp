@@ -1,0 +1,376 @@
+#!/bin/bash
+INSTANCE=$1
+HOST=$2
+source /opt/otlamp/bin/otlamp_lib
+
+#сбор статистики хоста
+stat_host()
+{
+    instance=$1
+    host=$2
+    hostexecutionstat=0
+    STARTSTATHOST=$(date +%s)
+    
+    
+    echo '';
+    echo '        Host '$host' in work...'
+    
+    mkdir -p /var/log/opt/otlamp/$instance/$host/stat/
+    
+    if [ -f /etc/opt/otlamp/$instance/vhosts/$host/type ]; then
+        hosttype=`cat /etc/opt/otlamp/$instance/vhosts/$host/type`
+    fi
+    
+    if [ -f /var/opt/otlamp/$instance/$host/www/cli/stat ]&&[ "$hosttype" == "moodle" ]; then
+        #получаем данные о файле, в том числе о владельце
+        filedata=(`ls -lh /var/opt/otlamp/$instance/$host/www/cli/stat`)
+        owner=${filedata[2]}
+        group=${filedata[3]}
+        #проверяем, чтобы владелец совпадал с именем инстанса
+        if [ "$owner" == "$instance" ]&&[ "$group" == "$instance" ];  then
+            #создаем директорию, куда будем класть свои файлы
+            mkdir -p /var/log/opt/otlamp/$instance/$host/stat
+            #результат выполнения скрипта кладем в созданную директорию
+            # вызов через php-cli
+            if [ -f "/etc/opt/otlamp/$instance/php-cli" ]; then
+                {
+                    echo "OTLAMP php-cli"
+                    sudo -u $instance /etc/opt/otlamp/$instance/php-cli /var/opt/otlamp/$instance/$host/www/cli/stat -a | sed s/" "/""/g | tr -d '\r\n' > /var/log/opt/otlamp/$instance/$host/stat/stat.json
+                }
+            else
+                {
+                    sudo -u $instance php /var/opt/otlamp/$instance/$host/www/cli/stat -a | sed s/" "/""/g | tr -d '\r\n' > /var/log/opt/otlamp/$instance/$host/stat/stat.json
+                }
+            fi
+            #если результат есть, парсим его и сохраняем рядом отдельные переменные
+            if [ -f /var/log/opt/otlamp/$instance/$host/stat/stat.json ]; then
+                regexjson=`grep ^\{.*\}$ /var/log/opt/otlamp/$instance/$host/stat/stat.json`
+                if [ "$regexjson" == "" ]; then
+                    echo '            stat.json is not json'
+                    echo "`date +\%Y-\%m-\%d-\%H_\%M_\%S` ${host}  stat.json is not json" >> /var/log/opt/otlamp/$instance/stat_error.log
+                    otlampalert "${host}  stat.json is not json"
+                else
+                    
+                    calctypes=('sum' 'average' 'factored' 'count')
+                    for i in "${calctypes[@]}"
+                    do
+                        mkdir -p /var/log/opt/otlamp/$instance/$host/stat/$i
+                        mkdir -p /var/log/opt/otlamp/$instance/stat/$i
+                        mkdir -p /var/log/opt/otlamp/stat/$i
+                    done
+                    
+                    if [ -f "/etc/opt/otlamp/$instance/php-cli" ]; then
+                        {
+                            #/etc/opt/otlamp/$instance/php-cli  /opt/otlamp/bin/otlamp_stat.php -i=$instance -host=$host
+                            /etc/opt/otlamp/$instance/php-cli  /opt/otlamp/bin/otlamp_stat.php
+                        }
+                    else
+                        {
+                            php /opt/otlamp/bin/otlamp_stat.php -i=$instance -host=$host
+                        }
+                    fi
+                    #exit 0
+                    #количество пользователей users
+                    #cat /var/log/opt/otlamp/$instance/$host/stat/stat.json | python -c "import sys, json; print(json.load(sys.stdin)['users'])" > /var/log/opt/otlamp/$instance/$host/stat/users
+                    
+                    #количество онлайн-пользователей onlineusers
+                    onlineusers=`cat /var/log/opt/otlamp/$instance/$host/stat/sum/onlineusers`
+                    
+                    echo $onlineusers > /var/log/opt/otlamp/$instance/$host/stat/onlineusers
+                    echo $onlineusers" "`date +\%Y-\%m-\%d-\%H_\%M_\%S` >> /var/log/opt/otlamp/$instance/$host/stat/onlineusershistory
+                    
+                    #количество курсов courses
+                    #cat /var/log/opt/otlamp/$instance/$host/stat/stat.json | python -c "import sys, json; print(json.load(sys.stdin)['courses'])" > /var/log/opt/otlamp/$instance/$host/stat/courses
+                    
+                    #количество учебных договоров dof_contracts
+                    #cat /var/log/opt/otlamp/$instance/$host/stat/stat.json | python -c "import sys, json; print(json.load(sys.stdin)['dof_contracts'])" > /var/log/opt/otlamp/$instance/$host/stat/dof_contracts
+                    
+                    #количество учебных процессов dof_cstreams
+                    #cat /var/log/opt/otlamp/$instance/$host/stat/stat.json | python -c "import sys, json; print(json.load(sys.stdin)['dof_cstreams'])" > /var/log/opt/otlamp/$instance/$host/stat/dof_cstreams
+                    
+                    #количество добавленных достижений dof_achievementins
+                    #cat /var/log/opt/otlamp/$instance/$host/stat/stat.json | python -c "import sys, json; print(json.load(sys.stdin)['dof_achievementins'])" > /var/log/opt/otlamp/$instance/$host/stat/dof_achievementins
+                    
+                    #максимальное количество онлайн-пользователей на хосте maxonlineusers
+                    #если maxonlineusers для хоста нет, пробуем создать его со значением "0"
+                    if [ ! -f /var/log/opt/otlamp/$instance/$host/stat/maxonlineusers ]; then
+                        echo "0" > /var/log/opt/otlamp/$instance/$host/stat/maxonlineusers
+                    fi
+                    #проверяем существование maxonlineusers для дальнейшего использования
+                    if [ -f /var/log/opt/otlamp/$instance/$host/stat/maxonlineusers ]; then
+                        maxonlineusers=`cat /var/log/opt/otlamp/$instance/$host/stat/maxonlineusers`
+                        if (( "$onlineusers" > "$maxonlineusers" )); then
+                            maxonlineusers=$onlineusers
+                            echo $maxonlineusers > /var/log/opt/otlamp/$instance/$host/stat/maxonlineusers
+                        fi
+                    else
+                        echo "            can't create maxonlineusers of "$host;
+                        otlampalert "${host}  can't create maxonlineusers"
+                    fi
+                fi
+            else
+                echo '            Cant create stat.json'
+                otlampalert "${host}  Cant create stat.json"
+            fi
+        else
+            echo '            '$instance' is not owner of stat-file. Use fixmod.'
+            otlampalert "${instance} is not owner of stat-file. Use fixmod."
+        fi
+    else
+        echo '            It seems that host '$host' have no stat-script OR '$host' have type!=moodle'
+    fi
+    echo '        Host '$host' processing is done'
+    ENDSTATHOST=$(date +%s)
+    hostexecutionstat=$(($(date +%s)-$STARTSTATHOST))
+    echo "It took ${hostexecutionstat} seconds"
+    echo $hostexecutionstat > /var/log/opt/otlamp/$instance/$host/stat/hostexecutionstat
+    
+}
+
+
+#сбор статистики хостов инсталляции
+stat_instance()
+{
+    instance=$1
+    instanceusers=0
+    instanceonlineusers=0
+    instancecourses=0
+    instancedofcontracts=0
+    instancedofcstreams=0
+    instancedofachievementins=0
+    instanceexecutionstat=0
+    STARTSTATINSTANCE=$(date +%s)
+    
+    
+    mkdir -p /var/log/opt/otlamp/$instance/stat
+    
+    echo ''
+    echo '    Saving stat for INSTANCE:'$instance' begin!'
+    
+    #Обнуляем общий файл со статистикой по пользователям хоста
+    echo "" >/var/log/opt/otlamp/$instance/stat/onlineuserslist
+    #Обнуляем общий файл со статистикой по хостам
+    echo "'host','type','users','online','maxonline','courses','contracts','cstreams','achievementins';" > /var/log/opt/otlamp/$instance/stat/statlist
+    
+    #Считываем названия хостов в массив через пробел
+    HOSTS=(`ls /var/opt/otlamp/$instance | tr " " "\n"`)
+    #Запускаем stat_host для каждого хоста
+    for host in "${HOSTS[@]}"
+    do
+        if [ -d /etc/opt/otlamp/$instance/vhosts/$host ]; then
+            stat_host $instance $host
+            #суммируем значения данных по хостам
+            #количество пользователей
+            if [ -f /var/log/opt/otlamp/$instance/$host/stat/users ]; then
+                hostusers=`cat /var/log/opt/otlamp/$instance/$host/stat/users`
+                (( instanceusers += hostusers ))
+            fi
+            #количество онлайн-пользователей
+            if [ -f /var/log/opt/otlamp/$instance/$host/stat/onlineusers ]; then
+                hostonlineusers=`cat /var/log/opt/otlamp/$instance/$host/stat/onlineusers`
+                (( instanceonlineusers += hostonlineusers ))
+            else
+                hostonlineusers="unknown"
+            fi
+            #количество курсов
+            if [ -f /var/log/opt/otlamp/$instance/$host/stat/courses ]; then
+                hostcourses=`cat /var/log/opt/otlamp/$instance/$host/stat/courses`
+                (( instancecourses += hostcourses ))
+            fi
+            #количество учебных договоров
+            if [ -f /var/log/opt/otlamp/$instance/$host/stat/dof_contracts ]; then
+                hostdofcontracts=`cat /var/log/opt/otlamp/$instance/$host/stat/dof_contracts`
+                (( instancedofcontracts += hostdofcontracts ))
+            fi
+            #количество учебных процессов
+            if [ -f /var/log/opt/otlamp/$instance/$host/stat/dof_cstreams ]; then
+                hostdofcstreams=`cat /var/log/opt/otlamp/$instance/$host/stat/dof_cstreams`
+                (( instancedofcstreams += hostdofcstreams ))
+            fi
+            #количество добавленных достижений
+            if [ -f /var/log/opt/otlamp/$instance/$host/stat/dof_achievementins ]; then
+                hostdofachievementins=`cat /var/log/opt/otlamp/$instance/$host/stat/dof_achievementins`
+                (( instancedofachievementins += hostdofachievementins ))
+            fi
+            
+            #составляем список всех хостов для просмотра на сервере
+            if [ -f /var/log/opt/otlamp/$instance/$host/stat/maxonlineusers ]; then
+                hostmaxonlineusers=`cat /var/log/opt/otlamp/$instance/$host/stat/maxonlineusers`
+            else
+                hostmaxonlineusers="unknown"
+            fi
+            if [ -f /etc/opt/otlamp/$instance/vhosts/$host/type ]; then
+                hosttype=`cat /etc/opt/otlamp/$instance/vhosts/$host/type`
+            else
+                hosttype="not moodle"
+            fi
+            echo $host": "$hostonlineusers" (max: "$hostmaxonlineusers"), type="$hosttype >> /var/log/opt/otlamp/$instance/stat/onlineuserslist
+            echo "'"$host"','"$hosttype"','"$hostusers"','"$hostonlineusers"','"$hostmaxonlineusers"','"$hostcourses"','"$hostdofcontracts"','"$hostdofcstreams"','"$hostdofachievementins"';" >> /var/log/opt/otlamp/$instance/stat/statlist
+        fi
+    done
+    #сохраняем данные по инстансу
+    echo $instanceusers > /var/log/opt/otlamp/$instance/stat/users
+    echo $instanceonlineusers > /var/log/opt/otlamp/$instance/stat/onlineusers
+    echo $instancecourses > /var/log/opt/otlamp/$instance/stat/courses
+    echo $instancedofcontracts > /var/log/opt/otlamp/$instance/stat/dof_contracts
+    echo $instancedofcstreams > /var/log/opt/otlamp/$instance/stat/dof_cstreams
+    echo $instancedofachievementins > /var/log/opt/otlamp/$instance/stat/dof_achievementins
+    
+    #если maxonlineusers для инстанса нет, пробуем создать его со значением "0"
+    if [ ! -f /var/log/opt/otlamp/$instance/stat/maxonlineusers ]; then
+        echo "0" > /var/log/opt/otlamp/$instance/stat/maxonlineusers
+    fi
+    #проверяем существование maxonlineusers для дальнейшего использования
+    if [ -f /var/log/opt/otlamp/$instance/stat/maxonlineusers ]; then
+        instancemaxonlineusers=`cat /var/log/opt/otlamp/$instance/stat/maxonlineusers`
+        if (( "$instanceonlineusers" > "$instancemaxonlineusers" )); then
+            instancemaxonlineusers=$instanceonlineusers
+            echo $instancemaxonlineusers > /var/log/opt/otlamp/$instance/stat/maxonlineusers
+        fi
+    else
+        echo "            can't create maxonlineusers of "$instance;
+    fi
+    
+    echo ''
+    echo '    Saving stat for INSTANCE:'$instance' complete!'
+    ENDSTATINSTANCE=$(date +%s)
+    instanceexecutionstat=$(($(date +%s)-$STARTSTATINSTANCE))
+    echo "It took ${instanceexecutionstat} seconds"
+    echo $instanceexecutionstat > /var/log/opt/otlamp/$instance/stat/instanceexecutionstat
+    
+    
+}
+
+#Сбор статистики всего olamp
+stat_all()
+{
+    otlampusers=0
+    otlamponlineusers=0
+    otlampcourses=0
+    otlampdofcontracts=0
+    otlampdofcstreams=0
+    otlampdofachievementins=0
+    otlampeexecutionstat=0
+    STARTSTATOTLAMP=$(date +%s)
+    
+    
+    mkdir -p /var/log/opt/otlamp/stat
+    
+    echo 'Save stat for all instances otlamp begin!'
+    
+    #получим список инсталляций
+    FOLDERS=(`ls /etc/opt/otlamp | tr " " "\n"`)
+    
+    if [[ "${#FOLDERS[@]}" -gt "0" ]]; then
+        #Считываем названия инсталляций в массив через пробел
+        for instance in "${FOLDERS[@]}"
+        do
+            if [ -d /etc/opt/otlamp/$instance ];
+            then
+                stat_instance $instance
+                #суммируем значения данных по инстансам
+                if [ -f /var/log/opt/otlamp/$instance/stat/users ]; then
+                    instanceusers=`cat /var/log/opt/otlamp/$instance/stat/users`
+                    (( otlampusers += instanceusers ))
+                fi
+                if [ -f /var/log/opt/otlamp/$instance/stat/onlineusers ]; then
+                    instanceonlineusers=`cat /var/log/opt/otlamp/$instance/stat/onlineusers`
+                    (( otlamponlineusers += instanceonlineusers ))
+                fi
+                if [ -f /var/log/opt/otlamp/$instance/stat/courses ]; then
+                    instancecourses=`cat /var/log/opt/otlamp/$instance/stat/courses`
+                    (( otlampcourses += instancecourses ))
+                fi
+                if [ -f /var/log/opt/otlamp/$instance/stat/dof_contracts ]; then
+                    instancedofcontracts=`cat /var/log/opt/otlamp/$instance/stat/dof_contracts`
+                    (( otlampdofcontracts += instancedofcontracts ))
+                fi
+                if [ -f /var/log/opt/otlamp/$instance/stat/dof_cstreams ]; then
+                    instancedofcstreams=`cat /var/log/opt/otlamp/$instance/stat/dof_cstreams`
+                    (( otlampdofcstreams += instancedofcstreams ))
+                fi
+                if [ -f /var/log/opt/otlamp/$instance/stat/dof_achievementins ]; then
+                    instancedofachievementins=`cat /var/log/opt/otlamp/$instance/stat/dof_achievementins`
+                    (( otlampdofachievementins += instancedofachievementins ))
+                fi
+            fi
+        done
+        #сохраняем суммарные значения по всем данным
+        echo $otlampusers > /var/log/opt/otlamp/stat/users
+        echo $otlamponlineusers > /var/log/opt/otlamp/stat/onlineusers
+        echo $otlamponlineusers" "`date +\%Y-\%m-\%d-\%H_\%M_\%S` >> /var/log/opt/otlamp/stat/onlineusershistory
+        #если maxonlineusers для всего otlamp нет, пробуем создать его со значением "0"
+        if [ ! -f /var/log/opt/otlamp/stat/maxonlineusers ]; then
+            echo "0" > /var/log/opt/otlamp/stat/maxonlineusers
+        fi
+        #проверяем существование maxonlineusers для дальнейшего использования
+        if [ -f /var/log/opt/otlamp/stat/maxonlineusers ]; then
+            otlampmaxonlineusers=`cat /var/log/opt/otlamp/stat/maxonlineusers`
+            if (( "$otlamponlineusers" > "$otlampmaxonlineusers" )); then
+                otlampmaxonlineusers=$otlamponlineusers
+                echo $otlampmaxonlineusers > /var/log/opt/otlamp/stat/maxonlineusers
+            fi
+        else
+            echo "            can't create maxonlineusers of otlamp";
+        fi
+        echo $otlampcourses > /var/log/opt/otlamp/stat/courses
+        echo $otlampdofcontracts > /var/log/opt/otlamp/stat/dof_contracts
+        echo $otlampdofcstreams > /var/log/opt/otlamp/stat/dof_cstreams
+        echo $otlampdofachievementins > /var/log/opt/otlamp/stat/dof_achievementins
+    fi
+    echo ''
+    echo 'Save stat for all instances otlamp complete!'
+    ENDSTATOTLAMP=$(date +%s)
+    otlampexecutionstat=$(($(date +%s)-$STARTSTATOTLAMP))
+    echo "It took ${otlampexecutionstat} seconds"
+    echo $otlampexecutionstat > /var/log/opt/otlamp/stat/otlampexecutionstat
+    
+    
+}
+
+##########################################################################################################################################################
+
+# Проверка полномочий
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+#если ничего не передно - запуск по всем инстансам и хостам
+if [ -z "$INSTANCE" ] && [ -z "$HOST" ]; then
+    {
+        stat_all
+        exit 1
+    }
+fi
+#Проверим передан ли код экземпляра
+if [ ! -z "$INSTANCE" ] && [ -z "$HOST" ]; then
+    {
+        if [ -d "/etc/opt/otlamp/"$INSTANCE ] && [ -e "/etc/opt/otlamp/"$INSTANCE"/apache2.conf" ]; then
+            {
+                
+                stat_instance $INSTANCE
+            }
+        else
+            {
+                echo "Installation with name "$INSTANCE" does not exists!"
+            }
+        fi
+        exit 1
+    }
+fi
+#Проверим передан ли код экземпляра и хоста
+if [  ! -z "$HOST" ] && [ ! -z "$INSTANCE" ]; then
+    {
+        if [ -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+            {
+                stat_host $INSTANCE $HOST
+            }
+        else
+            {
+                echo "Host with name "$HOST" not exist!"
+            }
+        fi
+        exit 1
+    }
+fi
+

@@ -1,0 +1,125 @@
+#!/bin/bash
+INSTANCE=$1
+HOST=$2
+#бэкап хоста
+make_host_dump()
+{
+    instance=$1
+    host=$2
+    echo 'Dump creation for HOST:'$host' INSTANCE:'$instance' begin!'
+    # создаем папку для дампа
+    mkdir -p /var/opt/otlamp/$instance/$host/sqldump/
+    chown $instance:$instance /var/opt/otlamp/$instance/$host/sqldump/
+    chmod 750 /var/opt/otlamp/$instance/$host/sqldump/
+    source /var/opt/otlamp/$instance/$host/www/local/mysql
+#    mysqldump --no-tablespaces -u $MYSQLUSER -h $MYSQLHOST -p$MYSQLPASS $MYSQLDB > /var/opt/otlamp/$instance/$host/sqldump/mysql.sql
+    mysqldump --no-tablespaces --single-transaction -u $MYSQLUSER -h $MYSQLHOST -p$MYSQLPASS $MYSQLDB > /var/opt/otlamp/$instance/$host/sqldump/mysql.sql
+#    mysqldump  --single-transaction -u $MYSQLUSER -h $MYSQLHOST -p$MYSQLPASS $MYSQLDB > /var/opt/otlamp/$instance/$host/sqldump/mysql.sql
+    echo 'Dump creation for HOST:'$host' INSTANCE:'$instance' complete!'
+    echo 'FILE:'`du -h /var/opt/otlamp/$instance/$host/sqldump/mysql.sql`
+    mkdir -p /home/backup/db/$MYSQLDB/
+    cp -f /var/opt/otlamp/$instance/$host/sqldump/mysql.sql  /home/backup/db/$MYSQLDB/mysql.sql
+    echo 'FILE /var/opt/otlamp/'$instance'/'$host'/sqldump/mysql.sql copy to /home/backup/db/'$MYSQLDB'/mysql.sql '   
+}
+
+
+#бэкап хостов инсталляции
+make_instance_dump()
+{
+    instance=$1
+    echo 'Dump creation for INSTANCE:'$instance' begin!'
+
+    #Считываем названия хостов в массив через пробел
+    HOSTS=(`ls /var/opt/otlamp/$instance | tr " " "\n"`)
+    #Запускаем fix_host для каждого хоста
+    for host in "${HOSTS[@]}"
+    do
+        if [ -d /etc/opt/otlamp/$instance/vhosts/$host ] && [ -e "/etc/opt/otlamp/"$instance"/apache2.conf" ]; then                              
+            make_host_dump $instance $host
+        fi
+    done
+    
+    echo 'Dump creation for INSTANCE:'$instance' complete!'
+
+}
+
+#бэкап всего olamp
+make_all_dump()
+{
+    echo 'Dump creation for all instances otlamp begin!'
+    
+    #получим список инсталляций
+    FOLDERS=(`ls /etc/opt/otlamp | tr " " "\n"`)
+
+    if [[ "${#FOLDERS[@]}" -gt "0" ]]; then
+        #Считываем названия инсталляций в массив через пробел   
+        for instance in "${FOLDERS[@]}"
+        do
+            if [ -d /etc/opt/otlamp/$instance ]; 
+            then
+                make_instance_dump $instance    
+            fi      
+        done
+        
+    fi
+    echo 'Dump creation for all instances otlamp complete!'
+}
+
+##########################################################################################################################################################
+
+
+#если ничего не передно - запуск по всем инстансам и хостам
+if [ -z "$INSTANCE" ] && [ -z "$HOST" ]; then
+{
+    # Проверка полномочий
+	if [[ $EUID -ne 0 ]]; then
+	    echo "This script must be run as root"
+	    exit 1
+	fi
+    make_all_dump
+    exit 1         
+}
+fi
+
+CURRENTUSER=`getent passwd $UID | sed -e 's/\:.*//'`
+echo "$CURRENTUSER"
+if [[ "$CURRENTUSER" != "$INSTANCE" ]] && [[ $EUID -ne 0 ]] ; then
+{	
+	echo "Permission denied! This script can perform only "$INSTANCE" and root!"
+	exit 1
+}
+fi
+
+
+
+#Проверим передан ли код экземпляра
+if [ ! -z "$INSTANCE" ] && [ -z "$HOST" ]; then
+{
+    if [ -d "/etc/opt/otlamp/"$INSTANCE ]; then
+    {        
+        make_instance_dump $INSTANCE
+    }
+    else
+    {
+        echo "Installation with name "$INSTANCE" does not exists!"        
+    }
+    fi
+    exit 1      
+}
+fi
+#Проверим передан ли код экземпляра и хоста
+if [  ! -z "$HOST" ] && [ ! -z "$INSTANCE" ]; then
+{
+    if [ -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+    {
+        make_host_dump $INSTANCE $HOST  
+    }
+    else
+    {
+        echo "Host with name "$HOST" not exist!"
+    }
+    fi
+    exit 1
+}
+fi
+

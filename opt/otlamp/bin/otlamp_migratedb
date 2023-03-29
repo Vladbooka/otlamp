@@ -1,0 +1,94 @@
+#!/bin/bash
+INSTANCE=$1
+HOST=$2
+
+#Проверим передан ли код экземпляра
+if [  -z "$INSTANCE" ]; then
+    {
+        echo "No enough parameters received!Instance code expected!Fail.."
+        exit 1
+    }
+fi
+
+#Проверим передан ли код хоста
+if [  -z "$HOST" ]; then
+    {
+        echo "No enough parameters received! HOST!!"
+        exit 1
+    }
+fi
+
+
+#проверим, есть ли такая инсталляция
+if [ ! -d "/etc/opt/otlamp/"$INSTANCE ]; then
+    echo "Installation with name "$INSTANCE" does not exists!"
+    exit 1
+fi
+
+#проверим есть ли хоста с таким именем
+if [ ! -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+    echo "Host with name "$HOST" NOT exists!"
+    exit 1
+fi
+
+#проверим, указан ли тип хоста
+if [ ! -f "/etc/opt/otlamp/"$INSTANCE"/vhosts/"$HOST"/type" ]; then
+    echo "Type file not exist!!!"
+    exit 1
+fi
+
+TYPE=`cat "/etc/opt/otlamp/$INSTANCE/vhosts/$HOST/type"`
+echo $TYPE
+if [ ! "$TYPE" == "moodle" ]; then
+    echo "Type not moodle!!!"
+    exit 1
+fi
+
+
+
+if [ ! -f "/var/opt/otlamp/${INSTANCE}/${HOST}/www/local/mysql" ]; then
+    echo "Source file NOT "
+    exit 1
+fi
+
+
+if [ ! -f "/var/opt/otlamp/${INSTANCE}/${HOST}/www/local/postgresql" ]; then
+    echo "Source file NOT "
+    exit 1
+fi
+
+if [ ! -f "/etc/opt/otlamp/${INSTANCE}/php-cli" ]; then
+    echo "php-cli file NOT found "
+    exit 1
+fi
+
+
+
+source /var/opt/otlamp/$INSTANCE/$HOST/www/local/mysql
+source /var/opt/otlamp/$INSTANCE/$HOST/www/local/postgresql
+
+cp /var/opt/otlamp/${INSTANCE}/${HOST}/www/htdocs/blocks/dof/db/install.xml \
+/var/opt/otlamp/${INSTANCE}/${HOST}/www/htdocs/blocks/dof/db/install.xml.old
+
+/etc/opt/otlamp/${INSTANCE}/php-cli /var/opt/otlamp/${INSTANCE}/${HOST}/www/htdocs/blocks/dof/cli/generate_install_xml.php \
+> /var/opt/otlamp/${INSTANCE}/${HOST}/www/htdocs/blocks/dof/db/install.xml.new
+
+cp -f /var/opt/otlamp/${INSTANCE}/${HOST}/www/htdocs/blocks/dof/db/install.xml.new \
+/var/opt/otlamp/${INSTANCE}/${HOST}/www/htdocs/blocks/dof/db/install.xml
+
+/etc/opt/otlamp/${INSTANCE}/php-cli /var/opt/otlamp/${INSTANCE}/${HOST}/www/htdocs/admin/cli/maintenance.php --enable
+#проверка БД произвоится с в самом скрипте миграции, и в любом случае все норм.
+/etc/opt/otlamp/${INSTANCE}/php-cli /var/opt/otlamp/${INSTANCE}/${HOST}/www/htdocs/admin/tool/dbtransfer/cli/migrate.php  \
+--dbtype=pgsql \
+--dbhost=127.0.0.1 \
+--dbname=${POSTGRESQLDB} \
+--dbuser=${POSTGRESQLUSER} \
+--dbpass=${POSTGRESQLPASS} \
+--prefix=mdl_ \
+--dbport=5432 \
+--dbsocket=''
+
+cp -f /var/opt/otlamp/${INSTANCE}/${HOST}/www/htdocs/blocks/dof/db/install.xml.old \
+/var/opt/otlamp/${INSTANCE}/${HOST}/www/htdocs/blocks/dof/db/install.xml
+
+/etc/opt/otlamp/${INSTANCE}/php-cli /var/opt/otlamp/${INSTANCE}/${HOST}/www/htdocs/admin/cli/maintenance.php --disable

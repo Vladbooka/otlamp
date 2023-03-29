@@ -1,0 +1,192 @@
+#!/bin/bash
+
+# Создать экземпляр apache, запущенного от одноименного пользователя и слушающего перечисленные порты
+#Генерация пароля(для ssl сертификата)
+gen_password(){
+    LENGTH="20"
+    </dev/urandom tr -dc '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' | head -c$LENGTH; echo ""
+}
+PASSWORD=`gen_password`
+
+#параметры
+INSTANCE=${1,,}
+LISTENING=$2
+PORT_HTTP=$3
+PORT_HTTPS=$4
+
+if [  -z "$PORT_HTTP" ]; then
+{
+    echo "HTTP порт не передан, назначен по умолчанию 80"
+    PORT_HTTP=80
+}
+fi
+
+if [  -z "$PORT_HTTPS" ]; then
+{
+    echo "HTTPS порт не передан, назначен по умолчанию 443"
+    PORT_HTTPS=443
+}
+fi
+
+
+
+DEFAULTHOST='0000default'
+# Проверка полномочий
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+#Проверим передан ли код экземпляра
+if [  -z "$INSTANCE" ]; then
+{
+    echo "No enough parameters received!Instance code expected!Fail.."
+    exit 1
+}
+fi
+
+#проверим, есть ли такая инсталляция
+if [ -e "/etc/opt/otlamp/"$INSTANCE"/apache2.conf" ]; then
+    echo "Installation with name "$INSTANCE" also exists!"
+    exit 1
+fi
+
+#проверим, есть ли еще инсталляции
+COUNTINST=0
+#получим список инсталляций
+FOLDERS=(`ls /etc/opt/otlamp | tr " " "\n"`)
+#если есть папки и передан 2 параметр - смотрим остальные инсталляции
+
+if [[ "${#FOLDERS[@]}" -gt "0" ]]; then
+#Считываем названия инсталляций в массив через пробел
+#Считаем хосты в которых есть apache2.conf
+    for INST in "${FOLDERS[@]}"
+    do
+        if [ ! -d /etc/opt/otlamp/$INST ];then
+            continue
+        fi
+        #проверим apache2.conf и ip, если есть хост на всех IP проверим
+        if [ -e "/etc/opt/otlamp/"$INST"/apache2.conf" ] && [ -e "/etc/opt/otlamp/"$INST"/ip" ] && [ $(cat /etc/opt/otlamp/"$INST"/ip) == "*" ]; then
+            echo 'Error!INSTANCE NAMED "'$INST'" Listen * IP! Shutting down!'
+            exit 1
+        fi
+        ((COUNTINST++))
+        
+    done 
+
+    echo 'DETECTED '$COUNTINST 'INSTALLATIONS OF OTLAMP'
+fi
+
+#Если есть инсталляции (не на всех IP), 2 параметр нужен обязательно
+if [[  -z "$LISTENING" ]] && [[ $COUNTINST -gt "0" ]]; then
+    echo 'In system detected '$COUNTINST ' installations of otlamp. Parameter 2 required.'
+    exit 1
+fi
+
+echo 'OTLAMP ADDWWW STARTED: '`date`
+grep "$INSTANCE:" /etc/passwd >/dev/null
+if [ $? -ne 0 ]; then
+{
+    #создаем пользователя для экземпляра        
+    useradd -s /bin/bash -d /home/$INSTANCE -m -U $INSTANCE
+    if [ $? -ne 0 ]; then
+    {
+       echo 'User: '$INSTANCE' can not be created!Fail...'
+       exit 1
+    }
+    else
+    {
+        echo 'User: '$INSTANCE' created cuccesefully!'
+    } 
+    fi
+}
+else
+    echo 'User: '$INSTANCE' also exists!'
+fi
+
+#создаем дирректории для конфигов
+mkdir -p /etc/opt/otlamp/$INSTANCE/
+
+#директория для шаблонов (не нужно создавать, ведь она есть в пакете)
+#mkdir -p /opt/otlamp/share/templates
+
+
+
+#файл для логов otlamp
+if [ ! -e "/var/log/opt/otlamp/"$INSTANCE"/error.log" ]; then
+  mkdir -p /var/log/opt/otlamp/$INSTANCE
+  touch /var/log/opt/otlamp/$INSTANCE/error.log
+  chown -R $INSTANCE:$INSTANCE /var/log/opt/otlamp/$INSTANCE
+fi
+#путь к шаблонам,которые будем править
+TEMPLATES_DIR=/tmp/otlamp/templates.$INSTANCE
+
+# Временная директория для шаблонов
+mkdir -p $TEMPLATES_DIR
+
+#Скопируем папку с шаблонами(в них созданы текстовые подстановки-их будем править)
+cp -f -vR /opt/otlamp/share/templates/* $TEMPLATES_DIR/
+
+#параметры в envvars
+OTLAMP_COMMONLOGFILE='\/var\/log\/opt\/otlamp\/'$INSTANCE'\/error.log'
+OTLAMP_PID_FILE='\/var\/run\/otlamp\/'$INSTANCE'\/otlamp'.$INSTANCE
+OTLAMP_RUN_DIR='\/var\/run\/otlamp\/'$INSTANCE'\/otlamp'.$INSTANCE
+OTLAMP_LOCK_DIR='\/var\/lock\/otlamp\/'$INSTANCE'\/otlamp'.$INSTANCE
+
+mkdir -p '/var/lock/otlamp/'$INSTANCE'/otlamp.'$INSTANCE
+mkdir -p '/var/lock/otlamp/'$INSTANCE'/cron'
+chown -R $INSTANCE:$INSTANCE '/var/lock/otlamp/'$INSTANCE'/cron'
+
+
+
+#меняем путь к общим логам инсталляции
+sed -r -i 's/\{OTLAMP_COMMONLOGFILE\}/'${OTLAMP_COMMONLOGFILE}'/g' $TEMPLATES_DIR/etc/apache2/apache2.conf
+sed -r -i 's/\{INSTANCE\}/'${INSTANCE}'/g' $TEMPLATES_DIR/etc/apache2/apache2.conf
+
+sed -r -i 's/\{OTLAMP_COMMONLOGFILE\}/'${OTLAMP_COMMONLOGFILE}'/g' $TEMPLATES_DIR/etc/apache2/envvars
+#меняем пользователя, от имени которого запускается апач
+sed -r -i 's/\{OTLAMP_RUN_USER\}/'${INSTANCE}'/g' $TEMPLATES_DIR/etc/apache2/envvars
+#меняем группу, от имени которой запускается апач(group совпадает с user)
+sed -r -i 's/\{OTLAMP_RUN_GROUP\}/'${INSTANCE}'/g' $TEMPLATES_DIR/etc/apache2/envvars
+#меняем pid file
+sed -r -i 's/\{OTLAMP_PID_FILE\}/'${OTLAMP_PID_FILE}'/g' $TEMPLATES_DIR/etc/apache2/envvars
+#меняем run dir
+sed -r -i 's/\{OTLAMP_RUN_DIR\}/'${OTLAMP_RUN_DIR}'/g' $TEMPLATES_DIR/etc/apache2/envvars
+#меняем lock dir
+sed -r -i 's/\{OTLAMP_LOCK_DIR\}/'${OTLAMP_LOCK_DIR}'/g' $TEMPLATES_DIR/etc/apache2/envvars
+#переименовываем default хост
+mv $TEMPLATES_DIR/etc/apache2/vhosts/default.conf $TEMPLATES_DIR/etc/apache2/vhosts/$DEFAULTHOST.conf
+#Записываем username
+echo $INSTANCE > $TEMPLATES_DIR/etc/apache2/username
+#порты в шаблон
+echo $PORT_HTTP > $TEMPLATES_DIR/etc/apache2/port_http
+echo $PORT_HTTPS > $TEMPLATES_DIR/etc/apache2/port_https
+
+
+sed -r -i 's/\{INSTANCEPORTHTTP\}/'${PORT_HTTP}'/g' $TEMPLATES_DIR/etc/apache2/ports.conf
+sed -r -i 's/\{INSTANCEPORTHTTPS\}/'${PORT_HTTPS}'/g' $TEMPLATES_DIR/etc/apache2/ports.conf
+
+
+#TODO LISTENING - не подставляется в конфиг!!!
+#копируем конфиги из папки с шаблонами в папку для экземпляра OTLAMP
+cp -f -vR $TEMPLATES_DIR/etc/apache2/* /etc/opt/otlamp/$INSTANCE/
+
+
+echo "D /run/lock/otlamp/${INSTANCE} 0755 ${INSTANCE} ${INSTANCE} -" >> /usr/lib/tmpfiles.d/otlamp.$INSTANCE.conf
+
+usermod -a -G ${INSTANCE} postgres
+echo "local   all             ${INSTANCE}                               peer" >> /etc/postgresql/11/main/pg_hba.conf
+/etc/init.d/postgresql restart 
+
+
+bash /opt/otlamp/bin/otlamp_addvhost $INSTANCE $DEFAULTHOST $DEFAULTHOST
+
+
+echo 'OTLAMP ADDWWW COMPLETED SUCCESEFULLY: '`date`
+#поправим права
+bash /opt/otlamp/bin/otlamp_fixmode $INSTANCE
+
+
+
+ 
+exit 0
+

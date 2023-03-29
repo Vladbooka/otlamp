@@ -1,0 +1,205 @@
+#!/bin/bash
+#Сброс паролей Mysql
+gen_password(){
+    CHARS="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+    LENGTH="16"
+    while [ "${n:=1}" -le "$LENGTH" ] ; do
+        PASSWORD="$PASSWORD${CHARS:$(($RANDOM%${#CHARS})):1}"
+        let n+=1
+    done
+    echo $PASSWORD
+}
+
+#Сброс настроек mysql для хоста
+reset_host_mysql()
+{
+    instance=$1
+    host=$2
+    
+    echo 'Mysql files reset for HOST:'$host' INSTANCE:'$instance' begin!'
+    #если нет пароля - сгенерировать
+    if [ ! -s "/etc/opt/otlamp/"$instance"/vhosts/"$host"/mysqlpass" ]; then
+        {
+            MYSQLUSERPASS=`gen_password`
+            touch /etc/opt/otlamp/$instance/vhosts/$host/mysqlpass && echo $MYSQLUSERPASS > /etc/opt/otlamp/$instance/vhosts/$host/mysqlpass
+            #поменяем этот пароль юзеру, если он существует
+            resetpass=1
+            echo '  password file has been reseted for HOST:'$host' INSTANCE:'$instance''
+        }
+    else
+        {
+            MYSQLUSERPASS=`cat /etc/opt/otlamp/$instance/vhosts/$host/mysqlpass`
+            resetpass=0
+        }
+    fi
+    #проверка пользователя
+    if [ ! -s "/etc/opt/otlamp/"$instance"/vhosts/"$host"/mysqluser" ]; then
+        {
+            MYSQLUSERNAME=$instance'_'$host
+            mysql -u root -p`cat /etc/opt/otlamp/mysqlrootpass` -e "CREATE USER '$MYSQLUSERNAME'@'localhost' IDENTIFIED BY '$MYSQLUSERPASS';"
+            touch /etc/opt/otlamp/$instance/vhosts/$host/mysqlpass && echo $MYSQLUSERNAME > /etc/opt/otlamp/$instance/vhosts/$HOST/mysqluser
+            echo '  user file has been reseted for HOST:'$host' INSTANCE:'$instance''
+        }
+    else
+        {
+            MYSQLUSERNAME=`cat /etc/opt/otlamp/$instance/vhosts/$host/mysqluser`
+            #если пользователь был, а пароля не было - устанавливаем сгенерированный пароль
+            if [ $resetpass == 1 ]; then
+                mysql -u root -p`cat /etc/opt/otlamp/mysqlrootpass` -e "UPDATE user SET password=PASSWORD('$MYSQLUSERPASS') where User='$MYSQLUSERNAME';quit"
+                echo '  Installed new password for exist user:'$MYSQLUSERNAME
+            fi
+        }
+    fi
+    #проверка базы
+    if [ ! -s "/etc/opt/otlamp/"$instance"/vhosts/"$host"/mysqldb" ]; then
+        {
+            MYSQLDBNAME=$instance'_'$host
+            mysql -u root -p`cat /etc/opt/otlamp/mysqlrootpass` -e "CREATE DATABASE IF NOT EXISTS $MYSQLDBNAME;GRANT ALL PRIVILEGES ON $MYSQLDBNAME.* TO '$MYSQLUSERNAME'@'localhost' WITH GRANT OPTION;"
+            touch /etc/opt/otlamp/$instance/vhosts/$host/mysqlpass && echo $MYSQLDBNAME > /etc/opt/otlamp/$instance/vhosts/$host/mysqldb
+            echo '  database file has been reseted for HOST:'$host' INSTANCE:'$instance''
+        }
+    else
+        {
+            MYSQLDBNAME=`cat /etc/opt/otlamp/$instance/vhosts/$host/mysqldb`
+        }
+    fi
+    cp -f /opt/otlamp/share/other/mysql.php '/var/opt/otlamp/'$instance'/'$host'/www/local/mysql.php.tmp'
+    sed -r -i 's/\{OTLAMP_MYSQL_DB\}/'${MYSQLDBNAME}'/g' '/var/opt/otlamp/'$instance'/'$host'/www/local/mysql.php.tmp'
+    sed -r -i 's/\{OTLAMP_MYSQL_USER\}/'${MYSQLUSERNAME}'/g' '/var/opt/otlamp/'$instance'/'$host'/www/local/mysql.php.tmp'
+    sed -r -i 's/\{OTLAMP_MYSQL_PASS\}/'${MYSQLUSERPASS}'/g' '/var/opt/otlamp/'$instance'/'$host'/www/local/mysql.php.tmp'
+    rm -f /var/opt/otlamp/$instance/$host/www/local/mysql
+    echo '#!/bin/bash' >> /var/opt/otlamp/$instance/$host/www/local/mysql
+    echo 'MYSQLHOST="'localhost'"' >> /var/opt/otlamp/$instance/$host/www/local/mysql
+    echo 'MYSQLUSER="'$MYSQLUSERNAME'"' >> /var/opt/otlamp/$instance/$host/www/local/mysql
+    echo 'MYSQLDB="'$MYSQLDBNAME'"' >> /var/opt/otlamp/$instance/$host/www/local/mysql
+    echo 'MYSQLPASS="'$MYSQLUSERPASS'"' >> /var/opt/otlamp/$instance/$host/www/local/mysql
+    
+    mv /var/opt/otlamp/$instance/$host/www/local/mysql.php.tmp /var/opt/otlamp/$instance/$host/www/local/mysql.php
+    rm -f /var/opt/otlamp/$instance/$host/www/local/mysql.php.tmp
+    
+    echo 'GRANT ALL PRIVILEGES ON '$MYSQLDBNAME'.* TO '$MYSQLUSERNAME'@localhost'
+    mysql -u root -p`cat /etc/opt/otlamp/mysqlrootpass` -e "GRANT RELOAD,PROCESS ON *.* TO '$MYSQLUSERNAME'@'localhost';"  > /dev/null 2>&1
+    mysql -u root -p`cat /etc/opt/otlamp/mysqlrootpass` -e "FLUSH PRIVILEGES;"  > /dev/null 2>&1
+    
+    
+    echo 'Mysql files reset for HOST:'$host' INSTANCE:'$instance' complete!'
+}
+#ресет всех хостов инсталляции
+reset_instance_mysql()
+{
+    instance=$1
+    echo 'Mysql files reset for INSTANCE:'$instance' begin!'
+    
+    #Считываем названия хостов в массив через пробел
+    HOSTS=(`ls /var/opt/otlamp/$instance | tr " " "\n"`)
+    #Запускаем fix_host для каждого хоста
+    for host in "${HOSTS[@]}"
+    do
+        if [ -d /etc/opt/otlamp/$instance/vhosts/$host ] && [ -e "/etc/opt/otlamp/"$instance"/apache2.conf" ]; then
+            reset_host_mysql $instance $host
+        fi
+    done
+    
+    echo 'Mysql files reset for INSTANCE:'$instance' complete!'
+    
+}
+
+#ресет всего olamp
+reset_all_mysql()
+{
+    echo 'Mysql files reset for all instances otlamp begin!'
+    
+    #получим список инсталляций
+    FOLDERS=(`ls /etc/opt/otlamp | tr " " "\n"`)
+    
+    if [[ "${#FOLDERS[@]}" -gt "0" ]]; then
+        #Считываем названия инсталляций в массив через пробел
+        for instance in "${FOLDERS[@]}"
+        do
+            if [ -d /etc/opt/otlamp/$instance ];
+            then
+                reset_instance_mysql $instance
+            fi
+        done
+        
+    fi
+    NEWPASSWORD=`gen_password`
+    #сброс пароля рута
+    #если сбрасываем впервые - пароль пуст
+    if [ ! -e "/etc/opt/otlamp/mysqlrootpass" ]; then
+        {
+            
+            #устанавливаем пароль root mysql
+            mysqladmin -u root password $NEWPASSWORD
+            mkdir -p /etc/opt/otlamp && touch /etc/opt/otlamp/mysqlrootpass
+            echo $NEWPASSWORD > /etc/opt/otlamp/mysqlrootpass
+            
+            #права дочтупа на файл с паролем
+            chown root:root /etc/opt/otlamp/mysqlrootpass
+            chmod 400 /etc/opt/otlamp/mysqlrootpass
+        }
+    else
+        {
+            OLDPASSWORD=`cat /etc/opt/otlamp/mysqlrootpass`
+            #устанавливаем пароль root mysql
+            mysqladmin -u root -p$OLDPASSWORD password $NEWPASSWORD
+            echo $NEWPASSWORD > /etc/opt/otlamp/mysqlrootpass
+            #права дочтупа на файл с паролем
+            chown root:root /etc/opt/otlamp/mysqlrootpass
+            chmod 400 /etc/opt/otlamp/mysqlrootpass
+        }
+    fi
+    
+    echo 'Mysql files reset for all instances otlamp complete!'
+}
+
+
+INSTANCE=$1
+HOST=$2
+# Проверка полномочий
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+
+echo 'OTLAMP RESETMYSQL STARTED: '`date`
+#если ничего не передно - запуск по всем инстансам и хостам
+if [[ -z "$INSTANCE" ]] && [[ -z "$HOST" ]]; then
+    {
+        reset_all_mysql
+        echo 'OTLAMP RESETMYSQL END: '`date`
+        exit 1
+    }
+fi
+#Проверим передан ли код экземпляра
+if [ ! -z "$INSTANCE" ] && [ -z "$HOST" ]; then
+    {
+        if [ -d "/etc/opt/otlamp/"$INSTANCE ] && [ -e "/etc/opt/otlamp/"$INSTANCE"/apache2.conf" ]; then
+            {
+                reset_instance_mysql $INSTANCE
+                echo 'OTLAMP RESETMYSQL END: '`date`
+            }
+        else
+            {
+                echo "Installation with name "$INSTANCE" does not exists!"
+            }
+        fi
+        exit 1
+    }
+fi
+#Проверим передан ли код экземпляра и хоста
+if [  ! -z "$HOST" ] && [ ! -z "$INSTANCE" ]; then
+    {
+        if [ -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+            {
+                reset_host_mysql $INSTANCE $HOST
+                echo 'OTLAMP RESETMYSQL END: '`date`
+            }
+        else
+            {
+                echo "Host with name "$HOST" not exist!"
+            }
+        fi
+        exit 1
+    }
+fi

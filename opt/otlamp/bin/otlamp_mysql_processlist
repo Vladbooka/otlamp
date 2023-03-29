@@ -1,0 +1,11 @@
+#!/bin/bash
+INSTANCE=$1
+HOST=$2
+#бэкап хоста
+LOGDIR=/var/log/opt/otlamp/
+   MYSQLUSER=root
+   MYSQLPASS=`cat /etc/opt/otlamp/mysqlrootpass`
+   mysql -u$MYSQLUSER -hlocalhost -p$MYSQLPASS -e"SHOW FULL PROCESSLIST;" > $LOGDIR/mysql_process_list.txt
+echo "_______________________________________________________" >> $LOGDIR/mysql_process_list.txt
+   sudo -u postgres -i psql -c "SELECT * from pg_stat_activity ;" >> $LOGDIR/mysql_process_list.txt
+  #  sudo -u postgres -i psql -c "SELECT * from pg_stat_activity ;" >/var/log/opt/otlamp/processs/`date +\%Y-\%m-\%d-\%H_\%M_\%S`

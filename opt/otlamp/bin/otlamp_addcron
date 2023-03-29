@@ -1,0 +1,54 @@
+#!/bin/bash
+# Надо исправить скрипт, чтобы крон запускался от имени владельца экземпляра otlamp (одноименного пользователя)
+
+#код экземпляра
+INSTANCE=$1
+
+# Проверка полномочий
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+#Проверим, передан ли параметр
+if [ -z "$INSTANCE" ]; then
+  echo "Ошибка:Не задан код инсталляции"
+  exit 1
+fi
+#проверим, есть ли такая инсталляция
+if [ ! -d "/etc/opt/otlamp/"$INSTANCE ]; then
+    echo "Installation with name "$INSTANCE" does not exists!"
+    exit 1
+fi
+
+#путь к запускаемому скрипту
+LAUNCH='/opt/otlamp/bin/otlamp_cron'
+#Проверим,существует ли запускаемый скрипт
+if [ ! -e "$LAUNCH" ]; then
+  echo 'Ошибка:Файл не существует: '$FILE
+  exit 1
+fi
+#Параметры cron
+MINUTES=*/15
+HOURS=*
+DAYS=*
+MONTHS=*
+WEEKDAYS=*
+
+#Создаем задание
+TASK="$MINUTES' '$HOURS' '$DAYS' '$MONTHS' '$WEEKDAYS' '$INSTANCE' bash '$LAUNCH' '$INSTANCE"
+
+#Добавляем запись
+echo -e $TASK | tr -d \' >> /etc/crontab
+
+#Обновляем список заданий
+crontab /etc/crontab
+#Перезапускаем демон cron
+/etc/init.d/cron restart
+#Обновляем список заданий
+crontab /etc/crontab
+
+
+#crontab -l > foocron
+#echo "* * * * * rm -rf /home/user/testfolder" >> foocron
+#crontab foocron
+#rm foocron

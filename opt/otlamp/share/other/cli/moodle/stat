@@ -1,0 +1,250 @@
+#!/usr/bin/php
+<?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * @package    core
+ * @subpackage cli
+ * @copyright  2017 Dmitrii Shtolin <d.shtolin@gmail.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+define('CLI_SCRIPT', true);
+
+require(dirname(dirname(__FILE__)).'/htdocs/config.php');
+require_once($CFG->libdir.'/clilib.php');
+
+$knownstattypes = [
+    'users', 'onlineusers', 'unique_lastaccess_last_month', 'courses', 'dof_contracts', 'dof_cstreams', 'dof_achievementins',
+    'otcourselogics', 'event3kls', 'otresourcelibraries',
+    'pageload', 'status',
+    'moodle_release', 'moodle_version', 'lms3kl_release', 'lms3kl_version', 'lms3kl_maturity',
+    'vhost_name', 'core_otserial',
+    'moodledata_size', 'database_size', 'useful_volume', 'size_limit_exceeded'
+];
+foreach ($knownstattypes as $stattype) {
+    $classname = '\\local_opentechnology\\statistic\\' . $stattype;
+    if (class_exists($classname)) {
+        $STATTYPES[$stattype] = new $classname();
+    } else
+    {
+       //echo ($classname." NOT exist");
+    }
+}
+
+$longparams = [
+    'help' => false,
+    'plain' => false,
+    'types' => false,
+    'aggregation' => false
+];
+
+$shortmappings = [
+    'h' => 'help',
+    'p' => 'plain',
+    't' => 'types',
+    'a' => 'aggregation',
+];
+
+list($options, $unrecognized) = cli_get_params($longparams, $shortmappings);
+
+if ($unrecognized)
+{
+    $unrecognized = implode("\n  ", $unrecognized);
+    cli_error(get_string('cliunknowoption', 'admin', $unrecognized));
+}
+
+$ARG_HELP = $options['help'];
+$ARG_PLAIN = $options['plain'];
+$ARG_AGGREGATION = $options['aggregation'];
+$ARG_TYPES = $options['types'];
+
+if ($ARG_HELP)
+{
+    $typesdesc = '';
+    foreach($STATTYPES as $stattype => $statobj) {
+        $typesdesc .= PHP_EOL . '                            - '.$stattype.' - '.$statobj->get_description();
+    }
+    $help = '
+    Возвращает статистические показатели указанных типов (по умолчанию в json)
+
+    Options:
+    -h, --help              Выводит эту подсказку
+    -p, --plain             Вывод в простом формате вместо json.
+                            Выводит результат по каждому показателю на отдельной строке (только значения).
+                            Порядок - как будет указано в типах (по умолчанию - как в описании типов ниже).
+                            Если указать -p=captions, то будет выведено в формате type: value
+    -a, --aggregation       Группировать показатели по способам аггрегации между хостами.
+                            Данная опция игнорируется при использовании plain-вывода.
+    -t, --types             Типы показателей статистики. По умолчанию запускается обработка по всем типам.
+                            Допустимые значения (разделяются запятой): '.$typesdesc.'
+
+    Example:
+    \$ php stat -t=onlineusers,dof_contracts'.PHP_EOL;
+
+    cli_writeln($help);
+    exit(0);
+}
+
+
+if (empty($STATTYPES))  {
+	$result = [
+		'users' => otlamp_moodle_count_users(),
+		'onlineusers' => otlamp_moodle_count_users_online(),
+		'courses' => otlamp_moodle_count_courses(),
+		'dof_contracts' => otlamp_moodle_count_dof_contracts(),
+		'dof_cstreams' => otlamp_moodle_count_dof_cstreams(),
+		'dof_achievementins' => otlamp_moodle_count_dof_achievementins()
+	];
+
+    echo json_encode($result)."\n";
+
+    exit(0);
+
+}
+
+if (!empty($ARG_TYPES)) {
+    $stattypes = explode(',', $ARG_TYPES);
+    if (empty($stattypes)) {
+        cli_error('Не указаны типы статистических показателей', 22);
+    }
+    $STATTYPES = [];
+    foreach($stattypes as $stattype) {
+        $classname = '\\local_opentechnology\\statistic\\' . $stattype;
+        if (!class_exists($classname)) {
+            cli_error('Класс для статистического показателя '.$stattype.' не реализован', 38);
+        } else {
+            $STATTYPES[$stattype] = new $classname();
+        }
+    }
+}
+
+$results = [];
+foreach($STATTYPES as $stattype => $statobj)
+{
+    try {
+        if ($ARG_AGGREGATION && !$ARG_PLAIN) {
+            foreach($statobj->get_values() as $aggregation => $value) {
+                if (!array_key_exists($aggregation, $results)) {
+                    $results[$aggregation] = [];
+                }
+                $results[$aggregation][$stattype] = $value;
+            }
+        } else {
+            $results[$stattype] = $statobj->get_value();
+        }
+
+    } catch(Exception $ex) {
+        cli_error('Возникла непредвиденная ошибка во время запроса показателя '.$stattype.' ('.$ex->getMessage().')', 125);
+    }
+}
+
+
+if ($ARG_PLAIN) {
+    foreach($results as $stattype => $value){
+        $caption = ((string)$ARG_PLAIN == 'captions' ? ($stattype.': ') : '');
+        cli_writeln($caption . $value);
+    }
+} else {
+    cli_writeln(json_encode($results, JSON_PRETTY_PRINT));
+}
+
+
+function otlamp_moodle_count_users()
+{
+    global $DB;
+    $result = 0;
+    try
+    {
+	    $where = "deleted = 0";
+	    $result = $DB->count_records_select('user', $where);
+    } catch(Exception $e)
+    {
+    }
+    return $result;
+}
+function otlamp_moodle_count_users_online()
+{
+    global $DB;
+    $result = 0;
+    try
+    {
+	    $now = time();
+	    $where = "	lastaccess > :timefrom
+		            AND lastaccess <= :now
+		            AND deleted = 0";
+	    $params = [
+	    	'now' => $now,
+	    	'timefrom' => 100 * floor(($now - 300) / 100) // Round to nearest 100 seconds for better query cache
+	    ];
+	    $result = $DB->count_records_select('user', $where, $params);
+    } catch(Exception $e)
+    {
+    }
+    return $result;
+}
+function otlamp_moodle_count_courses()
+{
+    global $DB;
+    $result = 0;
+    try
+    {
+    	$result = $DB->count_records_select('course', '1=1');
+    } catch(Exception $e)
+    {
+    }
+    return $result;
+}
+function otlamp_moodle_count_dof_contracts()
+{
+    global $DB;
+    $result = 0;
+    try
+    {
+    	$result = $DB->count_records_select('block_dof_s_contracts', '1=1');
+    } catch(Exception $e)
+    {
+    }
+    return $result;
+}
+function otlamp_moodle_count_dof_cstreams()
+{
+    global $DB;
+    $result = 0;
+    try
+    {
+    	$result = $DB->count_records_select('block_dof_s_cstreams', '1=1');
+    } catch(Exception $e)
+    {
+    }
+    return $result;
+}
+function otlamp_moodle_count_dof_achievementins()
+{
+    global $DB;
+    $result = 0;
+    try
+    {
+    	$result = $DB->count_records_select('block_dof_s_achievementins', '1=1');
+    } catch(Exception $e)
+    {
+    }
+    return $result;
+}
+
+
+
+exit(0);

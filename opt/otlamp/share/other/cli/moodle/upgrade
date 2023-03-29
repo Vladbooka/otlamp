@@ -1,0 +1,79 @@
+#!/bin/bash
+# запуск обновления СДО
+spinner="/-\|"
+
+
+INSTANCE=$1
+HOST=$2
+#Если параметр не указан
+if [  -z "$INSTANCE" ]; then
+{
+        echo "No enough parameters received!"
+        echo "Auto detect INSTANCE"
+        dir=`pwd | sed 's/\/var\/opt\/otlamp\///g' | sed 's/\/.*//g'`
+        echo $dir
+        if [  -z "$dir" ]; then 
+        {
+                echo "ERROR INSTANCE NOT DETECTED"
+                exit 1
+        }
+        else
+        {
+                INSTANCE=$dir
+        }
+        fi
+}
+fi
+
+#Если параметр не указан
+if [  -z "$HOST" ]; then
+{
+        echo "No enough parameter HOST received!"
+        echo "Auto detect HOST"
+        dir=`pwd | sed "s/\/var\/opt\/otlamp\/${INSTANCE}\///g" |sed 's/\/.*//g'`
+        echo $dir
+        if [  -z "$dir" ]; then 
+        {
+                echo "ERROR HOST NOT DETECTED"
+                exit 1
+        }
+        else
+        {
+                HOST=$dir
+        }
+        fi
+
+}
+fi
+
+LOGFILE=/var/log/opt/otlamp/$INSTANCE/$HOST/upgrade.`date +\%Y-\%m-\%d-\%H_\%M_\%S`.log
+#Проверить появился ли лог файл
+echo "" > $LOGFILE && echo "LOGFILE OK" || { echo "ERROR LOGFILE"; exit 1;}
+
+
+if [ -f "/etc/opt/otlamp/$INSTANCE/php-cli" ]; then
+        {
+                /etc/opt/otlamp/$INSTANCE/php-cli ../htdocs/admin/cli/upgrade.php  --non-interactive &> $LOGFILE &
+                UPGRADE_PID=$!       
+        }
+        else
+        {
+                php ../htdocs/admin/cli/upgrade.php  --non-interactive &> $LOGFILE &
+                UPGRADE_PID=$!
+        }
+fi
+
+
+spin_i=1
+while kill -0 $UPGRADE_PID > /dev/null 2>&1 ; do
+    printf "\b${spinner:spin_i++%${#spinner}:1}"
+    sleep 0.5
+done
+ printf "\b"
+
+
+echo "LOGFILE: "$LOGFILE
+echo "__________________"
+cat $LOGFILE
+
+exit 0

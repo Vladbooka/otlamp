@@ -1,0 +1,13 @@
+#!/bin/bash
+OTLAMPVHOST='/var/opt/otlamp/w1'
+#MYSQLDUMPDIR='/home/backup/db'
+MYSQLLIB='/var/lib/mysql'
+FDATE=$(date +%F)
+mkdir -p /root/vhostsize/
+
+du  $OTLAMPVHOST --exclude=.git -h --max-depth=1  > /root/vhostsize/$FDATE.vh.log
+du  $OTLAMPVHOST --exclude=www --exclude=sqldump -h --max-depth=1  > /root/vhostsize/$FDATE.git.log
+
+#du  $MYSQLDUMPDIR -h --max-depth=1  > /root/vhostsize/$FDATE.md.log
+
+##du  $MYSQLLIB -h --max-depth=1  > /root/vhostsize/$FDATE.my.log

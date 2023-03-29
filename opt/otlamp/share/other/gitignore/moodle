@@ -1,0 +1,7 @@
+www/data/cache/*
+www/data/temp/*
+www/data/trashdir/*
+www/data/localcache/*
+www/data/sessions/*
+www/local/*
+www/tmp/*

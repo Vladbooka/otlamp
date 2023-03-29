@@ -1,0 +1,73 @@
+#пути к файлам сертификата для создания сертификата(в templates dir)
+
+gen_password(){
+    LENGTH="20"
+    </dev/urandom tr -dc '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' | head -c$LENGTH; echo ""
+}
+PASSWORD=`gen_password`
+#параметры
+INSTANCE=$1
+HOST=$2
+SERVERNAME=""
+
+#Проверим передан ли код экземпляра
+if [  -z "$INSTANCE" ]; then
+{
+    echo "No enough parameters received!Instance code expected!Fail.."
+    exit 1
+}
+fi
+#Проверим передан ли код экземпляра
+if [  -z "$HOST" ]; then
+{
+    echo "No enough parameters received!Host name expected!Fail.."
+    exit 1
+}
+fi
+
+#проверим существование хоста
+if [ ! -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+    echo "Host with name "$HOST" do not exists!"
+    exit 1
+fi
+
+
+
+TEMPLATES_DIR=/tmp/otlamp/templates.$INSTANCE.$HOST
+rm -rv $TEMPLATES_DIR/ssl
+
+
+mkdir -p $TEMPLATES_DIR/ssl
+TMPSSLCERTFILE=$TEMPLATES_DIR'/ssl/selfsigned.crt'
+TMPSSLKEYFILE=$TEMPLATES_DIR'/ssl/selfsigned.key'
+TMPSSLCSRFILE=$TEMPLATES_DIR'/ssl/selfsigned.csr'
+
+#пути к файлам сертификата для помещения в конфиг
+
+SSLCERTFILE=/etc/opt/otlamp/$INSTANCE/vhosts/$HOST/selfsigned.crt
+SSLKEYFILE=/etc/opt/otlamp/$INSTANCE/vhosts/$HOST/selfsigned.key
+SSLCSRFILE=/etc/opt/otlamp/$INSTANCE/vhosts/$HOST/selfsigned.csr
+#генерация ключа
+openssl genrsa -des3 -passout pass:$PASSWORD -out $TMPSSLKEYFILE 2048
+
+#удаление пароля из ключа
+openssl rsa -passin pass:$PASSWORD -in $TMPSSLKEYFILE -out $TMPSSLKEYFILE.insecure
+mv $TMPSSLKEYFILE $TMPSSLKEYFILE.secure
+mv $TMPSSLKEYFILE.insecure $TMPSSLKEYFILE
+
+#генерация csr
+openssl req -new -passin pass:$PASSWORD -subj "/" -key $TMPSSLKEYFILE -out $TMPSSLCSRFILE
+#создание самоподписанного сертификата
+openssl x509 -passin pass:$PASSWORD -req -days 1095 -in $TMPSSLCSRFILE -signkey $TMPSSLKEYFILE -out $TMPSSLCERTFILE
+
+rm $TMPSSLCSRFILE
+rm $TMPSSLKEYFILE.secure
+#меняем путь к ключу
+#меняем путь к сертификату
+
+#копируем конфиги, сертификат и ключ в папку с otlamp
+mkdir -p /etc/opt/otlamp/$INSTANCE/vhosts/$HOST/
+
+#копируем конфиги из папки с шаблонами в папку для экхемпляра OTLAMP
+cp -f $TMPSSLCERTFILE $SSLCERTFILE
+cp -f $TMPSSLKEYFILE $SSLKEYFILE

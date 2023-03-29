@@ -1,0 +1,192 @@
+#!/bin/bash
+source /opt/otlamp/bin/otlamp_lib
+STARTDELETEHOST=$(date +%s)
+FORCEDELETE="FALSE"
+ARCHIVEDIR=/var/opt/otlamp/_storage/backups
+
+
+
+
+# пример использования скрипта
+usage.otlamp_deletehost()
+{
+    echo "    Использование: otlamp_deletehost [-h],[--force-delete] [instance] [host]
+
+    Пример:
+        удалит БЕЗ архивации
+
+        /opt/otlamp/bin/otlamp_deletehost --force-delete w1 с1000
+
+        удалит хост зархивировар его
+
+        /opt/otlamp/bin/otlamp_deletehost w1 с1000
+
+    Обязательные параметры:
+    [instance] например w1
+    [host] например с1000
+
+    Не обязательные параметры:
+    -h  выводит это сообщение
+    --force-delete  удаляет без!!!! архиввирования
+    "
+}
+
+
+
+
+
+
+while [ -n "$1" ]
+do
+    case "$1" in
+        -h) echo "" && usage.otlamp_deletehost && exit ;;
+        --force-delete) echo "FORCEDELETE!!!!"
+            FORCEDELETE="TRUE"
+            echo $FORCEDELETE
+            shift
+        break;;
+        
+        *) echo ""
+        break;;
+    esac
+done
+
+INSTANCE=$1
+HOST=$2
+
+
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+
+
+
+#проверим, есть ли такая инсталляция Проверим передан ли код экземпляра
+checkinstance $INSTANCE
+
+#проверим есть ли хоста с таким именем
+checkhost $HOST
+
+if [ ! -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+    echo "Host with name "$HOST" not exists!"
+    exit 1
+fi
+
+#всегда архивировать  с параметром удалять без архиваци
+otlamp.message ""
+
+#путь до папки с архивами
+
+
+if [[ $FORCEDELETE == "FALSE" ]]; then
+    {
+        otlamp.message "Архивируем хост ${INSTANCE} ${HOST} в ${ARCHIVEDIR} "
+        #exit 0
+        
+        otlamp.archivehost $ARCHIVEDIR $INSTANCE $HOST
+        #TODO проверить что дамп собрался верно.
+        #exit 0
+    }
+else
+    {
+        #бекапим ли хост если неn то сразу удаляем.
+        otlamp.message "Архививация отключена !!!! Удаляем хост $INSTANCE $HOST"
+        #exit 0
+    }
+fi
+
+#while true; do
+#    read -p "Do you wish to DELETE host "$HOST" on  INSTANCE "$INSTANCE"  this program?" yn
+#    case $yn in
+#        [Yy]* ) break;;
+#        [Nn]* ) exit;;
+#        * ) echo "Please answer yes or no.";;
+#    esac
+#done
+
+
+
+#echo "TODO!!!!"
+#exit 1
+
+echo -e "\e[32******************************************************\e[0m"
+otlamp.message "Удаление ${INSTANCE} ${HOST}"
+
+
+MYSQLDBNAME=`cat /etc/opt/otlamp/${INSTANCE}/vhosts/${HOST}/mysqldb`
+MYSQLUSER=`cat /etc/opt/otlamp/${INSTANCE}/vhosts/${HOST}/mysqluser`
+
+otlamp.message "Будет удалена база MYSQL "$MYSQLDBNAME
+mysql -u root -p`cat /etc/opt/otlamp/mysqlrootpass` -e "DROP DATABASE $MYSQLDBNAME;"  > /dev/null 2>&1
+
+otlamp.message "Будет удалены привелегии пользователя MYSQL "$MYSQLUSER
+mysql -u root -p`cat /etc/opt/otlamp/mysqlrootpass` -e "REVOKE ALL PRIVILEGES, GRANT OPTION FROM $MYSQLUSER@'localhost';"  > /dev/null 2>&1
+
+otlamp.message "Будет удален пользователь  MYSQL "$MYSQLUSER
+mysql -u root -p`cat /etc/opt/otlamp/mysqlrootpass` -e "DROP USER $MYSQLUSER@'localhost';"  > /dev/null 2>&1
+
+
+#удаление базы постгреса
+PSQLSTATUS=$(bash /etc/init.d/postgresql status | grep "Active: active")
+if [ ! -z "$PSQLSTATUS" ];     then
+    {
+        source /etc/opt/otlamp/${INSTANCE}/vhosts/${HOST}/postgresql
+        echo "Будет удалена база  PSQL "$POSTGRESQLDB
+        sudo -u postgres -i psql -c "drop database  $POSTGRESQLDB" && echo SUCCESS || echo FAIL
+        
+        echo "Будет удален плользователь PSQL  "$POSTGRESQLUSER && echo SUCCESS || echo FAIL
+        sudo -u postgres -i psql -c "drop user $POSTGRESQLUSER" && echo SUCCESS || echo FAIL
+    }
+else
+    {
+        otlamp.message "Error postgresql NOT active!!!!"
+    }
+fi
+
+
+
+
+BIGDIR=`cat /etc/opt/otlamp/$INSTANCE/vhosts/$HOST/BIGDIR`
+#удалить из етс
+otlamp.message "Будут удалены /etc/opt/otlamp/$INSTANCE/vhosts/$HOST"
+rm -r /etc/opt/otlamp/$INSTANCE/vhosts/$HOST && \
+rm -r /etc/opt/otlamp/$INSTANCE/vhosts/$HOST.conf && \
+rm -r /etc/opt/otlamp/$INSTANCE/vhosts/$HOST.dir.ext && \
+rm -r /etc/opt/otlamp/$INSTANCE/vhosts/$HOST.vhost.ext && echo SUCCESS || echo FAIL
+#удалить логи
+otlamp.message "Будут удалены /var/log/opt/otlamp/$INSTANCE/$HOST"
+rm -r /var/log/opt/otlamp/$INSTANCE/$HOST && echo SUCCESS || echo FAIL
+cd /var/opt/otlamp/$INSTANCE/$HOST
+
+# удалить файл дампа БД из папки home
+rm -r /home/backup/db/$MYSQLDBNAME && echo SUCCESS || echo FAIL
+
+#Удалить папку /var/opt/otlamp/w1/
+otlamp.message "Удаляем хост ".$HOST
+otlamp.message "Будут удалены /var/opt/otlamp/$INSTANCE/$HOST"
+sleep 2
+rm -r /var/opt/otlamp/$INSTANCE/$HOST && echo SUCCESS || echo FAIL
+#TODO если есть файл BIGDIR в папке конфига хоста, то  отмонтировать потм удалитьи удалить папки точки монтирования
+otlamp.message "UMOUNT"
+umount -v .git/ && umount -v  sqldump/ && umount -v  www/data/cache/ && umount -v www/data/filedir/ && umount -v  www/data/localcache/ && umount -v  www/data/lock/ && umount -v  www/data/temp/ && umount -v www/data/trashdir/
+rm -rv /var/opt/otlamp/$INSTANCE/$HOST && echo SUCCESS || echo FAIL
+
+otlamp.message $BIGDIR
+rm -r /var/opt/otlamp/_storage/backup/$INSTANCE/$HOST && \
+rm -r /var/opt/otlamp/_storage/cache/$INSTANCE/$HOST && \
+rm -r /var/opt/otlamp/_storage/static/$INSTANCE/$HOST && \
+rm -r /var/opt/otlamp/_storage/tmp/$INSTANCE/$HOST && echo SUCCESS || echo FAIL
+
+# комментирование хоста в ФСтабе
+cp -v /etc/fstab /etc/fstab.`date +\%Y-\%m-\%d-\%H_\%M_\%S`
+#sed -i '/${HOST}/s/^/#/' /etc/fstab
+sed -i "/${INSTANCE}\/${HOST}\//s/^/#/" /etc/fstab
+
+otlamp.message "Перезапуск OTLAMP"
+service otlamp.${INSTANCE} restart
+
+
+HOTSDELETETIME=$(($(date +%s)-$STARTDELETEHOST))
+otlamp.message $HOTSDELETETIME" second"
+exit 0

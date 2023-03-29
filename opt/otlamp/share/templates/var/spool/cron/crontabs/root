@@ -1,0 +1,9 @@
+#OTLAMP stat
+*/10 3-23 * * * /usr/bin/ionice -c 3 /bin/bash /opt/otlamp/bin/otlamp_stat &> /var/log/opt/otlamp/laststat.log
+#OTLAMP host size
+30 4 * * * /usr/bin/ionice -c 3 /bin/bash /opt/otlamp/bin/otlamp_vhostsize &> /var/log/opt/otlamp/lastvhostsize.log
+#OTLAMP mysql processlist stat
+*/2 * * * * /usr/bin/ionice -c 3 /bin/bash /opt/otlamp/bin/otlamp_mysql_processlist &> /dev/null
+#OTLAMP watch up
+*/2 * * * * ps -aux | grep -e '-d /etc/opt/otlamp/' | grep -v grep || /opt/otlamp/bin/otlampd start &> /dev/null
+

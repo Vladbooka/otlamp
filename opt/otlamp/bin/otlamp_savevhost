@@ -1,0 +1,193 @@
+#!/bin/bash
+INSTANCE=$1
+HOST=$2
+#Комментарий к коммиту
+COMMENT=""
+#Приставка к тегу
+TAGAPPENDIX=""
+#Комментарий к тегу
+TAGCOMMENT=""
+
+ROOTRUN="true"
+
+# Проверка полномочий
+if [[ $EUID -ne 0 ]]; then
+    echo "This script run as NOT root"
+    ROOTRUN="false"
+fi
+
+#если переменных больше 3, 4 параметр приписываем к тегу, остальное - в комментарий
+if [[ "$#" -gt "2" ]]; then
+    i=1
+ 
+    #проходимся по массиву параметров
+    for param in $@
+    do
+    	#Если параметр 3 - записываем в приставку
+        if [[ "$i" == "3" ]]; then
+            #echo $param
+            TAGAPPENDIX=$param            
+        fi
+        #Если параметр больше 3 - записываем в  комментарий
+        if [[ "$i" -gt "3" ]]; then
+            #echo $param
+            TAGCOMMENT=$TAGCOMMENT' '$param           
+        fi
+    ((i++))
+    done
+fi
+
+if [ "$TAGAPPENDIX" != "" ]
+then
+	TAGAPPENDIX='_'$TAGAPPENDIX
+fi
+
+echo $TAGCOMMENTSTR
+#exit 1
+#бэкап хоста
+savegit_host()
+{
+    instance=$1
+    host=$2
+    
+    echo "dump " `date +%Y-%m-%d' '%H:%M:%S`
+    bash /opt/otlamp/bin/otlamp_savedb $instance $host
+    cd /var/opt/otlamp/$instance/$host/
+    
+    git config --global user.email "${host}@${instance}"
+    git config --global user.name "${host} ${instance}"
+    git config --global --add safe.directory /var/opt/otlamp/${instance}/${host}/
+    echo "add www " `date +%Y-%m-%d' '%H:%M:%S`
+    git add www 
+
+    echo "add dump" `date +%Y-%m-%d' '%H:%M:%S`
+    git add sqldump
+
+    TAGSTR=`date +%y%m%d%H%M%S`$TAGAPPENDIX
+    TAGCOMMENTSTR="'Резервная копия создана "`date +%Y-%m-%d' '%H:%M:%S`"; Комментарий: "$TAGCOMMENT"'"
+    
+    #git tag "$TAGSTR"
+
+    echo "commit" `date +%Y-%m-%d' '%H:%M:%S`
+    git commit -a -m"Backup data HOST:$host INSTANCE:$instance"
+
+    echo "tag" `date +%Y-%m-%d' '%H:%M:%S`
+    git tag -a "$TAGSTR"  -m "$TAGCOMMENTSTR"
+
+
+# если под рутом то нужно  прмименять чёвн на файлы
+    if [[ $ROOTRUN = "true" ]]; then
+       echo "ROOT RUN FIXCHOWN"
+       chown -R ${instance}:${instance} /var/opt/otlamp/$instance/$host/.git 
+       chown -R ${instance}:${instance} /var/opt/otlamp/$instance/$host/sqldump
+       #TODO Правильнол менять хозяина таблиц (либо переделать структуру папки)
+       chown -R ${instance}:${instance} /home/backup/db/
+       
+    fi
+
+    echo $TAGCOMMENTSTR
+    echo "____________________________________"
+}
+
+
+#бэкап хостов инсталляции
+savegit_instance()
+{
+    instance=$1
+    echo 'Git commit for INSTANCE:'$instance' begin!'
+
+    #Считываем названия хостов в массив через пробел
+    HOSTS=(`ls /var/opt/otlamp/$instance | tr " " "\n"`)
+    #Запускаем fix_host для каждого хоста
+    for host in "${HOSTS[@]}"
+    do
+        if [ -d /etc/opt/otlamp/$instance/vhosts/$host ]; then                              
+            savegit_host $instance $host
+        fi
+    done
+    
+    echo 'Git commit for INSTANCE:'$instance' complete!'
+
+}
+
+#бэкап всего olamp
+savegit_all()
+{
+    #bash /opt/otlamp/bin/otlamp_savemysql
+    echo 'Git commit for all instances otlamp begin!'
+    
+    #получим список инсталляций
+    FOLDERS=(`ls /etc/opt/otlamp | tr " " "\n"`)
+
+    if [[ "${#FOLDERS[@]}" -gt "0" ]]; then
+        #Считываем названия инсталляций в массив через пробел   
+        for instance in "${FOLDERS[@]}"
+        do
+            if [ -d /etc/opt/otlamp/$instance ]; 
+            then
+                savegit_instance $instance    
+            fi      
+        done
+        
+    fi
+    echo 'Git commit for all instances otlamp complete!'
+}
+
+##########################################################################################################################################################
+
+
+#если ничего не передно - запуск по всем инстансам и хостам
+if [[ -z "$INSTANCE" ]] && [[ -z "$HOST" ]]; then
+{
+	# Проверка полномочий
+	if [[ $EUID -ne 0 ]]; then
+	    echo "This script must be run as root"
+	    exit 1
+	fi
+    savegit_all
+    exit 1
+}
+fi
+CURRENTUSER=`getent passwd $UID | sed -e 's/\:.*//'`
+echo "$CURRENTUSER"
+if [[ "$CURRENTUSER" != "$INSTANCE" ]] && [[ $EUID -ne 0 ]] ; then
+{	
+	echo "Permission denied! This script can perform only "$INSTANCE" and root!"
+	exit 1
+}
+fi	
+
+
+
+
+#Проверим передан ли код экземпляра
+if [ ! -z "$INSTANCE" ] && [ -z "$HOST" ]; then
+{
+    if [ -d "/etc/opt/otlamp/"$INSTANCE ] && [ -e "/etc/opt/otlamp/"$INSTANCE"/apache2.conf" ]; then
+    {   
+           
+        savegit_instance $INSTANCE
+    }
+    else
+    {
+        echo "Installation with name "$INSTANCE" does not exists!"        
+    }
+    fi
+    exit 1  
+}
+fi
+#Проверим передан ли код экземпляра и хоста
+if [  ! -z "$HOST" ] && [ ! -z "$INSTANCE" ]; then
+{
+    if [ -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+    {
+        savegit_host $INSTANCE $HOST  
+    }
+    else
+    {
+        echo "Host with name "$HOST" not exist!"
+    }
+    fi
+    exit 1
+}
+fi

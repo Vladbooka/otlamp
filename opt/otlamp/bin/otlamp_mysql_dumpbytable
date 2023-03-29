@@ -1,0 +1,89 @@
+#!/bin/bash
+source /opt/otlamp/bin/otlamp_lib
+STARTDELETEHOST=$(date +%s)
+
+instance=$1
+host=$2
+
+#Проверим передан ли код экземпляра
+if [  -z "$instance" ]; then
+    {
+        echo "No enough parameters received!Instance code expected!Fail.."
+        exit 1
+    }
+fi
+
+#Проверим передан ли код хоста
+if [  -z "$host" ]; then
+    {
+        echo "No enough parameters received! HOST!!"
+        exit 1
+    }
+fi
+
+
+EXCLUDED_TABLES=(
+    mdl_logstore_standard_log
+    mdl_log
+)
+
+echo "EXCLUDED_TABLES:"
+echo ${EXCLUDED_TABLES[@]}
+
+IGNORED_TABLES_STRING=''
+for TABLE in "${EXCLUDED_TABLES[@]}"
+do :
+    IGNORED_TABLES_STRING+=" --ignore-table=${TABLE}"
+done
+
+
+
+echo "Dump content"
+#mysqldump --host=${HOST} --user=${USER} --password=${PASSWORD} ${DATABASE} --no-create-info --skip-triggers ${IGNORED_TABLES_STRING} >> ${DB_FILE}
+
+ARCHIVEDIR=/var/opt/otlamp/$instance/$host/sqldump/bytable
+
+source /var/opt/otlamp/$instance/$host/www/local/mysql
+
+mkdir -p $ARCHIVEDIR
+#    chown -R $instance. $ARCHIVEDIR
+cd  $ARCHIVEDIR
+
+
+
+#mysqldump --no-tablespaces --single-transaction -u $MYSQLUSER -h $MYSQLHOST -p$MYSQLPASS $MYSQLDB > /
+#var/opt/otlamp/$instance/$host/sqldump/mysql.sql
+
+#включаем мягкий режим ТО
+#echo "maintenance_enabled"
+#/usr/bin/php7.2 /var/opt/otlamp/$instance/$host/www/htdocs/admin/cli/cfg.php  --name=maintenance_enabled --set=1
+
+# Просмотр всех наявных БД. Структура БД, триггеры, процедуры, события сохраняются отдельно
+# Дамп таблиц конкретной БД
+
+MYSQLTABLES=$(mysql -u $MYSQLUSER -p$MYSQLPASS -N -e "show tables from $MYSQLDB" | tr -d '|' | sed '/+-----/d')
+
+for del in ${EXCLUDED_TABLES[@]}
+do
+    MYSQLTABLES=("${MYSQLTABLES[@]/$del}")
+done
+#echo ${MYSQLTABLES[@]}
+
+echo "Dump structure"
+mysqldump -u $MYSQLUSER -p$MYSQLPASS --single-transaction --no-data --routines $MYSQLDB > ${MYSQLDB}.structure.sql
+
+for MYSQLTABLE in ${MYSQLTABLES[@]}
+do
+    mysqldump -u $MYSQLUSER -p$MYSQLPASS $MYSQLDB $MYSQLTABLE >  $MYSQLTABLE.sql
+    echo -e "$MYSQLTABLE "`date +\%Y-\%m-\%d-\%H_\%M_\%S`
+done
+chown -R $instance. $ARCHIVEDIR
+
+#выключаем мягкий режим ТО
+#echo "maintenance_disable"
+#/usr/bin/php7.2 /var/opt/otlamp/$instance/$host/www/htdocs/admin/cli/cfg.php  --name=maintenance_enabled --set=0
+
+#30 17 * * * /usr/bin/php7.2 /var/opt/otlamp/$instance/$host/htdocs/admin/cli/cfg.php  --name=maintenance_enabled --set=1
+#30 8 * * * /usr/bin/php7.2 /var/opt/otlamp/$instance/$host/www/htdocs/admin/cli/cfg.php  --name=maintenance_enabled --set=0
+
+

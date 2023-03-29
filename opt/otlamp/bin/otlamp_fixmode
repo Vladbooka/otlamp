@@ -1,0 +1,199 @@
+#!/bin/bash
+#Исправляет права доступа к файлам
+#Внутри папки /var/opt/otlamp/<code1> - устанавливает правильного владельца и группу, удаляет права доступа "для всех" (посторонним запрещено читать, изменять, исполнять файлы и папки).
+#Внутри папки /etc/otlamp - заменяет владельца на root. Проверяет, чтобы отдельные файлы (с паролями) были доступны только для root, а какие нужно - на чтение (но не на запись) - для всех.
+#Если ни одного параметра не задано - исправляем права для всех экземпляров. Если задан экземпляр - только для данного, если задан хост - только для него.
+
+FASTFIX=false
+
+while [ -n "$1" ]
+do
+case "$1" in
+-fastfix) echo "FAST FIX ENABLE" 
+FASTFIX=true
+shift
+break;;
+
+*) echo ""
+break;;
+esac
+done
+
+
+#базовые процедуры
+
+#поправить права для хоста <instance> <host>
+fix_host() 
+{
+    instance=$1
+    host=$2
+    if [ $FASTFIX == false ]; then
+    {
+	    echo 'Fix mode for instance:'$instance' host:'$host' begin'
+	    chown $instance:$instance /var/opt/otlamp/$instance/$host -R
+	    chown $instance:$instance /var/log/opt/otlamp/$instance/$host -R
+	
+	    #меняем права на файлы и папки отдельно
+	    find /var/opt/otlamp/$instance/$host -type d -exec chmod 750 {} \;
+            find /var/opt/otlamp/$instance/$host -type f -exec chmod 640 {} \;
+            echo 'Fix mode for instance:'$instance' host:'$host' end'  
+    }
+    else
+    {
+        echo 'FASTFix mode for instance:'$instance' host:'$host' begin'
+    	chown $instance:$instance /var/opt/otlamp/$instance/$host/www/htdocs -R
+        chown $instance:$instance /var/opt/otlamp/$instance/$host/www/cli -R
+    	find /var/opt/otlamp/$instance/$host/www/htdocs -type f -exec chmod 600 {} \;
+        fix_config $instance
+             	
+    	echo 'FASTFix mode for instance:'$instance' host:'$host' end'   
+    }
+    fi
+}
+#поправить права для инсталляции <instance>
+fix_instance()
+{
+
+    instance=$1
+    #проверим apache2.conf
+    if [ ! -d "/etc/opt/otlamp/"$instance ]; then
+        exit 1
+    fi
+
+    echo 'Fix mode for instance:'$instance' begin'
+       
+    chown $instance:$instance /var/opt/otlamp/$instance -R
+    #меняем права на файлы и папки отдельно
+    find /var/opt/otlamp/$instance/ -type d -exec chmod 750 {} \;
+    find /var/opt/otlamp/$instance/ -type f -exec chmod 640 {} \;
+    # Проверка полномочий
+	if [[ $EUID -ne 0 ]]; then
+        find /etc/opt/otlamp/$instance/ -type d -exec chmod 750 {} \;
+        find /etc/opt/otlamp/$instance/ -type f -exec chmod 644 {} \;
+        chown root:root /etc/opt/otlamp/$instance -R
+    fi
+    chown -R  $instance:$instance /var/log/opt/otlamp/$instance/ -R
+    fix_config $instance
+    
+    echo 'Fix mode for instance:'$instance' end'
+}
+#поправить права для всех инсталляций
+fix_all()
+{
+    echo 'Fix mode for all instances otlamp begin'
+    
+    #получим список инсталляций
+    FOLDERS=(`ls /etc/opt/otlamp | tr " " "\n"`)
+
+    if [[ "${#FOLDERS[@]}" -gt "0" ]]; then
+        #Считываем названия инсталляций в массив через пробел   
+        for instance in "${FOLDERS[@]}"
+        do
+            #Считаем хосты в которых есть apache2.conf
+            if [ -e "/etc/opt/otlamp/"$instance"/apache2.conf" ]; then
+               if [ !  $FASTFIX ]; then
+               {
+           		 echo "fix_instance ${instance}"
+           		 fix_instance $instance
+           		 fix_config $instance
+           		 
+           	   }	
+               else
+               {
+                 fix_config $instance
+
+               }
+               fi 
+            fi
+        done
+        
+    fi
+    #восстановим права для неизменяемых файлов
+    chown root:root /opt/otlamp -R
+    chmod 755 /opt/otlamp/bin/*
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    echo 'Fix mode for all instances otlamp end'
+}
+
+fix_config()
+{
+    instance=$1
+    echo "fix_config ${instance} - start "
+    #получим список хостов
+    FOLDERS=(`ls /var/opt/otlamp/$instance/ | tr " " "\n"`)
+
+    if [[ "${#FOLDERS[@]}" -gt "0" ]]; then
+        #Считываем названия инсталляций в массив через пробел   
+        for host in "${FOLDERS[@]}"
+        do
+     	find /var/opt/otlamp/$instance/$host/www/local -type f -exec chmod 600 {} \;
+     	chown -R $instance:$instance /var/opt/otlamp/$instance/$host/www/local
+     	chown -R $instance:$instance /var/opt/otlamp/$instance/$host/www/cli
+     	
+     	find /etc/opt/otlamp/$instance/vhosts/$host/ -type f -exec chmod 600 {} \;
+        done
+    fi
+    echo "fix_config ${instance} - end "
+    
+}
+
+#параметры
+INSTANCE=$1
+HOST=$2
+
+
+#Если нет параметров - запускаем fix_all
+if [ -z "$INSTANCE" ] && [ -z "$HOST" ]; then
+{
+    # Проверка полномочий
+	if [[ $EUID -ne 0 ]]; then
+	    echo "This script must be run as root"
+	    exit 1
+	fi
+    fix_all
+    exit 0
+}
+fi
+
+#Если есть 1 параметр - запускаем fix_instance
+if [ ! -z "$INSTANCE" ] && [ -z "$HOST" ]; then
+{
+
+    #проверим, есть ли такая инсталляция
+    if [ ! -d "/etc/opt/otlamp/"$INSTANCE ]; then
+        echo "Installation with name "$INSTANCE" does not exists!"
+    exit 1
+    fi
+
+    fix_instance $INSTANCE
+    exit 0
+}
+fi
+
+#Если есть 2 параметр - запускаем fix_host
+if [ ! -z "$INSTANCE" ] && [ ! -z "$HOST" ]; then
+{
+    #проверим, есть ли такая инсталляция
+    if [ ! -d "/etc/opt/otlamp/"$INSTANCE ]; then
+        echo "Installation with name "$INSTANCE" does not exists!"
+        exit 1
+    fi
+    #проверим сущ. хоста с таким именем
+    if [ ! -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+        echo "Host with name "$HOST" not exist!"
+        exit 1
+    fi
+
+    fix_host $INSTANCE $HOST
+    exit 0
+}
+fi

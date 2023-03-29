@@ -1,0 +1,91 @@
+#!/bin/bash
+#Сменить тип продукта(moodle,khipu,drupal)
+#
+#параметры
+INSTANCE=$1
+HOST=$2
+PRODUCT=$3
+# Проверка полномочий
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+#Проверим передан ли код экземпляра
+if [  -z "$INSTANCE" ]; then
+{
+    echo "No enough parameters received!Instance code expected!Fail.."
+    exit 1
+}
+fi
+#Проверим передан ли код хоста
+if [  -z "$HOST" ]; then
+{
+    echo "No enough parameters received!Host name expected!Fail.."
+    exit 1
+}
+fi
+#проверим, есть ли такая инсталляция
+if [ ! -d "/etc/opt/otlamp/"$INSTANCE ]; then
+    echo "Installation with name "$INSTANCE" does not exists!"
+    exit 1
+fi
+
+#проверим сущ. хоста с таким именем
+if [ ! -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+    echo "Host with name "$HOST" not exist!"
+    exit 1
+fi
+
+#проверим, передан ли код продукта(moodle,drupal,khipu)
+if [ -z "$PRODUCT" ]; then
+{
+    echo "Product code does not passed. Install is default as Moodle!"
+    PRODUCT="moodle"
+}
+else
+{
+#если введен - проверим, есть ли такой продукт
+#проверим, есть ли такая инсталляция
+    if [ ! -d "/opt/otlamp/share/conf.ext/"$PRODUCT ]; then
+        echo "Product with name "$PRODUCT" does not allowed!"
+        exit 1
+    fi
+}
+fi
+
+#ext-файлы хостов
+DIR_EXT=/etc/opt/otlamp/$INSTANCE/vhosts/$HOST.dir.ext
+VHOST_EXT=/etc/opt/otlamp/$INSTANCE/vhosts/$HOST.vhost.ext
+#удаляем старые файлы
+rm $DIR_EXT
+rm $VHOST_EXT
+
+#Копируем External файлы для заданного продукта для virtual hosts
+cp -f /opt/otlamp/share/conf.ext/$PRODUCT/vhost.ext /etc/opt/otlamp/$INSTANCE/vhosts/$HOST.vhost.ext
+cp -f /opt/otlamp/share/conf.ext/$PRODUCT/dir.ext /etc/opt/otlamp/$INSTANCE/vhosts/$HOST.dir.ext
+
+
+echo $PRODUCT > /etc/opt/otlamp/$INSTANCE/vhosts/$HOST/type
+HOSTDIR='\/var\/opt\/otlamp\/'$INSTANCE'\/'$HOST'\/www\/htdocs\/'
+
+#подстановка HOSTDIR для ext файлов
+sed -r -i 's/\{HOSTDIR\}/'${HOSTDIR}'/g' /etc/opt/otlamp/$INSTANCE/vhosts/$HOST.vhost.ext
+sed -r -i 's/\{HOSTDIR\}/'${HOSTDIR}'/g' /etc/opt/otlamp/$INSTANCE/vhosts/$HOST.dir.ext
+
+
+cat /opt/otlamp/share/other/gitignore/"$PRODUCT" > /var/opt/otlamp/$INSTANCE/$HOST/.gitignore
+echo "$PRODUCT" > /etc/opt/otlamp/$INSTANCE/vhosts/$HOST/type
+
+
+#если moodle
+if [ "$PRODUCT" = 'moodle' ]; then
+	echo "Big storage"
+	bash /opt/otlamp/bin/otlamp_bigstorage $INSTANCE $HOST
+        
+        cp -rv /opt/otlamp/share/other/cli/moodle/* /var/opt/otlamp/$INSTANCE/$HOST/www/cli/        
+fi
+
+
+
+echo "Type -"$PRODUCT"- for host -"$HOST"- has been install" 
+exit 0

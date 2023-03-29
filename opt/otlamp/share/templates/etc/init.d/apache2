@@ -1,0 +1,22 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          otlamp.{OTLAMP_INSTANCE}
+# Required-Start:    $local_fs $remote_fs $network $syslog $named
+# Required-Stop:     $local_fs $remote_fs $network $syslog $named
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# X-Interactive:     true
+# Short-Description: Apache2 web server
+# Description:       Start the web server
+#  This script will start the apache2 web server.
+### END INIT INFO
+
+test -e /var/run/otlamp/{OTLAMP_INSTANCE} || install -m 755 -o {OTLAMP_INSTANCE} -g {OTLAMP_INSTANCE} -d /var/run/otlamp/{OTLAMP_INSTANCE}/
+
+mkdir -p /var/lock/otlamp/{OTLAMP_INSTANCE}
+test -e /var/lock/otlamp/{OTLAMP_INSTANCE} || install -m 755 -o {OTLAMP_INSTANCE} -g {OTLAMP_INSTANCE} -d /var/lock/otlamp/{OTLAMP_INSTANCE}/
+
+test -e /var/log/opt/otlamp/{OTLAMP_INSTANCE} || install -m 755 -o {OTLAMP_INSTANCE} -g {OTLAMP_INSTANCE} -d /var/log/opt/otlamp/{OTLAMP_INSTANCE}/
+
+bash /opt/otlamp/bin/otlampd $1 {OTLAMP_INSTANCE}
+

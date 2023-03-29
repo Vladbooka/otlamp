@@ -1,0 +1,112 @@
+#!/bin/bash
+# dbackup - katalog kuda budut skidyvatsya bd
+#/opt/otlamp/bin/otlamp_local_clone restore moodle3 lms3demoot
+
+TEMPLATEHOST=$2
+DESTINATIONHOST=$3
+
+
+#TEMPLATEHOST=test
+
+TEMPLATEHOSTDIR=/var/opt/otlamp/w1/$TEMPLATEHOST
+DESTINATIONHOSTDIR=/var/opt/otlamp/w1/$DESTINATIONHOST
+
+#проверка на наличие хостов!!!!
+INSTANCE=w1
+HOST=$TEMPLATEHOST
+
+#Проверим передан ли код экземпляра
+if [  -z "$HOST" ]; then
+{
+    echo "No enough parameters received! TEMPLATEHOST"
+    exit 1
+}
+fi
+
+
+#проверим есть ли хоста с таким именем
+if [ ! -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+    echo "Host with name "$HOST" NOT exists!"
+    exit 1
+fi
+
+
+HOST=$DESTINATIONHOST
+
+
+
+if [  -z "$HOST" ]; then
+{
+    echo "No enough parameters received! DESTINATIONHOST"
+    exit 1
+}
+fi
+
+#проверим есть ли хоста с таким именем
+if [ ! -d "/var/opt/otlamp/"$INSTANCE"/"$HOST ]; then
+    echo "Host with name "$HOST" NOT exists!"
+    exit 1
+fi
+
+
+#проверка на соответсвие типа хоста
+#TODO
+
+
+case "$1" in
+restore)
+
+
+
+#создание бекапа
+
+
+/bin/bash /opt/otlamp/bin/otlamp_savemysql w1 $TEMPLATEHOST
+
+#перевод в режим обслуживания
+
+php $DESTINATIONHOSTDIR/www/htdocs/admin/cli/maintenance.php --enable
+#копирование данных мудлдата, хтдокс, дамп
+
+
+
+/usr/bin/rsync -avrlpt --delete  $TEMPLATEHOSTDIR/www/data/ $DESTINATIONHOSTDIR/www/data/
+/bin/echo "copy moodledata $TEMPLATEHOST complete"
+
+/usr/bin/rsync -avrlpt --delete  $TEMPLATEHOSTDIR/www/htdocs/ $DESTINATIONHOSTDIR/www/htdocs/
+/bin/echo "copy htdocs $TEMPLATEHOST complete"
+
+/usr/bin/rsync -avrlpt --delete  $TEMPLATEHOSTDIR/sqldump/ $DESTINATIONHOSTDIR/sqldump/
+/bin/echo "copy sqldump $TEMPLATEHOST complete"
+
+
+#разворачивание дампа
+/bin/echo "restore $TEMPLATEHOST db start"
+/bin/bash /opt/otlamp/bin/otlamp_restoremysql w1 $DESTINATIONHOST
+/bin/echo "restore db $DB complete"
+
+#сброс кешей
+
+php $DESTINATIONHOSTDIR/www/htdocs/admin/cli/purge_caches.php
+
+#рестарт отлампа
+bash /opt/otlamp/bin/otlampd restart
+
+
+php $DESTINATIONHOSTDIR/www/htdocs/admin/cli/maintenance.php --disable
+
+;;
+make_skel)
+
+###/usr/bin/mysqldump --opt --default-character-set=utf8 -f $DBACCESS $DB > $DIRSKEL/$DB.sql
+
+#создание 
+/bin/bash /opt/otlamp/bin/otlamp_savevhost w1 $TEMPLATEHOST
+
+
+;;
+*)
+/bin/echo "use restore or make_skel"
+exit 1
+;;
+esac

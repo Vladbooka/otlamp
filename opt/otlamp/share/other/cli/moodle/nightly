@@ -1,0 +1,47 @@
+#!/usr/bin/php
+<?php
+
+define('IS_CRON', true);
+
+require_once('/opt/otlamp/bin/otlamp_lib.php');
+
+$scriptname = 'host_nightly';
+
+// /var/opt/otlamp/[instance]/[host]/www/cli
+$patharr = explode('/', __DIR__);
+$instance = $patharr[4];
+$host = $patharr[5];
+
+otlamp_create_flag($scriptname, $instance, $host);
+
+// Пишет запись о старте выполнения
+otlamp_notice($scriptname, LOGCODE_LAUNCHED, 'Скрипт запущен', $instance, $host);
+
+
+// Выполнение операций
+$operationsresult = [];
+$operationsresult['VHOSTSIZE'] = otlamp_shell_exec('php /opt/otlamp/bin/otlamp_vhostsize.php -i='.$instance.' -host='.$host.' -t=sqldump,moodledata,www -m=cron', $instance);
+
+
+$result = implode(
+	'\r\n\r\n', 
+	array_map(
+	    function ($v, $k) { return $k."\r\n".$v; },
+	    $operationsresult,
+	    array_keys($operationsresult)
+	)
+);
+
+// Пишет в lastnightly.result запись с результатами выполнения
+otlamp_log(
+	'lastnightly.result', 
+	$scriptname, 
+	LOGCODE_SCRIPT_RESULT, 
+	$result,
+	$instance,
+	$host
+);
+
+
+// Пишет запись о завершении выполнения
+otlamp_notice($scriptname, LOGCODE_COMPLETED, 'Скрипт завершил работу', $instance, $host);

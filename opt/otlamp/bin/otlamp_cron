@@ -1,0 +1,126 @@
+#!/bin/bash
+#Запускает кроны всех инстялляций в этом экземпляре otlamp (проверяет, #чтобы был запущен от имени соответствующего пользователя). Сам скрипт #пока пустой, в будущем - аналог нашего скрипта для запуска крона в #saas.
+#код экземпляра
+source /opt/otlamp/bin/otlamp_lib
+
+INSTANCE=$1
+LIMITVHOSTCRON=$2
+
+
+#Проверим, передан ли параметр
+if [ -z "$INSTANCE" ]; then
+  echo "Ошибка:Не задан код инсталляции"
+  exit 1
+fi
+#проверим, есть ли такая инсталляция
+if [ ! -d "/etc/opt/otlamp/"$INSTANCE ]; then
+    echo "Installation with name "$INSTANCE" does not exists!"
+    exit 1
+fi
+
+#Проверим, передан ли параметр
+# принимать параметр число ограничени одновременных заданий, если его нет то 3 задания на хост.
+#TODO проверка введенного числа
+if [ -z "$LIMITVHOSTCRON" ]; then
+  LIMITVHOSTCRON=3
+fi
+otlamp.message "SET LIMITVHOSTCRON "$LIMITVHOSTCRON
+  
+#Запустивший пользователь
+LAUNCHUSER=$(getent passwd $UID | sed -e 's/\:.*//')
+#Если пользователь не является владельцем инсталляции, запустить скрипт от имени владельца в отдельном потоке
+if [ "$LAUNCHUSER" != "$INSTANCE" ]; then
+    otlamp.message 'Starting script in single thread' && su -c "bash $0 $INSTANCE $LIMITVHOSTCRON " $INSTANCE
+    exit 1
+fi
+
+#Считываем названия хостов в массив через пробел
+#TODO уточнить откуда брать список хостов. думаю отсюда не совсем верно, либо фильровать по типу содержимого папка, файл
+HOSTS=(`ls /var/opt/otlamp/$INSTANCE | tr " " "\n"`)
+#Запускаем cron каждого хоста
+for HOST in "${HOSTS[@]}"
+do
+    
+    mkdir -p /var/lock/otlamp/$INSTANCE/cron
+        
+    hostcronlockdir=/var/lock/otlamp/$INSTANCE/cron/${HOST}
+       
+    if ! [ -f $hostcronlockdir ]; then
+		otlamp.message $hostcronlockdir
+		otlamp.message 'LOCK DIR OK'
+	else
+		otlamp.message "LOCKDIR IS FILE!! REMOVE!!!"
+		rm -vf $hostcronlockdir
+	fi
+    
+    mkdir -p $hostcronlockdir
+    
+     hostcronlockfilecount=(` ls $hostcronlockdir | wc -l`)
+     hostcronlockfile=$hostcronlockdir/`date +\%Y\%m\%d\%H\%M\%S`
+
+     otlamp.message "${INSTANCE} ${HOST} hostcronlockfilecount "$hostcronlockfilecount
+     otlamp.message "${INSTANCE} ${HOST} LIMITVHOSTCRON "$LIMITVHOSTCRON
+  
+    #Если кол во лок файлов меньше лимита то о запускаем крон
+    if [ "${hostcronlockfilecount}" -le "${LIMITVHOSTCRON}" ]; then
+      if [ -e "/var/opt/otlamp/"$INSTANCE"/"$HOST"/www/cli/cron" ]; then
+        otlamp.message "_______________________${HOST}_______________________"
+        #создание лок файла
+        otlamp.message "create lock file: $hostcronlockfile"
+        echo `date +\%Y\%m\%d\%H\%M\%S` >  $hostcronlockfile 
+        mkdir -p /var/log/opt/otlamp/$INSTANCE/$HOST/cronlog/
+        cd /var/opt/otlamp/$INSTANCE/$HOST/www/cli/
+        otlamp.message "launch cron"
+        bash cron $INSTANCE &> /var/log/opt/otlamp/$INSTANCE/$HOST/cronlog/`date +\%Y-\%m-\%d-\%H_\%M_\%S`.log
+        #удаление лок файла
+        otlamp.message "delete lock file: ${hostcronlockfile}"
+        rm -f $hostcronlockfile 
+        otlamp.message "+++++++++++++++++++++++${HOST}+++++++++++++++++++++++"
+      fi
+    else 
+      HOSTCRONLOCKFILES=($(ls -d $hostcronlockdir/* | sort -n))
+      
+      #echo ${HOSTCRONLOCKFILES[-1]}
+      #exit 0
+      now=$(date +%s)
+      was=$(stat -c%Y ${HOSTCRONLOCKFILES[-1]})
+      elapsed=$((now - was))
+      days=$((elapsed/86400))
+      hours=$(( (elapsed-days*86400)/3600 ))
+      mins=$(( (elapsed-days*86400 - hours*3600)/60 ))
+      secs=$(( elapsed - days*86400 - hours*3600 - mins*60 )) 
+
+      ALERTMESSAGE=" cron ${HOST} in ${INSTANCE} is LAST LOCKED file!!! on `printf '%02dd:%02dh:%02dm:%02ds\n' $days $hours $mins $secs`"
+     
+      otlamp.message $ALERTMESSAGE
+      
+      was=$(stat -c%Y ${HOSTCRONLOCKFILES[0]})
+      elapsed=$((now - was))
+      days=$((elapsed/86400))
+      hours=$(( (elapsed-days*86400)/3600 ))
+      mins=$(( (elapsed-days*86400 - hours*3600)/60 ))
+      secs=$(( elapsed - days*86400 - hours*3600 - mins*60 )) 
+
+      ALERTMESSAGE=" cron ${HOST} in ${INSTANCE} is FIRST LOCKED file!!! on `printf '%02dd:%02dh:%02dm:%02ds\n' $days $hours $mins $secs`"
+     
+      otlamp.message $ALERTMESSAGE
+
+#     пока не кидать алерт, но нужно придумать механихм чтобы считать срабатывания.  
+#     otlampalert $ALERTMESSAGE
+      
+    fi
+#TODO либо держать определенное кол-во файлов логов
+      find /var/log/opt/otlamp/$INSTANCE/$HOST/cronlog/ -type f -mtime +60 -print0 | xargs -0 rm -fv
+      #TOGO проверить существование папки
+      find /var/log/opt/otlamp/$INSTANCE/cronlog -type f -mtime +60 -print0 | xargs -0 rm -fv
+      #otlamp.message $message
+
+
+#удаление файлов сессий старше 30 дней
+      find /var/opt/otlamp/$INSTANCE/$HOST/www/tmp/sess/ -type f -mtime +30 -exec rm -rfv {} \;
+      #otlamp.message $message
+    otlamp.message "END VHOST CRON"
+done
+
+otlamp.message "END CRON SCRIPT"
+exit 0
