@@ -174,7 +174,7 @@ cp -f -vR $TEMPLATES_DIR/etc/apache2/* /etc/opt/otlamp/$INSTANCE/
 echo "D /run/lock/otlamp/${INSTANCE} 0755 ${INSTANCE} ${INSTANCE} -" >> /usr/lib/tmpfiles.d/otlamp.$INSTANCE.conf
 
 usermod -a -G ${INSTANCE} postgres
-echo "local   all             ${INSTANCE}                               peer" >> /etc/postgresql/11/main/pg_hba.conf
+echo "local   all             ${INSTANCE}                               peer" >> /etc/postgresql/*/main/pg_hba.conf
 /etc/init.d/postgresql restart 
 
 

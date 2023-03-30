@@ -31,7 +31,7 @@ bash /opt/otlamp/bin/otlamp_fixmode -fastfix
 #Считываем названия инсталляций в массив через пробел
             for instance in "${FOLDERS[@]}"
             do
-                cat /etc/postgresql/14/main/pg_hba.conf | grep ${instance} || echo "local all ${instance} peer" >> /etc/postgresql/*/main/pg_hba.conf
+                cat /etc/postgresql/*/main/pg_hba.conf | grep ${instance} || echo "local all ${instance} peer" >> /etc/postgresql/*/main/pg_hba.conf
             done
             /etc/init.d/postgresql restart
         fi
