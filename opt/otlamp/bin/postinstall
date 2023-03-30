@@ -1,0 +1,38 @@
+#!/bin/bash
+cp -r otlamp/opt/otlamp/ /opt/
+chown root:root /opt/otlamp/ -R
+chmod 755 /opt/otlamp/bin/*
+
+#установка HTML_QuickForm2
+pecl channel-update pecl.php.net
+pear install HTML_QuickForm2
+pecl install yaml
+
+
+#сброс параметров БД
+bash /opt/otlamp/bin/otlamp_resetdb
+cp -v /opt/otlamp/share/templates/usr/lib/systemd/system/otlamp@.service  /etc/systemd/system
+systemctl daemon-reload
+#отключить стандартный апач, удалить из инит.д
+update-rc.d -f apache2 remove
+systemctl disable apache2
+ps -aux | grep '/usr/sbin/apache2 -k start' | grep -v grep && service apache2 stop
+rm -v /etc/init.d/apache2
+
+#обновление CLI скриптов
+bash /opt/otlamp/bin/otlamp_updateclistat -force
+
+#фикс на папки конфигов.
+bash /opt/otlamp/bin/otlamp_fixmode -fastfix
+
+#прописывание пользователей инстансов для работы с постгресом если их еще нет
+    FOLDERS=(`ls /etc/opt/otlamp | tr " " "\n"`)
+        if [[ "${#FOLDERS[@]}" -gt "0" ]]; then
+#Считываем названия инсталляций в массив через пробел
+            for instance in "${FOLDERS[@]}"
+            do
+                cat /etc/postgresql/14/main/pg_hba.conf | grep ${instance} || echo "local all ${instance} peer" >> /etc/postgresql/*/main/pg_hba.conf
+            done
+            /etc/init.d/postgresql restart
+        fi
+    
