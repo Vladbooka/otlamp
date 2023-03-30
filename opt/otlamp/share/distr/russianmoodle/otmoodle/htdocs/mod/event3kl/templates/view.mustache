@@ -1,0 +1,88 @@
+{{#notifications}}
+	{{> core/notification}}
+{{/notifications}}
+
+{{#groups}}
+	{{#ismanager}}
+	{{#group}}
+		<div class="d-flex justify-content-between align-items-start mt-4">
+			<h2>{{#str}} groupname, mod_event3kl, {{name}} {{/str}}</h2>
+			{{#format_manual}}
+				{{#ismanager}}
+					<a href="/mod/event3kl/edit_session.php?groupid={{id}}&event3klid={{event3klid}}" class="btn btn-outer-primary float-right">
+						<span class="fa-stack" style="font-size: 0.75em;">
+						  <i class="fa fa-users fa-stack-2x"></i>
+						  <i class="fa fa-circle fa-stack-1x" style="bottom: -0.12em;right: -0.24em;width: 1em;left: auto;line-height: 1em;font-size: 1.2em;"></i>
+						  <i class="fa fa-circle fa-stack-1x fa-inverse" style="bottom: -0.05em;right: -0.2em;width: 1em;left: auto;line-height: 1em;font-size: 1em;"></i>
+						  <i class="fa fa-plus fa-stack-1x" style="bottom: 0.07em; right: -0.07em; width: 1em; left: auto; line-height: 1em; font-size: 0.7em;"></i>
+						</span>
+					</a>
+				{{/ismanager}}
+			{{/format_manual}}
+		</div>
+	{{/group}}
+	{{/ismanager}}
+	{{#sessions}}
+		<div class="card mt-4">
+			<div class="card-header d-flex justify-content-between align-items-center">
+				<div>
+					<i class="fa fa-users mr-1"></i>
+					{{name}} <span class="badge badge-info">{{statusstr}}</span>
+				</div>
+				{{> mod_event3kl/session_buttons}}
+			</div>
+			<div class="card-body">
+				{{#notifications}}
+					{{> core/notification}}
+				{{/notifications}}
+				{{#realstartdate}}
+					<h5 class="card-title">{{#userdate}} {{realstartdate}}, {{#str}} strftimedatetime, core_langconfig {{/str}} {{/userdate}}</h5>
+				{{/realstartdate}}
+				{{#ismanagerorspeaker}}
+					<p><a href="/mod/event3kl/session_members.php?id={{id}}" class="btn btn-outer-primary">
+						{{#str}} session_members, mod_event3kl {{/str}}: {{memberscount}}{{#maxmembers}}/{{.}}{{/maxmembers}}
+					</a></p>
+				{{/ismanagerorspeaker}}
+				{{#datemode_opendate}}
+					{{^realstartdate}}
+						{{#offereddate}}
+							<p class="card-text">{{#str}} opendate_offered_date, mod_event3kl, {{#userdate}} {{offereddate}}, {{#str}} strftimedatetime, core_langconfig {{/str}} {{/userdate}} {{/str}} </p>
+						{{/offereddate}}
+						{{^offereddate}}
+							{{#ismanager}}
+								<p class="card-text">{{#str}} opendate_date_not_offered, mod_event3kl {{/str}}</p>
+							{{/ismanager}}
+						{{/offereddate}}
+					{{/realstartdate}}
+				{{/datemode_opendate}}
+				{{#opendaterequest}}
+					<h6>{{#str}} opendate_request_header, mod_event3kl {{/str}}</h6>
+					{{{.}}}
+				{{/opendaterequest}}
+				{{#opendatecoordination}}
+					<h6>{{#str}} opendate_coordination_header, mod_event3kl {{/str}}</h6>
+					{{{.}}}
+				{{/opendatecoordination}}
+				{{#vacantseatselect}}
+					<h6>{{#str}} vacantseat_select_header, mod_event3kl {{/str}}</h6>
+					{{{.}}}
+				{{/vacantseatselect}}
+				{{#participatelink}}
+					<p class="card-text"><a href="{{participatelink}}" target="_blank">{{#str}} enter_session, mod_event3kl {{/str}}</a></p>
+				{{/participatelink}}
+				{{#recordscount}}
+					<h6>{{#str}} records, mod_event3kl {{/str}}</h6>
+					{{#records}}
+						<div><a href="{{url}}" target="_blank">{{name}}</a></div>
+					{{/records}}
+				{{/recordscount}}
+				{{^recordscount}}
+					{{#pendingrecs}}
+						<h6>{{#str}} records, mod_event3kl {{/str}}</h6>
+						<div>{{#str}} pending_records, mod_event3kl {{/str}}</div>
+					{{/pendingrecs}}
+				{{/recordscount}}
+			</div>
+		</div>
+	{{/sessions}}
+{{/groups}}

@@ -1,0 +1,262 @@
+// Видоизмененная копия post из темы classic
+// Изменена ширина блоков на брейкпоинтах для случаев, когда две колонки на странице
+// Добавлена обработка случаев, когда блоки занимают больше половины места:
+// в таком случае контент занимает 100%, а блоки либо по 50%, либо по 100% в зависимости от параметров 
+
+
+// General Post SCSS for use in all presets.
+
+// Generate the column layout css.
+@mixin page_layout($blockswidth-twoblocks, $blockswidth-oneblock: $blockswidth-twoblocks) {
+    $mainwidth-oneblock: (100% - $blockswidth-oneblock);
+    $mainwidth-twoblocks: (100% - $blockswidth-twoblocks * 2);
+	@if ($mainwidth-oneblock <= 50%) {
+		$mainwidth-oneblock: 100%;
+		$blockswidth-oneblock: 100%;
+	}
+	@if ($mainwidth-twoblocks <= 50%) {
+		$mainwidth-twoblocks: 100%;
+		$blockswidth-twoblocks: if($blockswidth-twoblocks > 50%, 100%, 50%);
+	}
+
+    #page-content {
+        display: flex;
+
+        .region-main {
+            flex: 0 0 100%;
+            padding: 0 1rem;
+            max-width: 100%;
+        }
+
+        &.blocks-pre {
+            .columnleft {
+                flex: 0 0 $blockswidth-oneblock;
+                order: if($mainwidth-oneblock == 100%, initial, -1);
+                padding: 0 1rem;
+                max-width: $blockswidth-oneblock;
+            }
+            .region-main {
+                flex: 0 0 $mainwidth-oneblock;
+                max-width: $mainwidth-oneblock;
+                padding: 0 1rem 0 if($mainwidth-oneblock == 100%, 1rem, 0);
+				margin-bottom: if($mainwidth-oneblock == 100%, 1rem, 0);
+            }
+        }
+        &.blocks-post {
+            .region-main {
+                flex: 0 0 $mainwidth-oneblock;
+                max-width: $mainwidth-oneblock;
+                padding: 0 if($mainwidth-oneblock == 100%, 1rem, 0) 0 1rem;
+				margin-bottom: if($mainwidth-oneblock == 100%, 1rem, 0);
+            }
+            .columnright {
+                flex: 0 0 $blockswidth-oneblock;
+                padding: 0 1rem;
+                max-width: $blockswidth-oneblock;
+            }
+        }
+        &.blocks-pre.blocks-post {
+            .region-main {
+                flex: 0 0 $mainwidth-twoblocks;
+                max-width: $mainwidth-twoblocks;
+                padding: 0 if($mainwidth-twoblocks == 100%, 1rem, 0);
+				margin-bottom: if($mainwidth-twoblocks == 100%, 1rem, 0);
+            }
+            .columnleft {
+                flex: 0 0 $blockswidth-twoblocks;
+                order: if($blockswidth-twoblocks >= 50%, initial, -1);
+                padding: 0  if($blockswidth-twoblocks == 100%, 1rem, 0.5rem) 0 1rem;
+                max-width: $blockswidth-twoblocks;
+            }
+            .columnright {
+                flex: 0 0 $blockswidth-twoblocks;
+                padding: 0 1rem 0 if($blockswidth-twoblocks == 100%, 1rem, 0.5rem);
+                max-width: $blockswidth-twoblocks;
+            }
+        }
+
+        [data-region="blocks-column"] {
+            width: 100%;
+        }
+    }
+
+    .empty-region-side-pre {
+        &.used-region-side-post {
+            #page-content {
+                .region-main {
+                    flex: 0 0 $mainwidth-oneblock;
+                    max-width: $mainwidth-oneblock;
+                    padding-left: 1rem;
+					padding-right: if($mainwidth-oneblock == 100%, 1rem, 0);
+					margin-bottom: if($mainwidth-oneblock == 100%, 1rem, 0);
+                }
+                .columnright {
+                    flex: 0 0 $blockswidth-oneblock;
+                    padding: 0 1rem;
+                    max-width: $blockswidth-oneblock;
+                }
+            }
+        }
+    }
+    .empty-region-side-post {
+        &.used-region-side-pre {
+            #page-content {
+                .region-main {
+                    flex: 0 0 $mainwidth-oneblock;
+                    max-width: $mainwidth-oneblock;
+                    padding-right: 1rem;
+					padding-left: if($mainwidth-oneblock == 100%, 1rem, 0);
+					margin-bottom: if($mainwidth-oneblock == 100%, 1rem, 0);
+                }
+                .columnleft {
+                    flex: 0 0 $blockswidth-oneblock;
+                    order: if($mainwidth-oneblock == 100%, initial, -1);
+                    padding: 0 1rem;
+                    max-width: $blockswidth-oneblock;
+                }
+            }
+        }
+    }
+    .used-region-side-post {
+        &.used-region-side-pre {
+            #page-content {
+                .region-main {
+                    flex: 0 0 $mainwidth-twoblocks;
+                    max-width: $mainwidth-twoblocks;
+                	padding: 0 if($mainwidth-twoblocks == 100%, 1rem, 0);
+					margin-bottom: if($mainwidth-twoblocks == 100%, 1rem, 0);
+                }
+                .columnleft {
+                    flex: 0 0 $blockswidth-twoblocks;
+                    order: if($blockswidth-twoblocks >= 50%, initial, -1);
+                	padding: 0  if($blockswidth-twoblocks == 100%, 1rem, 0.5rem) 0 1rem;
+                    max-width: $blockswidth-twoblocks;
+                }
+                .columnright {
+                    flex: 0 0 $blockswidth-twoblocks;
+                	padding: 0 1rem 0 if($blockswidth-twoblocks == 100%, 1rem, 0.5rem);
+                    max-width: $blockswidth-twoblocks;
+                }
+            }
+        }
+    }
+}
+
+// The block column needs some padding on small devices.
+@include media-breakpoint-down(sm) {
+    @include page_layout(100%);
+}
+
+@include media-breakpoint-only(md) {
+    @include page_layout(50%, 32%);
+}
+
+@include media-breakpoint-only(lg) {
+    @include page_layout(50%, 25%);
+}
+
+@include media-breakpoint-up(xl) {
+    @include page_layout(20%);
+}
+
+@media print {
+    #page-content .region-main {
+        max-width: 100% !important; /* stylelint-disable-line declaration-no-important */
+        flex: 0 0 100% !important; /* stylelint-disable-line declaration-no-important */
+        padding: 0 1rem 0 !important; /* stylelint-disable-line declaration-no-important */
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .dashboard-card-deck .dashboard-card {
+        width: calc(50% - #{$card-gutter});
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .dashboard-card-deck .dashboard-card {
+        width: calc(50% - #{$card-gutter});
+    }
+    .blocks-post,
+    .blocks-pre {
+        .dashboard-card-deck .dashboard-card {
+            width: calc(100% - #{$card-gutter});
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .dashboard-card-deck .dashboard-card {
+        width: calc(33.33% - #{$card-gutter});
+    }
+    .blocks-post,
+    .blocks-pre {
+        .dashboard-card-deck .dashboard-card {
+            width: calc(50% - #{$card-gutter});
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .dashboard-card-deck .dashboard-card {
+        width: calc(25% - #{$card-gutter});
+    }
+    .blocks-post,
+    .blocks-pre {
+        .dashboard-card-deck .dashboard-card {
+            width: calc(33.33% - #{$card-gutter});
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .blockcolumn {
+        .dashboard-card-deck {
+            margin-left: 0;
+            margin-right: 0;
+            .dashboard-card {
+                width: calc(100% - #{$card-gutter}) !important; /* stylelint-disable-line declaration-no-important */
+            }
+        }
+    }
+}
+
+// Settings and Navigation blocks don't render well from default boost.
+.block_navigation,
+.block_settings {
+    .block_tree {
+        &.list > li > ul {
+            padding-left: 0;
+        }
+        .tree_item.branch {
+            margin-left: 5px;
+            padding-left: 0.75rem;
+        }
+        p.hasicon {
+            text-indent: 0;
+            padding-left: 0.75rem;
+        }
+        ul {
+            margin-left: 0.25rem;
+            padding-left: 1rem;
+        }
+    }
+}
+
+.block_navigation .block_tree p.hasicon .icon,
+.block_settings .block_tree p.hasicon .icon {
+    margin-right: 5px;
+}
+
+// Remove left indenting from root nodes to allow sub-nodes to indent correctly.
+.root_node,
+.navigation_node {
+    margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
+    padding-left: 0 !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.block.block_settings {
+    #settingsnav {
+        padding-top: 0 !important; /* stylelint-disable-line declaration-no-important */
+    }
+}

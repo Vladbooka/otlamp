@@ -1,0 +1,11 @@
+{{#entity-fields-count}}
+<ul class="entity-fields list-group list-group-flush">
+	{{#entity-fields}}
+	<li class="list-group-item field" data-field-code="{{field-code}}" data-field-fullcode="{{field-fullcode}}" data-field-displayname="{{field-displayname}}">
+		<input type="checkbox" id="{{relation-fullcode}}_{{field-fullcode}}" />
+		<label for="{{relation-fullcode}}_{{field-fullcode}}">{{field-displayname}}</label>
+		<input class="field-displayname" type="text" value="{{#field-displayname}}{{field-displayname}}{{/field-displayname}}{{^field-displayname}}{{#field-code}}{{field-code}}{{/field-code}}{{/field-displayname}}" />
+	</li>
+	{{/entity-fields}}
+</ul>
+{{/entity-fields-count}}

@@ -1,0 +1,10 @@
+{
+  "name": "moodle-theme_opentechnology-blocks",
+  "builds": {
+    "moodle-theme_opentechnology-blocks": {
+      "jsfiles": [
+        "dragdropcontrol.js"
+      ]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "moodle-availability_assignfeedback-form",
+  "builds": {
+    "moodle-availability_assignfeedback-form": {
+      "jsfiles": [
+        "form.js"
+      ]
+    }
+  }
+}

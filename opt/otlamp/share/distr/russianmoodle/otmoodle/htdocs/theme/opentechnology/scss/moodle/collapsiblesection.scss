@@ -1,0 +1,49 @@
+.collapsible-section,
+#page-wrapper .collapsible-section {
+    
+    @include ot-zone-a((
+		link-color:			$ot-collapsiblesection-link-color,
+		link-hover-color:	$ot-collapsiblesection-link-hover-color,
+    ));
+	
+	@include ot-zone-buttons((
+		primary-bg: 						$ot-collapsiblesection-btn-primary-bg,
+		primary-border: 					$ot-collapsiblesection-btn-primary-border,
+		primary-color: 						$ot-collapsiblesection-btn-primary-color,
+		primary-brightness-config: 			$ot-collapsiblesection-btn-primary-brightness-config,
+		primary-hover-bg: 					$ot-collapsiblesection-btn-primary-hover-bg,
+		primary-hover-border: 				$ot-collapsiblesection-btn-primary-hover-border,
+		primary-hover-color: 				$ot-collapsiblesection-btn-primary-hover-color,
+		primary-hover-brightness-config: 	$ot-collapsiblesection-btn-primary-hover-brightness-config,
+		primary-active-bg: 					$ot-collapsiblesection-btn-primary-hover-bg,
+		primary-active-border: 				$ot-collapsiblesection-btn-primary-hover-border,
+		primary-active-color: 				$ot-collapsiblesection-btn-primary-hover-color,
+		primary-active-brightness-config: 	$ot-collapsiblesection-btn-primary-hover-brightness-config,
+		secondary-bg: 						$ot-collapsiblesection-btn-secondary-bg,
+		secondary-border: 					$ot-collapsiblesection-btn-secondary-border,
+		secondary-color: 					$ot-collapsiblesection-btn-secondary-color,
+		secondary-brightness-config: 		$ot-collapsiblesection-btn-secondary-brightness-config,
+		secondary-hover-bg: 				$ot-collapsiblesection-btn-secondary-hover-bg,
+		secondary-hover-border: 			$ot-collapsiblesection-btn-secondary-hover-border,
+		secondary-hover-color: 				$ot-collapsiblesection-btn-secondary-hover-color,
+		secondary-hover-brightness-config: 	$ot-collapsiblesection-btn-secondary-hover-brightness-config,
+		secondary-active-bg: 				$ot-collapsiblesection-btn-secondary-hover-bg,
+		secondary-active-border: 			$ot-collapsiblesection-btn-secondary-hover-border,
+		secondary-active-color: 			$ot-collapsiblesection-btn-secondary-hover-color,
+		secondary-active-brightness-config:	$ot-collapsiblesection-btn-secondary-hover-brightness-config,
+		link-color:							$ot-collapsiblesection-link-color,
+		link-hover-color:					$ot-collapsiblesection-link-hover-color,
+	));
+	
+	@include ot-zone-pagination((
+		bg: 					$ot-collapsiblesection-pagination-bg,
+		border-color: 			$ot-collapsiblesection-pagination-border-color,
+		color: 					$ot-collapsiblesection-pagination-color,
+		hover-bg: 				$ot-collapsiblesection-pagination-hover-bg,
+		hover-border-color: 	$ot-collapsiblesection-pagination-hover-border-color,
+		hover-color:			$ot-collapsiblesection-pagination-hover-color,
+		active-bg:				$ot-collapsiblesection-pagination-hover-bg,
+		active-border-color:	$ot-collapsiblesection-pagination-hover-border-color,
+		active-color:			$ot-collapsiblesection-pagination-hover-color
+	));
+}

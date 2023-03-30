@@ -1,0 +1,711 @@
+/*** Стилизация формы регистрации ***/
+.signup_form.mform .fitem .fitemtitle {
+	margin: 0;
+	float: none;
+	text-align: left;
+	width: 100%;
+	padding: 0;
+	height: 25px;
+}
+#region-main .signup_form.mform .fitem .fitemtitle label {
+	font-weight: 300;
+	vertical-align: -4px;
+}
+.signup_form.mform .fitem .fitemtitle label {
+	font-weight: 300;
+	margin: 0;
+	color: #444;
+	font-size: 12px;
+	line-height: 25px;
+}
+#region-main .signup_form.mform:not(.unresponsive) .fitem .fitemtitle label {
+	font-weight: 300;
+}
+.signup_form.mform .fitem .fitemtitle label span.req > .icon {
+	margin-left: 2px;
+	vertical-align: text-top;
+}
+.signup_form.mform .fitem .felement {
+	margin: 0;
+	float: none;
+	text-align: center;
+	width: 100%;
+}
+.signup_form.mform .fpassword > input
+{
+	margin-bottom: 0;
+}
+.signup_form.mform .fpassword .unmask
+{
+	display: block;
+}
+
+.signup_form.mform  {
+	width: 560px;
+	margin: 0 auto;
+	border: 1px solid #ddd;
+	background-color: #fff;
+	box-sizing: border-box;
+}
+.signup_form.mform #fitem_id_header .fitemtitle {
+	display: block;
+    height: auto;
+}
+.signup_form.mform #fitem_id_header .fitemtitle .fstaticlabel  {
+	font-size: 30px;
+	padding: 40px 0 15px 0;
+	color: #444;
+	font-weight: 300 !important;
+	line-height: 30px;
+	margin: 0 0 6px 0;
+	text-rendering: optimizelegibility;
+	background: none;
+	width: 100%;
+	display: block;
+	box-sizing: border-box;
+}
+
+.signup_form.mform .fcontainer  {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 0 15px;
+	box-sizing: border-box;
+	margin: 0;
+}
+
+.signup_form.mform #fitem_id_passwordpolicyinfo {
+    display: none;
+}
+
+.signup_form.mform .fitem .felement input[type="text"],
+.signup_form.mform .fitem .felement input[type="password"]  {
+	width: 100%;
+	height: 40px;
+	padding: 12px 10px;
+	margin-bottom: 0;
+	box-sizing: border-box;
+	font-size: 16px;
+}
+
+.signup_form.mform .fitem .felement input[type="text"]:focus,
+.signup_form.mform .fitem .felement input[type="password"]:focus {
+    border: 1px solid #777;
+    box-shadow: none;
+}
+
+.signup_form.mform .fitem .felement.error input[type="text"],
+.signup_form.mform .fitem .felement.error input[type="password"] {
+    border: 1px solid #ff3030;
+    order: 1;
+}
+
+.signup_form.mform .fitem:not(#fitem_id_policyagreed):not(.fitem_passwordunmask):not(#fitem_id_header):not(.fitem_fdate_selector):not(.fitem_fdate_time_selector):not(.fitem_fselect):not(.fitem_feditor):not(.fitem_fadvcheckbox) .fitemtitle {
+    visibility: hidden;;
+}
+
+.signup_form.mform #fitem_id_policyagreed.fitem .fitemtitle {
+    display: block;
+    order: 2;
+}
+
+.signup_form.mform .fitem .felement.error  {
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+.signup_form.mform .fitem .felement.error span.error  {
+	order: 2;
+	width: 100%;
+	text-align: left;
+	background: none;
+	border: none;
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 1.71;
+	letter-spacing: normal;
+	color: #ef5954;
+	padding: 0;
+	margin: 0;
+}
+
+.signup_form.mform .fitem .felement.error br {
+    display: none;
+}
+
+.signup_form legend {
+    width: 100%;
+	text-align: left;
+	margin: 0 0 0 40px;
+	border: none;
+}
+
+.signup_form.mform #id_policyagreement {
+    margin: 0;
+    border: 0;
+}
+
+.signup_form.mform #id_policyagreement .fitem {
+	margin-right: 15px;
+}
+.signup_form.mform #id_policyagreement .fitem > div:last-child {
+	padding: 0;
+}
+
+.signup_form.mform #id_policyagreement .fcontainer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 40px;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.signup_form #id_policyagreement legend {
+    display: none;
+}
+
+legend.ftoggler {
+	line-height: 20px;
+}
+
+.signup_form.mform #id_policyagreement .fcontainer #fitem_id_policylink {
+    order: 2;
+    width: auto; 
+    margin: 0;
+}
+.signup_form.mform #id_policyagreement .fcontainer #fitem_id_policylink .fitemtitle {
+	display: none;
+}
+body #region-main .signup_form.mform #id_policyagreement .fcontainer #fitem_id_policylink .felement {
+	margin-top: 0;
+    padding-top: 0;
+}
+
+.signup_form.mform #id_policyagreement .fcontainer #fitem_id_policyagreed  {
+	order: 1;
+	width: auto;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+    height: 28px;
+}
+
+.signup_form.mform #fitem_id_policyagreed .felement.fcheckbox {
+    order: 1;
+	width: auto;
+}
+
+body #region-main .signup_form.mform #id_policyagreement .fcontainer #fitem_id_policyagreed .fitemtitle,
+body #region-main .signup_form.mform #id_policyagreement .fcontainer #fitem_id_policyagreed .felement {
+	margin: 0;
+    height: auto;
+}
+
+body #region-main .signup_form.mform #id_policyagreement .fcontainer #fitem_id_policyagreed .fcheckbox > span {
+	margin: 0;
+}
+
+.signup_form.mform #id_policyagreement .fcontainer #fitem_id_policyagreed .fitemtitle span.req {
+    display: none;
+}
+
+.signup_form.mform #id_policyagreement .fcontainer #fitem_id_policyagreed .fitemtitle label {
+    font-family: Arial;
+	font-size: 16px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 1.78;
+	letter-spacing: normal;
+	color: #282828;
+	display: flex;
+	align-items: center;}
+
+.signup_form.mform #id_policyagreement .fcontainer #fitem_id_policylink .felement.fstatic a {
+   font-family: Arial;
+	font-size: 16px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 20px;
+	letter-spacing: normal;
+	color: #1d5cd7;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.signup_form.mform #id_policyagreed {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+}
+.signup_form.mform #id_policyagreement .fitem div:first-child {
+	padding: 0;
+}
+.signup_form.mform #id_policyagreed + label {
+	margin-left: 15px;
+}
+.signup_form.mform #id_policyagreed:after {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 22px;
+    height: 22px;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    margin-right: 19px;
+    background-color: #fff;
+    border: 1px solid #777;
+}
+.signup_form.mform #id_policyagreed:checked:after {
+    background: #fff url('[[pix:auth_dof|cb_2]]') 50% 50% no-repeat;
+}
+.signup_form.mform .form-group.has-danger #id_policyagreed:after {
+	border: 1px solid #ef5954;
+}
+.signup_form.mform .form-group.has-danger #id_policyagreed:checked:after {
+    border: 1px solid #777;
+}
+
+.signup_form.mform #fitem_id_submitbutton {
+    margin: 25px auto auto 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    width: 100%;
+}
+
+.signup_form.mform #fitem_id_submitbutton .felement.fsubmit {
+    margin: 0;
+}
+
+.signup_form.mform .fitem div.fitemtitle,
+.felement.fstatic {
+    padding: 0;
+}
+
+.mform .fdescription.required {
+    display: none;
+}
+
+.signup_form.mform #fitem_id_policyagreed .felement.error span.error {
+    position: absolute;
+    width: 578px;
+    top: 32px;
+    left: 0;
+}
+
+.signup_form.mform #fitem_id_identityproviders .fstatic {
+    margin: 0;
+    padding: 0;
+}
+
+.signup_form.mform #fitem_id_identityproviders .potentialidplist {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.signup_form.mform #fitem_id_identityproviders .potentialidplist .potentialidp {
+    box-sizing: border-box;
+    padding: 0;
+    margin-right: 15px;
+}
+.signup_form.mform #fitem_id_identityproviders .potentialidplist .potentialidp:last-child {
+	margin-right: 0;
+}
+
+.signup_form.mform #fitem_id_identityproviders .potentialidplist .potentialidp a {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup_form.mform #fitem_id_identityproviders {
+	margin-bottom: 30px;
+}
+body #region-main .signup_form.mform #fitem_id_identityproviders .fitemtitle {
+	display: none;
+}
+
+.signup_form.mform #fitem_id_identityproviders .potentialidplist .potentialidp a span.localname {
+	display: none;
+}
+
+.signup_form.mform #fitem_id_identityproviders .subcontent.potentialidps h6 {
+    margin-top: 26px;
+    margin-bottom: 27px;
+    font-size: 18px;
+    text-align: left;
+}
+.signup_form.mform .collapsible-actions {
+    display: none;
+}
+
+.signup_form.mform:invalid input[type=submit] {
+    background-color: #d0d9e9;
+    color: #9caac0;
+}
+
+.signup_form.mform fieldset {
+	width: 100%;
+}
+
+.signup_form.mform fieldset.hidden > div {
+	padding: 0 20px;
+	margin-bottom: -5px;
+}
+
+.signup_form.mform .fitem .felement input[type="text"]::placeholder,
+.signup_form.mform .fitem .felement input[type="password"]::placeholder,
+span[data-passwordunmask] em  {
+	font-family: Arial;
+	font-size: 16px;
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	color: #999999;
+}
+
+.signup_form.mform .fitem .felement input[type="text"]:focus::placeholder,
+.signup_form.mform .fitem .felement input[type="password"]:focus::placeholder {
+  color: transparent;
+}
+
+.signup_form.mform .fitem .felement.ftext.error:after,
+.signup_form.mform .fitem .felement.fpassword.error:after {
+	display: block;
+	width: 23px;
+	height: 23px;
+	content: '';
+	position: absolute;
+	right: 8px;
+	top: 8px;
+	background: url('[[pix:auth_dof|invalidfield]]') center center no-repeat;
+}
+
+.signup_form.mform .fitem .felement .invalid-feedback {
+    font-size: 14px;
+    width: auto;
+    padding: 12px 20px;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    z-index: 1;
+    background-color: #fff;
+    border: 2px solid #ff3030;
+    border-radius: 0;
+    min-height: 40px;
+    box-sizing: border-box;
+    line-height: 1;
+    margin-top: 0;
+}
+html.yui3-js-enabled .signup_form.mform .fitem .felement .invalid-feedback {
+	/* элемент отверстывается сразу с display:block :( */
+	display: none!important;
+}
+.signup_form.mform .fitem .felement .invalid-feedback:before {
+	content: '';
+    display: inline-block;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #ff3030;
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    z-index: 1;
+}
+.signup_form.mform .fitem .felement .invalid-feedback:after {
+	content: '';
+    display: inline-block;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #fff;
+    position: absolute;
+    top: -9px;
+    right: 20px;
+    z-index: 2;
+}
+
+.signup_form.mform #fitem_id_policyagreed .felement.error span.error {
+	left: -22px;
+	top: 35px;
+}
+
+.signup_form.mform #fitem_id_policyagreed .felement.error span.error:before {
+	left: 20px;
+	right: auto;
+}
+
+.signup_form.mform #fitem_id_policyagreed .felement.error span.error:after {
+    left: 20px;
+    right: auto;
+}
+.signup_form.mform .felement.fstatic {
+	padding: 0;
+}
+
+.signup_form.mform #fitem_id_policyagreed.fitem .fitemtitle {
+	margin-top: auto;
+    margin-bottom: 25px;
+}
+
+.signup_form.mform #fitem_id_submitbutton .felement.fsubmit #id_submitbutton {
+	margin: 0;
+}
+/*** Стилизация passwordunmask ***/
+.signup_form.mform .fitem .felement.fpasswordunmask > div {
+	position: relative;
+	height: 40px;
+    line-height: 20px;
+    margin: 0;
+    width: 100%;
+}
+.signup_form.mform .fitem .felement.fpasswordunmask > div span + a {
+	display: block;
+	border: 1px solid #ccc;
+	text-align: left;
+	padding: 12px 10px;
+	box-sizing: border-box;
+	height: 40px;
+	width: 100%;
+}
+.signup_form.mform .fitem .felement.fpasswordunmask.error > div span + a {
+	border: 1px solid #ff3030;
+}
+.signup_form.mform .fitem .felement.fpasswordunmask > div span + a span + img {
+	display: none;
+}
+.signup_form.mform .fitem .felement.fpasswordunmask > div span + a:focus {
+	border: 1px solid #777;
+	text-decoration: none;
+}
+.signup_form.mform .fitem .felement.fpasswordunmask > div span + a:hover {
+	text-decoration: none;
+}
+
+.signup_form.mform .fitem .felement.fpasswordunmask > div span + a + a {
+	position: absolute;
+	right: 0;
+	top: 12px;
+	display: flex;
+	align-items: center;
+}
+
+.signup_form.mform .fitem.fitem_passwordunmask .fitemtitle label:after {
+	background: url('[[pix:core|req]]') center center no-repeat;
+	display: inline-block;
+	content: '';
+	width: 8px;
+	height: 12px;
+	margin-left: 2px;
+}
+.signup_form.mform .fitem .felement #recaptcha_element {
+	width: 100%;
+	max-width: 100%;
+}
+
+#region-main .signup_form.mform .fitem.fitem_passwordunmask .fitemtitle label {
+    line-height: 25px;
+}
+.signup_form.mform .fitem .felement {
+	text-align: left;
+}
+#region-main .signup_form.mform > fieldset + fieldset#id_policyagreement,
+#region-main .signup_form.mform > fieldset + fieldset:not(#id_policyagreement),
+#region-main .signup_form.mform > fieldset + fieldset#id_policyagreement + fieldset {
+	margin-top: 30px;
+}
+
+@media (max-width: 560px) {
+	  .signup_form.mform {
+          width: 100%;
+      }
+}
+@media (max-width: 425px) {
+	.signup_form.mform #fitem_id_policyagreed .felement.error span.error {
+	    left: -15px;
+        top: 37px;
+        width: 280px;
+	}
+	
+	.signup_form.mform .fitem#fitem_id_password span[data-passwordunmask='wrapper'] a.form-control > .icon,
+	.signup_form.mform .fitem#fitem_id_passwordrepeat span[data-passwordunmask='wrapper'] a.form-control > .icon {
+	    position: absolute;
+	    top: 12px;
+	    right: 45px;
+	}
+}
+@media (max-width: 320px) {
+	.signup_form.mform #id_policyagreement .fcontainer {
+	    flex-wrap: wrap;
+	}
+	body #region-main .signup_form.mform #id_policyagreement .fcontainer #fitem_id_policylink .fitemtitle,
+	body #region-main .signup_form.mform #id_policyagreement .fcontainer #fitem_id_identityproviders .fitemtitle {
+	    display: none;
+	}
+	body #region-main .mform:not(.unresponsive) .femptylabel .felement {
+	    margin: 0;
+	}
+	.signup_form.mform #fitem_id_policyagreed.fitem .fitemtitle {
+	    margin: 0;
+    }
+    .signup_form.mform #fitem_id_policyagreed .felement.fcheckbox {
+        margin: 0;
+        padding: 0;
+    }
+    .signup_form.mform #fitem_id_identityproviders .subcontent.potentialidps h6 {
+        margin-top: 20px;
+        margin-bottom: 25px;
+    }
+    .signup_form.mform .fitem .felement #recaptcha_element > div,
+    .signup_form.mform .fitem .felement #recaptcha_element > div iframe {
+	    max-width: 280px;
+	}
+}
+
+/**
+ * Стилизация формы регистрации для версии 3.9
+ */
+.signup_form.mform .fitem {
+	flex-direction: column;
+}
+.signup_form.mform .fitem div:first-child {
+	flex: none;
+	max-width: none;
+	padding-top: 0;
+}
+.signup_form.mform .fitem div:last-child {
+	flex: none;
+	max-width: none;
+}
+.signup_form.mform .fitem div:first-child label {
+	margin-bottom: 0;
+    line-height: 25px;
+    font-size: 12px;
+}
+.signup_form.mform .fitem div:first-child label + div {
+	margin-left: .25rem!important;
+}
+.signup_form.mform .fitem#fitem_id_password span[data-passwordunmask='wrapper'],
+.signup_form.mform .fitem#fitem_id_passwordrepeat span[data-passwordunmask='wrapper'] {
+    width: 100%;
+    height: 40px;
+}
+.signup_form.mform .fitem#fitem_id_password .felement span[data-passwordunmask='wrapper'] > span > input[type="text"],
+.signup_form.mform .fitem#fitem_id_password .felement span[data-passwordunmask='wrapper'] > span > input[type="password"],
+.signup_form.mform .fitem#fitem_id_password .felement span[data-passwordunmask='wrapper'] > span > input[type="password"]:focus,
+.signup_form.mform .fitem#fitem_id_passwordrepeat .felement span[data-passwordunmask='wrapper'] > span > input[type="text"],
+.signup_form.mform .fitem#fitem_id_passwordrepeat .felement span[data-passwordunmask='wrapper'] > span > input[type="password"],
+.signup_form.mform .fitem#fitem_id_passwordrepeat .felement span[data-passwordunmask='wrapper'] > span > input[type="password"]:focus {
+	width: calc(100% - 28px);
+}
+.signup_form.mform .fitem#fitem_id_password .felement span[data-passwordunmask='wrapper'] span[data-passwordunmask='instructions'].form-text,
+.signup_form.mform .fitem#fitem_id_passwordrepeat .felement span[data-passwordunmask='wrapper'] span[data-passwordunmask='instructions'].form-text {
+	margin-top: 0;
+}
+.signup_form.mform .fitem#fitem_id_password .felement span[data-passwordunmask='wrapper'] a[data-passwordunmask='unmask'],
+.signup_form.mform .fitem#fitem_id_passwordrepeat .felement span[data-passwordunmask='wrapper'] a[data-passwordunmask='unmask'] {
+	background: none;
+	box-shadow: none;
+	outline: none;
+	position: absolute;
+    right: 15px;
+    top: 10px;
+}
+.signup_form.mform .fitem#fitem_id_password span[data-passwordunmask='wrapper'] a.form-control,
+.signup_form.mform .fitem#fitem_id_passwordrepeat span[data-passwordunmask='wrapper'] a.form-control {
+	width: calc(100% - 28px);
+    height: 40px;
+    display: inline-block;
+    overflow: hidden;
+}
+.signup_form.mform .fitem#fitem_id_password span[data-passwordunmask='wrapper'] a.form-control > span,
+.signup_form.mform .fitem#fitem_id_passwordrepeat span[data-passwordunmask='wrapper'] a.form-control > span {
+	line-height: 26px;
+	white-space: nowrap;
+}
+.signup_form.mform #fitem_id_header div:first-child span {
+    font-size: 30px;
+    padding: 40px 0 15px 0;
+    color: #444;
+    font-weight: 300!important;
+    line-height: 30px;
+    margin: 0 0 6px 0;
+    text-rendering: optimizelegibility;
+    background: none;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+}
+
+/*** Стилизация формы настроек по предварительным спискам ***/
+
+.registration_fields_settings .col-element {
+	margin: 0!important;
+	border-top: 1px solid #e8eaed;
+    padding-top: 15px;
+}
+
+.registration_fields_settings > .fitem > div.felement {
+	padding: 0!important;
+}
+.registration_fields_settings > .fitem {
+	margin-bottom: 0!important;
+}
+.registration_fields_settings .col-element span[data-fieldtype="group"] {
+	margin-bottom: 10px;
+}
+.registration_fields_settings .col-element:first-child {
+	background: linear-gradient(180deg, rgba(242,242,242,1) 0%, rgba(255,255,255,1) 100%);
+}
+.registration_fields_settings > .fitem > div.felement > fieldset > .align-items-center {
+	align-items: normal!important;
+}
+.registration_fields_settings .col-element {
+	align-items: flex-start!important;
+}
+.registration_fields_settings .col-element:nth-child(3) select {
+	margin-bottom: 10px;
+	width: 100%;
+}
+.registration_fields_settings .col-element:nth-child(3) .fitem,
+.registration_fields_settings .col-element:nth-child(3) span[data-fieldtype="select"] {
+	width: 100%
+}
+.registration_fields_settings .col-element:nth-child(2) span[data-fieldtype="group"] {
+	margin-left: 12%;
+}
+.registration_fields_settings .col-element:nth-child(2) span[data-fieldtype="group"] > div {
+	flex-direction: column;
+    align-items: flex-start!important;
+}
+.registration_fields_settings .field_name {
+	width: 100%;
+    margin-bottom: 14px;
+    cursor: move;
+}
+.registration_fields_settings .col-element:first-child i.icon {
+	cursor: move;
+}
+.registration_fields_settings .heder_line {
+	margin-top: 30px;
+	margin-bottom: 0;
+}
+.heder_line .form_has_chenges {
+	color: red;
+}

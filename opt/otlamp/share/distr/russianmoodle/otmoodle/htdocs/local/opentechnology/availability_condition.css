@@ -1,0 +1,39 @@
+.availability_condition_form {
+	display: block;
+	width: 100%;
+}
+
+.mform .ac-root, 
+.mform .ac-root fieldset {
+    width: 100%;
+	margin: 0;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    /*background-color: rgba(0, 0, 0, 0.05);*/
+}
+
+.mform .ac-root fieldset + fieldset { 
+	margin-top: 15px;
+}
+
+.mform .ac-root > legend,
+.mform .ac-root fieldset > legend {
+	padding: 0 10px;
+	margin: 0;
+	font-size: 1rem;
+	width: auto;
+}
+
+.mform .ac-root .ac-item[data-type="comparisonoperator"] .content {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.mform .ac-root .ac-item[data-type="comparisonoperator"] .content > * {
+	flex-basis: 0;
+	flex-grow: 1;
+}
+.mform .ac-root .ac-item[data-type="comparisonoperator"] .content > * + * {
+	margin-left: 20px;
+}

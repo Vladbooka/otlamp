@@ -1,0 +1,417 @@
+.coupon_system.mform {
+	position: relative;
+	display: block;
+	margin: 0 20px 20px 0;
+	padding: 18px;
+	box-sizing: border-box;
+	width: calc(50% - 20px);
+	max-width: 600px;
+	min-width: 300px;
+	border: 1px solid #E7E7E7;
+}
+.coupon_system.mform fieldset + fieldset {
+	position: absolute;
+    bottom: 18px;
+    right: 18px;
+}
+.coupon_system.mform .fitem,
+.coupon_system.mform .fitem .felement,
+.coupon_system.mform .fitem .felement * {
+	margin: 0;
+}
+
+body #region-main .coupon_system.mform:not(.unresponsive) .fitem .fitemtitle {
+	display:none;
+	margin:0;
+	padding:0;
+}
+.coupon_system.mform .fitem + .fitem {
+	margin-top: 5px;
+}
+.coupon_system.mform #fitem_id_coupon_code1,
+.coupon_system.mform #fitem_id_more_codes {
+	display: inline-block;
+}
+.coupon_system.mform #fitem_id_more_codes {
+	cursor: pointer;
+	color: #404040;
+	border: 0;
+	margin-left: 10px;
+}
+.coupon_system.mform #fitem_id_more_codes:hover {
+	border-bottom: 1px dashed #808080;
+}
+.coupon_system.mform #fitem_id_coupon_code2,
+.coupon_system.mform #fitem_id_coupon_code3,
+.coupon_system.mform #fitem_id_coupon_code4,
+.coupon_system.mform #fitem_id_coupon_code5 {
+	display: none;
+}
+.coupon_system.mform #fitem_id_desciption .felement {
+	color: #404040;
+}
+
+.coupon_system.mform #fitem_id_coupon_code2 .felement {
+	margin-top: 10px;
+}
+
+.coupon_system.mform #fitem_id_submitbutton {
+	margin: 0;
+	padding: 0;
+	border: 0;
+    background: transparent;
+}
+
+.otpay-btn-holder {
+	margin-bottom: 10px;
+}
+.otpay-btn-holder > .btn:first-child {
+	margin-right: 10px;
+}
+.otpay-btn-holder > .btn {
+	margin-bottom: 10px;
+}
+
+
+.otpay_instance {
+	display: inline-block;
+	margin: 0 20px 20px 0;
+	padding: 18px;
+	box-sizing: border-box;
+	width: calc(50% - 20px);
+	max-width: 600px;
+	min-width: 300px;
+	border: 1px solid #E7E7E7;
+	vertical-align: top;
+}
+.otpay_instance.paymethod_unavailable {
+	background-color: #FAFAFA;
+}
+.otpay_instance.paymethod_unavailable .otpay_instance_info {
+	opacity: .5;
+}
+
+
+
+.otpay_instance_icon {
+	width: 32px;
+	height: 32px;
+}
+.otpay_instance_name {
+	display:inline-block;
+	margin-left: 10px;
+	color: #404040;
+	font-size: 18px;
+    width: calc(100% - 42px);
+    vertical-align: text-top;
+}
+			
+.otpay_instance_description {
+	padding: 20px 5px 0;
+	color: #404040;
+	font-size: 14px;
+}
+
+		
+.otpay_instance_info_dates {
+	margin-top: 20px;
+}
+.otpay_instance_startdatelabel,
+.otpay_instance_periodlabel,
+.otpay_instance_enddatelabel {
+	display: inline-block;
+	color: #808080;
+	font-size: 14px;
+	margin-left: 5px;
+}
+.otpay_instance_startdate,
+.otpay_instance_period,
+.otpay_instance_enddate {
+	display: inline-block;
+	margin-left: 5px;
+	color: #404040;
+	font-size: 14px;
+}
+			
+	
+			
+.otpay_instance_info_cost {
+	margin-top: 20px;
+}
+.otpay_instance_info_cost > div {
+	display: inline-block;
+	padding: 5px;
+	margin-right: 20px;
+}
+.otpay_instance_info_cost > div + div {
+	background-color: #F7F7F7;
+}
+.otpay_instance_costlabel,
+.otpay_instance_amountlabel {
+	display: inline-block;
+	color: #808080;
+	font-size: 14px;
+}
+.otpay_instance_cost,
+.otpay_instance_amount {
+	display: inline-block;
+	margin-left: 10px;
+	font-size: 15px;
+	font-weight: 700;
+}
+.otpay_instance_cost {
+	color: #209324;
+}
+.otpay_instance_cost span,
+.otpay_instance_amount span {
+	font-size: 16px;
+}
+.otpay_instance_amount {
+	color: #ff5555;
+}
+
+
+
+.otpay_instance_form .mform #fitem_id_paysystems div.fitemtitle+.felement {
+	margin: 0 2px;
+}
+.otpay_instance_form .mform #fitem_id_paysystems .felement img {
+	margin:0 10px 10px 0;
+	width: 90px;
+	height: 60px;
+}
+
+
+
+.otpay_instance_form .enrol_otpay_payment_form {
+    margin: 20px 0 0;
+    padding: 20px 0 0;
+    border-top: 1px solid #E7E7E7;
+}
+.otpay_instance_form .enrol_otpay_payment_form fieldset + fieldset {/*fieldset #fitem_id_submitbutton*/
+	margin-top: 15px;
+}
+#region-main .otpay_instance_form .mform:not(.unresponsive) .fitem .fitemtitle label {
+    color: #404040;
+    font-weight: 300;
+    margin: 0;
+}
+.otpay_instance_form .mform .fitem div.fitemtitle + .felement {
+	margin-top: 15px;
+}
+.otpay_instance_form .mform .fitem + .fitem {
+	margin-top: 15px;
+}
+.otpay_instance_form .mform .fitem div.fitemtitle + .felement input[type=text] {
+	margin: 0;
+}
+
+.otpay_instance_form #fitem_id_submitbutton {
+	margin: 0;
+	padding: 0;
+	border: 0;
+    background: transparent;
+}
+
+.otpay_instance_form .mform .form-group,
+.otpay_instance_form .form-group > .felement {
+	padding-left: 0;
+	margin-left: 0;
+}
+.otpay_instance_form .form-group > .col-form-label {
+	flex: 0 0 100%;
+    max-width: 100%;
+    padding-left: 0;
+}
+
+.futureenrollment ~ .futureenrollment { 
+	display:none;
+}
+.futureenrollment {
+	display:block;
+	font-weight: bold;
+}
+
+.otpay_instance_form .otpay_modal_content .ulp-header,
+.otpay_instance_form .otpay_modal_content .ulp-footer {
+    height: 50px;
+    width: auto;
+}
+div.otpay_modal.user-loginas-panel {
+	width: inherit;
+    /* background-color: #666; */
+    position: relative;
+    top: inherit;
+    left: inherit;
+    border: inherit;
+    border-width: inherit;
+}
+
+.otpay_instance_form .otpay_modal_content .ulp-header .close {
+	position: absolute;
+    right: 15px;
+	z-index: 1;
+	opacity:1;
+    top: 15px;
+    height:23px;
+    width:23px;
+	background-color: transparent;
+	background-image:url("[[pix:core|t/dockclose]]");
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+.otpay_instance_form .otpay_modal_content .ulp-header.ulp-content.header {
+	border: 0;
+}
+.otpay_instance_form .otpay_modal_content .ulp-header h2 {
+	text-align: left;
+	margin-left: 15px;
+}
+
+
+.otpay_instance_form .otpay_modal_content input[type="radio"],
+.otpay_instance_form .otpay_modal_content div.otpay_modal_tab_content,
+.otpay_instance_form div.otpay_modal_content.otpay_modal_hide {
+	display: none;
+}
+
+.otpay_instance_form .otpay_modal_content input[type="radio"]:checked + div.otpay_modal_tab_content {
+	display: block;
+    padding: 25px;
+    background-color: #FAFAFA;
+}
+.otpay_instance_form  .otpay_modal {
+	position: relative;	
+}
+.otpay_modal_loading {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(128,128,128,0.5);
+    z-index: 4;
+}
+.otpay_instance_form .otpay_modal_content {
+    position: fixed;
+    z-index: 5;
+    background: #FFF;
+    text-align: center;
+    max-height: 90vh;
+    max-width: 90vw;
+    width: auto;
+    overflow: auto;
+    top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.otpay_instance_form .otpay_modal_content .otpay_tab {
+	width: calc(100% - 2px);
+	line-height: 30px;
+    margin: 0;
+    background: #818285;
+    background: linear-gradient(to top, #818285, #959595);
+    border-top: 1px solid #FAFAFA;
+    border-right: 1px solid #FAFAFA;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.otpay_instance_form .otpay_modal_content .otpay_tab.selected {
+	color: #474747;
+    background: #FAFAFA;
+}
+.otpay_instance_form div.otpay_modal_content label.otpay_tab:first-of-type {
+	border-left: 1px solid #FAFAFA;
+}
+
+.otpay_instance_form div.otpay_modal_content[data-tabs-count="2"] label.otpay_tab:first-of-type {
+	width: calc(100% / 2 - 2px);
+}
+.otpay_instance_form div.otpay_modal_content[data-tabs-count="3"] label.otpay_tab:first-of-type {
+	width: calc(100% / 3 - 2px);
+}
+.otpay_instance_form div.otpay_modal_content[data-tabs-count="4"] label.otpay_tab:first-of-type {
+	width: calc(100% / 4 - 2px);
+}
+.otpay_instance_form div.otpay_modal_content[data-tabs-count="5"] label.otpay_tab:first-of-type {
+	width: calc(100% / 5 - 2px);
+}
+
+.otpay_instance_form .otpay_modal_content[data-tabs-count="2"] .otpay_tab {
+	width: calc(100% / 2 - 1px);;
+}
+.otpay_instance_form .otpay_modal_content[data-tabs-count="3"] .otpay_tab {
+	width: calc(100% / 3 - 1px);;
+}
+.otpay_instance_form .otpay_modal_content[data-tabs-count="4"] .otpay_tab {
+	width: calc(100% / 4 - 1px);;
+}
+.otpay_instance_form .otpay_modal_content[data-tabs-count="5"] .otpay_tab {
+	width: calc(100% / 5 - 1px);;
+}
+
+.otpay_instance_form .otpay_modal_content .otpay_modal_tab_content div.felement.ftext input {
+	height: 30px;
+    box-sizing: border-box;
+}
+
+.otpay_instance_form .otpay_modal_content .otpay_modal_tab_content div > .col-form-label {
+	text-align: left;
+    flex: 1 0 0;
+    max-width: 50%;
+}
+.otpay_instance_form .otpay_modal_content .otpay_modal_tab_content div > .felement {
+    text-align: left;
+    max-width: 50%; 
+    flex: 1 0 0;
+    justify-content: center;
+}
+
+
+@media (max-width: 1199px) {
+	body #region-main .enrol_otpay_payment_form.mform:not(.unresponsive) .femptylabel .fitemtitle {
+		margin: 0;
+	}
+	body #region-main .enrol_otpay_payment_form.mform:not(.unresponsive) .femptylabel .felement {
+		margin: 0 2px;
+		padding: 0;
+	}
+}
+@media (max-width: 1023px) {
+	.coupon_system.mform fieldset + fieldset {
+		position: static;
+	    bottom: auto;
+	    right: auto;
+		margin-top: 15px;
+	}
+	form.coupon_system #fitem_id_submitbutton .felement,
+	.otpay_instance_form form > .otpay_modal {
+		text-align: center;
+		justify-content: center;
+	}
+}
+@media (max-width: 767px) {
+	.coupon_system.mform,
+	.otpay_instance {
+	    width: 100%;
+	    margin-right: 0;
+	    max-width: 100vw;
+	}
+	
+	.otpay_instance_form .otpay_modal_content {
+	    width: 90vw;
+	}
+	.otpay_instance_form .otpay_modal_content .otpay_modal_tab_content div.fitemtitle {
+	    max-width: calc(50% - 15vw);
+	}
+	.otpay_instance_form .otpay_modal_content .otpay_modal_tab_content div.fitemtitle+.felement {
+	    max-width: calc(50% + 10vw); 
+	}
+	.otpay_instance_form .otpay_modal_content .otpay_modal_tab_content div.fitemtitle+.felement input {
+	    width: 45vw;
+	}
+	.otpay_instance_form .otpay_modal_content input[type="radio"]:checked + div.otpay_modal_tab_content {
+		padding: 5px;
+	}
+}

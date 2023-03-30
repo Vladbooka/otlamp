@@ -1,0 +1,68 @@
+.block_coursemessage .fitemtitle {
+	display: none;
+}
+.block_coursemessage .fitem .felement {
+	margin-left: 0!important;
+	width: 100%!important;
+}
+.block_coursemessage .fitem textarea {
+	width: 100%!important;
+	height: 6em;
+}
+.block_coursemessage .userblock {
+	width: 100%!important;
+	margin-bottom: 20px;
+	position: relative;
+}
+.block_coursemessage .userimage {
+	width: 20%!important;
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+}
+.block_coursemessage .userimage img {
+	width: 100%!important;
+	height: auto!important;
+	display: block;
+}
+.block_coursemessage .userinfo {
+	width: 80%!important;
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	padding: 0 15px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+.block_coursemessage .userinfo .fullname {
+	font-weight: bold;
+}
+.block_coursemessage .description {
+	margin-bottom: 10px;
+}
+.block_coursemessage .allowuserselect .userblock {
+	cursor: pointer;
+}
+.block_coursemessage .allowuserselect .userblock:hover {
+	background-color: #F5F5F5;
+}
+.block_coursemessage .allowuserselect .userblock .icon {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.block_coursemessage .allowuserselect form {
+	display: none;
+}
+.block_coursemessage .userblock > .icon {
+	width: 23px;
+    height: 23px;
+    padding: 0;
+    border-radius: 4px;
+}
+
+.block_coursemessage .userblock > .icon[alt='no'] {
+ 	opacity: 0.66;
+ 	background: white;
+}

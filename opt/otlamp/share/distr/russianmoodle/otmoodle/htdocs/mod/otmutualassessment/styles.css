@@ -1,0 +1,165 @@
+#page-mod-otmutualassessment-view .report-link,
+#page-mod-otmutualassessment-view .info-after-grading {
+	margin: 5px 0;
+}
+#page-mod-otmutualassessment-view h2:nth-child(2),
+#page-mod-otmutualassessment-report h2:nth-child(2) {
+    background: url([[pix:mod_otmutualassessment|icon]]) left center no-repeat;
+    background-size: 30px 30px!important;
+    padding-left: 40px;
+    font-weight: 400!important;
+    color: #666;
+}
+#page-mod-otmutualassessment-view #region-main .mform.frozen .fitem_fnumber,
+#page-mod-otmutualassessment-view #region-main .mform.otmutualassessment-grades-form .fitem_fnumber {
+	display: flex;
+}
+#page-mod-otmutualassessment-view #region-main .mform.frozen .fitem_fnumber .fitemtitle,
+#page-mod-otmutualassessment-view #region-main .mform.otmutualassessment-grades-form .fitem_fnumber .fitemtitle {
+	order: 1;
+	text-align: left;
+}
+#page-mod-otmutualassessment-view #region-main .mform.frozen .fitem_fnumber .felement,
+#page-mod-otmutualassessment-view #region-main .mform.otmutualassessment-grades-form .fitem_fnumber .felement {
+	order: 0;
+	margin: 0 20px 0;
+}
+#page-mod-otmutualassessment-view #region-main .mform.frozen .fitem_fnumber .felement input,
+#page-mod-otmutualassessment-view #region-main .mform.otmutualassessment-grades-form .fitem_fnumber .felement input {
+	width: 50px;
+    text-align: right;
+}
+#page-mod-otmutualassessment-report .groupselector-wrapper,
+#page-mod-otmutualassessment-view .groupselector-wrapper {
+	margin-bottom: 5px;
+}
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th.grader.notingroup {
+	color: red;
+}
+#page-mod-otmutualassessment-view #region-main .mform #fitem_id_hr.fitem hr {
+	margin: 0;
+	padding: 0;
+}
+#page-mod-otmutualassessment-view #region-main .mform #fitem_id_hr.fitem .felement {
+	margin: 0;
+	padding: 0;
+}
+#page-mod-otmutualassessment-view #region-main .mform #fitem_id_hr.fitem .fitemtitle {
+	display: none;
+}
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th.grader {
+	position: relative;
+	font-weight: 400;
+}
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th.grader.status_notrequired::after,
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th.grader.status_completed::after,
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th.grader.status_notcompleted::after {
+	display: none;
+	content: '';
+	position: absolute;
+	bottom: 10px;
+	left: 15px;
+	width: 10px;
+	height: 10px;
+	border: 1px solid #CCC;
+}
+
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th.grader.status_notrequired::after {
+	background-color: #ddd;
+}
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th.grader.status_completed::after {
+	background-color: #4d4;
+}
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th.grader.status_notcompleted::after {
+	background-color: #d44;
+}
+
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th.first .wrap {
+    position: relative;
+    width: 250px;
+    height: 117px;
+    overflow: hidden;
+}
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th.first .wrap div {
+    position: absolute;
+    width: 110%;
+    height: 100%;
+}
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th.first .wrap div span {
+    position: absolute;
+}
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th.first .wrap div:nth-child(1) {
+    transform-origin: 0 0;
+    transform: rotate(25deg);
+    background: linear-gradient(180deg, #f1f1f1, transparent);
+    border-top: 1px solid #ddd;
+} 
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th.first .wrap div:nth-child(2) {
+    right: 0;
+    transform-origin: 100% 100%;
+    transform: rotate(25deg);
+} 
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th.first .wrap div:nth-child(1) span {
+    top: 25%;
+    left: 25%;
+    transform: rotate(-25deg);
+}
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th.first .wrap div:nth-child(2) span {
+    top: 55%;
+    right: 25%;
+    transform: rotate(-25deg);
+}
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th.first {
+	padding: 0;
+}
+
+#page-mod-otmutualassessment-refresh #region-main .mform.otmutualassessment-refresh-grades-form .fitem .felement.fsubmit,
+#page-mod-otmutualassessment-refresh #region-main .mform.otmutualassessment-refresh-grades-task-form .fitem .felement.fsubmit {
+	margin: 0;
+}
+#page-mod-otmutualassessment-mod .mform .fitem .felement.fnumber input {
+	width: 50px;
+}
+.adminsettings .form-item .form-setting .defaultsnext.form-number input {
+	width: 50px;
+}
+#page-mod-otmutualassessment-report .otmutualassessment-vote-controls {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+#page-mod-otmutualassessment-report .otmutualassessment-vote-controls a img {
+	padding: 0;
+	margin: 0;
+}
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table td:not(.firstcol):not(.lastcol),
+#page-mod-otmutualassessment-report .otmutualassessment-grades-table th:not(.firstcol):not(.lastcol) {
+	text-align: center;
+}
+
+
+/**
+ * Стилизация для 3.9
+ */
+.otmutualassessment-grades-form .form-group,
+#page-mod-otmutualassessment-view .mform.frozen .form-group {
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+}
+.otmutualassessment-grades-form .form-group div:first-child,
+#page-mod-otmutualassessment-view .mform.frozen .form-group div:first-child {
+	flex: none;
+	max-width: none;
+	width: auto;
+}
+.otmutualassessment-grades-form .form-group div:last-child,
+#page-mod-otmutualassessment-view .mform.frozen .form-group div:last-child {
+	flex: none;
+	max-width: none;
+	width: 100px;
+}
+.otmutualassessment-vote-controls a .icon {
+	margin-right: 0;
+}
+

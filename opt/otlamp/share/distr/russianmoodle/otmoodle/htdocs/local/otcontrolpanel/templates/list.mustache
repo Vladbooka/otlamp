@@ -1,0 +1,9 @@
+{{#table}}
+{{#body}}
+<ul class="list-group list-group-flush list-group-striped list-group-noborder list-group-sm">
+{{#rows}}
+<li data-record-id="{{id}}" class="list-group-item">{{#cells}}{{{value}}}{{^lastcell}}; {{/lastcell}}{{/cells}}</li>
+{{/rows}}
+</ul>
+{{/body}}
+{{/table}}

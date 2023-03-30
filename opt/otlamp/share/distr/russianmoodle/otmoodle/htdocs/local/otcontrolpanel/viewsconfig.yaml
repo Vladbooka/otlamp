@@ -1,0 +1,62 @@
+-
+    displayname: Пользователи
+    entitycode: user
+    fields:
+        -
+            displayname: Идентификатор
+            fieldcode: id
+            modifiers:
+                - profilelink
+        -
+            fieldcode: email
+        -
+            displayname: Логин
+            fieldcode: username
+        -
+            fieldcode: fullname
+        -
+            displayname: 'Дата создания'
+            fieldcode: timecreated
+            modifiers:
+                - userdate
+-
+    displayname: 'Глобальные группы'
+    entitycode: cohort
+    fields:
+        -
+            displayname: Название
+            fieldcode: name
+            modifiers:
+                - cohort_assign_button
+                - cohort_edit_button
+        -
+            displayname: Курсы
+            relationcode: course
+            fields:
+                -
+                    displayname: Название
+                    fieldcode: fullname
+                    modifiers: [crw_button]
+        -
+            displayname: 'Участники группы'
+            relationcode: user
+            fields:
+                -
+                    fieldcode: fullname
+                    modifiers: [profilelink]
+-
+    displayname: Курсы
+    entitycode: course
+    fields:
+        -
+            displayname: 'Полное название курса'
+            fieldcode: fullname
+            modifiers:
+                - crw_link
+        -
+            displayname: 'Глобальные группы'
+            relationcode: cohort
+            fields:
+                -
+                    displayname: Название
+                    fieldcode: name

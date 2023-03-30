@@ -1,0 +1,555 @@
+/* кастомные свойства для расширения возможностей бутстрапа, используются в кнопках размера xs */
+
+$font-size-xs: $font-size-base * .75 !default;
+$line-height-xs: .75 !default;
+$border-radius-xs: .1rem !default;
+
+$input-btn-padding-x-xs: .3rem !default;
+$input-btn-padding-y-xs: .3rem !default;
+$input-btn-font-size-xs: $font-size-xs !default;
+$input-btn-line-height-xs: $line-height-xs !default;
+
+$btn-padding-x-xs: $input-btn-padding-x-xs !default;
+$btn-padding-y-xs:$input-btn-padding-y-xs !default;
+$btn-font-size-xs: $input-btn-font-size-xs !default;
+$btn-line-height-xs: $input-btn-line-height-xs !default;
+$btn-border-radius-xs: $border-radius-xs !default;
+
+
+
+
+/* HEADER */
+$ot-header-bg: $body-bg !default;
+$ot-header-color: ot-color-yiq($ot-header-bg) !default;
+$ot-header-brightness-config: 0 !default;
+
+$ot-header-headings-bg: $ot-header-bg !default;
+$ot-header-headings-color: ot-color-yiq($ot-header-headings-bg) !default;
+$ot-header-headings-brightness-config: 0 !default;
+
+@if not $force-btn-primary {
+	$ot-header-btn-primary-bg: $primary !default;
+	$ot-header-btn-primary-border: $ot-header-btn-primary-bg !default;
+	$ot-header-btn-primary-color: ot-color-yiq($ot-header-btn-primary-bg) !default;
+	$ot-header-btn-primary-brightness-config: 0 !default;
+	$ot-header-btn-primary-hover-bg: ot-darken($ot-header-btn-primary-bg, 7.5%) !default;
+	$ot-header-btn-primary-hover-border: ot-darken($ot-header-btn-primary-hover-bg, 2.7%) !default;
+	$ot-header-btn-primary-hover-color: ot-color-yiq($ot-header-btn-primary-hover-bg) !default;
+	$ot-header-btn-primary-hover-brightness-config: 0 !default;
+} @else {
+	$ot-header-btn-primary-bg: $force-btn-primary;
+	$ot-header-btn-primary-border: $ot-header-btn-primary-bg;
+	$ot-header-btn-primary-color: ot-color-yiq($ot-header-btn-primary-bg);
+	$ot-header-btn-primary-brightness-config: 0;
+	$ot-header-btn-primary-hover-bg: ot-darken($ot-header-btn-primary-bg, 7.5%);
+	$ot-header-btn-primary-hover-border: ot-darken($ot-header-btn-primary-hover-bg, 2.7%);
+	$ot-header-btn-primary-hover-color: ot-color-yiq($ot-header-btn-primary-hover-bg);
+	$ot-header-btn-primary-hover-brightness-config: 0;
+}
+
+$ot-header-link-color: ot-link-color($ot-header-bg, $ot-header-btn-primary-bg) !default;
+$ot-header-link-hover-color: ot-darken($ot-header-link-color, 10%) !default;
+
+@if not $force-btn-secondary {
+	$ot-header-btn-secondary-bg: $secondary !default;
+	$ot-header-btn-secondary-border: $ot-header-btn-secondary-bg !default;
+	$ot-header-btn-secondary-color: ot-color-yiq($ot-header-btn-secondary-bg) !default;
+	$ot-header-btn-secondary-brightness-config: 0 !default;
+	$ot-header-btn-secondary-hover-bg: ot-darken($ot-header-btn-secondary-bg, 7.5%) !default;
+	$ot-header-btn-secondary-hover-border: ot-darken($ot-header-btn-secondary-hover-bg, 2.7%) !default;
+	$ot-header-btn-secondary-hover-color: ot-color-yiq($ot-header-btn-secondary-hover-bg) !default;
+	$ot-header-btn-secondary-hover-brightness-config: 0 !default;
+} @else {
+	$ot-header-btn-secondary-bg: $force-btn-secondary;
+	$ot-header-btn-secondary-border: $ot-header-btn-secondary-bg;
+	$ot-header-btn-secondary-color: ot-color-yiq($ot-header-btn-secondary-bg);
+	$ot-header-btn-secondary-brightness-config: 0;
+	$ot-header-btn-secondary-hover-bg: ot-darken($ot-header-btn-secondary-bg, 7.5%);
+	$ot-header-btn-secondary-hover-border: ot-darken($ot-header-btn-secondary-hover-bg, 2.7%);
+	$ot-header-btn-secondary-hover-color: ot-color-yiq($ot-header-btn-secondary-hover-bg);
+	$ot-header-btn-secondary-hover-brightness-config: 0;
+}
+
+$ot-header-pagination-bg: $ot-header-btn-primary-bg !default;
+$ot-header-pagination-color: $ot-header-btn-primary-color !default;
+$ot-header-pagination-border-color: $ot-header-btn-primary-border !default;
+$ot-header-pagination-hover-bg: $ot-header-btn-primary-hover-bg !default;
+$ot-header-pagination-hover-color: $ot-header-btn-primary-hover-color !default;
+$ot-header-pagination-hover-border-color: $ot-header-btn-primary-hover-border !default;
+$ot-header-pagination-active-bg: $ot-header-btn-primary-hover-bg !default;
+$ot-header-pagination-active-color: $ot-header-btn-primary-hover-color !default;
+$ot-header-pagination-active-border-color: $ot-header-btn-primary-hover-border !default;
+
+$ot-header-usermenu-ddtoggle-bg: $ot-header-bg !default;
+$ot-header-usermenu-ddtoggle-color: ot-color-yiq($ot-header-usermenu-ddtoggle-bg) !default;
+$ot-header-usermenu-ddtoggle-brightness-config: 3 !default;
+$ot-header-usermenu-ddtoggle-hover-bg: false !default;
+@if not $ot-header-usermenu-ddtoggle-hover-bg { 
+	$ot-header-usermenu-ddtoggle-hover-bg: $ot-header-usermenu-ddtoggle-bg;
+	$ot-header-usermenu-ddtoggle-hover-color: ot-darken($ot-header-usermenu-ddtoggle-color, 15%) !default;
+}
+$ot-header-usermenu-ddtoggle-hover-color: ot-color-yiq($ot-header-usermenu-ddtoggle-hover-bg) !default;
+$ot-header-usermenu-ddtoggle-hover-brightness-config: 3 !default;
+
+$ot-header-usermenu-ddmenu-bg: $dropdown-bg !default;
+$ot-header-usermenu-ddmenu-color: ot-color-yiq($ot-header-usermenu-ddmenu-bg) !default;
+$ot-header-usermenu-ddmenu-brightness-config: 0 !default;
+$ot-header-usermenu-ddmenu-hover-bg: false !default;
+@if not $ot-header-usermenu-ddmenu-hover-bg { 
+	$ot-header-usermenu-ddmenu-hover-bg: $dropdown-link-hover-bg;
+	$ot-header-usermenu-ddmenu-hover-color: $dropdown-link-hover-color !default;
+}
+$ot-header-usermenu-ddmenu-hover-color: ot-color-yiq($ot-header-usermenu-ddmenu-hover-bg, $ot-header-usermenu-ddmenu-bg) !default;
+$ot-header-usermenu-ddmenu-hover-brightness-config: 0 !default;
+
+$ot-header-custommenu-item-bg: false !default;
+@if not $ot-header-custommenu-item-bg { 
+	$ot-header-custommenu-item-bg: $ot-header-btn-primary-bg;
+	$ot-header-custommenu-item-color: $ot-header-btn-primary-color !default;
+	$ot-header-custommenu-item-brightness-config: $ot-header-btn-primary-brightness-config !default;
+}
+$ot-header-custommenu-item-color: ot-color-yiq($ot-header-custommenu-item-bg) !default;
+$ot-header-custommenu-item-brightness-config: 3 !default;
+$ot-header-custommenu-item-hover-bg: false !default;
+@if not $ot-header-custommenu-item-hover-bg {
+	$ot-header-custommenu-item-hover-bg: $ot-header-btn-primary-hover-bg;
+	$ot-header-custommenu-item-hover-color: $ot-header-btn-primary-hover-color !default;
+	$ot-header-custommenu-item-hover-brightness-config: $ot-header-btn-primary-hover-brightness-config !default;
+}
+$ot-header-custommenu-item-hover-color: ot-color-yiq($ot-header-custommenu-item-hover-bg) !default;
+$ot-header-custommenu-item-hover-brightness-config: 3 !default;
+
+
+$ot-header-custommenu-ddtoggle-bg: false !default;
+@if not $ot-header-custommenu-ddtoggle-bg {
+	$ot-header-custommenu-ddtoggle-bg: $ot-header-btn-primary-bg;
+	$ot-header-custommenu-ddtoggle-color: $ot-header-btn-primary-color !default;
+	$ot-header-custommenu-ddtoggle-brightness-config: $ot-header-btn-primary-brightness-config !default;
+}
+$ot-header-custommenu-ddtoggle-color: ot-color-yiq($ot-header-custommenu-ddtoggle-bg) !default;
+$ot-header-custommenu-ddtoggle-brightness-config: 3 !default;
+$ot-header-custommenu-ddtoggle-hover-bg: false !default;
+@if not $ot-header-custommenu-ddtoggle-hover-bg {
+	$ot-header-custommenu-ddtoggle-hover-bg: $ot-header-btn-primary-hover-bg;
+	$ot-header-custommenu-ddtoggle-hover-color: $ot-header-btn-primary-hover-color !default;
+	$ot-header-custommenu-ddtoggle-hover-brightness-config: $ot-header-btn-primary-hover-brightness-config !default;
+}
+$ot-header-custommenu-ddtoggle-hover-color: ot-color-yiq($ot-header-custommenu-ddtoggle-hover-bg) !default;
+$ot-header-custommenu-ddtoggle-hover-brightness-config: 3 !default;
+
+$ot-header-custommenu-ddmenu-bg: $dropdown-bg !default;
+$ot-header-custommenu-ddmenu-color: ot-color-yiq($ot-header-custommenu-ddmenu-bg) !default;
+$ot-header-custommenu-ddmenu-brightness-config: 0 !default;
+$ot-header-custommenu-ddmenu-hover-bg: false !default;
+@if not $ot-header-custommenu-ddmenu-hover-bg { 
+	$ot-header-custommenu-ddmenu-hover-bg: $dropdown-link-hover-bg;
+	$ot-header-custommenu-ddmenu-hover-color: $dropdown-link-hover-color;
+}
+$ot-header-custommenu-ddmenu-hover-color: ot-color-yiq($ot-header-custommenu-ddmenu-hover-bg) !default;
+$ot-header-custommenu-ddmenu-hover-brightness-config: 0 !default;
+
+
+
+/* DOCK */
+$ot-dock-dockeditem-textview-bg: $ot-header-headings-bg !default;
+$ot-dock-dockeditem-textview-color: ot-color-yiq($ot-dock-dockeditem-textview-bg) !default;
+$ot-dock-dockeditem-textview-brightness-config: 0 !default;
+$ot-dock-dockeditem-textview-hover-bg: ot-darken($ot-dock-dockeditem-textview-bg, 5%) !default;
+$ot-dock-dockeditem-textview-hover-color: ot-color-yiq($ot-dock-dockeditem-textview-hover-bg) !default;
+$ot-dock-dockeditem-textview-hover-brightness-config: 0 !default;
+
+$ot-dock-dockeditem-iconview-bg: $ot-header-headings-bg !default;
+$ot-dock-dockeditem-iconview-color: ot-color-yiq($ot-dock-dockeditem-iconview-bg) !default;
+$ot-dock-dockeditem-iconview-brightness-config: 0 !default;
+$ot-dock-dockeditem-iconview-hover-bg: ot-darken($ot-dock-dockeditem-iconview-bg, 5%) !default;
+$ot-dock-dockeditem-iconview-hover-color: ot-color-yiq($ot-dock-dockeditem-iconview-hover-bg) !default;
+$ot-dock-dockeditem-iconview-brightness-hover-config: 0 !default;
+
+
+
+/* NAVBAR */
+$ot-navbar-wrapper-bg: $body-bg !default;
+
+$ot-navbar-bg: ot-darken($ot-navbar-wrapper-bg, 5%) !default;
+$ot-navbar-color: ot-color-yiq($ot-navbar-bg) !default;
+$ot-navbar-brightness-config: 0 !default;
+
+$ot-navbar-headings-bg: $ot-navbar-bg !default;
+$ot-navbar-headings-color: ot-color-yiq($ot-navbar-headings-bg) !default;
+$ot-navbar-headings-brightness-config: 0 !default;
+
+@if not $force-btn-primary {
+	$ot-navbar-btn-primary-bg: $primary !default;
+	$ot-navbar-btn-primary-border: $ot-navbar-btn-primary-bg !default;
+	$ot-navbar-btn-primary-color: ot-color-yiq($ot-navbar-btn-primary-bg) !default;
+	$ot-navbar-btn-primary-brightness-config: 0 !default;
+	$ot-navbar-btn-primary-hover-bg: ot-darken($ot-navbar-btn-primary-bg, 7.5%) !default;
+	$ot-navbar-btn-primary-hover-border: ot-darken($ot-navbar-btn-primary-hover-bg, 2.7%) !default;
+	$ot-navbar-btn-primary-hover-color: ot-color-yiq($ot-navbar-btn-primary-hover-bg) !default;
+	$ot-navbar-btn-primary-hover-brightness-config: 0 !default;
+} @else {
+	$ot-navbar-btn-primary-bg: $force-btn-primary;
+	$ot-navbar-btn-primary-border: $ot-navbar-btn-primary-bg;
+	$ot-navbar-btn-primary-color: ot-color-yiq($ot-navbar-btn-primary-bg);
+	$ot-navbar-btn-primary-brightness-config: 0;
+	$ot-navbar-btn-primary-hover-bg: ot-darken($ot-navbar-btn-primary-bg, 7.5%);
+	$ot-navbar-btn-primary-hover-border: ot-darken($ot-navbar-btn-primary-hover-bg, 2.7%);
+	$ot-navbar-btn-primary-hover-color: ot-color-yiq($ot-navbar-btn-primary-hover-bg);
+	$ot-navbar-btn-primary-hover-brightness-config: 0;
+}
+
+@if not $force-btn-secondary {
+	$ot-navbar-btn-secondary-bg: $secondary !default;
+	$ot-navbar-btn-secondary-border: $ot-navbar-btn-secondary-bg !default;
+	$ot-navbar-btn-secondary-color: ot-color-yiq($ot-navbar-btn-secondary-bg) !default;
+	$ot-navbar-btn-secondary-brightness-config: 0 !default;
+	$ot-navbar-btn-secondary-hover-bg: ot-darken($ot-navbar-btn-secondary-bg, 7.5%) !default;
+	$ot-navbar-btn-secondary-hover-border: ot-darken($ot-navbar-btn-secondary-hover-bg, 2.7%) !default;
+	$ot-navbar-btn-secondary-hover-color: ot-color-yiq($ot-navbar-btn-secondary-hover-bg) !default;
+	$ot-navbar-btn-secondary-hover-brightness-config: 0 !default;
+} @else {
+	$ot-navbar-btn-secondary-bg: $force-btn-secondary;
+	$ot-navbar-btn-secondary-border: $ot-navbar-btn-secondary-bg;
+	$ot-navbar-btn-secondary-color: ot-color-yiq($ot-navbar-btn-secondary-bg);
+	$ot-navbar-btn-secondary-brightness-config: 0;
+	$ot-navbar-btn-secondary-hover-bg: ot-darken($ot-navbar-btn-secondary-bg, 7.5%);
+	$ot-navbar-btn-secondary-hover-border: ot-darken($ot-navbar-btn-secondary-hover-bg, 2.7%);
+	$ot-navbar-btn-secondary-hover-color: ot-color-yiq($ot-navbar-btn-secondary-hover-bg);
+	$ot-navbar-btn-secondary-hover-brightness-config: 0;
+}
+
+$ot-navbar-link-color: ot-link-color($ot-navbar-bg, $ot-navbar-color) !default;
+$ot-navbar-link-hover-color: ot-darken($ot-navbar-link-color, 10%) !default;
+
+
+
+/* CONTENT */
+$ot-content-bg: $body-bg !default;
+$ot-content-color: ot-color-yiq($ot-content-bg) !default;
+$ot-content-brightness-config: 0 !default;
+
+$ot-content-headings-bg: $ot-content-bg !default;
+$ot-content-headings-color: ot-color-yiq($ot-content-headings-bg) !default;
+$ot-content-headings-brightness-config: 0 !default;
+
+@if not $force-btn-primary {
+	$ot-content-btn-primary-bg: $primary !default;
+	$ot-content-btn-primary-border: $ot-content-btn-primary-bg !default;
+	$ot-content-btn-primary-color: ot-color-yiq($ot-content-btn-primary-bg) !default;
+	$ot-content-btn-primary-brightness-config: 0 !default;
+	$ot-content-btn-primary-hover-bg: ot-darken($ot-content-btn-primary-bg, 7.5%) !default;
+	$ot-content-btn-primary-hover-border: ot-darken($ot-content-btn-primary-hover-bg, 2.7%) !default;
+	$ot-content-btn-primary-hover-color: ot-color-yiq($ot-content-btn-primary-hover-bg) !default;
+	$ot-content-btn-primary-hover-brightness-config: 0 !default;
+} @else {
+	$ot-content-btn-primary-bg: $force-btn-primary;
+	$ot-content-btn-primary-border: $ot-content-btn-primary-bg;
+	$ot-content-btn-primary-color: ot-color-yiq($ot-content-btn-primary-bg);
+	$ot-content-btn-primary-brightness-config: 0;
+	$ot-content-btn-primary-hover-bg: ot-darken($ot-content-btn-primary-bg, 7.5%);
+	$ot-content-btn-primary-hover-border: ot-darken($ot-content-btn-primary-hover-bg, 2.7%);
+	$ot-content-btn-primary-hover-color: ot-color-yiq($ot-content-btn-primary-hover-bg);
+	$ot-content-btn-primary-hover-brightness-config: 0;
+}
+
+$ot-content-link-color: ot-link-color($ot-content-bg, $ot-content-btn-primary-bg) !default;
+$ot-content-link-hover-color: ot-darken($ot-content-link-color, 10%) !default;
+
+$ot-content-pagination-bg: $ot-content-btn-primary-bg !default;
+$ot-content-pagination-color: $ot-content-btn-primary-color !default;
+$ot-content-pagination-border-color: $ot-content-btn-primary-border !default;
+$ot-content-pagination-hover-bg: $ot-content-btn-primary-hover-bg !default;
+$ot-content-pagination-hover-color: $ot-content-btn-primary-hover-color !default;
+$ot-content-pagination-hover-border-color: $ot-content-btn-primary-hover-border !default;
+$ot-content-pagination-active-bg: $ot-content-btn-primary-hover-bg !default;
+$ot-content-pagination-active-color: $ot-content-btn-primary-hover-color !default;
+$ot-content-pagination-active-border-color: $ot-content-btn-primary-hover-border !default;
+
+@if not $force-btn-secondary {
+	$ot-content-btn-secondary-bg: $secondary !default;
+	$ot-content-btn-secondary-border: $ot-content-btn-secondary-bg !default;
+	$ot-content-btn-secondary-color: ot-color-yiq($ot-content-btn-secondary-bg) !default;
+	$ot-content-btn-secondary-brightness-config: 0 !default;
+	$ot-content-btn-secondary-hover-bg: ot-darken($ot-content-btn-secondary-bg, 7.5%) !default;
+	$ot-content-btn-secondary-hover-border: ot-darken($ot-content-btn-secondary-hover-bg, 2.7%) !default;
+	$ot-content-btn-secondary-hover-color: ot-color-yiq($ot-content-btn-secondary-hover-bg) !default;
+	$ot-content-btn-secondary-hover-brightness-config: 0 !default;
+} @else {
+	$ot-content-btn-secondary-bg: $force-btn-secondary;
+	$ot-content-btn-secondary-border: $ot-content-btn-secondary-bg;
+	$ot-content-btn-secondary-color: ot-color-yiq($ot-content-btn-secondary-bg);
+	$ot-content-btn-secondary-brightness-config: 0;
+	$ot-content-btn-secondary-hover-bg: ot-darken($ot-content-btn-secondary-bg, 7.5%);
+	$ot-content-btn-secondary-hover-border: ot-darken($ot-content-btn-secondary-hover-bg, 2.7%);
+	$ot-content-btn-secondary-hover-color: ot-color-yiq($ot-content-btn-secondary-hover-bg);
+	$ot-content-btn-secondary-hover-brightness-config: 0;
+}
+
+
+
+/* FOOTER */
+$ot-footer-bg: $body-bg !default;
+$ot-footer-color: ot-color-yiq($ot-footer-bg) !default;
+$ot-footer-brightness-config: 0 !default;
+
+$ot-footer-headings-bg: $ot-footer-bg !default;
+$ot-footer-headings-color: ot-color-yiq($ot-footer-headings-bg) !default;
+$ot-footer-headings-brightness-config: 0 !default;
+
+@if not $force-btn-primary {
+	$ot-footer-btn-primary-bg: $primary !default;
+	$ot-footer-btn-primary-border: $ot-footer-btn-primary-bg !default;
+	$ot-footer-btn-primary-color: ot-color-yiq($ot-footer-btn-primary-bg) !default;
+	$ot-footer-btn-primary-brightness-config: 0 !default;
+	$ot-footer-btn-primary-hover-bg: ot-darken($ot-footer-btn-primary-bg, 7.5%) !default;
+	$ot-footer-btn-primary-hover-border: ot-darken($ot-footer-btn-primary-hover-bg, 2.7%) !default;
+	$ot-footer-btn-primary-hover-color: ot-color-yiq($ot-footer-btn-primary-hover-bg) !default;
+	$ot-footer-btn-primary-hover-brightness-config: 0 !default;
+} @else {
+	$ot-footer-btn-primary-bg: $force-btn-primary;
+	$ot-footer-btn-primary-border: $ot-footer-btn-primary-bg;
+	$ot-footer-btn-primary-color: ot-color-yiq($ot-footer-btn-primary-bg);
+	$ot-footer-btn-primary-brightness-config: 0;
+	$ot-footer-btn-primary-hover-bg: ot-darken($ot-footer-btn-primary-bg, 7.5%);
+	$ot-footer-btn-primary-hover-border: ot-darken($ot-footer-btn-primary-hover-bg, 2.7%);
+	$ot-footer-btn-primary-hover-color: ot-color-yiq($ot-footer-btn-primary-hover-bg);
+	$ot-footer-btn-primary-hover-brightness-config: 0;
+}
+
+$ot-footer-link-color: ot-link-color($ot-footer-bg, $ot-footer-btn-primary-bg) !default;
+$ot-footer-link-hover-color: ot-darken($ot-footer-link-color, 10%) !default;
+
+$ot-footer-pagination-bg: $ot-footer-btn-primary-bg !default;
+$ot-footer-pagination-color: $ot-footer-btn-primary-color !default;
+$ot-footer-pagination-border-color: $ot-footer-btn-primary-border !default;
+$ot-footer-pagination-hover-bg: $ot-footer-btn-primary-hover-bg !default;
+$ot-footer-pagination-hover-color: $ot-footer-btn-primary-hover-color !default;
+$ot-footer-pagination-hover-border-color: $ot-footer-btn-primary-hover-border !default;
+$ot-footer-pagination-active-bg: $ot-footer-btn-primary-hover-bg !default;
+$ot-footer-pagination-active-color: $ot-footer-btn-primary-hover-color !default;
+$ot-footer-pagination-active-border-color: $ot-footer-btn-primary-hover-border !default;
+
+@if not $force-btn-secondary {
+	$ot-footer-btn-secondary-bg: $secondary !default;
+	$ot-footer-btn-secondary-border: $ot-footer-btn-secondary-bg !default;
+	$ot-footer-btn-secondary-color: ot-color-yiq($ot-footer-btn-secondary-bg) !default;
+	$ot-footer-btn-secondary-brightness-config: 0 !default;
+	$ot-footer-btn-secondary-hover-bg: ot-darken($ot-footer-btn-secondary-bg, 7.5%) !default;
+	$ot-footer-btn-secondary-hover-border: ot-darken($ot-footer-btn-secondary-hover-bg, 2.7%) !default;
+	$ot-footer-btn-secondary-hover-color: ot-color-yiq($ot-footer-btn-secondary-hover-bg) !default;
+	$ot-footer-btn-secondary-hover-brightness-config: 0 !default;
+} @else {
+	$ot-footer-btn-secondary-bg: $force-btn-secondary;
+	$ot-footer-btn-secondary-border: $ot-footer-btn-secondary-bg;
+	$ot-footer-btn-secondary-color: ot-color-yiq($ot-footer-btn-secondary-bg);
+	$ot-footer-btn-secondary-brightness-config: 0;
+	$ot-footer-btn-secondary-hover-bg: ot-darken($ot-footer-btn-secondary-bg, 7.5%);
+	$ot-footer-btn-secondary-hover-border: ot-darken($ot-footer-btn-secondary-hover-bg, 2.7%);
+	$ot-footer-btn-secondary-hover-color: ot-color-yiq($ot-footer-btn-secondary-hover-bg);
+	$ot-footer-btn-secondary-hover-brightness-config: 0;
+}
+
+
+
+/* BLOCKS */
+$ot-blocks-bg: $body-bg !default;
+$ot-blocks-color: ot-color-yiq($ot-blocks-bg) !default;
+$ot-blocks-brightness-config: 0 !default;
+
+$ot-blocks-headings-bg: $ot-blocks-bg !default;
+$ot-blocks-headings-color: ot-color-yiq($ot-blocks-headings-bg) !default;
+$ot-blocks-headings-brightness-config: 0 !default;
+
+@if not $force-btn-primary {
+	$ot-blocks-btn-primary-bg: $primary !default;
+	$ot-blocks-btn-primary-border: $ot-blocks-btn-primary-bg !default;
+	$ot-blocks-btn-primary-color: ot-color-yiq($ot-blocks-btn-primary-bg) !default;
+	$ot-blocks-btn-primary-brightness-config: 0 !default;
+	$ot-blocks-btn-primary-hover-bg: ot-darken($ot-blocks-btn-primary-bg, 7.5%) !default;
+	$ot-blocks-btn-primary-hover-border: ot-darken($ot-blocks-btn-primary-hover-bg, 2.7%) !default;
+	$ot-blocks-btn-primary-hover-color: ot-color-yiq($ot-blocks-btn-primary-hover-bg) !default;
+	$ot-blocks-btn-primary-hover-brightness-config: 0 !default;
+} @else {
+	$ot-blocks-btn-primary-bg: $force-btn-primary;
+	$ot-blocks-btn-primary-border: $ot-blocks-btn-primary-bg;
+	$ot-blocks-btn-primary-color: ot-color-yiq($ot-blocks-btn-primary-bg);
+	$ot-blocks-btn-primary-brightness-config: 0;
+	$ot-blocks-btn-primary-hover-bg: ot-darken($ot-blocks-btn-primary-bg, 7.5%);
+	$ot-blocks-btn-primary-hover-border: ot-darken($ot-blocks-btn-primary-hover-bg, 2.7%);
+	$ot-blocks-btn-primary-hover-color: ot-color-yiq($ot-blocks-btn-primary-hover-bg);
+	$ot-blocks-btn-primary-hover-brightness-config: 0;
+}
+
+$ot-blocks-link-color: ot-link-color($ot-blocks-bg, $ot-blocks-btn-primary-bg) !default;
+$ot-blocks-link-hover-color: ot-darken($ot-blocks-link-color, 10%) !default;
+
+$ot-blocks-pagination-bg: $ot-blocks-btn-primary-bg !default;
+$ot-blocks-pagination-color: $ot-blocks-btn-primary-color !default;
+$ot-blocks-pagination-border-color: $ot-blocks-btn-primary-border !default;
+$ot-blocks-pagination-hover-bg: $ot-blocks-btn-primary-hover-bg !default;
+$ot-blocks-pagination-hover-color: $ot-blocks-btn-primary-hover-color !default;
+$ot-blocks-pagination-hover-border-color: $ot-blocks-btn-primary-hover-border !default;
+$ot-blocks-pagination-active-bg: $ot-blocks-btn-primary-hover-bg !default;
+$ot-blocks-pagination-active-color: $ot-blocks-btn-primary-hover-color !default;
+$ot-blocks-pagination-active-border-color: $ot-blocks-btn-primary-hover-border !default;
+
+@if not $force-btn-secondary {
+	$ot-blocks-btn-secondary-bg: $secondary !default;
+	$ot-blocks-btn-secondary-border: $ot-blocks-btn-secondary-bg !default;
+	$ot-blocks-btn-secondary-color: ot-color-yiq($ot-blocks-btn-secondary-bg) !default;
+	$ot-blocks-btn-secondary-brightness-config: 0 !default;
+	$ot-blocks-btn-secondary-hover-bg: ot-darken($ot-blocks-btn-secondary-bg, 7.5%) !default;
+	$ot-blocks-btn-secondary-hover-border: ot-darken($ot-blocks-btn-secondary-hover-bg, 2.7%) !default;
+	$ot-blocks-btn-secondary-hover-color: ot-color-yiq($ot-blocks-btn-secondary-hover-bg) !default;
+	$ot-blocks-btn-secondary-hover-brightness-config: 0 !default;
+} @else {
+	$ot-blocks-btn-secondary-bg: $force-btn-secondary;
+	$ot-blocks-btn-secondary-border: $ot-blocks-btn-secondary-bg;
+	$ot-blocks-btn-secondary-color: ot-color-yiq($ot-blocks-btn-secondary-bg);
+	$ot-blocks-btn-secondary-brightness-config: 0;
+	$ot-blocks-btn-secondary-hover-bg: ot-darken($ot-blocks-btn-secondary-bg, 7.5%);
+	$ot-blocks-btn-secondary-hover-border: ot-darken($ot-blocks-btn-secondary-hover-bg, 2.7%);
+	$ot-blocks-btn-secondary-hover-color: ot-color-yiq($ot-blocks-btn-secondary-hover-bg);
+	$ot-blocks-btn-secondary-hover-brightness-config: 0;
+}
+
+
+
+/* COLLAPSIBLESECTION */
+$ot-collapsiblesection-bg: $body-bg !default;
+$ot-collapsiblesection-color: ot-color-yiq($ot-collapsiblesection-bg) !default;
+$ot-collapsiblesection-brightness-config: 0 !default;
+
+$ot-collapsiblesection-headings-bg: $ot-collapsiblesection-bg !default;
+$ot-collapsiblesection-headings-color: ot-color-yiq($ot-collapsiblesection-headings-bg) !default;
+$ot-collapsiblesection-headings-brightness-config: 0 !default;
+
+@if not $force-btn-primary {
+	$ot-collapsiblesection-btn-primary-bg: $primary !default;
+	$ot-collapsiblesection-btn-primary-border: $ot-collapsiblesection-btn-primary-bg !default;
+	$ot-collapsiblesection-btn-primary-color: ot-color-yiq($ot-collapsiblesection-btn-primary-bg) !default;
+	$ot-collapsiblesection-btn-primary-brightness-config: 0 !default;
+	$ot-collapsiblesection-btn-primary-hover-bg: ot-darken($ot-collapsiblesection-btn-primary-bg, 7.5%) !default;
+	$ot-collapsiblesection-btn-primary-hover-border: ot-darken($ot-collapsiblesection-btn-primary-hover-bg, 2.7%) !default;
+	$ot-collapsiblesection-btn-primary-hover-color: ot-color-yiq($ot-collapsiblesection-btn-primary-hover-bg) !default;
+	$ot-collapsiblesection-btn-primary-hover-brightness-config: 0 !default;
+} @else {
+	$ot-collapsiblesection-btn-primary-bg: $force-btn-primary;
+	$ot-collapsiblesection-btn-primary-border: $ot-collapsiblesection-btn-primary-bg;
+	$ot-collapsiblesection-btn-primary-color: ot-color-yiq($ot-collapsiblesection-btn-primary-bg);
+	$ot-collapsiblesection-btn-primary-brightness-config: 0;
+	$ot-collapsiblesection-btn-primary-hover-bg: ot-darken($ot-collapsiblesection-btn-primary-bg, 7.5%);
+	$ot-collapsiblesection-btn-primary-hover-border: ot-darken($ot-collapsiblesection-btn-primary-hover-bg, 2.7%);
+	$ot-collapsiblesection-btn-primary-hover-color: ot-color-yiq($ot-collapsiblesection-btn-primary-hover-bg);
+	$ot-collapsiblesection-btn-primary-hover-brightness-config: 0;
+}
+
+$ot-collapsiblesection-link-color: ot-link-color($ot-collapsiblesection-bg, $ot-collapsiblesection-btn-primary-bg) !default;
+$ot-collapsiblesection-link-hover-color: ot-darken($ot-collapsiblesection-link-color, 10%) !default;
+
+$ot-collapsiblesection-pagination-bg: $ot-collapsiblesection-btn-primary-bg !default;
+$ot-collapsiblesection-pagination-color: $ot-collapsiblesection-btn-primary-color !default;
+$ot-collapsiblesection-pagination-border-color: $ot-collapsiblesection-btn-primary-border !default;
+$ot-collapsiblesection-pagination-hover-bg: $ot-collapsiblesection-btn-primary-hover-bg !default;
+$ot-collapsiblesection-pagination-hover-color: $ot-collapsiblesection-btn-primary-hover-color !default;
+$ot-collapsiblesection-pagination-hover-border-color: $ot-collapsiblesection-btn-primary-hover-border !default;
+$ot-collapsiblesection-pagination-active-bg: $ot-collapsiblesection-btn-primary-hover-bg !default;
+$ot-collapsiblesection-pagination-active-color: $ot-collapsiblesection-btn-primary-hover-color !default;
+$ot-collapsiblesection-pagination-active-border-color: $ot-collapsiblesection-btn-primary-hover-border !default;
+
+@if not $force-btn-secondary {
+	$ot-collapsiblesection-btn-secondary-bg: $secondary !default;
+	$ot-collapsiblesection-btn-secondary-border: $ot-collapsiblesection-btn-secondary-bg !default;
+	$ot-collapsiblesection-btn-secondary-color: ot-color-yiq($ot-collapsiblesection-btn-secondary-bg) !default;
+	$ot-collapsiblesection-btn-secondary-brightness-config: 0 !default;
+	$ot-collapsiblesection-btn-secondary-hover-bg: ot-darken($ot-collapsiblesection-btn-secondary-bg, 7.5%) !default;
+	$ot-collapsiblesection-btn-secondary-hover-border: ot-darken($ot-collapsiblesection-btn-secondary-hover-bg, 2.7%) !default;
+	$ot-collapsiblesection-btn-secondary-hover-color: ot-color-yiq($ot-collapsiblesection-btn-secondary-hover-bg) !default;
+	$ot-collapsiblesection-btn-secondary-hover-brightness-config: 0 !default;
+} @else {
+	$ot-collapsiblesection-btn-secondary-bg: $force-btn-secondary;
+	$ot-collapsiblesection-btn-secondary-border: $ot-collapsiblesection-btn-secondary-bg;
+	$ot-collapsiblesection-btn-secondary-color: ot-color-yiq($ot-collapsiblesection-btn-secondary-bg);
+	$ot-collapsiblesection-btn-secondary-brightness-config: 0;
+	$ot-collapsiblesection-btn-secondary-hover-bg: ot-darken($ot-collapsiblesection-btn-secondary-bg, 7.5%);
+	$ot-collapsiblesection-btn-secondary-hover-border: ot-darken($ot-collapsiblesection-btn-secondary-hover-bg, 2.7%);
+	$ot-collapsiblesection-btn-secondary-hover-color: ot-color-yiq($ot-collapsiblesection-btn-secondary-hover-bg);
+	$ot-collapsiblesection-btn-secondary-hover-brightness-config: 0;
+}
+
+
+
+
+/* ATTO */
+
+@if not $force-btn-primary {
+	$ot-atto-btn-primary-bg: false !default;
+	@if not $ot-atto-btn-primary-bg {
+		$ot-atto-btn-primary-bg: $ot-content-btn-primary-bg;
+		$ot-atto-btn-primary-border: $ot-content-btn-primary-border !default;
+		$ot-atto-btn-primary-color: $ot-content-btn-primary-color !default;
+		$ot-atto-btn-primary-brightness-config: $ot-content-btn-primary-brightness-config !default;
+	}
+	$ot-atto-btn-primary-border: $ot-atto-btn-primary-bg !default;
+	$ot-atto-btn-primary-color: ot-color-yiq($ot-atto-btn-primary-bg) !default;
+	$ot-atto-btn-primary-brightness-config: 0 !default;
+	$ot-atto-btn-primary-hover-bg: false !default;
+	@if not $ot-atto-btn-primary-hover-bg {
+		$ot-atto-btn-primary-hover-bg: $ot-content-btn-primary-hover-bg;
+		$ot-atto-btn-primary-hover-border: $ot-content-btn-primary-hover-border !default;
+		$ot-atto-btn-primary-hover-color: $ot-content-btn-primary-hover-color !default;
+		$ot-atto-btn-primary-hover-brightness-config: $ot-content-btn-primary-hover-brightness-config !default;
+	}
+	$ot-atto-btn-primary-hover-border: ot-darken($ot-atto-btn-primary-hover-bg, 2.7%) !default;
+	$ot-atto-btn-primary-hover-color: ot-color-yiq($ot-atto-btn-primary-hover-bg) !default;
+	$ot-atto-btn-primary-hover-brightness-config: 0 !default;
+} @else {
+	$ot-atto-btn-primary-bg: $force-btn-primary;
+	$ot-atto-btn-primary-border: $ot-atto-btn-primary-bg;
+	$ot-atto-btn-primary-color: ot-color-yiq($ot-atto-btn-primary-bg);
+	$ot-atto-btn-primary-brightness-config: 0;
+	$ot-atto-btn-primary-hover-bg: ot-darken($ot-atto-btn-primary-bg, 7.5%);
+	$ot-atto-btn-primary-hover-border: ot-darken($ot-atto-btn-primary-hover-bg, 2.7%);
+	$ot-atto-btn-primary-hover-color: ot-color-yiq($ot-atto-btn-primary-hover-bg);
+	$ot-atto-btn-primary-hover-brightness-config: 0;
+}
+
+@if not $force-btn-primary {
+	$ot-atto-btn-secondary-bg: false !default;
+	@if not $ot-atto-btn-secondary-bg {
+		$ot-atto-btn-secondary-bg: $ot-content-btn-secondary-bg;
+		$ot-atto-btn-secondary-border: $ot-content-btn-secondary-border !default;
+		$ot-atto-btn-secondary-color: $ot-content-btn-secondary-color !default;
+		$ot-atto-btn-secondary-brightness-config: $ot-content-btn-secondary-brightness-config !default;
+	}
+	$ot-atto-btn-secondary-border: $ot-atto-btn-secondary-bg !default;
+	$ot-atto-btn-secondary-color: ot-color-yiq($ot-atto-btn-secondary-bg) !default;
+	$ot-atto-btn-secondary-brightness-config: 0 !default;
+	
+	$ot-atto-btn-secondary-hover-bg: false !default;
+	@if not $ot-atto-btn-secondary-hover-bg {
+		$ot-atto-btn-secondary-hover-bg: $ot-content-btn-secondary-hover-bg;
+		$ot-atto-btn-secondary-hover-border: $ot-content-btn-secondary-hover-border !default;
+		$ot-atto-btn-secondary-hover-color: $ot-content-btn-secondary-hover-color !default;
+		$ot-atto-btn-secondary-hover-brightness-config: $ot-content-btn-secondary-hover-brightness-config !default;
+	}
+	$ot-atto-btn-secondary-hover-border: ot-darken($ot-atto-btn-secondary-hover-bg, 2.7%) !default;
+	$ot-atto-btn-secondary-hover-color: ot-color-yiq($ot-atto-btn-secondary-hover-bg) !default;
+	$ot-atto-btn-secondary-hover-brightness-config: 0 !default;
+} @else {
+	$ot-atto-btn-secondary-bg: $force-btn-primary;
+	$ot-atto-btn-secondary-border: $ot-atto-btn-secondary-bg;
+	$ot-atto-btn-secondary-color: ot-color-yiq($ot-atto-btn-secondary-bg);
+	$ot-atto-btn-secondary-brightness-config: 0;
+	$ot-atto-btn-secondary-hover-bg: ot-darken($ot-atto-btn-secondary-bg, 7.5%);
+	$ot-atto-btn-secondary-hover-border: ot-darken($ot-atto-btn-secondary-hover-bg, 2.7%);
+	$ot-atto-btn-secondary-hover-color: ot-color-yiq($ot-atto-btn-secondary-hover-bg);
+	$ot-atto-btn-secondary-hover-brightness-config: 0;
+}
+
+
+
+/* CORE */
+$link-color: ot-link-color($body-bg, $ot-content-btn-primary-bg) !default;
+$link-hover-color: ot-darken($link-color, 10%) !default;
+

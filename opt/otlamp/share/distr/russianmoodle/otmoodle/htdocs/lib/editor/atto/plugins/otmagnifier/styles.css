@@ -1,0 +1,34 @@
+
+#page-wrapper #page .editor_atto_toolbar button.atto_otmagnifier_button_otmagnifier {
+	position: relative;
+    padding-right: 18px;
+}
+
+#page-wrapper #page .editor_atto_toolbar button.atto_otmagnifier_button_otmagnifier::after,
+#page-wrapper #page .editor_atto_toolbar button.atto_otmagnifier_button_otmagnifier::before {
+	display: block;
+	content: '';
+	position: absolute;
+	width: 5px;
+	height: 5px;
+	right: 9px;
+	border: 1px solid rgba(255,255,255,.7);
+	background-color: rgba(153,153,153,.95);
+}
+
+#page-wrapper #page .editor_atto_toolbar button.atto_otmagnifier_button_otmagnifier::after {
+	top: 7px;
+}
+#page-wrapper #page .editor_atto_toolbar button.atto_otmagnifier_button_otmagnifier::before {
+	bottom: 7px;
+}
+
+#page-wrapper #page .editor_atto_toolbar button.atto_otmagnifier_button_otmagnifier.has-magnified::after {
+	background-color: green;
+	border-color: #FFF;
+}
+
+#page-wrapper #page .editor_atto_toolbar button.atto_otmagnifier_button_otmagnifier.has-not-magnified::before {
+	background-color: red;
+	border-color: #FFF;
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/otresourcelibrary/db" VERSION="2019102200" COMMENT="XMLDB file for z"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+    <TABLES>
+
+	<TABLE NAME="otresourcelibrary" COMMENT="resource library table">
+		<FIELDS>
+			<FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" COMMENT="id of the table"
+				NEXT="course" />
+			<FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false"
+				COMMENT="Course whiteboard activity belongs to" 
+				PREVIOUS="id" NEXT="type" />
+			<FIELD NAME="type" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="1" SEQUENCE="false"
+				PREVIOUS="type" NEXT="name" />
+			<FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="name field for moodle instances"
+				PREVIOUS="type" NEXT="description" />
+			<FIELD NAME="description" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false"
+				PREVIOUS="name" NEXT="timecreated" />
+			<FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" 
+				PREVIOUS="description" NEXT="timemodified" />
+			<FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false"
+				PREVIOUS="timecreated" NEXT="khipu_setting"/>
+			<FIELD NAME="khipu_setting" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false"
+				PREVIOUS="timemodified" NEXT="materialtype" />	
+			<FIELD NAME="materialtype" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"
+				PREVIOUS="khipu_setting" />
+		</FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key for whiteboard"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
+      </INDEXES>
+    </TABLE>
+        
+    </TABLES>
+</XMLDB>
+
+

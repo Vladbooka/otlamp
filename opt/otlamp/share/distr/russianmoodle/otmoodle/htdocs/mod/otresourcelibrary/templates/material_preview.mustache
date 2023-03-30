@@ -1,0 +1,34 @@
+<div class="otrl_material" data="{{key}}">
+	<div class="material_header">
+		<div class="material_name spoiler-head">
+			<h4 class="name">{{title}}</h4>
+		</div>
+		<div class="otrl_material_btn_holder form-inline justify-content-around">
+			<input type="button" class="btn btn-primary" value="{{# str }} select_btn, mod_otresourcelibrary {{/ str }}">
+			<input type="button" class="btn btn-secondary"  value="{{# str }} return, mod_otresourcelibrary {{/ str }}">
+		</div>
+	</div>
+	<div class="otrl_iframe">
+		<iframe src="{{urltoview}}"></iframe>
+	</div>
+	<div class="anchors">
+		<div class="anchor_fragment">
+			{{#fragment}}
+			{{# str }} material_fragment, mod_otresourcelibrary {{/ str }}&nbsp;&nbsp;
+			<input value="{{fragmentvalue}}" type="text" name="material_fragment" class="input_anchor form-control">
+			{{/fragment}}
+		</div>
+		<div class="anchor_chapter">
+			{{#chapter}}
+			{{# str }} material_chapter, mod_otresourcelibrary {{/ str }}&nbsp;&nbsp;
+			<input value="{{chaptervalue}}" type="text" name="material_chapter" class="input_anchor form-control">
+			{{/chapter}}
+		</div>
+		<div class="anchor_pagenum">
+			{{#pagenum}}
+			{{# str }} material_pagenum, mod_otresourcelibrary {{/ str }}&nbsp;&nbsp;
+			<input value="{{pagenumvalue}}" type="text" name="material_pagenum" class="input_anchor form-control">
+			{{/pagenum}}
+		</div>
+	</div>		
+</div>

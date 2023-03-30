@@ -1,0 +1,78 @@
+.OTselect-field-wrapper {
+    position: relative;
+}
+.OTselect-field {
+	width: 300px;
+}
+.OTselect-list-wrapper {
+  clear: left;
+}
+.OTselect-list {
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: 100%;
+  padding: 0px !important;
+}
+.OTselect-list li {
+  background: #FFF;
+  cursor: pointer;
+  display: none;
+}
+.OTselect-list li.filtered {
+  display: block;
+}
+.OTselect-list li.active {
+  background: #333;
+  color: #FFF;
+}
+.OTselect-container {
+  font-family: sans-serif;
+}
+.OTselect-list {
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  width: 314px;
+  z-index: 2;
+}
+.OTselect-list li {
+  border-bottom: 1px solid #EAEFFA;
+  padding: 3px 5px;
+  width: 304px;
+}
+.OTselect-list li.active {
+  background: #69a05a;
+}
+.OTselect-box {
+    background: none;
+    position: relative;
+}
+.OTselect-box.empty {
+  display: none;
+}
+.OTselect-box:before,
+.OTselect-box:after {
+  content: "";
+  display: table;
+}
+.OTselect-box:after {
+  clear: both;
+}
+.OTselect-box-item {
+	background: #69a05a!important;
+    border-radius: 10px;
+    color: #fff!important;
+    display: inline-block;
+    line-height: 100%;
+    padding: 5px 8px 5px 8px;
+    margin: 5px 5px 0 0;
+    text-shadow: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+.OTselect-box-item:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff!important;
+}

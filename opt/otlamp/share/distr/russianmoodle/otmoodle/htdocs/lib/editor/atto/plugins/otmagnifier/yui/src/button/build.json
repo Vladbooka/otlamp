@@ -1,0 +1,10 @@
+{
+    "name": "moodle-atto_otmagnifier-button",
+    "builds": {
+        "moodle-atto_otmagnifier-button": {
+            "jsfiles": [
+                "button.js"
+            ]
+        }
+    }
+}

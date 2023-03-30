@@ -1,0 +1,68 @@
+.block,
+#page-wrapper .block {
+    
+    
+    @include ot-zone-a((
+		link-color:			$ot-blocks-link-color,
+		link-hover-color:	$ot-blocks-link-hover-color,
+    ));
+	
+	@include ot-zone-buttons((
+		primary-bg: 						$ot-blocks-btn-primary-bg,
+		primary-border: 					$ot-blocks-btn-primary-border,
+		primary-color: 						$ot-blocks-btn-primary-color,
+		primary-brightness-config: 			$ot-blocks-btn-primary-brightness-config,
+		primary-hover-bg: 					$ot-blocks-btn-primary-hover-bg,
+		primary-hover-border: 				$ot-blocks-btn-primary-hover-border,
+		primary-hover-color: 				$ot-blocks-btn-primary-hover-color,
+		primary-hover-brightness-config: 	$ot-blocks-btn-primary-hover-brightness-config,
+		primary-active-bg: 					$ot-blocks-btn-primary-hover-bg,
+		primary-active-border: 				$ot-blocks-btn-primary-hover-border,
+		primary-active-color: 				$ot-blocks-btn-primary-hover-color,
+		primary-active-brightness-config: 	$ot-blocks-btn-primary-hover-brightness-config,
+		secondary-bg: 						$ot-blocks-btn-secondary-bg,
+		secondary-border: 					$ot-blocks-btn-secondary-border,
+		secondary-color: 					$ot-blocks-btn-secondary-color,
+		secondary-brightness-config: 		$ot-blocks-btn-secondary-brightness-config,
+		secondary-hover-bg: 				$ot-blocks-btn-secondary-hover-bg,
+		secondary-hover-border: 			$ot-blocks-btn-secondary-hover-border,
+		secondary-hover-color: 				$ot-blocks-btn-secondary-hover-color,
+		secondary-hover-brightness-config: 	$ot-blocks-btn-secondary-hover-brightness-config,
+		secondary-active-bg: 				$ot-blocks-btn-secondary-hover-bg,
+		secondary-active-border: 			$ot-blocks-btn-secondary-hover-border,
+		secondary-active-color: 			$ot-blocks-btn-secondary-hover-color,
+		secondary-active-brightness-config:	$ot-blocks-btn-secondary-hover-brightness-config,
+		link-color:							$ot-blocks-link-color,
+		link-hover-color:					$ot-blocks-link-hover-color,
+	));
+	
+	@include ot-zone-pagination((
+		bg: 					$ot-blocks-pagination-bg,
+		border-color: 			$ot-blocks-pagination-border-color,
+		color: 					$ot-blocks-pagination-color,
+		hover-bg: 				$ot-blocks-pagination-hover-bg,
+		hover-border-color: 	$ot-blocks-pagination-hover-border-color,
+		hover-color:			$ot-blocks-pagination-hover-color,
+		active-bg:				$ot-blocks-pagination-hover-bg,
+		active-border-color:	$ot-blocks-pagination-hover-border-color,
+		active-color:			$ot-blocks-pagination-hover-color
+	));
+	
+	& > .card-body > .card-title {
+		background-color: $ot-blocks-headings-bg;
+		color: $ot-blocks-headings-color;
+    	padding: 0 5px;
+    	font-size: 1.4em;
+	}
+}
+
+body {
+	#block-region-side-pre, #block-region-side-post {
+		.block {
+			form {
+	    		@include narrow-form-styles();
+			}
+		}
+	}
+}
+

@@ -1,0 +1,21 @@
+table.rtreport.finalgrades tr td:not(.student_fio),
+table.rtreport.finalgrades tr td:not(.student_fio) a,
+table.rtreport.finalgrades tr:hover td:not(.student_fio),
+table.rtreport.finalgrades tr:hover td:not(.student_fio) a,
+table.rtreport.finalgrades tr.cpassed_failed:hover td:not(.student_fio),
+table.rtreport.finalgrades tr.cpassed_failed:hover td:not(.student_fio) a{
+	color: #000;
+}
+table.rtreport.finalgrades tr.cpassed_failed td:not(.student_fio),
+table.rtreport.finalgrades tr.cpassed_failed td:not(.student_fio) a{
+	color: #888;
+}
+table.rtreport.finalgrades tr td.pitem::after {
+	display: block;
+	content: '';
+	height: 0;
+	clear: both;
+}
+table.rtreport.finalgrades tr td.pitem a.cpassed_link {
+	float: right;
+}

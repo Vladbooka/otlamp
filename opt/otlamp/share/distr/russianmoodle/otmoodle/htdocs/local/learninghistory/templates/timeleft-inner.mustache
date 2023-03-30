@@ -1,0 +1,13 @@
+<div class="font-weight-bold text-{{$color}}dark{{/color}}">
+	{{activetimestr}}
+</div>
+
+{{#atlastupdate}}
+<div class="text-muted">
+	{{#str}} atlastupdate, local_learninghistory, {{#userdate}} {{atlastupdate}} , {{#str}} strftimedatetimeshort, core_langconfig {{/str}} {{/userdate}} {{/str}}
+</div>
+{{/atlastupdate}}
+
+<div class="badge badge-{{$color}}dark{{/color}} mt-3 ajax-monitoring-{{$status}}disabled{{/status}} text-wrap text-left">
+	{{$statusstring}}{{#str}} ajax_monitoring_disabled, local_learninghistory {{/str}}{{/statusstring}}
+</div>

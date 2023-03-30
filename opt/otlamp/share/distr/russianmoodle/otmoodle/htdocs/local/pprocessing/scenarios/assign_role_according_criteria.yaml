@@ -1,0 +1,227 @@
+---
+events:
+  - '\core\event\user_created'
+  - '\core\event\user_updated'
+processors:
+  - type: 'handler'
+    code: 'get_user'
+    params:
+      userid:
+        source_type: 'container'
+        source_value: 'userid'
+    result_variable: 'user'
+  # получим из конфига поле профиля
+  - type: 'handler'
+    code: 'get_plugin_config'
+    params:
+      plugin:
+        source_type: 'static'
+        source_value: 'local_pprocessing'
+      name:
+        source_type: 'static'
+        source_value: 'assign_role_according_criteria__user_field'
+    result_variable: 'configfield_field'
+  # останавливаем сценарий если поле профиля равно 0
+  - type: 'handler'
+    code: 'stop_scenario_execution'
+    preconditions:
+      - code: 'is_empty'
+        params:
+          value: '$VAR.configfield_field'
+  # получим из конфига отношение к значению в поле профиля
+  - type: 'handler'
+    code: 'get_plugin_config'
+    params:
+      plugin:
+        source_type: 'static'
+        source_value: 'local_pprocessing'
+      name:
+        source_type: 'static'
+        source_value: 'assign_role_according_criteria__field_ratio_variant'
+    result_variable: 'configfield_variant'
+  # останавливаем сценарий если поле профиля равно 0
+  - type: 'handler'
+    code: 'stop_scenario_execution'
+    preconditions:
+      - code: 'is_empty'
+        params:
+          value: '$VAR.configfield_variant'
+  # получим из конфига значение поля профиля
+  - type: 'handler'
+    code: 'get_plugin_config'
+    params:
+      plugin:
+        source_type: 'static'
+        source_value: 'local_pprocessing'
+      name:
+        source_type: 'static'
+        source_value: 'assign_role_according_criteria__user_field_value'
+    result_variable: 'configfield_value'
+  # получим из конфига уровень контекста
+  - type: 'handler'
+    code: 'get_plugin_config'
+    params:
+      plugin:
+        source_type: 'static'
+        source_value: 'local_pprocessing'
+      name:
+        source_type: 'static'
+        source_value: 'assign_role_according_criteria__context_level'
+    result_variable: 'configrole_contextlevel'
+  # останавливаем сценарий если уровень контекста отсутствует
+  - type: 'handler'
+    code: 'stop_scenario_execution'
+    preconditions:
+      - code: 'is_empty'
+        params:
+          value: '$VAR.configrole_contextlevel'
+  # получим из конфига роль
+  - type: 'handler'
+    code: 'get_plugin_config'
+    params:
+      plugin:
+        source_type: 'static'
+        source_value: 'local_pprocessing'
+      name:
+        source_type: 'static'
+        source_value: 'assign_role_according_criteria__assigned_role'
+    result_variable: 'configrole_role'
+  # останавливаем сценарий если роль равно 0
+  - type: 'handler'
+    code: 'stop_scenario_execution'
+    preconditions:
+      - code: 'is_empty'
+        params:
+          value: '$VAR.configrole_role'
+  # получим из конфига категорию для назначения роли
+  - type: 'handler'
+    code: 'get_plugin_config'
+    params:
+      plugin:
+        source_type: 'static'
+        source_value: 'local_pprocessing'
+      name:
+        source_type: 'static'
+        source_value: 'assign_role_according_criteria__category'
+    result_variable: 'configrole_category'
+  # останавливаем сценарий если уровень контекста - категория и категория отсутствует
+  - type: 'handler'
+    code: 'stop_scenario_execution'
+    preconditions:
+      - code: 'is_empty'
+        params:
+          value: '$VAR.configrole_category'
+      - code: 'is_right'
+        params:
+          check: $VAR.configrole_contextlevel
+          operator: '='
+          value: '40'
+  # получим уровни контекста доступные переданной роли
+  - type: 'handler'
+    code: 'get_role_contextlevels'
+    params:
+      roleid:
+        source_type: 'container'
+        source_value: 'configrole_role'
+    result_variable: 'role_contextlevels'           
+  # останавливаем сценарий если уровень контекста отсутствует у роли
+  - type: 'handler'
+    code: 'stop_scenario_execution'
+    preconditions:
+      - code: 'is_right'
+        params:
+          check: $VAR.configrole_contextlevel
+          operator: 'NOT IN'
+          value: $VAR.role_contextlevels    
+  # Скомпануем ключ поля профиля из настроек и контейнер user
+  - type: 'handler'
+    code: 'implode'
+    params:
+      pieces:
+        source_type: 'static'
+        source_value:
+          - 'user'
+          - source_type: 'container'
+            source_value: 'configfield_field'
+      glue:
+        source_type: 'static'
+        source_value: '.'
+    result_variable: 'comparison_user_field_key'
+  # взять из контейнера значение поля профиля по ключу
+  - type: 'handler'
+    code: 'get_container_value'
+    params:
+      varname:
+        source_type: 'container'
+        source_value: 'comparison_user_field_key'
+    result_variable: 'comparison_user_field_value'
+  # установим id категории в переменную configrole_instanceid
+  - type: 'handler'
+    code: 'set_container_values'
+    params:
+      vars: {configrole_instanceid: $VAR.configrole_category}
+  # установим configrole_instanceid равный 0 если уровень контекста система
+  - type: 'handler'
+    code: 'set_container_values'
+    preconditions:
+      - code: 'is_right'
+        params:
+          check: $VAR.configrole_contextlevel
+          operator: '='
+          value: '10'
+    params:
+      vars:
+        configrole_instanceid:
+          source_type: 'static'
+          source_value: '0'
+  # Получить id контекста
+  - type: 'handler'
+    code: 'get_context_id'
+    params:
+      contextlevel:
+        source_type: 'container'
+        source_value: 'configrole_contextlevel'
+      instanceid:
+        source_type: 'container'
+        source_value: 'configrole_instanceid'
+    result_variable: 'configrole_contextid'
+  # назначить роль
+  - type: 'handler'
+    code: 'role_assign'
+    preconditions:
+      - code: 'is_right'
+        params:
+          check: $VAR.comparison_user_field_value
+          operator: $VAR.configfield_variant
+          value: $VAR.configfield_value
+    params:
+      roleid:
+        source_type: 'container'
+        source_value: 'configrole_role'
+      userid:
+        source_type: 'container'
+        source_value: 'user.id'
+      contextid:
+        source_type: 'container'
+        source_value: 'configrole_contextid'
+  # снять назначенную роль
+  - type: 'handler'
+    code: 'role_unassign'
+    preconditions:
+      - code: 'is_right'
+        params:
+          check: $VAR.comparison_user_field_value
+          operator: $VAR.configfield_variant
+          value: $VAR.configfield_value
+        config:
+          invert_result: '1'
+    params:
+      roleid:
+        source_type: 'container'
+        source_value: 'configrole_role'
+      userid:
+        source_type: 'container'
+        source_value: 'user.id'
+      contextid:
+        source_type: 'container'
+        source_value: 'configrole_contextid'

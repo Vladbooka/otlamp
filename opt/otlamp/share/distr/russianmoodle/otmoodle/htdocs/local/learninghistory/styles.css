@@ -1,0 +1,35 @@
+.activetimer.noprogress,
+.activetimer.inprogress {
+    position: sticky!important;
+    top: 0;
+    z-index: 3;
+}
+
+.block.activetimer.inprogress > .card-body > .card-title,
+.block.activetimer.noprogress > .card-body > .card-title {
+	background-color: transparent!important;
+}
+
+.activetimer:not(.inprogress) .ajax-monitoring-active,
+.activetimer:not(.noprogress) .ajax-monitoring-inactive,
+.activetimer.noprogress .ajax-monitoring-disabled,
+.activetimer.inprogress .ajax-monitoring-disabled,
+.activetimer:not(.noprogress):not(.inprogress) .ajax-monitoring-enabled {
+	display: none;
+}
+
+.activetimer .badge.ajax-monitoring-disabled {
+	display: none;
+}
+
+.activetimer.noprogress {
+	transition: none;
+	background-color: pink!important;
+	border-color: transparent!important;
+}
+
+.activetimer.inprogress {
+	transition: all 0.75s cubic-bezier(1, 0, 0.75, 0);
+	background-color: lightgreen!important;
+	border-color: transparent!important;
+}

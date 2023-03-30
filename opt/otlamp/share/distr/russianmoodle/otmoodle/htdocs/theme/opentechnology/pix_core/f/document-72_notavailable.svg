@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+	<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
+	<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
+	<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
+	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
+	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
+]>
+<svg version="1.1" id="HotPot" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24"
+	 enable-background="new 0 0 24 24" width="72" height="72" xml:space="preserve">
+<switch>
+	<foreignObject requiredExtensions="&ns_ai;" x="0" y="0" width="1" height="1">
+		<i:pgfRef  xlink:href="#adobe_illustrator_pgf">
+		</i:pgfRef>
+	</foreignObject>
+	<g i:extraneous="self">
+		<g>
+			<rect x="0" y="0" fill="#CFDBDB" width="24" height="24"/>
+			<polygon fill="#B5C3C3" points="0,24 0,10 7,3 20,3 20,21 16.6,24 			"/>
+			<polygon fill="#ACBABB" points="0,24 0,16.9 4.2,13 11.3,13 15.3,18.3 9.4,24 			"/>
+			<polygon fill="#FFFFFF" points="8,3 8,7 4,7 4,21 20,21 20,3 			"/>
+			<polygon fill="#FFFFFF" points="7,6 7,3 4,6 			"/>
+			<rect x="5" y="18" fill="#B5C3C3" width="14" height="1"/>
+			<rect x="5" y="16" fill="#B5C3C3" width="14" height="1"/>
+			<rect x="14" y="14" fill="#B5C3C3" width="5" height="1"/>
+			<rect x="14" y="12" fill="#B5C3C3" width="5" height="1"/>
+			<rect x="14" y="10" fill="#B5C3C3" width="5" height="1"/>
+			<path fill="#B5C3C3" d="M11.7,15h-1.4l-0.8-3.2c0-0.1-0.1-0.3-0.2-0.7c-0.1-0.4-0.1-0.6-0.1-0.7c0,0.1-0.1,0.4-0.1,0.7
+				C9,11.5,9,11.7,8.9,11.9L8.1,15H6.7L5.1,9h1.3l0.8,3.3c0.1,0.6,0.2,1.1,0.3,1.6c0-0.2,0.1-0.4,0.1-0.7c0.1-0.3,0.1-0.6,0.2-0.8
+				L8.6,9h1.2l0.9,3.4c0,0.2,0.1,0.4,0.1,0.7c0.1,0.3,0.1,0.6,0.1,0.8c0-0.2,0.1-0.5,0.1-0.8c0.1-0.3,0.1-0.6,0.2-0.8L12,9h1.3
+				L11.7,15z"/>
+		</g>
+	</g>
+</switch>
+
+</svg>

@@ -1,0 +1,38 @@
+.que.otmultiessay .answerblock {
+	margin: 20px 0px;
+}
+.que.otmultiessay .question {
+    min-height: 1px;
+}
+.que.otmultiessay .ablock {
+    margin: 0;
+}
+.que.otmultiessay .answerblock .question {
+    word-wrap: break-word;
+    padding-right: 5px;
+    padding-left: 0px;
+}
+.que.otmultiessay .answerblock .ablock {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+.que.otmultiessay textarea.qtype_otmultiessay_response {
+    width: 100%;
+}
+.que.otmultiessay textarea.qtype_otmultiessay_response.qtype_otmultiessay_plain {
+    white-space: pre-wrap;
+    font: inherit;
+}
+.que.otmultiessay textarea.qtype_otmultiessay_response.qtype_otmultiessay_monospaced {
+    white-space: pre;
+    font-family: Andale Mono, Monaco, Courier New, DejaVu Sans Mono, monospace;
+}
+.que.otmultiessay .qtype_otmultiessay_response {
+    min-height: 3em;
+}
+.que.otmultiessay .qtype_otmultiessay_response.readonly {
+    background-color: white;
+}
+.que.otmultiessay div.qtype_otmultiessay_response textarea {
+    width: 100%;
+}

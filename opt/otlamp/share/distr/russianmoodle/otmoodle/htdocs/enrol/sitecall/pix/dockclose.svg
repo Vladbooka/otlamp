@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" id="svg3055" version="1.1" inkscape:version="0.48.3.1 r9886" width="11" height="11" sodipodi:docname="switch_plus.svg" enable-background="new">
+  <metadata id="metadata3061">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <dc:title/>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs id="defs3059"/>
+  <sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="1406" inkscape:window-height="835" id="namedview3057" showgrid="false" inkscape:object-paths="true" inkscape:snap-bbox="false" inkscape:zoom="21.454545" inkscape:cx="13.694235" inkscape:cy="5.7002721" inkscape:window-x="351" inkscape:window-y="68" inkscape:window-maximized="0" inkscape:current-layer="layer5" showguides="true" inkscape:guide-bbox="true">
+    <sodipodi:guide orientation="0,1" position="6.6652542,11" id="guide4033"/>
+    <sodipodi:guide orientation="1,0" position="0.046610169,5.779661" id="guide4035"/>
+    <sodipodi:guide orientation="0,1" position="8.5762712,0" id="guide4037"/>
+    <sodipodi:guide orientation="1,0" position="11.04661,2.8432203" id="guide4039"/>
+    <sodipodi:guide orientation="0,1" position="9.0423729,5.5" id="guide4041"/>
+    <sodipodi:guide orientation="1,0" position="5.5932203,11" id="guide4043"/>
+  </sodipodi:namedview>
+  <g inkscape:groupmode="layer" id="layer1" inkscape:label="Слой" style="display:inline;">
+    <rect style="fill:#666666;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" id="rect3917-6" width="11" height="11" x="-11.04661" y="4.7683716e-07" transform="scale(-1,1)"/>
+  </g>
+  <g inkscape:groupmode="layer" id="layer4" inkscape:label="Слой#1">
+    <rect style="fill:#ffffff;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" id="rect4088" width="9.9865932" height="2.0869021" x="2.9472439" y="-1.2883604" transform="matrix(0.68880182,0.72494969,-0.69429365,0.71969183,0,0)"/>
+  </g>
+  <g inkscape:groupmode="layer" id="layer5" inkscape:label="Слой#2">
+    <rect style="fill:#ffffff;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" id="rect4088-2" width="9.9858017" height="2.0870674" x="-5.1642046" y="-8.8985872" transform="matrix(-0.69012123,0.72369378,-0.69298085,-0.72095599,0,0)"/>
+  </g>
+</svg>

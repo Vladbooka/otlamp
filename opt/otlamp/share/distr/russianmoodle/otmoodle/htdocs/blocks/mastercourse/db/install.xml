@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/mastercourse/db" VERSION="2019041800" COMMENT="XMLDB file for Moodle blocks/testname"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+
+  <TABLES>
+    <TABLE NAME="mastercourse_publication" COMMENT="Статусы курса" >
+      <FIELDS>
+        <FIELD NAME="id"         TYPE="int"    LENGTH="10"  NOTNULL="true"    SEQUENCE="true"  COMMENT="ид строки"   />
+        <FIELD NAME="courseid"   TYPE="int"    LENGTH="10"  NOTNULL="true"    SEQUENCE="false" COMMENT="ид курса" />
+        <FIELD NAME="status"     TYPE="char"   LENGTH="25"  NOTNULL="true"    SEQUENCE="false" COMMENT="статус курса" />
+        <FIELD NAME="service"    TYPE="char"   LENGTH="25"  NOTNULL="true"    SEQUENCE="false" COMMENT="площадка" />
+        <FIELD NAME="lastupdate" TYPE="int"    LENGTH="10"  NOTNULL="true"    SEQUENCE="false" COMMENT="дата последнего изменения" />
+        <FIELD NAME="statusinfo" TYPE="char"   LENGTH="255" NOTNULL="false"   SEQUENCE="false" COMMENT="информация о текущем статусе" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+      </KEYS>
+      <INDEXES>
+      	<INDEX NAME="courseid"   UNIQUE="false" FIELDS="courseid"/>
+      	<INDEX NAME="status"     UNIQUE="false" FIELDS="status"/>
+      	<INDEX NAME="service"    UNIQUE="false" FIELDS="service"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

@@ -1,0 +1,19 @@
+<ul class="breadcrumb">
+	{{#breadcrumbs}}
+	<li>
+		<span class="divider">
+			<span class="arrow sep">►</span>
+		</span>
+		{{#categorydata}}
+		<a href="#" data="{{categorydata}}">
+			<span>{{catname}}</span>
+		</a>
+		{{/categorydata}}
+	 	{{^categorydata}}
+	 	<a href="#" data="">
+	 		<span>{{catname}}</span>
+	 	</a>
+	 	{{/categorydata}}
+	 </li>
+	{{/breadcrumbs}}
+</ul>

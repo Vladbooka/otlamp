@@ -1,0 +1,37 @@
+.plagiarism_apru_progress {
+    border-radius: 0px;
+    min-width: 200px;
+    width: 200px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.plagiarism_apru_progressbar {
+    border-radius: 0px;
+    width: 100%;
+    text-align: center;
+    padding: 2px;
+}
+
+.plagiarism_apru_progress.mark-excellent .plagiarism_apru_progressbar {
+    background: #017005;
+    color: #fff;
+}
+
+.plagiarism_apru_progress.mark-moderate .plagiarism_apru_progressbar {
+    background: #eea01d;
+}
+
+.plagiarism_apru_progress.mark-bad .plagiarism_apru_progressbar {
+    background: #d11d1d;
+    color: #fff;
+}
+
+.plagiarism_apru_submissioncheck > a {
+	display: block;
+}
+
+#page-wrapper .change_index_document_status.btn.disable {
+    cursor: not-allowed;
+    background-color: #ccc;
+}

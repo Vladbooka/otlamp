@@ -1,0 +1,14 @@
+/** Стили рейтинга **/
+table.generaltable.rtreport {
+	margin-bottom: 0;
+	margin-left: 2px;
+}
+
+table.generaltable.rtreport td {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+div.rtreport_export_header {
+	display: inline-block; 
+}

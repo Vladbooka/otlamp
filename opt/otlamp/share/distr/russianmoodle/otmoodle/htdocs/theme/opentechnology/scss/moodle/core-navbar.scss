@@ -1,0 +1,79 @@
+.page-navbar-wrapper {
+	background-color: $ot-navbar-wrapper-bg;
+}
+#page-navbar {
+
+	background-color: $ot-navbar-bg;
+    color: $ot-navbar-color;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    
+	a {
+		border-bottom: 1px solid transparentize($ot-navbar-link-color, 0.5);
+
+		&:first-child {
+			border-bottom: none;
+		}
+		@include hover() {
+			text-decoration: none;
+			border-bottom: none;
+		}
+	}
+	
+    @include ot-zone-a((
+		link-color:			$ot-navbar-link-color,
+		link-hover-color:	$ot-navbar-link-hover-color,
+    ));
+    
+	
+	.breadcrumb-nav {
+		li {
+			.divider,
+			&:first-child a::before,
+			&.about_course a:before,
+			&.about_course > .divider {
+				@include ot-brightness-filter($ot-navbar-bg);
+			}
+		}
+		/*
+		.breadcrumb > li {
+			.divider,
+			&:first-child a::before,
+			&.about_course a:before,
+			&.about_course > .divider {
+				@include recolor($ot-navbar-link-color);
+			}
+		}
+		*/
+	}
+
+	/* пока не создадим настройки цвета кнопок для панели навигации, они будут такими же, как в контенте */
+	@include ot-zone-buttons((
+		primary-bg: 						$ot-navbar-btn-primary-bg,
+		primary-border: 					$ot-navbar-btn-primary-border,
+		primary-color: 						$ot-navbar-btn-primary-color,
+		primary-brightness-config: 			$ot-navbar-btn-primary-brightness-config,
+		primary-hover-bg: 					$ot-navbar-btn-primary-hover-bg,
+		primary-hover-border: 				$ot-navbar-btn-primary-hover-border,
+		primary-hover-color: 				$ot-navbar-btn-primary-hover-color,
+		primary-hover-brightness-config: 	$ot-navbar-btn-primary-hover-brightness-config,
+		primary-active-bg: 					$ot-navbar-btn-primary-hover-bg,
+		primary-active-border: 				$ot-navbar-btn-primary-hover-border,
+		primary-active-color: 				$ot-navbar-btn-primary-hover-color,
+		primary-active-brightness-config: 	$ot-navbar-btn-primary-hover-brightness-config,
+		secondary-bg: 						$ot-navbar-btn-secondary-bg,
+		secondary-border: 					$ot-navbar-btn-secondary-border,
+		secondary-color: 					$ot-navbar-btn-secondary-color,
+		secondary-brightness-config: 		$ot-navbar-btn-secondary-brightness-config,
+		secondary-hover-bg: 				$ot-navbar-btn-secondary-hover-bg,
+		secondary-hover-border: 			$ot-navbar-btn-secondary-hover-border,
+		secondary-hover-color: 				$ot-navbar-btn-secondary-hover-color,
+		secondary-hover-brightness-config: 	$ot-navbar-btn-secondary-hover-brightness-config,
+		secondary-active-bg: 				$ot-navbar-btn-secondary-hover-bg,
+		secondary-active-border: 			$ot-navbar-btn-secondary-hover-border,
+		secondary-active-color: 			$ot-navbar-btn-secondary-hover-color,
+		secondary-active-brightness-config:	$ot-navbar-btn-secondary-hover-brightness-config,
+		link-color:							$ot-navbar-link-color,
+		link-hover-color:					$ot-navbar-link-hover-color,
+	));
+}

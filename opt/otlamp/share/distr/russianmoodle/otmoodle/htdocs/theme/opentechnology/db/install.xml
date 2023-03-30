@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="theme/opentechnology/db" VERSION="20110831" COMMENT="XMLDB файл плагина Moodle theme/opentechnology"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="theme_opentechnology_profile" COMMENT="Профили темы">
+      <FIELDS>
+        <FIELD NAME="id"                TYPE="int"  LENGTH="10"     UNSIGNED="true" NOTNULL="true"  SEQUENCE="true" />
+        <FIELD NAME="name"              TYPE="char" LENGTH="255"                    NOTNULL="true"  SEQUENCE="false"             COMMENT="Название профиля"/>
+        <FIELD NAME="code"              TYPE="char" LENGTH="255"                    NOTNULL="true"  SEQUENCE="false"             COMMENT="Код профиля"/>
+        <FIELD NAME="description"       TYPE="text" LENGTH="medium"                 NOTNULL="false" SEQUENCE="false"             COMMENT="Описание профиля"/>
+        <FIELD NAME="descriptionformat" TYPE="int"  LENGTH="4"      UNSIGNED="true" NOTNULL="true"  SEQUENCE="false" DEFAULT="0" COMMENT="Формат описания профиля"/>
+        <FIELD NAME="defaultprofile"    TYPE="int"  LENGTH="1"      UNSIGNED="true" NOTNULL="true"  SEQUENCE="false" DEFAULT="0" COMMENT="Профиль по умолчанию"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="theme_opentechnology_plinks" COMMENT="Привязки профилей темы к областям СДО">
+      <FIELDS>
+        <FIELD NAME="id"        TYPE="int"  LENGTH="10"    UNSIGNED="true" NOTNULL="true"   SEQUENCE="true"  />
+        <FIELD NAME="profileid" TYPE="int"  LENGTH="10"    UNSIGNED="true" NOTNULL="true"   SEQUENCE="false" DEFAULT="0"  COMMENT="ID профиля"/>
+        <FIELD NAME="linktype"  TYPE="char" LENGTH="255"                   NOTNULL="true"   SEQUENCE="false"              COMMENT="Тип привязки"/>
+        <FIELD NAME="linkdata"  TYPE="text" LENGTH="small"                 NOTNULL="false"  SEQUENCE="false"              COMMENT="Данные привязки"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="iprofileid" TYPE="foreign" FIELDS="profileid" REFTABLE="theme_opentechnology_profile" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<libraries>
+    <library>
+        <location>classes/lib/log-1.0.2</location>
+        <name>PSR Log</name>
+        <version>1.0.2</version>
+        <license>MIT</license>
+    </library>
+    <library>
+        <location>classes/lib/mpdf-7.1.6</location>
+        <name>mPDF</name>
+        <version>7.1.6</version>
+        <license>GNU GENERAL PUBLIC LICENSE Version 2</license>
+    </library>
+</libraries>

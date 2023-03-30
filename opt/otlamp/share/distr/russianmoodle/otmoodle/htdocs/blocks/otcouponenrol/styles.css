@@ -1,0 +1,41 @@
+.block_otcouponenrol .mform {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: start;
+}
+.block_otcouponenrol .mform #fitem_id_couponcode {
+	margin-left: -15px;
+	margin-right: 15px;
+}
+.block_otcouponenrol .mform #fitem_id_couponcode > div {
+	width: auto;
+    flex: none;
+    max-width: 100%;
+}
+.block_otcouponenrol .mform #fitem_id_couponcode > div:first-child {
+	margin-bottom: 10px;
+}
+.block_otcouponenrol .mform #fitem_id_couponcode > div:last-child {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	max-width: 280px;
+}
+.block_otcouponenrol .mform #fitem_id_couponcode > div:last-child #id_error_couponcode {
+	width: auto;
+}
+.block_otcouponenrol .mform #fitem_id_submitbutton {
+	margin: 1px 0 1rem 0;
+    padding: 0;
+}
+.block_otcouponenrol .mform #fitem_id_submitbutton div.col-md-3:first-child {
+	padding: 0;
+}
+.block_otcouponenrol .mform #fitem_id_submitbutton div:last-child {
+	padding: 0;
+} 
+.block_otcouponenrol .mform #fitem_id_couponcode > div:first-child label {
+	font-weight: 300!important;
+    font-size: 16px;
+    text-align: left;
+}

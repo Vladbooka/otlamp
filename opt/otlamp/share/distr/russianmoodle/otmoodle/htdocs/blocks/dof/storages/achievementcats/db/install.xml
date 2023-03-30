@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/dof/storages/achievementcats/db" VERSION="20120306" COMMENT="XMLDB file for Moodle blocks/dof/storages/achievementcats"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_achievementcats" COMMENT="Разделы достижений">
+      <FIELDS> 
+      	<FIELD NAME="id"           TYPE="int"  LENGTH="10"  NOTNULL="true"             		    UNSIGNED="true"  SEQUENCE="true"  COMMENT="ID раздела"/>
+        <FIELD NAME="name"         TYPE="char" LENGTH="255" NOTNULL="true"                                       SEQUENCE="false" COMMENT="Имя"/>
+        <FIELD NAME="parentid"     TYPE="int"  LENGTH="10"  NOTNULL="true"  DEFAULT="0" 		UNSIGNED="true"  SEQUENCE="false" COMMENT="ID родителя"/>
+        <FIELD NAME="departmentid" TYPE="int"  LENGTH="10"  NOTNULL="false" DEFAULT="0"         UNSIGNED="true"  SEQUENCE="false" COMMENT="ID подразделения"/>
+        <FIELD NAME="sortorder"    TYPE="int"  LENGTH="10"  NOTNULL="true"  DEFAULT="0" 		UNSIGNED="true"  SEQUENCE="false" COMMENT="Сортировка"/>
+        <FIELD NAME="affectrating" TYPE="int"  LENGTH="1"   NOTNULL="true"  DEFAULT="1"         UNSIGNED="false" SEQUENCE="false" COMMENT="Учитывается в рейтинге"/>
+        <FIELD NAME="createdate"   TYPE="int"  LENGTH="11"  NOTNULL="true"                      UNSIGNED="false" SEQUENCE="false" COMMENT="Дата создания"/>
+        <FIELD NAME="status"       TYPE="char" LENGTH="255" NOTNULL="true"  DEFAULT="available"          	     SEQUENCE="false" COMMENT="Статус раздела"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="id"             UNIQUE="true"  FIELDS="id"           />
+        <INDEX NAME="name"           UNIQUE="false" FIELDS="name"         />
+        <INDEX NAME="parentid"       UNIQUE="false" FIELDS="parentid"     />
+        <INDEX NAME="departmentid"   UNIQUE="false" FIELDS="departmentid" />
+        <INDEX NAME="sortorder"      UNIQUE="false" FIELDS="sortorder"    />
+        <INDEX NAME="affectrating"   UNIQUE="false" FIELDS="affectrating" />
+        <INDEX NAME="createdate"     UNIQUE="false" FIELDS="createdate"   />
+        <INDEX NAME="status"         UNIQUE="false" FIELDS="status"       />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

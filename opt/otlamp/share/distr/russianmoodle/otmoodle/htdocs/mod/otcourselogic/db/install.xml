@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/otcourselogic/db" VERSION="20160610" COMMENT="XMLDB file for Moodle mod/otcourselogic plugin"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="otcourselogic_state" COMMENT="Данные о состоянии элементов курсов">
+      <FIELDS>
+        <FIELD NAME="id"                  TYPE="int" LENGTH="10" NOTNULL="true"  UNSIGNED="true"             SEQUENCE="true"  COMMENT="ID записи" />
+        <FIELD NAME="instanceid"          TYPE="int" LENGTH="10" NOTNULL="true"  UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="ID экземпляра модуля" />
+        <FIELD NAME="userid"              TYPE="int" LENGTH="10" NOTNULL="true"  UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="ID пользователя, относительно которого формируется состояние" />
+        <FIELD NAME="status"              TYPE="int" LENGTH="1"  NOTNULL="true"  UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Состояние элемента курса для пользователя(Активно/Не активно)" />
+        <FIELD NAME="changetime"          TYPE="int" LENGTH="12" NOTNULL="false" UNSIGNED="true"             SEQUENCE="false" COMMENT="Дата последнего изменения состояния" />
+        <FIELD NAME="lastcheck"           TYPE="int" LENGTH="12" NOTNULL="false" UNSIGNED="true"             SEQUENCE="false" COMMENT="Дата последней проверки состояния" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iinstanceid" UNIQUE="false" FIELDS="instanceid" />
+        <INDEX NAME="iuserid"     UNIQUE="false" FIELDS="userid" />
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="otcourselogic" COMMENT="Данные по элементам курсов">
+      <FIELDS>
+        <FIELD NAME="id"                TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true"             SEQUENCE="true"  COMMENT="ID экземпляра модуля" />
+        <FIELD NAME="course"            TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true"             SEQUENCE="false" COMMENT="ID курса, требование Moodle"/>
+        <FIELD NAME="name"              TYPE="char" LENGTH="255"   NOTNULL="true"                              SEQUENCE="false" COMMENT="Имя элемента курса" />
+        <FIELD NAME="checkperiod"       TYPE="int"  LENGTH="10"    NOTNULL="false" UNSIGNED="true"             SEQUENCE="false" COMMENT="Периодическая проверка состояния" />
+        <FIELD NAME="catchstatechange"  TYPE="int"  LENGTH="1"     NOTNULL="true"  UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Проверять, если другой элемент курса сменил свое состояние" />
+        <FIELD NAME="catchcourseviewed" TYPE="int"  LENGTH="1"     NOTNULL="true"  UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Проверка состояния при входе пользователя в курс" />
+        <FIELD NAME="studentshide"      TYPE="int"  LENGTH="1"     NOTNULL="true"  UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Скрывать элемент курса от учеников" />
+        <FIELD NAME="redirectmessage"   TYPE="text"                NOTNULL="false"                             SEQUENCE="false" COMMENT="Сообщение при переходе из уведомлений" />
+        <FIELD NAME="redirecturl"       TYPE="text" LENGTH="small" NOTNULL="false"                             SEQUENCE="false" COMMENT="Ссылка для перехода из уведомлений" />
+        <FIELD NAME="timecreated"       TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true"             SEQUENCE="false" />
+        <FIELD NAME="timemodified"      TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true" DEFAULT="0" SEQUENCE="false" />
+        <FIELD NAME="completionstate"   TYPE="int"  LENGTH="1"     NOTNULL="false" UNSIGNED="true"             SEQUENCE="false" />
+        <FIELD NAME="grading"   		TYPE="int"  LENGTH="1"     NOTNULL="false" UNSIGNED="true"             SEQUENCE="false" />
+        <FIELD NAME="protect"   		TYPE="int"  LENGTH="1"     NOTNULL="false" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="icourse"            UNIQUE="false" FIELDS="course" />
+        <INDEX NAME="icatchstatechange"  UNIQUE="false" FIELDS="catchstatechange" />
+        <INDEX NAME="icatchcourseviewed" UNIQUE="false" FIELDS="catchcourseviewed" />
+        <INDEX NAME="istudentshide"      UNIQUE="false" FIELDS="studentshide" />
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="otcourselogic_processors" COMMENT="Обработчики">
+      <FIELDS>
+        <FIELD NAME="id"                TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true"     SEQUENCE="true"     />
+        <FIELD NAME="otcourselogicid"   TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true"     SEQUENCE="false"    />
+        <FIELD NAME="periodic"          TYPE="int"  LENGTH="20"    NOTNULL="false"                     SEQUENCE="false"    />
+        <FIELD NAME="delay"             TYPE="int"  LENGTH="20"    NOTNULL="false"                     SEQUENCE="false"    />
+        <FIELD NAME="options"           TYPE="text"                NOTNULL="false"                     SEQUENCE="false"    />
+        <FIELD NAME="timecreated"       TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true"     SEQUENCE="false"    />
+        <FIELD NAME="timemodified"      TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true"     SEQUENCE="false"    />
+        <FIELD NAME="status"            TYPE="int"  LENGTH="1"     NOTNULL="false"                     SEQUENCE="false"    />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="otcourselogicid"    UNIQUE="false" FIELDS="otcourselogicid, status" />
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="otcourselogic_logs" COMMENT="Логи обработчиков">
+      <FIELDS>
+        <FIELD NAME="id"                TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true"     SEQUENCE="true"     />
+        <FIELD NAME="userid"            TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true"     DEFAULT="0"         SEQUENCE="false" />
+        <FIELD NAME="otcourselogicid"   TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true"     SEQUENCE="false"    />
+        <FIELD NAME="objectid"          TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true"     SEQUENCE="false"    />
+        <FIELD NAME="type"        	    TYPE="char" LENGTH="255"   NOTNULL="true"                      SEQUENCE="false"    />
+        <FIELD NAME="timecreated"       TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true"     SEQUENCE="false"    />
+        <FIELD NAME="status"            TYPE="int"  LENGTH="1"     NOTNULL="false"                     SEQUENCE="false"    />
+        <FIELD NAME="info"              TYPE="text"                NOTNULL="false"                     SEQUENCE="false"    />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="logsfind"    UNIQUE="false" FIELDS="otcourselogicid, userid" />
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="otcourselogic_actions" COMMENT="Экшены">
+      <FIELDS>
+        <FIELD NAME="id"                TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true" SEQUENCE="true"     />
+        <FIELD NAME="processorid"       TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true" SEQUENCE="false"    />
+        <FIELD NAME="type"        	    TYPE="char" LENGTH="255"   NOTNULL="true"                  SEQUENCE="false"    />
+        <FIELD NAME="sortorder"         TYPE="int"  LENGTH="10"    NOTNULL="true"  DEFAULT="0"     UNSIGNED="true" SEQUENCE="false"    />
+        <FIELD NAME="timecreated"       TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true" SEQUENCE="false"    />
+        <FIELD NAME="timemodified"      TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true" SEQUENCE="false"    />
+        <FIELD NAME="options"           TYPE="text"                NOTNULL="false"                 SEQUENCE="false"    />
+        <FIELD NAME="status"            TYPE="int"  LENGTH="1"     NOTNULL="false"                 SEQUENCE="false"    />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="processorid"    UNIQUE="false" FIELDS="processorid, status, sortorder" />
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="otcourselogic_processors_s" COMMENT="Статус выполнения обработчиков для пользователей">
+      <FIELDS>
+        <FIELD NAME="id"                TYPE="int"  LENGTH="20"    NOTNULL="true"  UNSIGNED="true"     SEQUENCE="true"     />
+        <FIELD NAME="processorid"       TYPE="int"  LENGTH="20"    NOTNULL="true"  UNSIGNED="true"     SEQUENCE="false"    />
+        <FIELD NAME="userid"            TYPE="int"  LENGTH="20"    NOTNULL="true"                      SEQUENCE="false"    />
+        <FIELD NAME="lastexecutiontime" TYPE="int"  LENGTH="20"    NOTNULL="false" UNSIGNED="true"     SEQUENCE="false"    />
+        <FIELD NAME="passeddelay"       TYPE="int"  LENGTH="1"     NOTNULL="false" UNSIGNED="true"     SEQUENCE="false"    />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="userfind" UNIQUE="true" FIELDS="processorid, userid" />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

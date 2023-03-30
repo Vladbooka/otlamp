@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/otslider/db" VERSION="20110831" COMMENT="XMLDB файл плагина Moodle block/otslider"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_otslider_slides" COMMENT="Слайды">
+      <FIELDS>
+        <FIELD NAME="id"                TYPE="int"  LENGTH="10"     UNSIGNED="true" NOTNULL="true"  SEQUENCE="true" />
+        <FIELD NAME="blockinstanceid"   TYPE="int"  LENGTH="10"     UNSIGNED="true" NOTNULL="true"  SEQUENCE="false" DEFAULT="0" COMMENT="Идентификатор экземпляра блока"/>
+        <FIELD NAME="type"              TYPE="char" LENGTH="255"                    NOTNULL="true"  SEQUENCE="false"             COMMENT="Тип слайда"/>
+        <FIELD NAME="ordering"          TYPE="int"  LENGTH="10"     UNSIGNED="true" NOTNULL="false" SEQUENCE="false"             COMMENT="Сортировка"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary"          TYPE="primary" FIELDS="id"/>
+        <KEY NAME="iblockinstanceid" TYPE="foreign" FIELDS="blockinstanceid" REFTABLE="block_instances" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="block_otslider_slide_options" COMMENT="Опции слайдов">
+      <FIELDS>
+        <FIELD NAME="id"        TYPE="int"  LENGTH="10"    UNSIGNED="true" NOTNULL="true"   SEQUENCE="true"  />
+        <FIELD NAME="slideid"   TYPE="int"  LENGTH="10"    UNSIGNED="true" NOTNULL="true"   SEQUENCE="false" DEFAULT="0"  COMMENT="ID слайда"/>
+        <FIELD NAME="name"      TYPE="char" LENGTH="255"                   NOTNULL="true"   SEQUENCE="false"              COMMENT="Название опции"/>
+        <FIELD NAME="shortdata" TYPE="char" LENGTH="255"                   NOTNULL="true"   SEQUENCE="false"              COMMENT="Краткие данные опции"/>
+        <FIELD NAME="data"      TYPE="text" LENGTH="small"                 NOTNULL="false"  SEQUENCE="false"              COMMENT="Данные опции"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="islideid" TYPE="foreign" FIELDS="slideid" REFTABLE="block_otslider_slides" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>

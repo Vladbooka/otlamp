@@ -1,0 +1,16 @@
+button.h5p-core-button:visited,
+button.h5p-core-button:link,
+button.h5p-core-button,
+.h5p-joubelui-button {
+    background-color: [[setting:color_content_elementscolor]];
+    color: [[setting:color_content_elementscolor_text]];
+}
+button.h5p-core-button:focus,
+button.h5p-core-button:hover,
+button.h5p-core-button:active,
+.h5p-joubelui-button:hover, 
+.h5p-joubelui-button:focus, 
+.h5p-joubelui-button:active {
+    background-color: [[setting:color_content_elementscolor_active]];
+    color: [[setting:color_content_elementscolor_active_text]];
+}

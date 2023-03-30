@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<libraries>
+    <library>
+        <location>lib/fpdi</location>
+        <name>FPDI</name>
+        <version>1.4.4</version>
+        <license>Apache Software License 2.0</license>
+    </library>
+    <library>
+        <location>lib</location>
+        <name>DrUUID RFC4122 library for PHP5</name>
+        <version></version>
+        <license>MIT</license>
+    </library>
+</libraries>

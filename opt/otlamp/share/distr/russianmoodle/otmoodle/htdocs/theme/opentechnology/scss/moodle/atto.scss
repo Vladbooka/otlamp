@@ -1,0 +1,43 @@
+
+div.editor_atto_toolbar {
+	button {
+	
+		&,
+		&[disabled] {
+	    	background: $ot-atto-btn-primary-bg;
+	    }
+	    
+	    & + button {
+		    border-left: none;
+		    margin-left: 4px;
+		}
+		
+	    .icon {
+	    	color: $ot-atto-btn-primary-color;
+			@include ot-brightness-filter(
+				$ot-atto-btn-primary-bg, 
+				$ot-atto-btn-primary-brightness-config
+			);
+	    }
+		
+		&:hover,
+		&:active,
+		&.highlight {
+		    background-image: none; /*radial-gradient(ellipse at center, #fff 60%, #dfdfdf 100%);*/
+		    background-color: $ot-atto-btn-primary-hover-bg;
+		    
+		    .icon {
+		    	color: $ot-atto-btn-primary-hover-color;
+				@include ot-brightness-filter(
+					$ot-atto-btn-primary-hover-bg, 
+					$ot-atto-btn-primary-hover-brightness-config
+				);
+		    }
+		}
+	}
+	
+	div.atto_group {
+	    border: none;
+	    background: transparent;
+	}
+}

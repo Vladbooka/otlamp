@@ -1,0 +1,20 @@
+#mismatch_department { 
+	color: #009900; 
+}   
+.mismatch_department .cell { 
+	color: #009900; 
+}
+#menu a {
+	color: gray; 
+}
+.event_place_header {
+	font-weight: bold;
+	padding: 10px;
+	text-align: center;
+	border-bottom: 1px solid #CCC;
+	border-top: 1px solid #CCC;
+	background-color: #F5F5F5;
+}
+table + .event_place_header {
+	margin-top: 50px;
+}

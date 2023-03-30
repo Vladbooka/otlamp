@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMLDB PATH="report/scorm/db" VERSION="20130603" COMMENT="Файл объявления таблиц для плагина report_scorm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+  	<TABLE NAME="report_scorm_cmoptions" COMMENT="Настройки отчета для модуля курса">
+        <FIELDS>
+            <FIELD NAME="id"    TYPE="int"  LENGTH="10"	   NOTNULL="true"  UNSIGNED="true" SEQUENCE="true"  />
+            <FIELD NAME="cmid"  TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true" SEQUENCE="false" COMMENT="Идентификатор модуля курса"/>
+            <FIELD NAME="name"  TYPE="char" LENGTH="255"   NOTNULL="true"                  SEQUENCE="false" COMMENT="Код опции"/>
+            <FIELD NAME="value" TYPE="text" LENGTH="small" NOTNULL="false"                 SEQUENCE="false" COMMENT="Значение опции"/>
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        </KEYS>
+	</TABLE>
+  </TABLES>
+</XMLDB>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="question/type/otmultiessay/db" VERSION="20140113" COMMENT="XMLDB file for Moodle question/type/otmultiessay"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="question_otmultiessay" COMMENT="Настройки вопроса типа Мульти-эссе. Все настройки представлены в виде сериализованных массивов.">
+      <FIELDS>
+        <FIELD NAME="id"                     TYPE="int"  LENGTH="10"     NOTNULL="true"   SEQUENCE="true"/>
+        <FIELD NAME="question"               TYPE="int"  LENGTH="10"     NOTNULL="true"   SEQUENCE="false" COMMENT="Внешний ключ (id из таблицы question)"/>
+        <FIELD NAME="innerquestion"          TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Тексты внутренних вопросов эссе"/>
+        <FIELD NAME="innerquestionformat"    TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Форматы внутренних вопросов эссе"/>
+        <FIELD NAME="responseformat"         TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Типы полей для ввода ответов студентом"/>
+        <FIELD NAME="responserequired"       TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Флаги требования ввода текста"/>
+        <FIELD NAME="responsefieldlines"     TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Высоты, в линиях, полей для ввода ответов студентом"/>
+        <FIELD NAME="attachments"            TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Число разрешенных вложений в качестве ответа (-1 - без лимита)"/>
+        <FIELD NAME="attachmentsrequired"    TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Число обязательных вложений"/>
+        <FIELD NAME="graderinfo"             TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Информация для оценивающих (будет показана пользователю с соответствующими правами во время оценивания ответа на вопрос)"/>
+        <FIELD NAME="graderinfoformat"       TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Формат информации для оценивающих"/>
+        <FIELD NAME="responsetemplate"       TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Шаблон ответа"/>
+        <FIELD NAME="responsetemplateformat" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Формат шаблона ответа"/>
+        <FIELD NAME="enablequestion"         TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Флаг - отображать вопрос или нет"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary"  TYPE="primary"        FIELDS="id"/>
+        <KEY NAME="question" TYPE="foreign-unique" FIELDS="question" REFTABLE="question" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>

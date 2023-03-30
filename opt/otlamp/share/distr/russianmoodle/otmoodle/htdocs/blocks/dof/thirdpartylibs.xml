@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<libraries>
+    <library>
+        <location>modlibs/jquery/plugins/jeditable</location>
+        <name>Jeditable</name>
+        <version></version>
+        <license>MIT</license>
+    </library>
+    <library>
+        <location>modlibs/jquery/themes/base</location>
+        <name>jQuery UI CSS Framework</name>
+        <version>1.12.1</version>
+        <license>MIT</license>
+    </library>
+    <library>
+        <location>modlibs/pear/libs/HTML_Template_Sigma</location>
+        <name>Sigma.php</name>
+        <version>1.18</version>
+        <license>PHP license 3.01</license>
+    </library>
+    <library>
+        <location>modlibs/phpexcel/lib</location>
+        <name>PHPExcel</name>
+        <version>1.7.8</version>
+        <license>LGPL 2.1</license>
+    </library>
+</libraries>

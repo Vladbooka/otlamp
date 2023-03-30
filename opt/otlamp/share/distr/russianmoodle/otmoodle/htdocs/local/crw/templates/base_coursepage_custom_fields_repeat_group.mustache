@@ -1,0 +1,11 @@
+{{#groups}} {{! Итератор повторяющихся групп элементов }}
+<div class="cfrg_{{name}} custom-field-repeat-group custom-field">
+{{#elements}} {{! Итератор по элементам в группе }}
+{{^index_element}} {{! Элементы с несколькими значениями отображаются в одном поле, а этот итем - для отображения вручную, а не автоматом }}
+{{#display_in_list}} {{! Проверка, что поле должно отображаться в списке (в категории можно управлять отображением полей) }}
+{{> local_crw/base_coursepage_custom_fields_element_no_wrapper }}
+{{/display_in_list}}
+{{/index_element}}
+{{/elements}}
+</div>
+{{/groups}}

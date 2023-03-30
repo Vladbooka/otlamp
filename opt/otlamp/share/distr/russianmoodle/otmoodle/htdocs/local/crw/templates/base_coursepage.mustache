@@ -1,0 +1,74 @@
+<div class="crw-coursepage">
+	{{#display_categories}}
+	<h4 class="crw_ci_courseblock_ccat">
+		<span>{{#str}} category, core {{/str}}: </span>
+		{{> local_crw/base_coursepage_categories_header }}
+	</h4>
+	{{/display_categories}}
+	
+	{{#display_enrol_icons}}
+	<div class="crw_ci_courseblock_cicons">
+		{{> local_crw/base_coursepage_enrol_icons }}
+	</div>
+	{{/display_enrol_icons}}
+	
+	{{#display_startdate}}
+	<div class="crw_ci_courseblock_cstartdate">
+		<span>{{#str}} courseblock_course_startdate, local_crw {{/str}}</span>
+		{{> local_crw/base_coursepage_startdate }}
+	</div>
+	{{/display_startdate}}
+	
+	{{#display_price}}
+	<div class="crw_ci_courseblock_courseprice">
+		<span>{{#str}} courseblock_course_price, local_crw {{/str}}</span>
+		{{> local_crw/base_coursepage_price }}
+	</div>
+	{{/display_price}}
+	
+	{{#display_gallery}}
+	<div class="crw_ci_courseblock_right">
+	{{> local_crw/base_coursepage_gallery }}
+	</div>
+	{{/display_gallery}}
+	
+	<div class="crw_ci_courseblock_cadditional">
+		{{#display_required_knowledges}}
+		<div class="crw_ci_courseblock_cknowledge">
+			<h3 class="crw_ci_courseblock_cknowledge_title">{{#str}} courseblock_course_rknowledge, local_crw {{/str}}</h3>
+			{{> local_crw/base_coursepage_required_knowledges }}
+		</div>
+		{{/display_required_knowledges}}
+		
+		{{#display_course_contacts}}
+		<div class="crw_ci_courseblock_contacts">
+			<h3 class="crw_ci_courseblock_contacts_title">{{#str}} courseblock_course_contacts , local_crw {{/str}}</h3>
+			{{> local_crw/base_coursepage_course_contacts }}
+		</div>
+		{{/display_course_contacts}}
+		
+		{{#display_list_course_custom_fields}}
+		<div class="custom-fields">
+			{{> local_crw/base_coursepage_custom_fields }}
+		</div>
+		{{/display_list_course_custom_fields}}
+		
+		{{#display_additional_description}}
+		<div class="crw_ci_courseblock_additional_description">
+			{{> local_crw/base_coursepage_additional_description }}
+		</div>
+		{{/display_additional_description}}
+		
+		{{#display_description}}
+		<div class="crw_ci_courseblock_cdescription">
+			{{> local_crw/base_coursepage_description }}
+		</div>
+		{{/display_description}}
+	</div>
+	
+	{{#display_access_points}}
+	<div class="crw_coursepage_access_points">
+		{{> local_crw/base_coursepage_access_points }}
+	</div>
+	{{/display_access_points}}
+</div>

@@ -1,0 +1,60 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{! 
+    [username] => Логин
+    [email] => Адрес электронной почты
+    [firstname] => Имя
+    [lastname] => Фамилия
+    [idnumber] => Индивидуальный номер
+    [institution] => Учреждение (организация)
+    [department] => Отдел
+    [phone1] => Телефон
+    [phone2] => Мобильный телефон
+    [city] => Город
+    [url] => Веб-страница
+    [icq] => Номер ICQ
+    [skype] => Skype ID
+    [aim] => AIM ID
+    [yahoo] => Yahoo ID
+    [msn] => MSN ID
+    [country] => Страна
+    [description] => Описание
+ }}
+ 
+<div class="object_user_base">
+<div class="object_user_base_elements">
+	{{#elements}}
+		<div class="object_user_base_element">
+			<div class="object_user_base_img">
+			 {{#template_fields}}{{#template_field_img}}{{{displayvalue}}}{{/template_field_img}}{{/template_fields}}
+			</div>
+			<div class="object_user_base_info">
+				<div class="object_user_base_username">{{#template_fields}}{{#template_field_fullname}}{{displayvalue}}{{/template_field_fullname}}{{/template_fields}}</div>
+				{{#user_fields}}
+				{{#user_field_description}}
+				{{< block_topten/universal_field }}
+					{{$prefix}}object_user_base{{/prefix}}
+					{{$forcedname}}{{/forcedname}}
+					{{$value}}{{{displayvalue}}}{{/value}}
+				{{/block_topten/universal_field }}
+				{{/user_field_description}}
+				{{/user_fields}}
+			</div>
+		</div>
+	{{/elements}}
+</div>
+</div>

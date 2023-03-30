@@ -1,0 +1,244 @@
+.clajax_clearboth {
+	clear: both;
+	position: relative;
+}
+
+.clajax_courseblock {
+	
+}
+
+.clajax_categoryname {
+	display: inline-block;
+	line-height: 40px;
+	margin: 0;
+	padding: 0 5px;
+	font-size: 24px;
+	font-weight: 300;
+    border-radius: 0;
+	background: #555;
+	color: #fff;
+    box-sizing: border-box;
+}
+
+.clajax_courseblock table td {
+	border: none;
+	padding: 5px;
+	vertical-align: top !important;
+}
+
+.clajax_icon {
+	display: block;
+}
+
+.clajax_courseblock table td.c0 {
+	max-width: 30%;
+	width: auto;
+}
+
+.clajax_courseblock table td.c1 {
+	max-width: 100%;
+	width: 100%;
+}
+
+.clajax_name {
+	float: left;
+}
+
+.clajax_enrol {
+	background: #135e8a;
+	border-radius: 5px;
+	padding: 8px 15px;
+	float: right;
+	color: #fff;
+}
+
+.crw_cajax_coursetitle {
+	background: #545454;
+	color: #fff;
+	padding: 5px 30px 5px 10px;
+	position: absolute;
+	width: 100%;
+	bottom: 100%;
+	border-left: 1px solid #545454;
+	border-right: 1px solid #545454;
+	border-top: 1px solid #545454;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.crw_cajax_courseblock_wrap {
+	overflow: auto;
+	height: 100%;
+	border-left: 1px solid #545454;
+	border-right: 1px solid #545454;
+	border-bottom: 2px solid rgb([[ setting : secondcolor ]]);
+}
+
+.crw_cajax_cstartdate span {
+	color: #535353;
+}
+
+.crw_cajax_cshortname span {
+	color: #535353;
+}
+
+.crw_cajax_courseblock_difficult span {
+	color: #535353;
+}
+
+#clajax_ajaxcontent_wrapper {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: 50;
+	display: none;
+}
+
+#clajax_ajaxcontent {
+	position: absolute;
+	width: 40%;
+	height: 80%;
+	left: 30%;
+	top: 10%;
+	background: #fff;
+	border-top: 1px solid #545454;
+	border-bottom: 2px solid #545454;
+}
+
+.crw_cajax_link {
+	text-align: center;
+}
+
+.crw_cajax_courseblock {
+	position: relative;
+	height: 100%;
+}
+
+.clajax_coursescategory_content table.generaltable tbody tr td.cell {
+	vertical-align: middle;
+}
+
+.crw_cajax_coursetitle_close {
+	position: absolute;
+	width: 15px;
+	height: 100%;
+	right: 5px;
+	top: 0;
+	background: url([[pix:crw_courses_list_ajax|courseclose]]) center center
+		no-repeat;
+	background-size: contain;
+	cursor: pointer;
+}
+
+.crw_cajax_left {
+	position: relative;
+	float: left;
+	width: 30%;
+	padding: 10px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.crw_cajax_imagewrap {
+	position: relative;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.crw_cajax_courseblock_image {
+	position: relative;
+	width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	border: 2px solid #eee;
+}
+
+.crw_cajax_right {
+	position: relative;
+	float: right;
+	width: 70%;
+	padding: 10px 10px 10px 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.crw_cajax_right>div {
+	position: relative;
+	border-bottom: 1px solid #eee;
+	margin: 0 0 5px 0;
+	padding: 0 0 5px 0;
+}
+
+.crw_cajax_courseblock_contacts_ul {
+	margin: 0;
+}
+
+.crw_cajax_courseblock_contacts {
+	margin: 0;
+	padding: 10px 0 0 0;
+}
+
+.crw_cajax_contacts_li {
+	margin: 5px 0 0 0;
+	list-style-type: none;
+	display: table;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.crw_cajax_contacts_li>a {
+	margin: 0;
+	padding: 0 10px 0 0;
+	display: table-cell;
+	vertical-align: top;
+	overflow: hidden;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.crw_cajax_contacts_userinfo {
+	display: table-cell;
+	vertical-align: top;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.clajax_courselink {
+	cursor: pointer;
+}
+
+.clajax_enrol {
+	width: auto;
+}
+
+.clajax_tools_wrapper {
+	text-align: right;
+	line-height: 23px;
+}
+.clajax_tools_wrapper a + a {
+	margin-left: 20px;
+}
+
+.clajax_scrolltotopicon,
+.clajax_morecoursesicon {
+	display: inline-block;
+	padding: 0px 5px 0px 0px;
+	vertical-align: top;
+	width: 23px;
+	height: 23px;
+}
+
+.crw_clajax_morethan {
+	display: none;
+}

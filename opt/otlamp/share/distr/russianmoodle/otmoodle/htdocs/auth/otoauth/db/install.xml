@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="auth/otoauth/db" VERSION="20130811" COMMENT="XMLDB file for Moodle auth/otoauth"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="auth_otoauth" COMMENT="таблица связанных аккаунтов oauth сервисов" >
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="userid"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="id" NEXT="service"/>
+        <FIELD NAME="service" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="название oauth2-сервиса" PREVIOUS="userid" NEXT="remoteuserid"/>
+        <FIELD NAME="remoteuserid" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="id пользователя в сервисе" PREVIOUS="service" NEXT="datacreate"/>
+        <FIELD NAME="datacreate" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="время добавления записи" PREVIOUS="remoteuserid" NEXT="lastaccess"/>
+        <FIELD NAME="lastaccess" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="время добавления записи" PREVIOUS="datacreate" NEXT="active"/>
+        <FIELD NAME="active" TYPE="int" DEFAULT="1" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="время добавления записи" PREVIOUS="lastaccess" NEXT="cron"/>
+        <FIELD NAME="cron" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="как часто надо запускать крон плагина" PREVIOUS="active" NEXT="lastcron"/>
+        <FIELD NAME="lastcron" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата последнего запуска крона этого плагина" PREVIOUS="cron"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="id" UNIQUE="true" FIELDS="id" NEXT="userid"/>
+        <INDEX NAME="userid" UNIQUE="false" FIELDS="userid" PREVIOUS="id" NEXT="lastcron"/>   
+        <INDEX NAME="lastcron" UNIQUE="false" FIELDS="lastcron" PREVIOUS="userid" NEXT="cron"/>
+        <INDEX NAME="cron" UNIQUE="false" FIELDS="cron" PREVIOUS="lastcron"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="auth_otoauth_custom_provider" COMMENT="настраиваемые провайдеры" >
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="userid"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="название провайдера"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="код провайдера"/>
+        <FIELD NAME="description" TYPE="text" LENGTH="medium" NOTNULL="true" SEQUENCE="false" COMMENT="описание провайдера"/>
+        <FIELD NAME="config" TYPE="text" LENGTH="medium" NOTNULL="true" SEQUENCE="false" COMMENT="конфигурация провайдера"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="статус провайдера"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="icode" UNIQUE="true" FIELDS="code"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

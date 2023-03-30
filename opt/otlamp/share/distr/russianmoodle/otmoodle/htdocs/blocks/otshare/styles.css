@@ -1,0 +1,328 @@
+.block_otshare .otshare_button_wrapper {
+	display: block;
+}
+.block_otshare .otshare_button_wrapper + .otshare_button_wrapper {
+	margin: 10px 0 0;
+	height: 20px;
+}
+.block_otshare .otshare_button{
+	display: none;
+}
+
+.block_otshare .otshare_link_wrapper {
+	display: inline-block;
+}
+.block_otshare .otshare_link_wrapper + .otshare_link_wrapper {
+	margin: 0 0 0 10px;
+}
+
+.otshare_link .vk_share,
+.otshare_link .fb_share,
+.otshare_link .tw_share,
+.otshare_link .ok_share,
+.otshare_link .gp_share {
+	width: 45px;
+	height: 45px;
+	border-radius: 45px;
+}
+
+.otshare_link .vk_share::after,
+.otshare_link .fb_share::after,
+.otshare_link .tw_share::after,
+.otshare_link .ok_share::after,
+.otshare_link .gp_share::after {
+	display: block;
+	content: '';
+	width: 45px;
+	height: 45px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: 50% 50%;
+    filter: brightness(0) invert(100%);
+    -moz-filter: brightness(0%) invert(100%);
+    -webkit-filter: brightness(0%) invert(100%);
+    -ms-filter: brightness(0%) invert(100%);
+    -o-filter: brightness(0%) invert(100%);
+}
+
+.otshare_link .vk_share {
+	background-color: hsla(211,32%,53%,1);
+}
+.otshare_link .vk_share:hover,
+.otshare_link .vk_share:active,
+.otshare_link .vk_share:focus {
+	background-color: hsla(211,32%,63%,1);
+}
+.otshare_link .vk_share::after {
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAY9JREFUeNrsVsFxgzAQlD0pQCXYHdgdmA5CBYEXX6jATgVKnrzsDuIOTAmUQAmUkFNyzGg03Ely4JXbmRsM0kmrvZUspQQCgUAgEAj+ETZ/SW7bVsPjCnGC0F7zAHGvqqpZkvALQeSBJHz0EBmQGPFdO+FjB1FDNAnj/8wB4x8pwlsqifh+gHidXmDgASKDn11CVU4MWYuRy6cIfzI555lvZUJV3wLt78mErXLwuBE5O1CpmOkfo66tUMF0sZ7vnlE4tFKDGy4VhmkbYipFEg6orAlrcOrWAe+WzmZ+SuFJZWqQGjeQ8i1CWIFbYBOyQvQ5DJNdmMlGLKPBY2yWDOZrxrd5bKW2EX0+0F+UNb4YspNvdWDBajHC6KtSrYMhxrepCiv0120Fwgew3HVxwo4XhxVIFymkowlj6fLQX+fapFMUtqR7JK0SK3Nk7icuabPK9RLP1Qez+91FbhJzcsi5L6Kwp/TenqGBrp2Xk0VYyixmCd/TeODvmbO6n1lo6DraK4FAIBAIBALBL74FGADfjIOL4YmdvwAAAABJRU5ErkJggg==');
+}
+
+
+.otshare_link .fb_share {
+	background-color: hsla(220,46%,48%,1);
+}
+.otshare_link .fb_share:hover,
+.otshare_link .fb_share:active,
+.otshare_link .fb_share:focus {
+	background-color: hsla(220,46%,58%,1);
+}
+.otshare_link .fb_share::after {
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAMpJREFUeNpiYBgFo2AUjAJ8gHGgLJ45c6YDEvdCenr6h0HlYKADE4BUPhAb4FHmCHT4AXzmsNDBoQJAaj8BhxINmOgQuOup5ViaOxiaTh2oaSatQzif2gbSOg3jSgqgEqEQmMEWDDYHK+AQDyRUGgxkpsMA5Dp2wBw82Iu1ke1gqlXNwDL3PxXSNuNQCuELQy1JHBhqDj44GsIEmpCUgAeDogGPq+QgpjQYrThGHTzq4FEHjzp41MGjDh518KiDR8EoGAWjgCAACDAACS0oWF1TQnsAAAAASUVORK5CYII=');
+}
+
+.otshare_link .tw_share {
+	background-color: hsla(203,78%,49%,1);
+}
+.otshare_link .tw_share:hover,
+.otshare_link .tw_share:active,
+.otshare_link .tw_share:focus {
+	background-color: hsla(203,78%,59%,1);
+}
+.otshare_link .tw_share::after {
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAeNJREFUeNrsmMFtwjAUhgF1gIyQDcoGlAmACZqcOJZMEDEBXDkVJqBMQJiAdAI8Qkboc/VXSiOIn1/siIN/ybIClv35z/OzncEgKCgoKCjIQsO+BtrtdhFVYzyq5XKpnhKYQN+o+qAyb/ylgdcEvm9MakVl/2hCQ8NgMVVHKlPqoBLAJlR9Gppp4BOVGSZV0ljTR41Hhs7meI1nzN4Gds6A1UpgSoLnrG0sE/AE9R90bMG8EUSQdjvHBETA9Zlq6Cuc47gbC4BXGGchBVZ3JnAkIJPbY+EaLU3rxQR8efC7Xvk3gj5yHGdKAVaJ0xqC/9YIjXvSjhRUvuHSrLaIuCrasgPLYbyajDFYhIySN1a8c70YHD7DvbJDXPYHjLhKemK5cBqNXHTiSGVnYOzzqifgwoXDAyTxyjPsF/esYgSmjn6TuWenT9yGI2Y7nbYOnqBV/YjZNUvUs0Xuyd21TWOWw9gutz4Wmo27NiGhoTMc/1yJu4vKgAGdUpU6iuUMC7qfOx2uPxvGweieUttQEAPjHJx32LLFsK3AuO3W09oE52DpIUiH0UISBty0FuGVxw7iVaeureTmbR0SiNV3uGvr6KHtG4PXGEbsauhXhMW/LzkoFU54RddXHxQUFBT0nPoRYACme53xe/WTEwAAAABJRU5ErkJggg==');
+}
+
+.otshare_link .ok_share {
+	background-color: hsla(28,94%,57%,1);
+}
+.otshare_link .ok_share:hover,
+.otshare_link .ok_share:active,
+.otshare_link .ok_share:focus {
+	background-color: hsla(28,94%,67%,1);
+}
+.otshare_link .ok_share::after {
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAfhJREFUeNrsmMFxwjAQRWUmBdBBnA5EB1ABdBDn5DMVJFRAOHIKqQCogHQQd4DTgUvIKvM90ZgVli0hc9DOaCzLEn5Iq79aCxEtWrRo1yzx/YPb7Xaq3+d5/nV3wAQ5psuayoLKuPG4onKgsiT4anBggpV0OTGgggGfEXQxGHAHWG/QI8cJ3neAFei7d3nhyGF2M7qkzKOSyjuVFepNSzE2+AzPmTalCBNacrXB3lQdG85m7M2Bp0zbi64EqC8tx94cuOm7BQFeuADaipaxwTadbhJ6zGm09PUSF2Augq2ZtlfLsVb24AB8ZHwxw4x+4v4Z0Y8bGxx4h9lrusHCAKkHj11wl7iiAG3mdKbwcZZQQeDDsruSvZ3L+3yd1qaATg1dSsA6HzUTB0gJ/y1r/UVb038P9WGHnqf4U1XfA1DiyQ3UMq+4wKGBqg2aubpHX+CzYfkLlB/cPyJocIFDrcxTKFkzhVbZIar1Cs99ZW3jYa9uQm+6BUJx2nFoCS0+DKnDc4vopiTteC863JbbeUlAfc2wgjyHyppHHmBts+a/vliNQSJdDSsNeiwMz5xmOrkR7Ax1U58SyWoVyiXkNVgFApgZk88JSKEM7sMm2MaZ2QQd3Ie/tVm6gG1xIZVhT4LLmvZptWjzRz179v0JNlq0aNH+7VeAAQBnvsNmEmK8NgAAAABJRU5ErkJggg==');
+}
+
+.otshare_link .gp_share {
+	background-color: hsla(5,69%,59%,1);
+}
+.otshare_link .gp_share:hover,
+.otshare_link .gp_share:active,
+.otshare_link .gp_share:focus {
+	background-color: hsla(5,69%,69%,1);
+}
+.otshare_link .gp_share::after {
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAYpJREFUeNrsV9FtwjAQTSIGoBuEDdIJmmzQEeArny0blAnafuaLdgLaCUgnICNkhGwAz9VVstDZ2JVNXemedEogtnk8P99dskwgEAgEAkFCyH0Gd11X4nKPuEOo+4oe9YgR8dW27dufEwbROS7PiKXDcEV8E4t47kBWqbhHzD3XVoTXID6FJFxEIptpdrmOwuTXg4XsSPFDTh83IJrQ6irMLM+2BrI9bfVw9geX5PPRhyzmHbWPN5fm5RYrHDhfYsHVhV2ZfJTVCWNe/luFHzhlbWTpB8fYedh06Grmu1WyhePMV9+HCOrdOo41YUHFZu9KjrNI4Tg3xFaXUSxBVS1ZzJhtmEA6uDpYt+ds6JslCkcLVJSyODRMDFdTmPCBeGQKSWNRTs/FVYQzYFX4nUt1ILN16Op2huoYvZfYUe/rWpprKs1c07MIVVRCNT+l5WC+gOw6entJiijPTpa8WlOYyKpd2PyXBj5KixnjFUkRfAXRp5RfQgfy86dKiTEad4FAIBAIBEniJMAAai2VUcZH/+QAAAAASUVORK5CYII=');
+}
+
+.block_otshare .otshare_explain {
+	margin-top: 20px;
+}
+
+#id_configheader > div.fcontainer  {
+	position: relative;
+}
+.block_otshare.imgmanager {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.block_otshare_lp_page table.generaltable {
+	margin-bottom: 70px;
+}
+
+.block_otshare_lp_page table.generaltable tbody tr td.cell {
+    text-align: center;
+    vertical-align: super;
+}
+
+.block_otshare_lp_page table.generaltable thead tr {
+    background-color: #EAEAEA;
+}
+
+.block_otshare_lp_page table.generaltable td.cell.c0 > a::before {
+    background: url([[pix:block_otshare|grades]]) left center no-repeat;
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: -2px;
+    margin-right: 10px;
+}
+
+.block_otshare_lp_page table td.cell.c1 > a {
+    font-size: 15px;
+    color: #fff;
+    background-color: #8c8c8c;
+    padding: 2px 8px;
+}
+
+.block_otshare_lp_page table td.cell.c1 > a:hover {
+    background-color: #424242;
+}
+
+.block_otshare_lp_page div.block_otshare_lp_page table.generaltable {
+    width: 100%;
+}
+
+.block_otshare_lp_page .block_otshare_lp_page_progressbar {
+    position: relative;
+    border: none;
+    min-height:20px;
+}
+.block_otshare_lp_page .block_otshare_lp_page_progressbar::before {
+    content: '';
+    position: absolute;
+    display: block;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    background-color: #e8e8e8;
+    transition: height 0.25s ease-out;
+}
+.block_otshare_lp_page .block_otshare_lp_page_progressbar.jsed::before {
+    height: 3px;
+}
+.block_otshare_lp_page .block_otshare_lp_page_progressbar_inner {
+    white-space: nowrap;
+    background: transparent;
+    width: 100%;
+    display: block;
+    padding-bottom: 5px;
+}
+.block_otshare_lp_page .block_otshare_lp_page_progressbar.jsed > .after {
+    position: absolute;
+    display: block;
+    height: 3px;
+    bottom: 0;
+    width: 0;
+    background-color: #87d400;
+}
+.block_otshare_lp_page .block_otshare_lp_picture_wrapper,
+.block_otshare_lp_page .block_otshare_lp_fullname_wrapper,
+.block_otshare_lp_page .block_otshare_lp_grade_wrapper {
+    display: block;
+    float: left;
+    vertical-align: top;
+    padding: 5px 0;
+    box-sizing: border-box;
+}
+.block_otshare_lp_page .block_otshare_lp_picture_wrapper {
+    width: 250px;
+}
+.block_otshare_lp_page .block_otshare_lp_picture_img {
+    width: 250px;
+    height: 250px;
+}
+.block_otshare_lp_page .block_otshare_lp_fullname_wrapper {
+    width: calc(100% - 270px);
+    margin-left: 20px;
+    border-bottom: 1px solid #EAEAEA;
+    padding-bottom: 11px;
+    margin-bottom: 10px;
+    font-size: 22px;
+    line-height: 30px;
+    color: #7C7C7C;
+    min-width: 230px;
+}
+.block_otshare_lp_page .block_otshare_lp_fullname_wrapper:before {
+    content:'';
+    display: inline-block;
+    height: 30px;
+    background-image: url([[pix:block_otshare|profile]]);
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+    vertical-align: bottom;
+    width: 23px;
+    margin-right: 5px;
+}
+.block_otshare_lp_page .block_otshare_lp_grade_wrapper {
+	width: calc(100% - 270px);
+    margin-left: 20px;
+    padding-bottom: 11px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    line-height: 30px;
+    color: #545252;
+    min-width: 230px;
+}
+.block_otshare_lp_page .block_otshare_lp_grade_course {
+	width: auto;
+	display: inline-block;
+	margin: 8px 0;
+	background-color: #D64536;
+	color: white;
+	font-size: 23px;
+	text-align: center;
+	vertical-align: middle;
+	padding: 0px 4px;
+	min-width: 30px;
+	min-height: 30px;
+}
+.block_otshare_lp_page .block_otshare_lp_user_info_wrapper {
+	display: inline-block;
+	margin-bottom: 20px;
+	width: 100%;
+}
+.block_otshare_lp_page .block_otshare_lp_page_separator {
+	display: inline-block;
+    border-top: solid 1px #8C8C8C;
+    width: 100%;
+}
+.block_otshare_lp_page .block_otshare_lp_page_course_description {
+	margin-top: 60px;
+}
+
+.block_otshare_lp_page .block_otshare_lp_page_add {
+	width: auto;
+	display: inline-block;
+	margin-right: 10px;
+	background-color: #D64536;
+	color: white;
+	font-size: 21px;
+	text-align: center;
+	vertical-align: middle;
+	padding: 5px 8px;
+}
+
+.block_otshare_lp_page .block_otshare_lp_page_addsec {
+	display: inline-block;
+	font-size: 20px;
+	vertical-align: middle;
+}
+.block_otshare_lp_page .block_otshare_lp_name_course {
+    font-size: 23px;
+    color: #544646;	
+    vertical-align: middle; 
+}
+.block_otshare_lp_page .block_otshare_lp_name_course::before {
+	background: url([[pix:block_otshare|grades]]) left center no-repeat;
+	content: "";
+	display: inline-block;
+	width: 23px;
+	height: 23px;
+	vertical-align: middle;
+	margin-right: 10px;
+	background-size: 23px 23px;
+}
+
+.block_otshare_lp_page .block_otshare_lp_module_icon {
+	margin-right: 7px;
+	width: 23px;
+    height: 23px;
+}
+
+.block_otshare_lp_page .block_otshare_lp_module_info_wrapper {
+	display: inline-block;
+	margin-bottom: 7px;
+}
+
+.block_otshare_lp_page .block_otshare_lp_module_info_wrapper, 
+.block_otshare_lp_page .block_otshare_lp_module_info_wrapper > span, 
+.block_otshare_lp_page .block_otshare_lp_name_course > span  {
+	vertical-align: middle;
+}
+
+.block_otshare_lp_page .block_otshare_lp_require_login_wrapper {
+	text-align: center;
+	height: 480px;
+}
+
+.block_otshare_lp_page .block_otshare_lp_require_login_wrapper > div {
+    position: relative;
+    top: 16%;
+}
+
+

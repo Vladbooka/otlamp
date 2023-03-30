@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/dof/storages/departments/db" VERSION="20120307" COMMENT="XMLDB file for Moodle blocks/dof/storages/departments"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_departments" COMMENT="Подразделения учебного заведения">
+      <FIELDS>
+        <FIELD NAME="id"          TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true" SEQUENCE="true" />
+        <FIELD NAME="name"        TYPE="char" LENGTH="255"   NOTNULL="false"                 SEQUENCE="false" COMMENT="Название" />
+        <FIELD NAME="code"        TYPE="char" LENGTH="20"    NOTNULL="false"                 SEQUENCE="false" COMMENT="Код подразделения" />
+        <FIELD NAME="description" TYPE="text" LENGTH="small" NOTNULL="false"                 SEQUENCE="false" COMMENT="Описание подразделение"/>
+        <FIELD NAME="managerid"   TYPE="int"  LENGTH="10"    NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="Руководитель подразделения" />
+        <FIELD NAME="leaddepid"   TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true" SEQUENCE="false" COMMENT="Родительское подразделение" />
+        <FIELD NAME="addressid"   TYPE="int"  LENGTH="10"    NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="Идентификатор местоположения" />
+        <FIELD NAME="zone"        TYPE="char" LENGTH="100"   NOTNULL="false"                 SEQUENCE="false" COMMENT="Временная зона" />
+        <FIELD NAME="status"      TYPE="char" LENGTH="20"    NOTNULL="false"                 SEQUENCE="false" COMMENT="Статус" />
+		<FIELD NAME="path"        TYPE="char" LENGTH="255"   NOTNULL="false"                 SEQUENCE="false" COMMENT="Трассировка родительских подразделений" />
+        <FIELD NAME="depth"       TYPE="int"  LENGTH="10"    NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="Вложенность подразделения" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iname"      UNIQUE="false" FIELDS="name" />
+        <INDEX NAME="icode"      UNIQUE="false" FIELDS="code" />
+        <INDEX NAME="imanagerid" UNIQUE="false" FIELDS="managerid" />
+        <INDEX NAME="ileaddepid" UNIQUE="false" FIELDS="leaddepid" />
+        <INDEX NAME="iaddressid" UNIQUE="false" FIELDS="addressid" />
+        <INDEX NAME="izone"      UNIQUE="false" FIELDS="zone" />
+        <INDEX NAME="istatus"    UNIQUE="false" FIELDS="status" />
+		<INDEX NAME="ipath"      UNIQUE="false" FIELDS="path" />
+		<INDEX NAME="idepth"     UNIQUE="false" FIELDS="depth" />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

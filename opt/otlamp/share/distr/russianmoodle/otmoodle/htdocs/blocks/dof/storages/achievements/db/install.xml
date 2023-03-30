@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/dof/storages/achievements/db" VERSION="20120306" COMMENT="XMLDB file for Moodle blocks/dof/storages/achievements"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_achievements" COMMENT="Шаблоны достижений">
+      <FIELDS> 
+      	<FIELD NAME="id"         TYPE="int"                LENGTH="10"  NOTNULL="true"                  UNSIGNED="true"  SEQUENCE="true"  COMMENT="ID достижения"/>
+        <FIELD NAME="catid"      TYPE="int"                LENGTH="10"  NOTNULL="true"                  UNSIGNED="true"  SEQUENCE="false" COMMENT="ID раздела"/>
+        <FIELD NAME="name"       TYPE="char"               LENGTH="255" NOTNULL="true"                                   SEQUENCE="false" COMMENT="Имя достижения"/>
+        <FIELD NAME="type"       TYPE="char"               LENGTH="255" NOTNULL="true"                                   SEQUENCE="false" COMMENT="Тип достижения"/>
+        <FIELD NAME="sortorder"  TYPE="int"                LENGTH="10"  NOTNULL="true" DEFAULT="0"      UNSIGNED="true"  SEQUENCE="false" COMMENT="Сортировка"/>
+        <FIELD NAME="createdate" TYPE="int"                LENGTH="11"  NOTNULL="true"                  UNSIGNED="false" SEQUENCE="false" COMMENT="Дата создания"/>
+        <FIELD NAME="changedate" TYPE="int"                LENGTH="11"  NOTNULL="true"                  UNSIGNED="false" SEQUENCE="false" COMMENT="Дата последнего изменения"/>
+        <FIELD NAME="points"     TYPE="float" DECIMALS="4" LENGTH="16"  NOTNULL="false"                                  SEQUENCE="false" COMMENT="Статус раздела"/>
+        <FIELD NAME="data"       TYPE="text"                            NOTNULL="false"                                  SEQUENCE="false" COMMENT="Статус раздела"/>
+        <FIELD NAME="notificationdata" TYPE="text"                      NOTNULL="false"                                  SEQUENCE="false" COMMENT="Данные по уведомлениям"/>
+        <FIELD NAME="scenario"	 TYPE="int"                LENGTH="1"   NOTNULL="true" DEFAULT="1"      UNSIGNED="true"  SEQUENCE="false" COMMENT="Класс шаблона (достижение/цель)"/>
+        <FIELD NAME="status"     TYPE="char"               LENGTH="255" NOTNULL="true" DEFAULT="draft"             	     SEQUENCE="false" COMMENT="Статус раздела"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="id"         UNIQUE="true"  FIELDS="id"         />
+        <INDEX NAME="catid"      UNIQUE="false" FIELDS="catid"      />
+        <INDEX NAME="name"       UNIQUE="false" FIELDS="name"       />
+        <INDEX NAME="type"       UNIQUE="false" FIELDS="type"       />
+        <INDEX NAME="createdate" UNIQUE="false" FIELDS="createdate" />
+        <INDEX NAME="changedate" UNIQUE="false" FIELDS="changedate" />
+        <INDEX NAME="points"     UNIQUE="false" FIELDS="points"     />
+        <INDEX NAME="status"     UNIQUE="false" FIELDS="status"     />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

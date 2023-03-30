@@ -1,0 +1,23 @@
+<div class="mod_endorsement_list userside">
+	{{#header}}
+		<div class="mod_endorsement_items_header">
+			{{header}}
+		</div>
+	{{/header}}
+	{{#successmessage}}
+		<div class="mod_endorsement_publication_success">
+			{{successmessage}}
+		</div>
+	{{/successmessage}}
+	{{#items}}
+		<div class="mod_endorsement_items">
+			{{{items}}}
+		</div>
+	{{/items}}
+	{{#paging_bar}}{{{paging_bar}}}{{/paging_bar}}
+	{{#onemoreurl}}
+		<div class="mod_endorsement_items_onemore">
+			<a href="{{onemoreurl}}" class="btn btn-primary">{{onemore}}</a>
+		</div>
+	{{/onemoreurl}}
+</div>

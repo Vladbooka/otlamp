@@ -1,0 +1,28 @@
+span.mastercourse-sign {
+	display: inline-block;
+	background-color: #ed1c24;
+	color: #FFF;
+	font-weight: 600;
+	padding: 5px;
+	font-size: 12px;
+	line-height: 12px;
+    margin-right: 5px;
+    vertical-align: baseline;
+}
+.ismastercourse::before {
+	display: inline-block;
+	content: attr(data-caption);
+	background-color: #ed1c24;
+	color: #FFF;
+	font-weight: 600;
+	padding: 5px;
+}
+.ismastercourse > .data {
+	border:1px solid #ed1c24;
+}
+.block_mastercourse .content .fitemtitle{
+	width: 50px !important;
+}
+.block_mastercourse .content .felement{
+	margin-left: 65px !important;
+}

@@ -1,0 +1,79 @@
+.create_link
+{
+	padding: 10px;
+	margin: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+}
+.create_link:hover
+{
+    background: rgba(200, 230, 197, 1);
+    text-decoration: none;
+}
+ 
+.tagblock_p
+{
+	background: #eee;
+	padding: 5px 10px;
+	box-shadow: 1px 1px 3px #CCC;
+}
+
+.tagblock_p.closedtag
+{
+    background: #eee;
+    color: #aaa;
+    padding: 5px 10px;
+    box-shadow: 1px 1px 3px #CCC;
+}
+
+.tagblock_p:hover
+{
+	background: rgba(200, 230, 197, 1);;
+}
+.tagblock_p.closedtag:hover
+{
+	background: #eee;
+}
+.tags_block
+{
+	padding: 10px;
+	box-sizing: border-box;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+}
+.tags_block a
+{
+	margin: 5px;
+	text-decoration: none;
+}
+
+.tags_block a
+{
+    margin: 5px;
+    text-decoration: none;
+}
+.generaltable .completed
+{
+	background: #C7ECB1!important;
+}
+.generaltable .suspend
+{
+    background: #DBEBF8!important;
+}
+.generaltable .failed
+{
+    background: #EEC4C4!important;
+}
+.generaltable .deleted
+{
+    background: #D9D9D9!important;
+}
+.generaltable .disable_taglinkrow
+{
+	color: #aaa!important;
+}
+}

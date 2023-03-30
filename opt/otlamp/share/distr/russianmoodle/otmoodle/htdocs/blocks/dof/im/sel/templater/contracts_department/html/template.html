@@ -1,0 +1,47 @@
+<h3>{_name}</h3>
+<br>
+<div>  
+<table  border="1"  cellpadding=5 > 
+    <tr>
+        <td>{department_title}</td>
+        <td>{department_name}</td>
+    </tr>
+    <tr>
+        <td>{targetdepartment_title}</td>
+        <td>{targetdepartment_name}</td>
+    </tr> 
+    <tr>
+        <td>{additionalaction_title}</td>
+        <td>{additionalaction_name}</td>
+    </tr>   
+    <tr>
+       <td>{author_title}</td>
+       <td>{author_fullname}</td>
+    </tr>
+    <tr>
+        <td>{reportcomplete_title}</td>
+        <td>{completedate}</td>
+    </tr>
+</table>    
+</div>
+<br>
+<table class="generaltable boxaligncenter" style="position:static" border="1" align="center" frame='box' rules='all' cellpadding=5> 
+    <tr>
+        <th class="header contractid">{contractid_title}</th>
+        <th class="header contractnum">{contractnum_title}</th>
+        <th class="header contractprevdepartment">{contractprevdepartment_title}</th>
+        <th class="header contractcurrentdepartment">{contractcurrentdepartment_title}</th>
+        <th class="header contractmessage">{contractmessage_title}</th>
+        <th class="header contractadditionalactions">{contractadditionalactions_title}</th>
+    </tr>
+    <!-- BEGIN report --> 
+    <tr class="{rowclass}">
+        <td class="contractid">{id}</td>
+        <td class="contractnum">{num}</td>
+        <td class="contractprevdepartment">{prevdepartment}</td>
+        <td class="contractcurrentdepartment">{currentdepartment}</td>
+        <td class="contractmessage">{message}</td>
+        <td class="contractadditionalactions">{additionalactions}</td>
+    </tr>
+    <!-- END report -->
+</table>

@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+.without_margin {
+	margin: 0;
+}
+
+ul.employees_workingdata,
+ul.employees_workingdata ul {
+	list-style-type: none;
+	margin: 0;
+}
+ul.employees_workingdata ul {
+	margin-left: 20px;
+}
+ul.employees_workingdata a + a {
+	margin-left: 10px;
+}

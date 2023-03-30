@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMLDB PATH="enrol/otpay/db" VERSION="20130603" COMMENT="XMLDB file for Moodle enrol/otpay"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+  	<TABLE NAME="enrol_otpay" COMMENT="Информация о подписках пользователей">
+        <FIELDS>
+            <FIELD NAME="id"                 TYPE="int"   LENGTH="10"	NOTNULL="true"				UNSIGNED="true"	SEQUENCE="true"  />
+            <FIELD NAME="paymentid"      	 TYPE="char"  LENGTH="255"	NOTNULL="true"								SEQUENCE="false"              COMMENT="Идентификатор платежа"/>
+            <FIELD NAME="externalpaymentid"  TYPE="char"  LENGTH="255"  NOTNULL="true"                              SEQUENCE="false"              COMMENT="Внешний идентификатор платежа"/>
+            <FIELD NAME="instanceid"     	 TYPE="int"   LENGTH="10"	NOTNULL="true"	DEFAULT='0'					SEQUENCE="false" 			  COMMENT="ID экземпляра плагина способа записи"/>
+            <FIELD NAME="enrolmentid"    	 TYPE="int"   LENGTH="10"	NOTNULL="true"	DEFAULT='0'					SEQUENCE="false" 			  COMMENT="ID подписки пользователя"/>
+            <FIELD NAME="userid"     	 	 TYPE="int"   LENGTH="10"	NOTNULL="true"	DEFAULT='0'					SEQUENCE="false" 			  COMMENT="ID пользователя"/>
+            <FIELD NAME="courseid"     	 	 TYPE="int"   LENGTH="10"	NOTNULL="true"	DEFAULT='0'					SEQUENCE="false" 			  COMMENT="ID курса"/>
+            <FIELD NAME="amount"         	 TYPE="float" LENGTH="16"	NOTNULL="false" DEFAULT="0"	UNSIGNED="true"	SEQUENCE="false" DECIMALS="2" COMMENT="Сумма оплаты"/>
+            <FIELD NAME="currency"       	 TYPE="char"  LENGTH="5"	NOTNULL="true"  DEFAULT='-'					SEQUENCE="false" 			  COMMENT="Валюта оплаты"/>
+            <FIELD NAME="type"           	 TYPE="char"  LENGTH="20"	NOTNULL="false"								SEQUENCE="false" 			  COMMENT="Тип оплаты ('initial_enrol' - первичная, 'prolongation' - продление, 'renewal' - возобновление)"/>
+            <FIELD NAME="paymethod"          TYPE="char"  LENGTH="20"	NOTNULL="false"								SEQUENCE="false" 			  COMMENT="Провайдер"/>
+            <FIELD NAME="status"         	 TYPE="char"  LENGTH="10"	NOTNULL="true"								SEQUENCE="false" 			  COMMENT="Cтатус оплаты"/>
+            <FIELD NAME="enrolmentstartdate" TYPE="int"   LENGTH="10"	NOTNULL="false"								SEQUENCE="false" 			  COMMENT="Начало подписки пользователя"/>
+            <FIELD NAME="enrolmentenddate"   TYPE="int"   LENGTH="10"	NOTNULL="false"								SEQUENCE="false" 			  COMMENT="Окончание подписки пользователя"/>
+            <FIELD NAME="createdate"       	 TYPE="int"   LENGTH="10"	NOTNULL="true"				UNSIGNED="true" SEQUENCE="false" 			  COMMENT="Дата создания платежа"/>
+            <FIELD NAME="timemodified"       TYPE="int"   LENGTH="10"	NOTNULL="true"				UNSIGNED="true" SEQUENCE="false" 			  COMMENT="Дата последнего изменения платежа"/>
+            <FIELD NAME="options"            TYPE="text"  LENGTH="big"	NOTNULL="false"								SEQUENCE="false" 			  COMMENT="Сериализованные данные"/>
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary"             TYPE="primary" FIELDS="id"/>
+            <KEY NAME="paymethod_paymentid" TYPE="unique"  FIELDS="paymethod, paymentid"/>
+        </KEYS>
+	</TABLE>
+  	<TABLE NAME="enrol_otpay_log" COMMENT="Holds logs">
+		<FIELDS>
+		    <FIELD NAME="id"             TYPE="int"   LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="timestamp"/>
+		    <FIELD NAME="timestamp"      TYPE="int"   COMMENT="дата записи" LENGTH="10"  NOTNULL="false"  UNSIGNED="true" SEQUENCE="false" PREVIOUS="id" NEXT="textlog"/>
+		    <FIELD NAME="textlog"        TYPE="char"  COMMENT="описание" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="timestamp" NEXT="data"/>
+		    <FIELD NAME="data"           TYPE="text"  COMMENT="сериализованные данные" LENGTH="big" NOTNULL="false" SEQUENCE="false" PREVIOUS="textlog"/>
+		</FIELDS>
+		<KEYS>
+		    <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+		</KEYS>
+	</TABLE>
+	<TABLE NAME="enrol_otpay_coupons" COMMENT="Купоны">
+            <FIELDS>
+                <FIELD NAME="id"           TYPE="int"   LENGTH="10"  NOTNULL="true"  UNSIGNED="true" SEQUENCE="true"                                                   NEXT="catid" />
+                <FIELD NAME="catid"        TYPE="int"   LENGTH="10"  NOTNULL="true"  UNSIGNED="true" SEQUENCE="false"                          PREVIOUS="id"           NEXT="code"         COMMENT="ID Категории" />
+                <FIELD NAME="code"         TYPE="char"  LENGTH="255" NOTNULL="true"                  SEQUENCE="false"                          PREVIOUS="catid"        NEXT="courseid"     COMMENT="Код купона" />
+                <FIELD NAME="courseid"     TYPE="int"   LENGTH="10"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false"                          PREVIOUS="code"         NEXT="type"         COMMENT="ID курса, к которому принадлежит купон" />
+                <FIELD NAME="type"         TYPE="char"  LENGTH="10"  NOTNULL="true"                  SEQUENCE="false"                          PREVIOUS="courseid"     NEXT="discounttype" COMMENT="Тип купона"/>
+                <FIELD NAME="discounttype" TYPE="char"  LENGTH="10"  NOTNULL="true"                  SEQUENCE="false"                          PREVIOUS="type"         NEXT="value"        COMMENT="Тип скидки" />
+                <FIELD NAME="value"        TYPE="float" LENGTH="10"  NOTNULL="true"  UNSIGNED="true" SEQUENCE="false" DECIMALS="2" DEFAULT="0" PREVIOUS="discounttype" NEXT="createtime"   COMMENT="Сумма скидки" />
+                <FIELD NAME="createtime"   TYPE="int"   LENGTH="10"  NOTNULL="true"  UNSIGNED="true" SEQUENCE="false"                          PREVIOUS="value"        NEXT="lifetime"     COMMENT="Дата создания купона" />
+                <FIELD NAME="lifetime"     TYPE="int"   LENGTH="10"  NOTNULL="true"  UNSIGNED="true" SEQUENCE="false"                          PREVIOUS="createtime"   NEXT="status"       COMMENT="Время жизни купона" />
+                <FIELD NAME="status"       TYPE="char"  LENGTH="255" NOTNULL="true"                  SEQUENCE="false"                          PREVIOUS="lifetime"                         COMMENT="Статус купона" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            </KEYS>
+            <INDEXES>
+		        <INDEX NAME="icode" UNIQUE="false" FIELDS="code" />
+            </INDEXES>
+    </TABLE>
+    <TABLE NAME="enrol_otpay_coupon_cat" COMMENT="Логи использования купонов">
+            <FIELDS>
+                <FIELD NAME="id"     TYPE="int"  LENGTH="10"  NOTNULL="true" UNSIGNED="true" SEQUENCE="true"  NEXT="name" />
+                <FIELD NAME="name"   TYPE="char" LENGTH="255" NOTNULL="true"                 SEQUENCE="false" PREVIOUS="id"   NEXT="status" COMMENT="Имя кутегории" />
+                <FIELD NAME="status" TYPE="char" LENGTH="255" NOTNULL="true"                 SEQUENCE="false" PREVIOUS="name"               COMMENT="Статус категории" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="iname" UNIQUE="false" FIELDS="name" />
+            </INDEXES>
+    </TABLE>
+    <TABLE NAME="enrol_otpay_coupon_log" COMMENT="Логи использования купонов">
+            <FIELDS>
+                <FIELD NAME="id"       TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"                      NEXT="couponid" />
+                <FIELD NAME="couponid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="id"       NEXT="userid"   COMMENT="ID используемого купона" />
+                <FIELD NAME="userid"   TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="couponid" NEXT="courseid" COMMENT="ID пользователя" />
+                <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="userid"   NEXT="date"     COMMENT="ID курса" />
+                <FIELD NAME="date"     TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="courseid"                 COMMENT="Дата использования" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="icouponid"            UNIQUE="false" FIELDS="couponid" />
+            </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

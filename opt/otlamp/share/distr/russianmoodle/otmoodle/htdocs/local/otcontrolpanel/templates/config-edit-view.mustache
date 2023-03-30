@@ -1,0 +1,34 @@
+{{#view}}
+<div class="view card" data-view-code="{{view-code}}">
+	<h5 class="card-header">{{#str}}view_header_edit, local_otcontrolpanel{{/str}}</h5>
+	<div class="card-body">
+		<h5 class="card-title">{{#str}}view_displayname, local_otcontrolpanel{{/str}}</h5>
+		<input class="view-displayname" type="text" value="{{#view-displayname}}{{view-displayname}}{{/view-displayname}}" />
+	</div>
+	{{#entity}}
+	<div class="entity card-body" data-entity-code="{{entity-code}}">
+		<h5 class="card-title">{{#str}}entity_fields, local_otcontrolpanel{{/str}}</h5>
+		<h6 class="card-subtitle mb-2 text-muted">{{entity-displayname}}</h6>
+		{{> local_otcontrolpanel/config-entity-fields}}
+	</div>
+	{{#entity-relations-count}}
+	{{#entity-relations}}
+	{{#relation-relatedentity}}
+	<div class="entity-relation card-body" data-relation-code="{{relation-code}}">
+    	<h5 class="card-title">{{#str}}entity_relation_related_entity, local_otcontrolpanel, {{entity-displayname}}{{/str}}</h5>
+    	<h6 class="card-subtitle mb-2 text-muted">{{#str}}entity_relation, local_otcontrolpanel, {{relation-displayname}}{{/str}}</h6>
+    	<input type="checkbox" /> <input class="relation-displayname" type="text" value="{{#relation-displayname}}{{relation-displayname}}{{/relation-displayname}}{{^relation-displayname}}{{#entity-displayname}}{{entity-displayname}}{{/entity-displayname}}{{/relation-displayname}}" />
+		<ul class="relation-relatedentity list-group list-group-flush">
+			{{> local_otcontrolpanel/config-entity-fields}}
+		</ul>
+	</div>
+	{{/relation-relatedentity}}
+	{{/entity-relations}}
+	{{/entity-relations-count}}
+	{{/entity}}
+	<div class="card-body">
+		<button class="save-view-config btn btn-primary">{{#str}}view_save_changes, local_otcontrolpanel{{/str}}</button>
+		<button class="cancel-view-config btn btn-primary">{{#str}}view_cancel_changes, local_otcontrolpanel{{/str}}</button>
+	</div>
+</div>
+{{/view}}

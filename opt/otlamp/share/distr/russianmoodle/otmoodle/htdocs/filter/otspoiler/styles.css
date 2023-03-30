@@ -1,0 +1,57 @@
+div.otspoiler {
+	display: block;
+	padding: 10px 0px;
+}
+div.otspoiler span.show-otspoiler {
+	display: inline-block;
+}
+div.otspoiler.expand span.show-otspoiler {
+    display: none;
+}
+div.otspoiler span.hide-otspoiler {
+    display: none;
+}
+div.otspoiler.expand span.hide-otspoiler {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+div.otspoiler div.otspoiler-inner {
+	display: none;
+}
+div.otspoiler.expand div.otspoiler-inner {
+    display: block;
+    margin-left: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e8ec;
+    margin-bottom: 20px;
+}
+div.otspoiler span.show-otspoiler::before {
+	content: '';
+	width: 16px;
+	height: 16px;
+    display: inline-block;
+    margin-right: 2px;
+	background-image: url('[[pix:t/collapsed]]');
+	border: none;
+	vertical-align: middle;
+}
+div.otspoiler.expand span.hide-otspoiler::before {
+	content: '';
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 2px;
+	background-image: url('[[pix:t/expanded]]');
+	border: none;
+	vertical-align: middle;
+}
+div.otspoiler span.show-otspoiler span.show-otspoiler-inner, div.otspoiler span.hide-otspoiler span.hide-otspoiler-inner {
+	cursor: pointer;
+	border-bottom: 1px dotted;
+	margin-bottom: 15px;
+}
+ul.format_opentechnology_sections.icon_elements_view.not-editing li.activity div.otspoiler.expand div.otspoiler-inner {
+    margin-left: 25px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}

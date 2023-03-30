@@ -1,0 +1,106 @@
+.catli_clearboth {
+	clear: both;
+	position: relative;
+}
+
+.catli_block_wrapper {
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: #f9f9f9;
+    padding: 20px 10px;
+    margin:0 10px 10px 10px;
+}
+.catli_icon_wrap {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: table-cell;
+    vertical-align: top;
+    padding: 0 10px 0 0;
+    line-height: 0px;
+    font-size: 0px;
+}
+
+.catli_icon {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.catli_block_title {
+	display: inline-block;
+	line-height: 40px;
+	margin: 0;
+	padding: 0 5px;
+	font-size: 24px;
+	font-weight: 300;
+    border-radius: 0;
+	background: #555;
+	color: #fff;
+    box-sizing: border-box;
+}
+
+.catli_category_item {
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    position: relative;
+    padding: 10px;
+    display: inline-block;
+    vertical-align: top;
+    color: #f15041;
+    min-width: 200px;
+    max-width: 450px;
+}
+.catli_category_item:hover {
+    color: #f15041;
+}
+.catli_courseline1 {
+	width: 100%;
+}
+
+.catli_courseline2 {
+    width: 50%;
+}
+
+.catli_courseline3 {
+    width: 33%;
+}
+
+.catli_courseline4 {
+    width: 25%;
+}
+
+.catli_courseline5 {
+    width: 20%;
+}
+
+.catli_courseline6 {
+    width: 16%;
+}
+
+.catli_courseline7 {
+    width: 14%;
+}
+
+.catli_courseline8 {
+    width: 11%;
+}
+.catli_icon_wrap {
+	position: relative;
+	display: table-cell;
+    vertical-align: top;
+}
+.catli_category_name {
+	position: relative;
+    display: table-cell;
+    width: auto;
+    vertical-align: middle;
+    color: #f15041;
+}
+.catli_category_name:hover {
+    color: #f15041;
+}

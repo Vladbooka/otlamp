@@ -1,0 +1,199 @@
+/*
+ * @package    qtype
+ * @subpackage otimagepointer
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+*/
+
+.qtype_otimagepointer_wrapper {
+	
+}
+.qtype_otimagepointer_wrapper.updating {
+    opacity: 0.4;
+}
+.qtype_otimagepointer_wrapper .smallicon {
+    width: 24px;
+}
+#fitem_id_qtype_otimagepointer_textarea {
+    display: block;
+}
+.qtype_otimagepointer_textarea {
+	display: none;
+}
+.fitem_id_qtype_otimagepointer_textarea_id_0 {
+	display: block;
+}
+#fitem_id_qtype_otimagepointer_textarea_id_0 {
+		display: block;
+}
+#page-question-type-otimagepointer input[type="submit"]:disabled {
+	display: none;
+}
+
+.otimagepointer .image_editing_wrapper {
+    text-align: center;
+    position: relative;
+    margin-top: 50px;
+}
+.otimagepointer .image_editing {
+    display: inline-block;
+    width: auto;
+    position: relative;
+    max-width: 100%;
+}
+.otimagepointer .image_editing.hidden {
+    display: none;
+}
+.otimagepointer .image_editing img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+}
+.otimagepointer .image_editing .qtype_otimagepointer_canvas_wrapper {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;  
+}
+.otimagepointer .image_editing .qtype_otimagepointer_canvas_wrapper > div {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.otimagepointer .image_editing .qtype_otimagepointer_canvas_wrapper canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+    cursor: default;
+}
+.otimagepointer .image_editing .qtype_otimagepointer_canvas_actions {
+    height: auto;
+    width: auto;
+    display: block;
+    text-align: left;
+    bottom: 100%;
+    position: absolute;
+}
+.qtype_otimagepointer_canvas_actions > div {
+    display: inline-block;
+    position: relative;
+}
+.otimagepointer .image_editing .qtype_otimagepointer_canvas_actions .tool {
+    height: 32px;
+    width: 32px;
+    margin: 0 5px 0 0;
+    display: inline-block;
+    cursor: pointer;
+    opacity: 0.6;
+    vertical-align: bottom;
+}
+.otimagepointer .image_editing .qtype_otimagepointer_canvas_actions .tool.active {
+    opacity: 1;
+}
+.otimagepointer .image_editing .qtype_otimagepointer_canvas_actions .tool_static {
+    opacity: 1;
+}
+.qtype_otimagepointer_canvas_actions .tool_dropdown + div {
+    position: absolute;
+    display: none;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+.qtype_otimagepointer_canvas_actions .tool_dropdown.active + div {
+    display: block;
+}
+.qtype_otimagepointer_canvas_actions .qtype_otimagepointer_colorpicker {
+	background: #000;
+}
+.qtype_otimagepointer_canvas_actions .admin_colourpicker {
+    height: auto!important;
+    width: auto!important;
+    margin: 0!important;
+}
+.qtype_otimagepointer_canvas_actions .form-colourpicker > input {
+	display: none;
+}
+.otimagepointer .image_editing .qtype_otimagepointer_canvas_actions .tool.qtype_otimagepointer_colorpicker {
+    height: 26px;
+    width: 26px;
+    margin: 3px 8px 3px 3px;
+    display: inline-block;
+    vertical-align: bottom;
+    border-radius: 4px;
+}
+.otimagepointer .image_editing .qtype_otimagepointer_canvas_actions .tool.qtype_otimagepointer_radusselector {
+    height: 26px;
+    width: 26px;
+    margin: 3px 8px 3px 3px;
+    display: inline-block;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 28px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+/*
+
+
+.qtype_otimagepointer_eraser {
+	text-align: left;
+	width: 32px;
+	height: 32px;
+	display: block;
+    float: left;
+}
+.qtype_otimagepointer_eraser_tool {
+	text-align: left;
+	width: 67px;
+	height: 32px;
+	display: block;
+}
+.qtype_otimagepointer_container_div {
+	margin: 10px;
+    padding: 10px;
+    background-position:right top;
+    text-align: center;
+    display: inline-block;
+        border: 1px dashed black; 
+}
+
+
+
+
+
+
+*/

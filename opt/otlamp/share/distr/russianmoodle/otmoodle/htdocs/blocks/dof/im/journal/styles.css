@@ -1,0 +1,2557 @@
+/**
+ * Стиль для отображения/скрытия домашнего задания
+ */
+#hideCont
+{
+    display:none; /* Скрываем контент */
+}
+
+.Btn
+{
+    cursor:pointer;
+    outline:none; /* Скрываем рамочку, при нажатии */
+}
+
+/**
+ * Цвет нераскрывшейся ссылки 
+ */
+.red a:link
+{
+    color: red; 
+}   
+
+.red a:visited
+{
+    color: red;
+}
+
+/**
+ * Цвет раскрывшейся ссылки 
+ */
+.show a:link
+{
+    color: green;
+}
+
+.show a:visited
+{
+    color: green;
+}
+
+/**
+ * Стиль для текста
+ */
+.gray
+{ 
+    color: gray; 
+}
+
+.gray_link a:hover, .gray_link a:link, .gray_link a:visited, .gray_link a:active
+{ 
+    color: gray; 
+}
+
+.graderow {
+    border: 1px solid;
+}
+
+.gradedata { 
+    border: 1px solid;
+    text-align: center;
+}
+
+.monthrow {
+    border: 1px solid;
+    text-align: center;
+}
+
+.monthtitle {
+    border: 1px solid;
+    text-align: center;
+}
+
+.monthdate {
+    border: 1px solid;
+    text-align: center;
+}
+
+.cpassedlink {
+    text-align: center;
+}
+
+.psbcinfo {
+    width: 50%;
+}
+.psbcinfo table.generaltable {
+    width: 100%;
+}
+
+.cstreamgrades {
+    width: 50%;
+}
+.pbcgl_left {
+    text-align: left;
+}
+
+/* ЖУРНАЛ ПРЕДМЕТО-КЛАССА */
+
+/**
+ * Фикс отображения журнала (https://erm.3072.ru/issues/512)
+ */
+.block_dof.im_journal.im_journal_group_journal_index #block_dof_content > div.block_dof_maintable_center {
+    max-width: 100%;
+}
+.dof_group_journal_baseinfo,
+.dof_group_journal_journallist {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.dof_group_journal_baseinfo > tbody > tr > td ,
+.dof_group_journal_journallist > tbody > tr > td {
+    width: 50%;
+    vertical-align: top;
+}
+.dof_group_journal_action {
+    margin: 2px 5px;
+}
+.dof_group_journal {
+    width: 100%;
+    table-layout: fixed;
+    position: relative;
+    overflow: hidden;
+}
+.dof_cpassedgradecell {
+    padding: 0 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.dof_group_journal .fixed_col,
+.dof_group_journal .gradelist {
+    vertical-align: top;
+    position: relative;
+}
+.dof_group_journal .fixed_col {
+    z-index: 1;
+}
+.dof_group_journal .gradelist {
+    z-index: 2;
+    background: #fff;
+}
+.dof_group_journal .gradelist div {
+    overflow: auto;
+}
+.dof_group_journal_journallist_gradelist {
+    padding: 0 10px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.dof_cpassedgradeform {
+    height: 50px;
+    margin-bottom: 0px;
+}
+.dof_cpassedgradeform td,
+.dof_group_journal td.dof_cpassedgradecell {
+    vertical-align: middle!important;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.fixed_col td,
+.gradelist td {
+    vertical-align: middle!important;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.gradelist td {
+    text-align: center;
+}
+.dof_group_journal_comment {
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.dof_group_journal_comment textarea {
+    height: 50px;
+    margin: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.dof_group_journal_journallist_gradelist .dof_modal_wrapper > label
+{
+    padding: 0 0 0 5px;
+}
+.dof_group_journal_journallist_gradelist .dof_modal_wrapper span
+{
+    opacity: 0.5;
+}
+.dof_group_journal_journallist_gradelist .dof_modal_wrapper span.grpjournal_has_comments
+{
+    border: 1px solid #000;
+    opacity: 1;
+}
+.dof_group_journal_journallist_gradelist .dof_modal_wrapper textarea
+{
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: block;
+    margin: 0 0 10px 0;
+}
+
+.dof-groupjournal-grades-wrap {
+	position: relative;
+	overflow: hidden;
+	height: calc(100vh - 80px);
+	min-height: 200px;
+}
+.dof-groupjournal-grades-wrap .action,
+.dof-groupjournal-templans-actions .action {
+	height: 38px;
+    width: 38px;
+    background: #636363;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 0;
+    cursor: pointer;
+}
+.dof-groupjournal-templans-actions .action.dof-lessons-actions-create > div > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	height: 100%;
+	width: 100%;
+}
+.dof-groupjournal-templans-actions .action.action-navigation {
+	float: right;
+}
+.dof-groupjournal-templans-actions .action.action-create-lesson {
+	width: auto;
+	background-color: #f7f7f7;
+	font-size: 12px;
+	line-height: 38px;
+	padding: 0 4px;
+	color: #7f7f7f;
+}
+.dof-groupjournal-templans-actions .action.action-create-lesson .dof-lessons-actions-create-form {
+	height: 100%;
+}
+.dof-groupjournal-templans-actions .action.action-create-lesson span.dof_modal_wrapper > label {
+	font-size: 12px;
+	font-weight: bold;
+	white-space: nowrap;
+	overflow: hidden;
+	cursor: pointer;
+}
+.dof-groupjournal-templans-actions .action.action-create-lesson span.dof_modal_wrapper > label::before {
+	content: "+";
+	margin-right: 3px;
+	font-size: 38px;
+	top: 8px;
+	position: relative;
+}
+
+.dof-groupjournal-grades .row-months > td.cell-actions-nav:first-of-type .action,
+.dof-groupjournal-grades .row-days > td.cell-actions-nav:first-of-type .action {
+	float: left;
+}
+.dof-groupjournal-grades .row-months > td.cell-actions-nav:first-of-type .action::after,
+.dof-groupjournal-grades .row-days > td.cell-actions-nav:first-of-type .action::after {
+	display: block;
+	content: '';
+	clear: both;
+}
+.dof-groupjournal-grades-wrap .action + .action,
+.dof-groupjournal-templans-actions .action + .action {
+	margin-left: 2px;
+}
+
+.dof-groupjournal-templans-actions .ot-filter-wrapper .ot-filter-header {
+	position: absolute;
+    top: 0;
+    right: 275px;
+    line-height: 16px;
+    font-size: 14px;
+    margin: 11px auto;
+    font-weight: 700;
+    color: #7f7f7f;
+    border-bottom: 1px dashed #AAA;
+    cursor: pointer;
+}
+.dof-groupjournal-templans-actions .ot-filter-wrapper .ot-filter-header::after {
+    display: block;
+    position: absolute;
+    content: '';
+    right: -25px;
+    width: 10px;
+    height: 10px;
+    border: 4px solid transparent;
+    border-right-color: #636363;
+    border-bottom-color: #636363;
+    border-top-width: 0;
+    border-left-width: 0;
+    transform: rotate(45deg);
+    top: -2px;
+}
+.ot-filter-wrapper .ot-filter-display:checked + .ot-filter-filters {
+    padding: 0!important;
+}
+.ot-filter-wrapper .ot-filter-filters input {
+    height: 38px;
+    box-sizing: border-box;
+    margin-top: 2px!important;
+    padding: 3px;
+    width: calc(100% / 3 - 5px);
+    min-width: 99px;
+}
+
+.dof-groupjournal-grades .row-months > td.cell-actions-nav:first-of-type .action-tostart,
+.dof-groupjournal-grades .row-months > td.cell-actions-nav:first-of-type .action-left,
+.dof-groupjournal-grades .row-days > td.cell-actions-nav:first-of-type .action-tostart,
+.dof-groupjournal-grades .row-days > td.cell-actions-nav:first-of-type .action-left {
+	float: right;
+}
+.dof-groupjournal-grades-wrap .action img,
+.dof-groupjournal-templans-actions .action img {
+	width: 100%;
+    height: 100%;
+    max-width: 40px;
+    max-height: 40px;
+}
+.dof-groupjournal-grades {
+	background: transparent;
+	border-color: transparent;
+	border-collapse: separate;
+    border-spacing: 0;
+	table-layout: fixed;
+	position: relative;
+    left: 0px;
+    top: 0px;
+}
+.dof-groupjournal-grades .row-filler td {
+	height: 0;
+}
+.dof-groupjournal-grades .row-filler[data-count='1'] td {
+	height: 134px;
+}
+.dof-groupjournal-grades .row-filler[data-count='2'] td {
+	height: 90px;
+}
+.dof-groupjournal-grades .row-filler[data-count='3'] td {
+	height: 46px;
+}
+.dof-groupjournal-grades .row-filler[data-count='4'] td {
+	height: 2px;
+}
+
+.dof-groupjournal-grades td {
+	background: #f7f7f7;
+	color: #3e3e3e;
+	min-width: 40px;
+	min-height: 40px;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+    z-index: 1;
+}
+.dof-groupjournal-grades.edit-mode td {
+	z-index: 11;
+}
+.dof-groupjournal-grades tr.row-divider td,
+.dof-groupjournal-templans-and-tools table.dof-groupjournal-templans tr.row-divider th {
+	background-color: #ADADAD;
+    padding: 1px 0 0;
+    height: 0;
+    min-height: 0;
+    border: none;
+    outline: 1px solid #FFF;
+    position: relative;
+}
+
+.dof-groupjournal-grades tr > td.cell-cpassednum:first-child {
+	min-width: 30px;
+	text-align: center;
+	color: #c7c7c7;
+	font-size: 120%;
+}
+.dof-groupjournal-grades tr > td.cell-cpassedinfo .dof_dropblock_wrapper > label {
+	width: auto;
+	height: auto;
+}
+.dof-groupjournal-grades tr > td.cell-cpassedinfo .dof_dropblock_wrapper > label .dof-cpassed-info-menu-label span,
+.dof-groupjournal-grades tr > td.cell-cpassedinfo .dof_dropblock_wrapper > label .dof-cpassed-info-fullname span {
+	color: #3e3e3e;
+	font-weight: 300;
+}
+.dof-groupjournal-grades tr > td.cell-cpassedinfo .dof_dropblock_wrapper > label .dof-cpassed-info-menu-label span {
+	border-bottom: 1px dashed #AAA;
+	line-height: 19px;
+}
+.dof-groupjournal-grades tr > td.cell-cpassedinfo .dof_dropblock_wrapper > label .dof-cpassed-info-menu-label:hover span {
+	border-bottom: none;
+	color: #252525;
+}
+
+.cell-cpassednum::after {
+	content: '';
+	position: absolute;
+	width: 4px;
+	top: 0;
+	left: 100%;
+	height: 100%;
+	background: inherit;
+}
+.cell-cpassedinfo {
+	min-width: 200px;
+	max-width: 300px;
+	text-align: left;
+	font-size: 100%;
+	position: relative;
+}
+.cell-cpassedinfo > div {
+	height: 40px;
+	overflow-y: hidden;
+}
+
+.lessons_list_menu {
+	text-align: center;
+	height: 38px;
+	margin: 2px 2px 1px;
+	font-weight: 600;
+	color: #000;
+	font-size: 18px;
+	line-height: 18px;
+}
+.lessons_list_menu .dof_dropblock_wrapper .dof_context_menu_label > div > span {
+	margin-left: 5px;
+	color: #7f7f7f;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 18px;
+}
+.lessons_list_menu .dof_dropblock_wrapper .dof_context_menu_label {
+	padding-right: 25px;
+}
+.lessons_list_menu .dof_dropblock_wrapper .dof_context_menu_label::after {
+    display: block;
+    position: absolute;
+    content: '';
+    right: 0;
+    width: 10px;
+    height: 10px;
+    border: 4px solid transparent;
+    border-right-color: #636363;
+    border-bottom-color: #636363;
+    border-top-width: 0;
+    border-left-width: 0;
+    transform: rotate(45deg);
+    top: 0;
+}
+.lessons_list_menu > div {
+	display: inline-block;
+	vertical-align: baseline;
+	margin: 10px auto;
+}
+.dof-groupjournal-grades td.cell-showall,
+.dof-groupjournal-templans td.cell-showall {
+	background-color: #636363;
+    position: relative;
+}
+.dof-groupjournal-grades td.cell-showall {
+	min-width: 20px;
+	width: 20px;
+    max-width: 20px;
+    z-index: 2;
+}
+.dof-groupjournal-templans td.cell-showall {
+	height: 20px;
+}
+.dof-groupjournal-grades td.cell-showall a,
+.dof-groupjournal-templans td.cell-showall a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.dof-groupjournal-templans td.cell-showall a {
+	text-align: center;
+}
+.dof-groupjournal-grades td.cell-showall a span,
+.dof-groupjournal-templans td.cell-showall a span {
+    display: inline-block;
+    color: #FFF;
+    font-weight: 700;
+}
+.dof-groupjournal-grades td.cell-showall a span {
+    display: inline-block;
+    
+    position: absolute;
+    top: 0;
+    right: 0;
+    
+    -ms-transform-origin: calc(100% - 10px) 10px;
+    -moz-transform-origin: calc(100% - 10px) 10px;
+    -webkit-transform-origin: calc(100% - 10px) 10px;
+    transform-origin: calc(100% - 10px) 10px;
+    
+    -ms-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    
+    width: 250px;
+    text-align: right;
+    padding-right: 10px;
+}
+.cell-cpassedinfo > a {
+	position: relative;
+	overflow: hidden;
+}
+.cell-cpassedinfo .dof-cpassed-info-wrapper > div {
+	position: relative;
+    min-height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+.cell-cpassedinfo .dof-cpassed-info-wrapper > div > a {
+	position: relative;
+	display: block;
+	padding-right: 5px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.cell-cpassedinfo .dof_dropblock_wrapper > label {
+	width: 25px;
+	height: 25px;
+}
+.dof_dropblock .dof-cpassed-info-menu-item {
+	min-width: 250px;
+	max-width: 300px;
+	border-bottom: 1px solid #EEE;
+}
+.dof_dropblock .dof-cpassed-info-menu-item:last-of-type {
+	border-bottom: none;
+}
+.dof_dropblock .dof-mdlgradeitem-info-menu-item {
+	position: relative;
+	min-width: 160px;
+	max-width: 300px;
+}
+.dof_dropblock .dof-cpassed-info-menu-item a div,
+.dof_dropblock .dof-mdlgradeitem-info-menu-item a div {
+	padding: 5px 10px;
+}
+.dof_dropblock .dof-cpassed-info-menu-item a,
+.dof_dropblock .dof-mdlgradeitem-info-menu-item a {
+	display: block;
+	font-size: 90%;
+}
+.dof_dropblock .dof-cpassed-info-menu-item a:hover,
+.dof_dropblock .dof-mdlgradeitem-info-menu-item a:hover {
+	background: rgba(0, 0, 0, 0.06);
+	text-decoration: none;
+}
+.cell-cpassedinfo .dof-cpassed-info-fullname.failed {
+	text-decoration:line-through;
+	color: gray;
+}
+.cell-cpassedinfo.dof-cpassed-info-fullname.completed {
+	color: gray;
+}
+
+.dof-groupjournal-grades tr > td:first-child,
+.dof-groupjournal-grades tr > td:last-child,
+.dof-groupjournal-grades .row-months > td,
+.dof-groupjournal-grades .row-days > td,
+.dof-groupjournal-grades .row-lessons > td,
+.dof-groupjournal-grades tr > .cell-cpassedinfo {
+	position: relative;
+	z-index: 2;
+}
+.dof-groupjournal-grades.edit-mode tr > td:first-child,
+.dof-groupjournal-grades.edit-mode tr > td:last-child,
+.dof-groupjournal-grades.edit-mode .row-months > td,
+.dof-groupjournal-grades.edit-mode .row-days > td,
+.dof-groupjournal-grades.edit-mode .row-lessons > td,
+.dof-groupjournal-grades.edit-mode tr > .cell-cpassedinfo {
+	z-index: 12;
+}
+
+.dof-groupjournal-grades .cell-actions,
+.dof-groupjournal-grades .cell-actions-nav {
+	white-space: nowrap;
+}
+.dof-groupjournal-grades td.cell-month, 
+.dof-groupjournal-grades td.cell-actions-nav {
+	padding: 0;
+}
+.dof-groupjournal-grades .row-months > td.cell-actions-nav,
+.dof-groupjournal-grades .row-days > td.cell-actions-nav,
+.dof-groupjournal-grades .row-lessons > td.cell-actions {
+	z-index: 4;
+}
+.dof-groupjournal-grades.edit-mode .row-months > td.cell-actions-nav,
+.dof-groupjournal-grades.edit-mode .row-days > td.cell-actions-nav,
+.dof-groupjournal-grades.edit-mode .row-lessons > td.cell-actions {
+	z-index: 14;
+}
+
+.dof-groupjournal-grades .row-months > td.cell-actions-nav:first-of-type,
+.dof-groupjournal-grades .row-days > td.cell-actions-nav:first-of-type {
+	min-width: 200px;
+	background-color: #FFF;
+}
+
+.dof-groupjournal-grades .row-months > td.cell-actions-nav,
+.dof-groupjournal-grades .row-days > td.cell-actions-nav,
+.dof-groupjournal-grades .row-lessons > .cell-empty {
+	text-align: right;
+}
+.dof-groupjournal-grades .row-cpassed > .cell-lesson-cpassed-gradesummary {
+	background-color: #efefef;
+}
+
+.dof-groupjournal-grades .row-lessons > .dof-summary-cell > div,
+.dof-groupjournal-grades .row-cpassed > .cell-lesson-cpassed-gradesummary > div {
+	display: inline-block;
+	width: 50%;
+	text-align: center;
+	font-weight: 700;
+}
+.dof-groupjournal-grades .row-lessons > .dof-summary-cell > div.dof-summary-cell-avg-full,
+.dof-groupjournal-grades .row-cpassed > .cell-lesson-cpassed-gradesummary > div.dof-cpassed-summary-cell-avg-full {
+	width: 100%;
+}
+
+.dof-groupjournal-grades .row-lessons > .dof-summary-cell > .dof-summary-cell-final,
+.dof-groupjournal-grades .row-cpassed > .cell-lesson-cpassed-gradesummary > div.dof-cpassed-summary-cell-final {
+	border-left: 1px solid #AAA;
+	width: calc(50% - 1px);
+}
+
+.dof-groupjournal-grades .row-cpassed > .cell-lesson-cpassed-gradesummary > div.dof-cpassed-summary-cell-final.overgraded {
+    text-decoration: line-through;
+    color: gray;
+}
+.dof-groupjournal-grades .row-lessons > td {
+	background-color: #FFF;
+}
+.dof-groupjournal-grades .row-lessons > td.cell-lesson,
+.dof-groupjournal-grades .row-lessons > td.cell-selfsize {
+	background-color: #efefef;
+}
+.dof-groupjournal-grades .row-lessons > td.cell-empty {
+	z-index: 3;
+}
+.dof-groupjournal-grades.edit-mode .row-lessons > td.cell-empty {
+	z-index: 13;
+}
+.dof-groupjournal-grades td:first-child:after, .cell-cpassedinfo:after {
+	background: #f7f7f7;
+    content: '';
+    left: -4px;
+    width: 4px;
+    top: 0;
+    height: 100%;
+    z-index: 2;
+    position: absolute;
+}
+.dof-groupjournal-grades.edit-mode td:first-child:after, .cell-cpassedinfo:after {
+    z-index: 12;
+}
+.dof-groupjournal-grades tr.row-days td.cell-actions-nav:last-child,
+.dof-groupjournal-grades tr.row-months td.cell-actions-nav:last-child,
+.dof-groupjournal-grades tr.row-lessons td.cell-empty:last-child {
+	text-align: left;
+	background: #FFF;
+}
+.dof-groupjournal-grades td:last-child {
+	min-width: 80px;
+}
+.dof-lessons-actions-wrapper {
+	position: relative;
+    min-height: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: bold;
+}
+.dof-cpassed-sortblock-label {
+	padding: 0 10px;
+}
+.dof-cpassed-sortblock-lastname {
+	line-height: 100%;
+	opacity: 0.5;
+	cursor: pointer;
+	padding: 0 5px 0 0; 
+}
+.dof-cpassed-sortblock-lastname::after {
+	content: '';
+    position: relative;
+    border-top: 9px solid #3e3e3e;
+    border-left: 6px solid rgba(0, 0, 0, 0);
+    border-right: 6px solid rgba(0, 0, 0, 0);
+    display: block;
+}
+.dof-cpassed-sortblock-lastname.desc::after {
+	border-top: none;
+	border-bottom: 9px solid #3e3e3e;
+}
+.dof-cpassed-sortblock-firstname {
+	line-height: 100%;
+	opacity: 0.5;
+	cursor: pointer;
+	padding: 0 5px 0 0; 
+}
+.dof-cpassed-sortblock-firstname::after {
+	content: '';
+    position: relative;
+    border-top: 9px solid #3e3e3e;
+    border-left: 6px solid rgba(0, 0, 0, 0);
+    border-right: 6px solid rgba(0, 0, 0, 0);
+    display: block;
+}
+.dof-cpassed-sortblock-firstname.desc::after {
+	border-top: none;
+	border-bottom: 9px solid #3e3e3e;
+}
+.dof-cpassed-sortblock-firstname.active, .dof-cpassed-sortblock-lastname.active {
+	opacity: 1;
+}
+.dof-lessons-actions-wrapper > .dof_modal_wrapper {
+	margin-left: auto;
+}
+.dof-lessons-actions-wrapper > .dof_modal_wrapper label {
+	display: block;
+}
+div.dof-lessons-actions-create {
+	margin-left: auto;
+    font-size: 300%;
+    color: #636363;
+    line-height: 40px; 
+}
+div.dof-lessons-actions-create.dof-lessons-actions-create-general-button {
+	line-height: 40px;
+	text-align: center;
+	display: inline-block;
+	width: 100%;
+}
+div.dof-lessons-actions-create span.dof_modal_wrapper > label {
+	font-weight: bold;
+}
+div.dof-lessons-actions-create .dof_modal_wrapper > label {
+    font-size: 100%;
+}
+.cell-lesson {
+	position: relative;
+	width: 40px;
+	height: 40px;
+}
+.cell-lesson > div {
+	display: block;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.dof-grade-is-debtor {
+	background: #ffdcdc;
+}
+.dof-lesson-cell-hasgradeitem {
+	position: absolute;
+	right: 2px;
+	top: 2px;
+}
+.dof-lesson-cell-homework {
+	position: absolute;
+	bottom: 2px;
+	left: 2px;
+}
+.dof-grade-cell-homework {
+	position: absolute;
+	right: 2px;
+	top: 2px;
+}
+.dof-grade-cell-homework .dof-lesson-homework-icon {
+	width: 8px;
+	height: 8px;
+    margin-top: 2px;
+}
+.dof-lesson-cell-homework .dof-lesson-homework-icon {
+	width: 10px;
+	height: 10px;
+}
+.dof-lesson-homework-icon img {
+	display: block;
+}
+.cell-lesson .dof_dropblock_wrapper {
+	position: initial;
+}
+.dof-groupjournal-grades .cell-lesson > div > .dof_dropblock_wrapper > label {
+	position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.dof-groupjournal-grades.edit-mode .cell-lesson > div > .dof_dropblock_wrapper > label {
+    z-index: 15;
+}
+.dof-groupjournal-grades .cell-lesson > div > .dof_dropblock_wrapper.active > label {
+    z-index: -1;
+}
+/* Фикс дропблоков */
+.path-blocks-dof-im-journal-group_journal .block_dof_section.block_dof_section_information  {
+	z-index: 0;
+}
+
+/* Статус сохранения формы редактирования занятия */
+.dof-result-form-success {
+	display: block;
+	text-align: center;
+	padding: 5px;
+	margin-bottom: 2px;
+	font-weight: 800;
+	background-color: #69A05A;
+	color: white;
+}
+.dof-result-form-fail {
+	display: block;
+	text-align: center;
+	padding: 5px;
+	margin-bottom: 2px;
+	font-weight: 800;
+	background-color: #A05A5A;
+	color: white;
+}
+.dof-result-form-error {
+	display: block;
+	text-align: center;
+	padding: 5px;
+	margin-bottom: 2px;
+	font-weight: 800;
+	background-color: #C54E3A;
+	color: white;
+}
+.dof-result-form-notification {
+	display: block;
+	text-align: center;
+	padding: 5px;
+	margin-bottom: 2px;
+	font-weight: 800;
+	background-color: #D8A514;
+	color: white;
+}
+.dof-result-form-warning {
+	display: block;
+	text-align: center;
+	padding: 5px;
+	margin-bottom: 2px;
+	font-weight: 800;
+	background-color: #C5A13A;
+	color: white;
+}
+
+.dof-groupjournal-grades .dof-lesson-edit-cell {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+.dof-groupjournal-grades.edit-mode .dof-lesson-edit-cell {
+	z-index: 11;
+}
+.dof-lesson-edit-cell .dof-lesson-edit-icon,
+.dof-lesson-edit-cell .dof-lesson-edit-icon-active {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 15px;
+    height: 15px;
+}
+.dof-lesson-edit-cell .dof-lesson-edit-icon img,
+.dof-lesson-edit-cell .dof-lesson-edit-icon-active img {
+	display: block;
+}
+.cell-lesson > div > .dof_dropblock_wrapper ~ .dof-lesson-edit-cell .dof-lesson-edit-icon-active {
+    display: none;
+}
+.cell-lesson > div > .dof_dropblock_wrapper.active ~ .dof-lesson-edit-cell .dof-lesson-edit-icon {
+    display: none;
+}
+.cell-lesson > div > .dof_dropblock_wrapper.active ~ .dof-lesson-edit-cell .dof-lesson-edit-icon-active {
+    display: block;
+}
+.dof-lesson-status-icon {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 17px;
+	height: 17px;
+}
+.dof-lesson-gradeitem-icon {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 17px;
+	height: 17px;
+}
+.dof-lesson-gradeitem-icon img {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.cell-day {
+	height: 40px;
+	text-align: center;
+}
+.cell-month {
+	text-align: right;
+	font-weight: bold;
+	padding: 0 10px;
+}
+.dof-lesson-info-wrapper {
+	min-width: 250px;
+	min-height: 100px;
+	max-width: 100vw;
+	max-height: 100vh;
+	padding: 5px;
+	box-sizing: border-box;
+}
+.dof-lesson-info-divider {
+	padding: 0;
+	height: 1px;
+	width: 100%;
+	background: #E8E8E8;
+	margin-top: 10px;
+	margin-bottom: 8px;
+}
+.dof-lesson-info-header {
+	display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.dof-lesson-info-title {
+	padding: 0 10px;
+	font-weight: bold;
+	max-width: 350px;
+}
+.dof-lesson-info-startdate > .dof_dropblock_wrapper .dof-lesson-info-dateday {
+	position: relative;
+	display: block;
+	width: 17px;
+	height: 17px;
+	text-align: center;
+    line-height: 17px;
+    font-size: 12px;
+	font-weight: 600;
+}
+
+/* Перекличка */
+.dof-lesson-info-rollcall {
+	font-size: 80%;
+}
+.dof-lesson-info-rollcall-form {
+    background: #636363;
+    padding: 2px 4px;
+    line-height: 16px;
+    cursor: pointer;
+}
+.dof-lesson-info-rollcall-form.disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+.dof-lesson-info-rollcall > .dof-lesson-info-rollcall-form,
+.dof-lesson-info-rollcall > .dof-lesson-info-rollcall-form > a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.dof-lesson-info-rollcall div.dof-lesson-info-rollcall-form span.dof_modal_wrapper label {
+	font-size: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+}
+.dof-lesson-info-rollcall div.dof-lesson-info-rollcall-form span.dof_modal_wrapper div.dof_modal {
+	font-size: 14px;
+	line-height: 20px;
+	color: #333;
+}
+.dof-lesson-info-rollcall-form .felement input[type="checkbox"] {
+	height: 25px;
+    width: 25px;
+    margin-top: -10px;
+}
+.dof-lesson-info-rollcall-form .felement input[type="checkbox"] + label {
+    vertical-align: super;
+}
+
+.dof-lesson-info-edit, 
+.dof-lesson-info-close {
+	margin-left: 3px;
+}
+.dof-lesson-info-title + .dof-lesson-info-rollcall, 
+.dof-lesson-info-title + .dof-lesson-info-edit,
+.dof-lesson-info-title + .dof-lesson-info-close {
+	margin-left: auto;
+}
+
+.dof-lesson-info-edit a img {
+	width: 20px;
+	height: 20px;
+	margin: 0;
+	display: block;
+}
+.dof-lesson-info-close {
+	margin-left: 3px;
+}
+.dof-lesson-info-close img,
+.dof-lesson-info-edit img {
+	width: 20px;
+	height: 20px;
+	display: block;
+}
+.dof-lesson-info-edit img.dof_icon_viewfull {
+	filter: grayscale(100%);
+}
+.dof-lesson-info-date {
+	font-size: 90%;
+	font-weight: bold;
+	padding: 5px 10px;
+}
+.dof-lesson-info-content {
+	padding-top: 20px;
+}
+.dof-lesson-info-homework {
+	display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.dof-lesson-info-homework > img {
+    width: 14px;
+    width: 14px;
+    margin-right: 20px;
+    margin-top: 2px;
+}
+.dof-lesson-info-status {
+	display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.dof-lesson-info-homework-icon {
+	height: 14px;
+    width: 14px;
+    margin-right: 20px;
+    margin-top: 2px;
+	background: #ccc;
+}
+.dof-lesson-info .dropmenumdlgradeitem,
+.dof-grade-info-content .dropmenumdlgradeitem {
+	margin-top: 5px;
+}
+.dof-lesson-info .dropmenumdlgradeitem div.dof-mdlgradeitem-info-menu-item.dof-mdlgradeitem-info-menu-item-last,
+.dof-grade-info-content .dropmenumdlgradeitem div.dof-mdlgradeitem-info-menu-item.dof-lesson-info-gradeitemname-last {
+	margin-top: 2px;
+}
+.dof-grade-info-content .dropmenumdlgradeitem div.dof-mdlgradeitem-info-menu-item {
+	float: left;
+}
+.dof-lesson-info .dropmenumdlgradeitem .dof-mdlgradeitem-info-menu-item > a,
+.dof-grade-info-content .dropmenumdlgradeitem .dof-mdlgradeitem-info-menu-item > a {
+	background: #636363;
+	padding: 2px 4px;
+	line-height: 16px;
+	cursor: pointer;
+	color: white;
+	font-size: 100%;
+	display: inline-block;
+	width: 193px;
+}
+
+.dof-lesson-info .dof-lesson-info-startdate > .dof_dropblock_wrapper .dof-lesson-info-dateday,
+.dof-lesson-status-icon,
+.dof-lesson-info .dof-lesson-info-homework-icon {
+	background: #fff;
+	color: #000;
+}
+.dof-lesson-info.lesson .dof-lesson-info-startdate > .dof_dropblock_wrapper .dof-lesson-info-dateday,
+.dof-lesson-status-icon.lesson,
+.dof-lesson-info.lesson .dof-lesson-info-homework-icon {
+	background: #3dc106;
+	color: #fff;
+}
+.dof-lesson-info.event .dof-lesson-info-startdate > .dof_dropblock_wrapper .dof-lesson-info-dateday,
+.dof-lesson-status-icon.event,
+.dof-lesson-info.event .dof-lesson-info-homework-icon {
+	background: #009eff;
+	color: #fff;
+}
+.dof-lesson-info.plan .dof-lesson-info-startdate > .dof_dropblock_wrapper .dof-lesson-info-dateday,
+.dof-lesson-status-icon.plan,
+.dof-lesson-info.plan .dof-lesson-info-homework-icon {
+	background: #ffa300;
+	color: #fff;
+}
+.dof-lesson-info.replacedevent .dof-lesson-info-startdate > .dof_dropblock_wrapper .dof-lesson-info-dateday,
+.dof-lesson-status-icon.replacedevent,
+.dof-lesson-info.replacedevent .dof-lesson-info-homework-icon {
+	background: #9e9e9e;
+	color: #fff;
+}
+.dof-lesson-info.checkpoint .dof-lesson-info-startdate > .dof_dropblock_wrapper .dof-lesson-info-dateday,
+.dof-lesson-status-icon.checkpoint,
+.dof-lesson-info.checkpoint .dof-lesson-info-homework-icon {
+	background: #f00;
+	color: #fff;
+}
+
+
+.dof-lesson-status-icon.completed:not(.hidecompletion) {
+	position: relative;
+}
+table.dof-groupjournal-grades .dof-lesson-status-icon.completed:not(.hidecompletion)  {
+	position: absolute;
+}
+.dof-lesson-status-icon.completed:not(.hidecompletion)::after {
+	position: absolute;
+	content:'';
+	display: block;
+	width: 3px;
+	height: 8px;
+	border: 3px solid #FFF;
+	border-top: 2px solid #FFF;
+	border-bottom: none;
+	top: 4px;
+	left: 4px;
+    box-sizing: content-box;
+}
+
+
+
+
+
+.cell-lesson-cpassed {
+	position: relative;
+    width: 40px;
+    height: 40px;
+}
+.cell-lesson-cpassed.cell-lesson-cpassed-edit div.cpassed-gradecell-save {
+	width: 100%;
+	height: 100%;
+}
+.cell-lesson-cpassed.cell-lesson-cpassed-edit select {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	border-radius: 0;
+	-webkit-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: white;
+    padding: 0;
+}
+.cell-lesson-cpassed.cell-lesson-cpassed-edit select[disabled] {
+	background-color: #eee;
+}
+.cell-lesson-cpassed.cell-lesson-cpassed-edit div.cpassed-presencecell-save {
+	margin:0;
+	padding:0;
+	background: transparent;
+}
+.cell-lesson-cpassed.cell-lesson-cpassed-edit div.cpassed-presencecell-save input[type=checkbox] {
+	display: none;
+}
+.cell-lesson-cpassed.cell-lesson-cpassed-edit div.cpassed-presencecell-save input[type=checkbox] + label {
+	position: relative;
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	margin: 0;
+	padding: 0;
+}
+.cell-lesson-cpassed.cell-lesson-cpassed-edit div.cpassed-presencecell-save input[type=checkbox] + label::before {
+    position: absolute;
+    content: '';
+    top: 10px;
+    left: 1px;
+    width: 38px;
+    height: 20px;
+    border-radius: 2px;
+    background-color: #CCC;
+    box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
+}
+.cell-lesson-cpassed.cell-lesson-cpassed-edit div.cpassed-presencecell-save input[type=checkbox] + label::after {
+    position: absolute;
+	content: 'Н';
+	text-align: center;
+    top: 12px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 1px;
+    background-color: #FFF;
+    background-image: linear-gradient(105deg, #eeeeee 50%, #fff 50%);
+    box-shadow: 0 2px 5px rgba(0,0,0,.3);
+    transition: all .2s;
+    line-height: 16px;
+}
+.cell-lesson-cpassed.cell-lesson-cpassed-edit div.cpassed-presencecell-save input[type=checkbox]:checked + label::before {
+	background-color: #9FD468
+}
+.cell-lesson-cpassed.cell-lesson-cpassed-edit div.cpassed-presencecell-save input[type=checkbox]:checked + label::after {
+	left: calc(100% - 19px);
+	content: '';
+}
+
+/** Переключатель Простой/Полнофункциональный **/
+.switch-head-wrapper {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row-reverse;
+	padding-bottom: 2px;
+	margin-bottom: 40px;
+	border-bottom: 1px solid #aeaeae;
+}
+.lessonedit-form div.switch-simplecomplex-wrapper {
+	margin:0;
+	padding:0;
+	background: transparent;
+	display: flex;
+}
+.lessonedit-form form div.collapsible-actions {
+	display: none;
+}
+.lessonedit-form div.switch-simplecomplex-wrapper input[type=checkbox] {
+	display: none;
+}
+.lessonedit-form div.switch-simplecomplex-wrapper input[type=checkbox] + div + label {
+	position: relative;
+	display: inline-block;
+	width: 40px;
+	height: 36px;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+}
+.lessonedit-form div.switch-simplecomplex-wrapper input[type=checkbox] + div + label::before {
+    position: absolute;
+    content: '';
+    top: 10px;
+    left: 1px;
+    width: 38px;
+    height: 20px;
+    background-color: #CCC;
+    box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
+}
+.lessonedit-form div.switch-simplecomplex-wrapper input[type=checkbox] + div + label::after {
+    position: absolute;
+	content: '';
+	text-align: center;
+    top: 12px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    background-color: #FFF;
+    background-image: linear-gradient(105deg, #eeeeee 50%, #fff 50%);
+    box-shadow: 0 2px 5px rgba(0,0,0,.3);
+    transition: all .2s;
+    line-height: 16px;
+}
+.lessonedit-form div.switch-simplecomplex-wrapper input[type=checkbox]:checked + div + label::after {
+	left: calc(100% - 19px);
+	content: '';
+}
+
+.switch-simplecomplex-wrapper__button {
+	display: inline-block;
+	background: #f7f7f7;
+	color: #7f7f7f;
+	padding: 8px 7px;
+	margin: 0 6px;
+	font-size: 12px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.switch-lessontype-wrapper__button {
+	display: inline-block;
+	background: #f7f7f7;
+	color: #7f7f7f;
+	padding: 8px 7px;
+	margin-right: 3px;
+	font-size: 12px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.switch-simplecomplex-wrapper__button_active {
+	background: #636363;
+	color: white;
+}
+.switch-lessontype-wrapper__button_active {
+	background: #636363;
+	color: white;
+}
+
+/** Переключатель при создании КТ Выбрать тему/Создать собственную тему**/
+#switch-plan {
+	display: none;	
+}
+div.switch-plan-wrapper {
+	display: flex;
+	margin: 20px 0;
+	padding:0;
+}
+div.switch-plan-wrapper input[type=checkbox] {
+	display: none;
+}
+div.switch-plan-wrapper input[type=checkbox] + div + label {
+	position: relative;
+	display: inline-block;
+	width: 40px;
+	height: 36px;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+}
+div.switch-plan-wrapper input[type=checkbox] + div + label::before {
+    position: absolute;
+    content: '';
+    top: 10px;
+    left: 1px;
+    width: 38px;
+    height: 20px;
+    background-color: #CCC;
+    box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
+}
+div.switch-plan-wrapper input[type=checkbox] + div + label::after {
+    position: absolute;
+	content: '';
+	text-align: center;
+    top: 12px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    background-color: #FFF;
+    background-image: linear-gradient(105deg, #eeeeee 50%, #fff 50%);
+    box-shadow: 0 2px 5px rgba(0,0,0,.3);
+    transition: all .2s;
+    line-height: 16px;
+}
+div.switch-plan-wrapper input[type=checkbox]:checked + div + label::after {
+	left: calc(100% - 19px);
+	content: '';
+}
+.switch-plan-wrapper__button {
+	display: inline-block;
+	background: #f7f7f7;
+	color: #7f7f7f;
+	padding: 8px 7px;
+	font-size: 12px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.switch-plan-wrapper__button_left {
+	margin: 0 6px 0 0;
+}
+.switch-plan-wrapper__button_right {
+	margin: 0 0 0 6px;
+}
+.switch-plan-wrapper__button_active {
+	background: #636363;
+	color: white;
+}
+
+.dof-journal-hard-hide {
+	display: none !important;
+}
+
+
+.cell-lesson-cpassed > div {
+	display: block;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+/* Подложка для сохранения оценок / сохранения информации о занятии */
+.lesson-grades-wrapper-save,
+.lesson-info-wrapper-save {
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9;
+	background-color: rgba(0,0,0,0.25);
+}
+
+
+ 
+.dof-grade-info-wrapper {
+	display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100%;
+	width: 100%;
+}
+.dof-grade-info-wrapper.disabled {
+	background: #bfbfbf;
+	background: -moz-linear-gradient(-45deg, #bfbfbf 0%, #bfbfbf 50%, #b7b7b7 51%, #b7b7b7 100%);
+	background: -webkit-linear-gradient(-45deg, #bfbfbf 0%,#bfbfbf 50%,#b7b7b7 51%,#b7b7b7 100%);
+	background: linear-gradient(135deg, #bfbfbf 0%,#bfbfbf 50%,#b7b7b7 51%,#b7b7b7 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfbfbf', endColorstr='#b7b7b7',GradientType=1 );
+}
+.dof-grade-cell {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.dof-groupjournal-grades .dof-grade-cell-info {
+	display: block;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+.dof-groupjournal-grades.edit-mode .dof-grade-cell-info {
+    z-index: 11;
+}
+.dof-grade-cell-info .dof_dropblock_wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+.dof-grade-cell-info label {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: block;
+	z-index: 1;
+}
+.dof-groupjournal-grades.edit-mode .dof-grade-cell-info label {
+	z-index: 11;
+}
+.dof-grade-cell-access-open {
+	position: absolute;
+	right: 0;
+	width: 0px;
+	height: 0px;
+	border-color: #fff0;
+	border-right-color: rgba(255, 255, 255, 0);
+	border-bottom-color: rgba(255, 255, 255, 0);
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-style: solid;
+	border-width: 0px 9px 9px 0;
+	border-right-color: #00859b;
+	border-bottom-color: rgba(0, 255, 255, 0);
+}
+.dof-grade-cell-grades {
+    position: absolute;
+    width: 100%;
+    line-height: 100%;
+    font-size: 90%;
+    font-weight: bold;
+    bottom: 0;
+}
+.dof-grade-cell-grades div {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 1px 0 2px 2px;
+}
+div.dof-grade-cell-grades-grade-workedout {
+	background: #ffdcdc;
+}
+.dof-grade-cell-grades-grade.fake {
+	opacity:0.5;
+}
+.dof-grade-cell-presence {
+	color: #ce4a4a;
+	font-size: 100%;
+    font-weight: bold;
+    line-height: 100%;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+}
+.dof-grade-cell-presence-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+.dof-grade-cell-not-studied {
+	color: white;
+	font-weight: 600;
+}
+.dof-grade-cell-not-studied-background {
+	background: #9e9e9e;
+}
+.dof-grade-cell-presence.fake {
+	opacity:0.5;
+}
+.dof-grade-cell-comments {
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.dof-cpassed-info-cell-hascomment {
+    width: 7px;
+    margin-top: 2px;
+}
+.dof-cpassed-info-cell-hascomment img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+
+
+.dof-grade-info-block-wrapper {
+	min-width: 235px;
+	min-height: 115px;
+	max-width: 100vw;
+	max-height: 100vh;
+	padding: 5px;
+	box-sizing: border-box;
+	overflow: auto;
+}
+.dof-grade-info-block-wrapper .dof-grade-info-content > div {
+	margin-bottom: 3px;
+}
+.dof-grade-info-block-wrapper .dof-grade-info-content > div::after {
+    display: block;
+    content: '';
+    clear: both;
+}
+.dof-grade-info-header {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.dof-grade-info-edit,
+.dof-grade-info-content {
+    margin-left: 3px;
+}
+.dof-grade-info-eventdate-wrapper + .dof-grade-info-edit,
+.dof-grade-info-eventdate-wrapper + .dof-grade-info-close {
+	margin-left: auto;
+}
+
+.dof-grade-info-edit a img {
+	width: 20px;
+	height: 20px;
+	margin: 0;
+	display: block;
+}
+.dof-grade-info-close {
+    margin-left: 3px;
+    cursor: pointer;
+}
+.dof-grade-info-close img,
+.dof-grade-info-edit img {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+.dof-grade-info-eventdate-wrapper {
+	background-color: #EFEFEF;
+    max-width: 200px;
+    margin-right: 3px;
+}
+.dof-grade-info-eventdate-wrapper .dof-grade-info-eventdate {
+	color: #565656;
+	font-size: 13px;
+	font-weight: bold;
+	margin-right: 47px;
+	padding-left: 5px;
+}
+.dof-grade-info-block-wrapper .dof-grade-info-content .dof-cpassed-info-fullname {
+	font-size: 130%;
+    margin-bottom: 10px;
+}
+.dof-grade-info-block-wrapper .dof-grade-info-content .dof-grade-cell-grades-grade {
+	padding: inherit;
+}
+.dof-grade-info-block-wrapper .dof-grade-info-content > div {
+	max-width: 240px;
+}
+.dof-grade-info-block-wrapper .dof-grade-info-content > div > div {
+	position: inherit;
+	width: 100%;
+}
+.dof-grade-info-block-wrapper .dof-grade-info-content > div > div > div {
+	width: auto;
+}
+.dof-grade-info-block-wrapper .dof-grade-info-content > div > div > div:first-child {
+	min-width: 10px;
+	margin-right: 10px;
+	float: left;
+}
+.dof-grade-info-block-wrapper .dof-grade-info-content .dof-cpassed-info-cell-hascomment img {
+	width: 10px;
+	margin-top: 5px;
+}
+.dof-grade-info-block-wrapper .dof-grade-info-content .dof-grade-cell-presence .dof-grade-cell-presence-reason {
+	color: #7B7B7B;
+	font-size: 100%;
+	font-weight: initial;
+}
+
+/** Блок информации о учебном процессе **/
+.dof-cstream-info-wrapper, .dof-cstream-links-wrapper {
+	display: inline-block;
+	vertical-align: top;
+	width: 50%;
+	margin: 40px 0px;
+	padding: 0;
+	padding-left: 0px;
+}
+.dof-cstream-links-wrapper {
+	text-align: right;
+	padding-left: calc(100%/ 4);
+	box-sizing: border-box;
+}
+
+.dof-cstream-info-wrapper {
+	min-width: max-content;
+}
+.dof-cstream-links-wrapper {
+	min-width: min-content;
+}
+
+.dof-cstream-header-item {
+	display: inline-block;
+	vertical-align: bottom;
+	background-color: transparent;
+	color: #000;
+	box-sizing: border-box;
+	line-height: 19px;
+	font-size: 12px;
+	padding: 0 2px;
+	font-weight: 400;
+}
+a.dof-cstream-header-item:hover {
+	text-decoration: underline;
+	color: #000;
+}
+.dof-cstream-header-item + .dof-cstream-header-item {
+	margin-left: 2px;
+}
+.dof-cstream-header-item.journal-title,
+.dof-cstream-header-item.cstream-name,
+.dof-cstream-header-item.mdlcourse-title {
+	font-weight: 600;
+	padding: 0 7px;
+}
+#block_dof a.dof-cstream-header-item.cstream-name:hover,
+#block_dof a.dof-cstream-header-item.mdlcourse-title:hover {
+	color: #FFF;
+}
+#block_dof .dof-cstream-header-item.journal-title {
+	background-color: #444;
+	color: #FFF; 
+	text-transform: uppercase;
+}
+#block_dof .dof-cstream-header-item.cstream-name {
+	background-color: #7a7a7a;
+	color: #FFF;
+}
+#block_dof .dof-cstream-header-item.mdlcourse-title {
+	background-color: #636363;
+	color: #FFF;
+}
+.dof-cstream-header-item.mdlcourse-name {
+	font-size: 16px;
+}
+.dof-cstream-header-item.programmitem-name {
+	font-size: 20px; 
+}
+.dof-cstream-header-item.programmitem-code {
+	margin-bottom: -1px;
+}
+.dof-cstream-info {
+	display: block;
+	background-color: #F7F7F7;
+	width: 100%;
+}
+
+.dof-cstream-info td.c0 {
+	max-width: 50%;
+	min-width: 200px;
+	width: auto;
+	margin-right: 10px;
+	font-weight: bold;
+	font-size: 90%;
+	color: #565656;
+	background-color: #eaeaea;
+}
+.dof-cstream-info td.c0 > div {
+	padding: 3px 15px;
+	min-height: 20px;
+}
+.dof-cstream-info td.c1 {
+	width: auto;
+	padding-left: 20px;
+}
+.dof-cstream-info td.c1 .dof-cstream-info-teacher a {
+	display: inline-block;
+	width: 20px;
+	padding-left: 2px;
+}
+
+.dof-cstream-links-wrapper .dof_group_journal_action {
+	display: inline-block;
+	margin: 2px 0 0;
+}
+
+/** Журнал занятий **/
+.dof-groupjournal-templans-actions {
+	overflow: hidden;
+	margin-top: 2px;
+	margin-left: 2px;
+	margin-bottom: 2px;
+}
+.dof-groupjournal-templans-and-tools {
+	display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 38px);
+}
+.dof-groupjournal-templans-and-tools .dof-groupjournal-templans-actions {
+	position:relative;
+	background: #FFF;
+}
+.dof-groupjournal-templans-and-tools.edit-mode .dof-groupjournal-templans-actions {
+	z-index: 11;
+}
+.dof-groupjournal-templans-and-tools .dof-groupjournal-templans-wrap {
+	position: relative;
+	overflow-x: auto;
+	overflow-y: hidden;
+	max-width: 100%;
+	z-index: 1;
+	margin-left: 2px;
+	max-height: calc(100vh - 80px);
+	min-height: 200px;
+}
+.dof-groupjournal-templans-and-tools.edit-mode .dof-groupjournal-templans-wrap {
+	z-index: 11;
+}
+.dof-groupjournal-templans-wrap.collapsed {
+	max-width: 5%;
+}
+table.dof-groupjournal-templans {
+	color: #3e3e3e;
+	position: relative;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	border: none;
+}
+table.dof-groupjournal-templans tr.row-actions {
+	position: relative;
+}
+table.dof-groupjournal-templans tr.row-lesson-info {
+	background: #FFF;
+}
+table.dof-groupjournal-templans tr.row-lesson-info:nth-child(2n+1) {
+	background: #F7F7F7;
+}
+table.dof-groupjournal-templans tr.row-lesson-info:hover {
+	background-color: #F0EFEF;
+}
+table.dof-groupjournal-templans tr.row-headers > th {
+	background: #EAEAEA;
+	font-weight: bold;
+	padding: 0 5px;
+    white-space: nowrap;
+    height: 38px;
+    text-align: left;
+}
+table.dof-groupjournal-templans tr.row-headers > th.cell-number {
+	text-align: center;
+}
+table.dof-groupjournal-templans tr.row-headers > th > div {
+    min-height: unset;
+    display: inline-block;
+    justify-content: unset;
+    align-items: unset;
+    text-align: center;
+}
+.dof-groupjournal-templans-and-tools table.dof-groupjournal-templans td,
+.dof-groupjournal-templans-and-tools table.dof-groupjournal-templans th {
+	color: #3e3e3e;
+	min-width: 50px;
+	min-height: 40px;
+    box-sizing: border-box;
+    border: none;
+    z-index: 1;
+}
+.dof-groupjournal-templans-and-tools.edit-mode table.dof-groupjournal-templans td {
+    z-index: 11;
+}
+.dof-journal-text-dashed {
+	display: inline;
+	border-bottom: 1px dashed #999;
+}
+.dof-journal-text-lighter {
+	font-weight: lighter;
+}
+/* Корректное отображение при длинных словах */
+table.dof-groupjournal-templans td.cell-passed,
+table.dof-groupjournal-templans td.cell-homework {
+	/* These are technically the same, but use both */
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	-ms-word-break: break-all;
+	
+	/* This is the dangerous one in WebKit, as it breaks things wherever */
+	word-break: break-all;
+	
+	/* Instead use this non-standard one: */
+	word-break: break-word;
+	
+	/* Adds a hyphen where the word breaks, if supported (No Blink) */
+	-ms-hyphens: auto;
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
+}
+table.dof-groupjournal-templans .row-lesson-info td {
+	padding: 0px 5px;
+}
+table.dof-groupjournal-templans .row-lesson-info td input {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+table.dof-groupjournal-templans .row-actions > td {
+	background: white none repeat scroll 0% 0%;
+}
+
+table.dof-groupjournal-templans tr td.cell-number {
+	text-align: center;
+	width: 50px;
+}
+table.dof-groupjournal-templans .row-lesson-info .cell-date {
+	text-align: center;
+	width: 85px;
+}
+table.dof-groupjournal-templans .row-headers .cell-additional-icons {
+	padding: 0;
+	width: 28px;
+	min-width: 28px;
+	max-width: 28px;
+}
+
+table.dof-groupjournal-templans .row-lesson-info .cell-additional-icons {
+	padding: 0;
+	padding-right: 0px;
+	padding-left: 0px;
+	width: auto;
+	min-width: 28px;
+	max-width: 28px;
+	padding-right: 9px;
+	padding-left: 2px;
+}
+table.dof-groupjournal-templans .row-lesson-info .cell-additional-icons > label {
+	margin: 0 ;
+}
+table.dof-groupjournal-templans tr.row-actions td > div {
+	min-height: 38px;
+}
+table.dof-groupjournal-templans .row-lesson-info td {
+	padding: 10px 5px;
+}
+table.dof-groupjournal-templans .dof-lesson-status-icon {
+	position: static;
+	display: inline-block;
+	line-height: 17px;
+	min-height: 17px;
+	min-width: 17px;
+	font-weight: bold;
+	font-size: 12px;
+	vertical-align: middle;
+}
+table.dof-groupjournal-templans .dof-lesson-status-icon + * {
+	display: inline-block;
+	margin-left: 5px;
+    line-height: 17px;
+    vertical-align: middle;
+}
+table.dof-groupjournal-templans td.cell-status {
+	min-width: 140px;
+}
+table.dof-groupjournal-templans td.cell-status *:not(.dof-lesson-status-icon) {
+    display: inline;
+    /* word-wrap: break-word;
+    word-break: break-all; */
+}
+
+.dof-groupjournal-templans-and-tools table.dof-groupjournal-templans .row-actions > td,
+.dof-groupjournal-templans-and-tools table.dof-groupjournal-templans .row-headers > th,
+.dof-groupjournal-templans-and-tools table.dof-groupjournal-templans .row-divider > th {
+	position: relative;
+	z-index: 3;
+}
+.dof-groupjournal-templans-and-tools.edit-mode table.dof-groupjournal-templans .row-actions > td,
+.dof-groupjournal-templans-and-tools.edit-mode table.dof-groupjournal-templans .row-headers > th,
+.dof-groupjournal-templans-and-tools.edit-mode table.dof-groupjournal-templans .row-divider > th {
+	z-index: 13;
+}
+
+/* Определение позиций общего враппера */
+.dof-journal-groupjournal-grades-templans-wrapper > .tablegrades {
+	display: block;
+	width: 50%;
+	float: left;
+}
+.dof-journal-groupjournal-grades-templans-wrapper > .tabletemplans {
+	display: block;
+	width: 50%;
+	float: right;
+}
+
+.block_dof_maintable_content_wrapper .dof-journal-groupjournal-wrapper .dof-journal-groupjournal-grades-templans-wrapper .tabletemplans > div:last-child {
+	display: inline-block;
+	width: calc(100% - 40px);
+}
+
+/* Коллапс занятий */
+.block_dof_maintable_content_wrapper .dof-journal-groupjournal-wrapper .dof-journal-groupjournal-grades-templans-wrapper div.tabletemplans.container-collapsed {
+	max-width: 40px;
+	max-height: 40px;
+}
+
+.dof-journal-groupjournal-grades-templans-wrapper.grades-full-width > .tablegrades {
+	width: calc(100% - 40px);
+}
+.dof-journal-groupjournal-grades-templans-wrapper.grades-full-width > .tabletemplans {
+	width: 40px;
+}
+.dof-journal-groupjournal-grades-templans-wrapper.grades-full-width > .tabletemplans .dof-groupjournal-templans-actions,
+.dof-journal-groupjournal-grades-templans-wrapper.grades-full-width > .tabletemplans .dof-groupjournal-templans-wrap {
+	display: none;
+}
+.dof-journal-groupjournal-grades-templans-wrapper.templans-full-width > .tablegrades {
+	width: 0;
+	overflow: hidden;
+}
+.dof-journal-groupjournal-grades-templans-wrapper.templans-full-width > .tabletemplans {
+	width: 100%;
+}
+.dof-journal-groupjournal-grades-templans-wrapper div.tabletemplans div.actions {
+	display: inline-block;
+	vertical-align: top;
+	width: 38px;
+	margin-top: 40px;
+	position: relative;
+}
+.dof-journal-groupjournal-grades-templans-wrapper div.tabletemplans div.actions div.action.action-collapse {
+	width: 38px;
+	height: 38px;
+	display: block;
+	background-color: #D6D6D6;
+	cursor: pointer;
+	filter: unset;
+	margin-top: 2px;
+}
+
+.dof-journal-groupjournal-grades-templans-wrapper div.tabletemplans div.actions div.dof-lessons-actions-create.dof-lessons-actions-create-general-button {
+	line-height: 38px;
+	text-align: center;
+	width: 38px;
+	height: 38px;
+	display: block;
+}
+
+.dof-journal-groupjournal-grades-templans-wrapper.grades-full-width div.tabletemplans div.actions div.action.action-collapse.action-right {
+    filter: brightness(200%);
+    cursor: default;
+}
+.dof-journal-groupjournal-grades-templans-wrapper.templans-full-width div.tabletemplans div.actions div.action.action-collapse.action-left {
+    filter: brightness(200%);
+    cursor: default;
+}
+
+#id_formtitle_gradeitem_uglyhack {
+	display: none;
+}
+
+
+/* Стили для iframe форм */
+.dof-lesson-info-rollcall-form .dof_modal_wrapper .dof_modal_body iframe,
+.dof-lesson-info-userprogress-form .dof_modal_wrapper .dof_modal_body iframe,
+.dof-lesson-info-form-edit .dof_modal_wrapper .dof_modal_body iframe,
+.dof-groupjournal-grades .dof-lessons-actions-create-form iframe,
+.dof-lessons-actions-create-form iframe {
+	border: 0;
+	width: 100%;
+	height: 100%;
+}
+.dof_modal .dof_modal_dialog .dof_modal_button_close,
+.dof_imodal .dof_imodal_dialog .dof_imodal_button_close {
+	font-size: 28px;
+	right: 18px;
+	top: 18px;
+	border: 1px solid #707070;
+	padding: 0 2px;
+	color: #707070;
+	font-weight: lighter;
+}
+
+/* Стили для модального окна */
+.dof-groupjournal-grades .dof_modal_header,
+.dof_dropblock .dof_modal_header,
+.dof-lessons-actions-create-form .dof_modal_header {
+	height: 60px;
+	box-sizing: border-box;
+	background-color: #eaeaea;
+	text-align: left;
+}
+.dof-groupjournal-grades .dof_modal_body,
+.dof_dropblock .dof_modal_body,
+.dof-lessons-actions-create-form .dof_modal_body {
+	height: calc(80vh - 60px);
+	box-sizing: border-box;
+}
+.dof_modal_header > h2 {
+	font-size: 25px !important;
+	font-weight: 600 !important;
+	letter-spacing: 0.3px;
+}
+.dof-groupjournal-grades .dof_modal_footer,
+.dof_dropblock .dof_modal_footer,
+.dof-lessons-actions-create-form .dof_modal_footer {
+	display: none;
+}
+
+/* Полная форма переклички */
+.rollcall-form .fitem.fitem_fgroup > div {
+	display: inline-block !important;
+	padding: 12px 0;
+	width: auto !important;
+}
+.rollcall-form .fitem.fitem_fgroup > div + fieldset {
+	width: auto !important;
+}
+
+/* Лоадер */
+.journal-loading-screen-wrapper {
+  	height: 100%;
+	width: 100%;
+	background-color: rgb(126, 126, 126);
+	opacity: 0.7;
+	z-index: 9999;
+	display: block;
+	position: fixed;
+	left: 0;
+	top: 0;
+}
+.journal-loading-screen-wrapper-in-elem {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: rgb(126, 126, 126);
+	opacity: 0.7;
+	z-index: 9999;
+	display: block;
+	left: 0;
+	top: 0;
+}
+.journal-loading-screen-wrapper .journal-loading-screen-loader,
+.journal-loading-screen-wrapper-in-elem .journal-loading-screen-loader {
+	display: block;
+    position: absolute;
+    left: calc(50% - 68px);
+    top: calc(50% - 68px);
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #3498db;
+	width: 120px;
+	height: 120px;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.dof-mdlgradeitem-access-ajax,
+.dof-mdlgradeitem-access-single-ajax {
+	position: relative;
+}
+/*прогремм-бар*/
+.dof-journal-progressbar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 5px;
+	width: 0;
+	background: #3dc106;
+	-webkit-transition: width 0.35s;
+    transition: all 0.35s;
+    padding: 0 !important;
+}
+.dof-journal-progressbar-fullheight {
+	height: 100%;
+	opacity: 0.5;	
+}
+.dof-journal-progressbar-start {
+	width: 90%;
+}
+.dof-journal-progressbar-finished {
+	width: 100%;
+}
+.dof-journal-progressbar-failed {
+	background: #f04e23;
+}
+
+.dof-lesson-info .dropmenumdlgradeitem .dof-mdlgradeitem-info-menu-item > a, .dof-grade-info-content .dropmenumdlgradeitem .dof-mdlgradeitem-info-menu-item > a.dof-mdlgradeitem-access-tablegrades-ajax {
+ 	background-image: linear-gradient(90deg, 
+ 		#f04e23 0, 
+ 		#f04e23 25%, 
+ 		#3dc106 50%, 
+ 		#3dc106 75%, 
+ 		rgba(0,0,0,0) 75%, 
+ 		rgba(0,0,0,0) 100%) !important;
+    background-size: 400% 100% !important;
+    background-position: 100% 100%;
+}
+.dof-journal-progressbar-fullheight-bi {
+    -webkit-animation-name: ajaxloader;
+    animation-name: ajaxloader;
+    -webkit-animation-duration: 0.35s;
+    animation-duration: 0.35s;
+    animation-fill-mode: forwards;
+}
+.dof-journal-progressbar-fullheight-bi-finish-ok {
+    -webkit-animation-name: ajaxloaderfinishok;
+    animation-name: ajaxloaderfinishok;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+.dof-journal-progressbar-fullheight-bi-finish-fail {
+    -webkit-animation-name: ajaxloaderfinishfail;
+    animation-name: ajaxloaderfinishfail;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+@keyframes ajaxloader {
+	0% {
+		background-position: 100% 100%;
+	}
+	100% {
+		background-position: 75% 100%;
+	}
+}
+@keyframes ajaxloaderfinishok {
+	0% {
+		background-position: 75% 100%;
+	}
+	80% {
+		background-position: 66% 100%;
+	}
+	99.999% {
+		background-position: 66% 100%;
+	}
+	100% {
+		background-position: 100% 100%;
+	}
+}
+@keyframes ajaxloaderfinishfail {
+	0% {
+		background-position: 75% 100%;
+	}
+	80% {
+		background-position: 0% 100%;
+	}
+	99.999% {
+		background-position: 0% 100%;
+	}
+	100% {
+		background-position: 100% 100%;
+	}
+}
+
+
+table.dof-groupjournal-templans tr td.cell-number > .dof-lesson-info-form-edit {
+    position: relative;
+    display: inline-block;
+    line-height: 17px;
+    min-height: 17px;
+    min-width: 17px;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    vertical-align: middle;
+    margin-left: 2px;
+}
+table.dof-groupjournal-templans tr td.cell-number > .dof-lesson-info-form-edit > a > img.dof_icon.dof_icon_edit,
+table.dof-groupjournal-templans tr td.cell-number > .dof-lesson-info-form-edit > a > img.dof_icon.dof_icon_viewfull  {
+    vertical-align: top;
+    width: 17px;
+    height: 17px;
+}
+table.dof-groupjournal-templans tr td.cell-number > .dof-lesson-info-form-edit > a > img.dof_icon.dof_icon_viewfull {
+	filter: grayscale(100%);
+}
+
+table.dof-groupjournal-templans tr td.cell-number > .dof-lesson-info-form-edit.disabled {
+	filter: grayscale(100%);
+	visibility: hidden;
+}
+.dof_imodal .dof_imodal_back {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: rgba(0, 0, 0, .3);
+    z-index: 102;
+    cursor: default;
+}
+.dof_imodal .dof_imodal_dialog {
+    position: fixed;
+    z-index: 103;
+    overflow: hidden;
+    top: 10vh;
+    left: 10vw;
+    width: 80vw;
+    height: 80vh;
+    border: none;
+    border-radius: 0;
+    background: #fefefe;
+    -webkit-box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+    -moz-box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+    box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+}
+.dof_imodal .dof_imodal_body {
+	padding: 20px;
+	overflow: hidden;
+	position: relative;
+}
+.dof_modal_body {
+	position: relative;
+}
+.dof_imodal .dof_imodal_body p {
+	margin: 0;
+}
+.dof_imodal .dof_imodal_header {
+    border-bottom: #eaeaea solid 1px;
+    padding: 20px 20px;
+    background-color: #eaeaea;
+	text-align: left;
+}
+.dof_imodal .dof_imodal_header h2 {
+    margin: 0;
+    color: #555;
+    line-height: 1;
+	font-size: 25px !important;
+	font-weight: 600 !important;
+	letter-spacing: 0.3px;
+}
+/* кнопка закрытия окна */
+.dof_imodal .dof_imodal_header .dof_imodal_button_close,
+.dof_modal .dof_modal_header .dof_modal_button_close {
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	text-align: center;
+    color: #707070;
+    cursor: pointer;
+    text-decoration: none;
+    position: absolute;
+	border: 1px solid #707070;
+	padding: 0 2px;
+	font-size: 21px;
+	padding: 0;
+	font-weight: 300;
+	line-height: 0.9;
+}
+.dof_imodal .dof_imodal_header .dof_imodal_button_close:hover,
+.dof_modal .dof_modal_header .dof_modal_button_close:hover {
+    color: #adadad;
+    border-color: #adadad;
+}
+.dof_imodal .dof_imodal_body iframe {
+    border: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+
+
+.dof-journal-lesson-edit-header {
+	display: inline-block;
+	background: gray;
+	color: white;
+	padding: 5px 5px;
+	font-size: 17px;
+	font-weight: 800;
+	margin-bottom: 20px;
+}
+
+.lessonedit-form .fitem_id_name {
+	margin-bottom: 0px;	
+}
+
+.lessonedit-form div.collapsible-actions {
+	float: right;
+}
+.dof-lesson-intersection-warning {
+	color: white;
+	font-weight: 500;
+	background: #FF6E2B;
+	display: inline-block;
+	border-radius: 4px;
+	padding: 2px 4px;
+	position: relative;
+	left: -5px;
+	text-shadow: none;
+}
+
+.dof-groupjournal-templans-actions .action.action-journal-info {
+	position: absolute;
+	line-height: 38px;
+	margin: 0;
+	font-weight: 700;
+	color: #fff;
+	right: 0;
+	padding: 0 5px;
+	width: auto;
+}
+
+
+.debtor_report_title {
+	margin-top: 50px;
+	margin-bottom: 25px;
+}
+
+#fitem_id_save_lesson,
+#fitem_id_save_plan,
+#fitem_id_save_event,
+#fitem_id_cancel {
+	display: inline-flex;
+}
+#fitem_id_cancel > div {
+	margin: 0;
+}
+
+/** Кнопки на различные отчеты и тд **/
+
+
+/* Фиксы */
+.tablegrades .dof_icon, .tabletemplans .dof_icon {
+	max-width: 40px!important;
+	max-height: 40px!important;
+}
+
+#gradeitem_selector {
+	padding: 10px;
+	border: 1px solid #CCC;
+}
+.lessonedit-form #gradeitem_selector {
+	border: none;
+}
+.lessonedit-form #gradeitem_selector {
+	border: none;
+}
+.lessonedit-form select.flexible_select {
+	max-width: 400px;
+    width: 100%;
+}
+
+#gradeitem_selector.in-process {
+	pointer-events: none;
+	background-image: repeating-linear-gradient(
+		-45deg,
+	    #F5F5F5,
+	    #F5F5F5 11px,
+	    #FFF 10px,
+	    #FFF 20px
+	);
+	background-size: 28px 28px;
+	animation: loading .5s linear infinite;
+}
+@keyframes loading {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 28px 0;
+  }
+}
+#gradeitem_formfields > div,
+#page-wrapper #gradeitem_formsave > input[type=button],
+#page-wrapper #gradeitem_formsave > input[type=button]:hover,
+#page-wrapper #gradeitem_formsave > input[type=button]:active,
+#page-wrapper #gradeitem_formsave > input[type=button]:focus {
+	margin: 10px;
+}
+
+#gradeitem_formfields > div::before {
+	display: block;
+	content: attr(data-label);
+	font-size: 12px;
+}
+#gradeitem_formsave.hidden {
+	display: none;
+}
+
+
+@media (max-width: 1023px)
+{
+	.dof-journal-groupjournal-grades-templans-wrapper > .tablegrades {
+		width: 100%;
+		float: none;
+	}
+	.dof-journal-groupjournal-grades-templans-wrapper > .tabletemplans {
+		width: 100%;
+		float: none;
+    	margin-top: 40px;
+	}
+	.block_dof_maintable_content_wrapper .dof-journal-groupjournal-wrapper .dof-journal-groupjournal-grades-templans-wrapper .tabletemplans > div:last-child {
+		width: 100%;
+	}
+	.dof-journal-groupjournal-grades-templans-wrapper div.tabletemplans div.actions {
+		display: none;
+	}
+	.dof-groupjournal-grades td.cell-actions-nav:last-child {
+		text-align:right;
+		background-color: #f7f7f7;
+	}
+	.dof-cstream-info-wrapper,
+	.dof-cstream-links-wrapper {
+		width: 100%;
+		min-width: auto;
+	}
+	.dof-cstream-info-wrapper {
+		margin-bottom: 10px;
+	}
+	.dof-cstream-links-wrapper {
+		margin-top: 10px;
+	}
+}
+
+@media ( max-width : 767px) {
+	div.dof_group_journal_action.dof_group_journal_action_plancstream_fact,
+		div.dof_group_journal_action.dof_group_journal_action_iutp {
+		width: 100%;
+	}
+	
+	.dof-groupjournal-templans-actions .action.action-create-lesson {
+		display: block;
+		margin-bottom: 2px;
+	}
+	
+	.dof-groupjournal-templans-actions .action.action-create-lesson:nth-child(3) {
+		margin-bottom: 38px;
+	}
+	
+	.dof-groupjournal-templans-actions .ot-filter-wrapper .ot-filter-header {
+		left: 5px;
+		right: auto;
+		top: 117px;
+	}
+	.dof-journal-groupjournal-grades-templans-wrapper > .tablegrades {
+		width: 100%;
+		float: none;
+	}
+	.dof-journal-groupjournal-grades-templans-wrapper > .tabletemplans {
+		width: 100%;
+		float: none;
+    	margin-top: 40px;
+	}
+	.block_dof_maintable_content_wrapper .dof-journal-groupjournal-wrapper .dof-journal-groupjournal-grades-templans-wrapper .tabletemplans > div:last-child {
+		width: 100%;
+	}
+	.dof-journal-groupjournal-grades-templans-wrapper div.tabletemplans div.actions {
+		display: none;
+	}
+	.dof-groupjournal-grades td.cell-actions-nav:last-child {
+		text-align:right;
+		background-color: #f7f7f7;
+	}
+	.dof-cstream-info-wrapper,
+	.dof-cstream-links-wrapper {
+		width: 100%;
+	}
+	.dof-cstream-info-wrapper {
+		margin-bottom: 10px;
+	}
+	.dof-cstream-links-wrapper {
+		margin-top: 10px;
+	}
+	
+	.switch-head-wrapper {
+		flex-wrap: wrap;
+	}
+	
+	.switch-head-wrapper {
+		flex-wrap: wrap;
+	}
+	
+	.lessonedit-form div.switch-simplecomplex-wrapper {
+	    align-items: flex-start;
+	    flex-basis: 100%;
+	    order: 1;
+	    justify-content: center;
+	}
+	
+	.lessonedit-form div.switch-simplecomplex-wrapper input[type="checkbox"] + div + label,
+	div.switch-plan-wrapper input[type="checkbox"] + div + label {
+		flex-shrink: 0;
+	}
+	
+	.switch-lessontype-wrapper {
+		flex-basis: 100%;
+		display: flex;
+		order: 0;
+		justify-content: space-between;
+		margin-bottom: 5px;
+	}
+	
+	.switch-lessontype-wrapper__button {
+		flex-basis: calc(100% / 3 - 2px);
+		margin: 0;
+		box-sizing: border-box;
+		text-align: center;
+	}
+}

@@ -1,0 +1,1100 @@
+.local_crw.loading {
+	pointer-events: none;
+	
+	background-image: repeating-linear-gradient(
+		-45deg,
+	    #F5F5F5,
+	    #F5F5F5 11px,
+	    #FFF 10px,
+	    #FFF 20px
+	);
+	background-size: 28px 28px;
+	animation: loading .5s linear infinite;
+}
+.local_crw.loading * {
+	pointer-events: none;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 28px 0;
+  }
+}
+
+.crw_formsearch {
+	padding: 0 10px
+}
+
+.crw_formsearch .form-control {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	box-sizing: content-box;
+}
+
+.crw_formsearch.default .bg {
+    position: absolute;
+    background: #e6e6e6;
+    width: 100%;
+    height:100%;
+}
+.crw_formsearch.default #fgroup_id_topblock .form-group>.form-autocomplete-selection {
+	clear: both;
+    float: none;
+}
+.crw_formsearch.default #fitem_id_name {
+    display: inline-block;
+    width: 30%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.crw_formsearch.default button:focus, 
+.crw_formsearch.default input.form-submit:focus, 
+.crw_formsearch.default input[type="button"]:focus, 
+.crw_formsearch.default input[type="submit"]:focus, 
+.crw_formsearch.default input[type="reset"]:focus {
+    outline: 0!important;
+}
+.crw_formsearch.default #fgroup_id_topblock.fitem > div:first-of-type {
+    display: none;
+}
+.crw_formsearch.default #fgroup_id_topblock .form-group {
+    display: inline-block;
+}
+.crw_formsearch.default #id_topblock_name,
+.crw_formsearch.default #id_topblock_crws,
+.crw_formsearch.default #id_topblock_crws + .form-autocomplete-selection + div > input[type=text]  {
+    margin: 0;
+    padding: 0 10px 0 5px;
+    height: 35px;
+    width: 200px;
+    border-radius: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+#crw_formsearch.default #id_topblock_crws ~ .form-autocomplete-downarrow {
+	display: none;
+}
+.crw_formsearch.default #id_topblock_crws ~ ul.form-autocomplete-suggestions {
+	z-index: 2;
+}
+.crw_formsearch.default #id_topblock_crws ~ ul.form-autocomplete-suggestions,
+#local_crw .crw-search-results.form-autocomplete-suggestions {
+	border: 2px solid #999;
+	margin-top: 1px;
+	border-radius: 0;
+	max-height: 80vh;
+	box-sizing: border-box;
+}
+#local_crw .crw-search-results.form-autocomplete-suggestions {
+	max-height: none;
+	overflow: visible;
+}
+.crw_formsearch.default #id_topblock_crws ~ ul.form-autocomplete-suggestions li,
+#local_crw .crw-search-results.form-autocomplete-suggestions li {
+	padding: 10px;
+	color: #666;
+	line-height: 1;
+	border-bottom: 1px solid #e0e0e0;
+}
+#local_crw .crw-search-results.form-autocomplete-suggestions li {
+	padding: 20px 15px;
+}
+#local_crw .crw-search-results.form-autocomplete-suggestions li .hint-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+.crw_formsearch.default #id_topblock_crws ~ ul.form-autocomplete-suggestions li:hover {
+	color: #FFF;
+	background-color: #00a3f4;
+}
+.crw_formsearch.default #id_topblock_crws ~ ul.form-autocomplete-suggestions li[aria-selected=true],
+#local_crw .crw-search-results.form-autocomplete-suggestions li[aria-selected=true],
+#local_crw .crw-search-results.form-autocomplete-suggestions li:hover {
+    background-color: #F5F5F5;
+    color: #555;
+}
+.crw_formsearch.default #id_topblock_crws ~ ul.form-autocomplete-suggestions li:last-of-type,
+#local_crw .crw-search-results.form-autocomplete-suggestions li:last-of-type {
+	border-bottom: none;
+}
+
+.crw_formsearch.default #id_topblock_crws ~ ul.form-autocomplete-suggestions li div + div{
+	margin-top: 5px;
+}
+#local_crw .crw-search-results.form-autocomplete-suggestions li div:not(.hint-image) + div{
+	margin-top: 10px;
+}
+
+#local_crw .crw-search-results.form-autocomplete-suggestions li[data-image="1"]::after {
+	display: block;
+	content: '';
+	height: 0;
+	clear: both;
+}
+#local_crw .crw-search-results.form-autocomplete-suggestions li .hint-image {
+	background-repeat: no-repeat;
+	background-size: cover;
+    background-position: 50% 50%;
+	margin-right: 15px;
+    flex-shrink: 0;
+    width: 124px;
+}
+.crw_formsearch.default #id_topblock_crws ~ ul.form-autocomplete-suggestions li .hint-area {
+	font-size: 10px;
+}
+#local_crw .crw-search-results.form-autocomplete-suggestions li .hint-area {
+	font-size: 12px;
+	line-height: 1.2;
+}
+.crw_formsearch.default #id_topblock_crws ~ ul.form-autocomplete-suggestions li .hint-title {
+	font-size: 16px;
+	line-height: 1.2;
+}
+#local_crw .crw-search-results.form-autocomplete-suggestions li .hint-title {
+	font-size: 18px;
+	line-height: 1.2;
+}
+.crw_formsearch.default #id_topblock_crws ~ ul.form-autocomplete-suggestions li .hint-data,
+#local_crw .crw-search-results.form-autocomplete-suggestions li .hint-data {
+	border-left: 1px solid #a8a8a8;
+	padding-left: 8px;
+}
+.crw_formsearch.default #id_topblock_crws ~ ul.form-autocomplete-suggestions li .hint-subarea {
+	font-size: 10px;
+}
+#local_crw .crw-search-results.form-autocomplete-suggestions li .hint-subarea {
+	font-size: 12px;
+	line-height: 1.2;
+}
+.crw_formsearch.default #id_topblock_crws ~ ul.form-autocomplete-suggestions li .hint-highlighting {
+	font-size: 12px;
+}
+#local_crw .crw-search-results.form-autocomplete-suggestions li .hint-highlighting {
+	font-size: 14px;
+	line-height: 1.2;
+}
+.crw_formsearch.default #id_topblock_crws ~ ul.form-autocomplete-suggestions li .hint-highlighting strong,
+#local_crw .crw-search-results.form-autocomplete-suggestions li .hint-highlighting strong {
+	font-weight: 600;
+}
+#page-content .crw_formsearch.default #id_topblock_crws ~ #id_topblock_submitbutton {
+	display: none;
+}
+#page-content .crw_formsearch.default #id_topblock_submitbutton,
+#crw_formsearch #id_topblock_morelink, 
+#crw_formsearch #id_topblock_resetbutton  {
+    margin: 0 0 0 10px;
+}
+
+.crw_formsearch.default #id_topblock_morebutton {
+    margin: 0;
+    position: relative;
+    border-radius: 0;
+    height: 35px;
+    width: 30px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url("/local/crw/assets/bottom.png");
+    background-color: #d25144;
+    background-size:contain;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.crw_formsearch.default #fgroup_id_bottomdate {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.crw_formsearch.default #fgroup_id_bottomdate .form-group  {
+    padding: 0 0 0 5px;
+    position: relative;
+    text-align: left;
+}
+.crw_formsearch.default #fgroup_id_bottomdate #id_bottomdate_mindate_enabled {
+    display: none!important;
+}
+.crw_formsearch.default #fgroup_id_bottomdate #id_bottomdate_maxdate_enabled {
+    display: none!important;
+}
+.crw_formsearch.default #fgroup_id_bottomdate #id_bottomdate_mindate_enabled + label {
+    line-height: 30px;
+    display: inline-block;
+    padding: 0 5px;
+}
+.crw_formsearch.default #fgroup_id_bottomdate #id_bottomdate_maxdate_enabled + label {
+    line-height: 30px;
+    display: inline-block;
+    padding: 0 5px;
+}
+.crw_formsearch.default #fgroup_id_bottomdate #id_bottomdate_mindate_enabled:checked + label {
+    background: #C9E3BA;
+}
+.crw_formsearch.default #fgroup_id_bottomdate #id_bottomdate_maxdate_enabled:checked + label {
+    background: #C9E3BA;
+}
+.crw_formsearch.default #fgroup_id_bottomprice {
+    margin: 0;
+    position: relative;
+    height: 0;
+    overflow: hidden;
+}
+.crw_formsearch.default #fgroup_id_bottomprice .felement * {
+    margin: 0;
+}
+.crw_formsearch.default #fgroup_id_bottomprice .form-group  {
+    margin: 0 0 10px 0;
+    display: inline-block;
+}
+
+.crw_formsearch.default .searchform_coursecontact_group,
+.crw_formsearch.default #fitem_id_searchform_filter_tag,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_fautocomplete {
+    margin: 0;
+    position: relative;
+    height: 0;
+    overflow: hidden;
+}
+.crw_formsearch.default #fitem_id_searchform_filter_tag input {
+	margin-bottom: 10px;
+}
+
+.crw_formsearch.default #fitem_id_searchform_filter_tag div[data-fieldtype="autocomplete"] {
+    margin: 0 0 5px 245px;
+    padding: 0 0 0 5px;
+    text-align: left;
+}
+.crw_formsearch.default #fitem_id_searchform_filter_tag div[data-fieldtype="autocomplete"] select[name="searchform_filter_tag[]"] ~ input[type=text],
+ #crw_formsearch.default.fullsearch .custom-field-filter.fitem_fautocomplete div[data-fieldtype="autocomplete"] select.custom-field-filter ~ input[type=text]{
+	height: 25px;
+}
+
+#crw_formsearch.default #crw_system_search_description div {
+	padding-bottom: 10px!important;
+    overflow: hidden;
+}
+
+#crw_formsearch.default #fgroup_id_topblock .crw_system_search_form_submitbutton > span {
+	height: 35px;
+    display: block;
+}
+
+.crw_formsearch.default #fitem_id_submitbuttonmore {
+    position: relative;
+    margin: 0;
+    height: 0;
+    overflow: hidden;
+}
+.crw_formsearch.default #fitem_id_submitbuttonmore .fsubmit {
+    position: relative;
+    margin: 0;
+}
+#crw_formsearch_bg {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    background: #F0F0F0;
+}
+#crw_formsearch.default.fullsearch .mform div.custom-field,
+#crw_formsearch.default.fullsearch #fgroup_id_bottomdate, 
+#crw_formsearch.default.fullsearch #fgroup_id_bottomprice, 
+#crw_formsearch.default.fullsearch .searchform_coursecontact_group, 
+#crw_formsearch.default.fullsearch #fitem_id_submitbuttonmore,
+#crw_formsearch.default.fullsearch #fitem_id_searchform_filter_tag,
+#crw_formsearch.default.fullsearch #crw_system_search_description,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_fselect,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_ftext,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_fautocomplete {
+	height: auto;
+    overflow: visible;
+}
+.crw_formsearch input[type=text] {
+	padding-left: 7px;
+    padding-right: 35px!important;
+    margin-right: 0!important;
+    text-align: left!important;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#crw_formsearch .fitem[data-groupname="topblock"] span[data-fieldtype="autocomplete"] > .loading-icon {
+    line-height: 35px;
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    margin-left: -34px;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+.crw_formsearch .form-autocomplete-selection {
+	margin: 0;
+    min-height: 26px;
+}
+.crw_formsearch .form-autocomplete-selection > span {
+	padding: 2px 4px;
+	margin-bottom: 8px!important;
+}
+.crw_formsearch .form-autocomplete-selection > span.badge {
+	color: white;
+}
+
+/*==================================================*/
+/*==================================================*/
+/*==================================================*/
+
+
+/* Поиск курсов витрины */
+
+#crw_formsearch.default {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+	margin: 0 0 30px;
+    text-align:left;
+}
+
+#crw_formsearch.default #fgroup_id_topblock{
+	margin: 0 -15px 0 -15px;
+}
+
+#local_crw .crw-search-results.form-autocomplete-suggestions {
+	position: static;
+	background-color: transparent;
+	border: 0;
+	width: 100%;
+}
+	/*текстовое поле поиска*/
+#crw_formsearch.default #id_topblock_name,
+#crw_formsearch.default #id_topblock_crws,
+#crw_formsearch.default #id_topblock_crws + .form-autocomplete-selection + div > input[type=text] {
+	border: 1px solid #757575;
+	border-radius: 0;
+	width: 710px;
+	vertical-align: top;
+}
+#crw_formsearch.default #id_topblock_crws + .form-autocomplete-selection > div > span {
+	font-size: 11px!important;
+}
+#crw_formsearch.default #id_topblock_crws + .form-autocomplete-selection,
+#crw_formsearch.default #id_topblock_crws + .form-autocomplete-selection > div{
+	min-height: 19px;
+}
+#crw_formsearch.default #id_topblock_crws ~ .form-autocomplete-suggestions {
+	width: 650px;
+}
+
+
+	/*кнопка с иконкой для расширенной формы поиска*/
+#crw_formsearch.default #id_topblock_morebutton{
+	display:none;
+}
+#crw_formsearch .felement .fitem.submit_magnifier {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0;
+    margin-left: -35px;
+}
+
+#crw_formsearch .felement .fitem.submit_magnifier input,
+#crw_formsearch .felement .fitem.submit_magnifier input:hover,
+#crw_formsearch .felement .fitem.submit_magnifier input:active,
+#crw_formsearch .felement .fitem.submit_magnifier input:focus {
+    height: 35px;
+    width: 35px;
+    margin: 0;
+    background: url('[[pix:theme|btn/btn-magnifier]]') center center no-repeat;
+    background-size: 11px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border: none;
+}
+	/*кнопка для сброса формы поиска*/
+#crw_formsearch.default #fgroup_id_topblock .form-group > #id_topblock_morelink,
+#crw_formsearch.default #fgroup_id_topblock .form-group > #id_topblock_morelink:focus,
+#crw_formsearch.default #fgroup_id_topblock .form-group > #id_topblock_morelink:active,
+#crw_formsearch.default #fgroup_id_topblock .form-group > #id_topblock_morelink:hover,
+#page-content #crw_formsearch.default #fgroup_id_topblock .form-group .crw_system_search_form_resetbutton, 
+#page-content #crw_formsearch.default #fgroup_id_topblock .form-group .crw_system_search_form_resetbutton:focus, 
+#page-content #crw_formsearch.default #fgroup_id_topblock .form-group .crw_system_search_form_resetbutton:active, 
+#page-content #crw_formsearch.default #fgroup_id_topblock .form-group .crw_system_search_form_resetbutton:hover {
+	float: none;
+	margin-top: 7px;
+	margin-left: 15px;
+	background: transparent;
+	color: #666;
+	border: 0;
+	border-bottom: 1px dashed #666;
+	padding: 0;
+	text-shadow: none;
+	box-shadow: none;
+	vertical-align: top;
+}
+
+#crw_formsearch.default.fullsearch #fgroup_id_topblock .form-group > #id_topblock_morelink,
+#crw_formsearch.default.fullsearch #fgroup_id_topblock .form-group > #id_topblock_morelink:focus,
+#crw_formsearch.default.fullsearch #fgroup_id_topblock .form-group > #id_topblock_morelink:active,
+#crw_formsearch.default.fullsearch #fgroup_id_topblock .form-group > #id_topblock_morelink:hover {
+	background-color: #F5F5F5;
+	padding: 4px 5px;
+	margin-top: 3px;
+	border: 0;
+	border-bottom: 1px solid transparent;
+	margin-left: 10px;
+	margin-right: -3px;
+}
+
+#crw_formsearch.default #fgroup_id_topblock .form-group > #id_topblock_morelink:hover,
+#page-content #crw_formsearch.default #fgroup_id_topblock .form-group .crw_system_search_form_resetbutton:hover {
+	border-bottom: none;
+	color: #333;
+}
+
+#crw_formsearch.default .crw_system_search_form_dategroup_separator {
+	margin-left: -5px;
+}
+#crw_formsearch.default .crw_system_search_form_dategroup_separator,
+#crw_formsearch.default .crw_system_search_form_pricegroup_separator {
+	display: inline-block;
+	line-height: 35px;
+	vertical-align: top;
+	padding: 0 15px;
+}
+
+#crw_formsearch.default .mform div.custom-field,
+#crw_formsearch.default #fgroup_id_bottomdate,
+#crw_formsearch.default #fgroup_id_bottomprice,
+#crw_formsearch.default .mform div.searchform_coursecontact_group,
+#crw_formsearch.default #fitem_id_searchform_filter_tag,
+#crw_formsearch.default .custom-field-filter.fitem_fselect,
+#crw_formsearch.default .custom-field-filter.fitem_ftext,
+#crw_formsearch.default .custom-field-filter.fitem_fautocomplete {
+	margin: 15px 0 0;
+	display: none;
+}
+
+	/*заголовки для элементов формы расширенного поиска*/
+	
+#crw_formsearch.default .custom-field.fitem > div:first-of-type,	
+#crw_formsearch.default #fgroup_id_bottomdate.fitem > div:first-of-type,
+#crw_formsearch.default #fgroup_id_bottomprice.fitem > div:first-of-type,
+#crw_formsearch.default .searchform_coursecontact_group.fitem > div:first-of-type,
+#crw_formsearch.default #fitem_id_searchform_filter_tag.fitem > div:first-of-type,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_fselect.fitem > div:first-of-type,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_ftext.fitem > div:first-of-type,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_fautocomplete.fitem > div:first-of-type {
+	font-weight:normal;
+	color: #666666;
+    max-width: 100%;
+    margin-bottom: 5px;
+    padding: 0;
+}
+#page-content #region-main #crw_formsearch.default .fitem > div:first-of-type label {
+	margin-bottom:0;
+}
+#crw_formsearch.default.fullsearch #crw_system_search_description {
+	margin-top: 25px;
+}
+
+#crw_formsearch.default .custom-field .felement,
+#crw_formsearch.default #fgroup_id_bottomdate .felement,
+#crw_formsearch.default #fgroup_id_bottomprice .felement, 
+#crw_formsearch.default .searchform_coursecontact_group .felement,
+#crw_formsearch.default #fitem_id_searchform_filter_tag div[data-fieldtype="autocomplete"],
+#crw_formsearch.default #crw_system_search_description div,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_fselect .felement,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_ftext .felement,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_fautocomplete .felement {
+	padding: 5px 10px 0 10px;
+	margin: 0 0 10px 0;
+	background-color: #F6F8F9;
+	max-width: 100%;
+}
+#crw_formsearch.default #crw_system_search_description div {
+	line-height: initial;
+}
+#crw_formsearch.default #fitem_id_searchform_filter_tag .form-autocomplete-downarrow {
+	top: 0;
+}
+#crw_formsearch.default #fitem_id_searchform_filter_tag div.form-autocomplete-selection.form-autocomplete-multiple,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_fautocomplete div.form-autocomplete-selection {
+	line-height: 1;
+	min-height: 20px;
+	margin: 0;
+}
+#crw_formsearch.default #fitem_id_searchform_filter_tag div.form-autocomplete-selection.form-autocomplete-multiple span {
+	font-size: 11px!important;
+	margin-bottom: 1px!important;
+}
+
+	/*группа элементов для выбора даты*/
+#crw_formsearch.default #fgroup_id_bottomdate fieldset > div > .form-group {
+	padding: 0;
+	border-radius: 5px;
+	display: inline-block;
+}
+	/*иконка календаря*/
+#crw_formsearch.default #fgroup_id_bottomdate fieldset > div > .form-group .icon{
+	display: none;
+}
+
+	/*label с чекбоксом, управляющий активностью поля даты*/
+#crw_formsearch.default #fgroup_id_bottomdate fieldset > div > .form-group .fdate_selector > label{
+	display:inline-block;
+	float:left;
+}
+
+.crw_formsearch.default .fitem[data-groupname="bottomdate"] .felement span > span:last-of-type > label {
+	overflow:hidden;
+	height:23px;
+	width:23px;
+	padding:23px 0 0;
+	margin:0;
+	background:#FFF url('[[pix:crw_system_search|cb_1]]') 50% 50% no-repeat;
+	background-size:23px;
+	border-radius: 0;
+	cursor:pointer;
+	text-indent: -9999px;
+	order: -1;
+}
+
+#crw_formsearch.default #fgroup_id_bottomdate fieldset > div > .form-group .fdate_selector:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.crw_formsearch.default .fitem[data-groupname="bottomdate"] .felement span > span:last-of-type > label:hover{
+	background-color:#e6e7e7;
+}
+
+#crw_formsearch.default #fgroup_id_bottomdate #id_bottomdate_mindate_enabled:checked + label,
+#crw_formsearch.default #fgroup_id_bottomdate #id_bottomdate_maxdate_enabled:checked + label{
+	background:#FFF url('[[pix:crw_system_search|cb_2]]') 50% 50% no-repeat;
+}
+	/*стиль селекта*/
+	
+#crw_formsearch.default .mform .custom-field .felement fieldset > div > div:first-of-type,
+#crw_formsearch.default .mform div.crw_system_search_form_title,
+#crw_formsearch.default .mform div.searchform_sum_title,
+#crw_formsearch.default .mform div.searchform_coursecontact_title {
+	line-height: normal;
+    height: 20px;
+    font-size: 11px;
+}
+#crw_formsearch select {
+    display: inline-block;
+    margin: 0;
+    height:35px;
+    padding: 0 20px 0 7px;
+    background:#FFF url('[[pix:crw_system_search|arrow1]]');
+    background-position-x: calc(100% - 5px);
+    background-position-y: 50%;
+    background-repeat: no-repeat;
+	background-size:8px;
+    line-height:35px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border:1px solid #CFCFCF;
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+    border-radius:0;
+    outline:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    vertical-align:top;
+    width: 100%
+}
+
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_fselect select {
+	min-width: 220px;
+}
+.crw_formsearch #fitem_id_searchform_filter_tag .form-autocomplete-downarrow,
+.crw_formsearch #fgroup_id_topblock .form-autocomplete-downarrow {
+    background: url('[[pix:crw_system_search|arrow1]]');
+    background-position-x: calc(100% - 5px);
+    background-position-y: 50%;
+    background-repeat: no-repeat;
+    background-size: 8px;
+    line-height: 35px;
+    cursor: pointer;
+    color: #fff;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0;
+    height: 35px;
+    width: 35px;
+    margin-left: -34px;
+    top: 0;
+    right: 0
+}
+#crw_formsearch.default select.searchform_coursecontact {
+	min-width: 300px;
+}
+#crw_formsearch.default .custom-field .form-group input[type=text],
+#crw_formsearch.default #fgroup_id_bottomprice .form-group input[type=text],
+#crw_formsearch.default .felement[data-fieldtype="autocomplete"] input {
+	display: inline-block;
+    height:33px;
+    background:#FFF;
+    line-height:35px;
+    border:1px solid #CFCFCF;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    width: calc(100% - 44px);
+}
+
+#crw_formsearch.default #fitem_id_submitbuttonmore .fsubmit{
+	text-align:left;
+}
+#crw_formsearch.default.fullsearch #fitem_id_submitbuttonmore{
+	margin:25px 0 0 -15px;
+	display:none;
+	clear: both;
+}
+#crw_formsearch.default:not(.fullsearch) #fitem_id_submitbuttonmore #id_submitbuttonmore{
+	display:none;
+}
+#crw_formsearch.default #fgroup_id_topblock fieldset > div{
+	padding-bottom: 40px;
+	border-bottom: 1px solid #E7E7E7;
+}
+#crw_formsearch.default #fgroup_id_topblock fieldset > div > .fitem,
+#crw_formsearch.default #fgroup_id_topblock .crw_system_search_form_resetbutton {
+	margin-top: 15px;
+	margin-bottom: 0;
+	align-self: flex-end!important;
+}
+
+#crw_formsearch.default.fullsearch .mform div.custom-field,
+#crw_formsearch.default.fullsearch #fgroup_id_bottomdate,
+#crw_formsearch.default.fullsearch #fgroup_id_bottomprice,
+#crw_formsearch.default.fullsearch .searchform_coursecontact_group,
+#crw_formsearch.default.fullsearch .mform div.searchform_coursecontact_group,
+#crw_formsearch.default.fullsearch #fitem_id_searchform_filter_tag,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_fselect,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_ftext,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_fautocomplete,
+#crw_formsearch.default.fullsearch #fitem_id_submitbuttonmore {
+	display: inline-block;
+	float:left;
+	min-height: auto;
+	margin-right: 1%;
+}
+#crw_formsearch.default.fullsearch .searchform_coursecontact_group_first {
+	clear: left;
+}
+
+#crw_formsearch.default #id_submitbuttonmore,
+#crw_formsearch.default #id_submitbuttonmore:hover,
+#crw_formsearch.default #id_submitbuttonmore:focus,
+#crw_formsearch.default #id_submitbuttonmore:active{
+	margin-left:0;
+    background-size:18px;
+    background-position: 18px center;
+    background-repeat: no-repeat;
+    margin-bottom: 13px;
+}
+
+#crw_formsearch.default .custom-field-filter,
+#crw_formsearch.default.fullsearch .mform div.custom-field fieldset > div,
+#crw_formsearch.default.fullsearch #fgroup_id_bottomdate fieldset > div,
+#crw_formsearch.default.fullsearch #fgroup_id_bottomprice fieldset > div,
+#crw_formsearch.default.fullsearch .searchform_coursecontact_group fieldset > div,
+#crw_formsearch.default.fullsearch .mform div.searchform_coursecontact_group fieldset > div,
+#crw_formsearch.default.fullsearch #fitem_id_searchform_filter_tag fieldset > div,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_fselect fieldset > div,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_ftext fieldset > div,
+#crw_formsearch.default.fullsearch .custom-field-filter.fitem_fautocomplete fieldset > div,
+#crw_formsearch.default.fullsearch #fitem_id_submitbuttonmore fieldset > div,
+#crw_formsearch.default .crw_system_search_form_mindate {
+	display: inline-block!important;
+}
+
+.crw_formsearch.default .mform .form-inline fieldset > div > .form-group {
+	margin: 0 0 10px 0;
+}
+
+#crw_formsearch.default #fgroup_id_bottomdate span[data-fieldtype="date_selector"] .form-group {
+	margin-bottom: 0;
+    margin-top: 0;
+}
+
+#crw_formsearch.default #fgroup_id_topblock .crw_system_search_form_submitbutton {
+	align-self: flex-end;
+}
+
+.crw_formsearch.default > form {
+	padding: 0;
+}
+
+
+h1.crw_search_hints_header {
+	margin: 0 1% 30px 1%;
+    background: #555;
+    display: inline-block;
+    padding: 4px 10px;
+    color: #fff;
+    font-size: 1.4em;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.crw_formsearch.minimalism > form {
+	padding-right: 0;
+    padding-left: 0;
+    width: auto;
+}
+
+.crw_formsearch.minimalism > form > .fitem {
+	margin-right: 0;
+    margin-left: 0;
+    min-width: 280px;
+}
+
+#crw_formsearch.minimalism .felement .fitem.submit_magnifier {
+    flex-basis: 0;
+}
+
+.crw_formsearch.minimalism:not(.fullsearch) form > .fitem:not([data-groupname="topblock"]),
+.crw_formsearch.minimalism [name="topblock[submitbutton]"],
+.yui3-js-enabled .crw_formsearch.minimalism .crw_system_search_form_submitbuttonmore {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	padding:0 !important;
+	border:0 !important;
+	height: 1px !important; 
+	width: 1px !important; 
+	overflow: hidden;
+}
+.crw_formsearch.minimalism .crw_system_search_form_submitbuttonmore .felement {
+	margin: 0;
+}
+
+.crw_formsearch.minimalism .fitem > div:first-of-type {
+	display: none!important;
+}
+
+.crw_formsearch.minimalism .fitem > div:first-of-type + .felement {
+	margin: 0;
+    width: 100%;
+    flex-basis: 100%;
+    padding: 0;
+    max-width: 100%;
+}
+.crw_formsearch.minimalism form > div:not([data-groupname="topblock"]) .form-inline fieldset > div > .form-group {
+	flex-basis: 100%;
+	margin: 0;
+}
+.crw_formsearch.minimalism .mform .form-inline fieldset > div > .form-group > span {
+	width: 100%;
+}
+
+.crw_formsearch.minimalism form > div[data-groupname="topblock"] .felement > fieldset > .flex-wrap {
+	align-items: flex-end!important;
+}
+.crw_formsearch.minimalism form > div[data-groupname="topblock"] .felement > fieldset > .flex-wrap > .fitem {
+	margin: 0;
+}
+
+.crw_formsearch.minimalism .felement select, 
+.crw_formsearch.minimalism .felement textarea,  
+.crw_formsearch.minimalism .felement input, 
+.crw_formsearch.minimalism .felement .uneditable-input {
+	margin: 0;
+}
+.crw_formsearch.minimalism #fgroup_id_bottomdate select,
+.crw_formsearch.minimalism .custom-field select,
+.crw_formsearch.minimalism .felement.fselect > select,
+.crw_formsearch.minimalism .fitem[data-groupname^="searchform_coursecontact_group"] select {
+	height: 35px;
+}
+.crw_formsearch.minimalism .custom-field input[type="text"],
+.crw_formsearch.minimalism .felement.ftext > input,
+.crw_formsearch.minimalism .felement[data-fieldtype="autocomplete"] input,
+.crw_formsearch.minimalism .fitem[data-groupname="topblock"] select[name="topblock[crws]"] ~ div > input[type="text"],
+.crw_formsearch.minimalism .fitem[data-groupname="topblock"] input[type="text"][name="topblock[name]"],
+.crw_formsearch.minimalism .fitem[data-groupname="bottomprice"] input {
+	border:1px solid #CFCFCF;
+	height: 33px;
+}
+.crw_formsearch.minimalism .fitem[data-groupname="bottomdate[mindate]"] .crw_system_search_form_mindate:nth-child(2),
+.crw_formsearch.minimalism .fitem[data-groupname="bottomdate[maxdate]"] .crw_system_search_form_maxdate:nth-child(2)
+{
+	flex-grow: 1.7;
+	margin-right: 4px;
+	margin: 5px 5px 0 0;
+}
+
+.crw_formsearch.minimalism .fitem[data-groupname="bottomdate[mindate]"] .crw_system_search_form_mindate:nth-child(1),
+.crw_formsearch.minimalism .fitem[data-groupname="bottomdate[maxdate]"] .crw_system_search_form_maxdate:nth-child(1)
+{
+	flex-grow: 0.5;
+	margin-right: 4px;
+	flex-shrink: 0;
+	margin: 5px 5px 0 0;
+}
+
+.crw_formsearch.minimalism .fitem[data-groupname="bottomdate[mindate]"] .crw_system_search_form_mindate:nth-child(3),
+.crw_formsearch.minimalism .fitem[data-groupname="bottomdate[maxdate]"] .crw_system_search_form_maxdate:nth-child(3)
+{
+	flex-grow: 0.8;
+	flex-shrink: 0;
+	margin: 5px 0 0 0;
+}
+.crw_formsearch.minimalism .crw_system_search_form_mindate span[data-fieldtype="select"],
+.crw_formsearch.minimalism .crw_system_search_form_maxdate span[data-fieldtype="select"],
+.crw_formsearch.minimalism .crw_system_search_form_mindate select,
+.crw_formsearch.minimalism .crw_system_search_form_maxdate select {
+	width: 100%;
+}
+
+.crw_formsearch.minimalism .felement.fselect > select {
+	width: 100%;
+}
+.crw_formsearch.minimalism .felement.fselect > select[name=searchform_sorttype] option:disabled {
+	display: none;
+}
+.crw_formsearch.minimalism .felement.ftext > input {
+	width: calc(100% - 14px);
+}
+.crw_formsearch.minimalism .felement[data-fieldtype="autocomplete"] {
+	position: relative;
+}
+.crw_formsearch.minimalism [data-fieldtype="autocomplete"] .d-md-inline-block {
+	width: 100%;
+    margin-right: 0!important;
+}
+.crw_formsearch .custom-field input[type="text"],
+.crw_formsearch .fitem[data-groupname="topblock"] input[type="text"][name="topblock[name]"],
+.crw_formsearch .felement[data-fieldtype="autocomplete"] input,
+.crw_formsearch .fitem[data-groupname="topblock"] select[name="topblock[crws]"] ~ div > input[type="text"] {
+	width: calc(100% - 44px);
+}
+.crw_formsearch.minimalism .felement[data-fieldtype="autocomplete"] input + .form-autocomplete-downarrow,
+.crw_formsearch.minimalism .fitem[data-groupname="topblock"] select[name="topblock[crws]"] ~ div > input[type="text"] + .form-autocomplete-downarrow {
+    position: static;
+    margin-left: -20px;
+}
+
+.crw_formsearch.minimalism .mform .fcheckbox > span, 
+.crw_formsearch.minimalism .mform .fradio > span, 
+.crw_formsearch.minimalism .mform .form-group > span, 
+.crw_formsearch.minimalism .mform .fadvcheckbox > span {
+	margin: 0;
+}
+
+.crw_formsearch.minimalism .crw_system_search_form > fieldset {
+	width: 100%;
+}
+
+.crw_formsearch.minimalism .crw_system_search_form > .crw_system_search_flex_filler {
+	flex-basis: 100%;
+}
+
+.crw_formsearch.minimalism .crw_system_search_description {
+    order: -1;
+    flex-basis: 100%;
+    margin-bottom: 15px;
+}
+.crw_formsearch .crw_system_search_description > div {
+	word-break: break-word;
+}
+
+.crw_formsearch.minimalism .fitem[data-groupname="bottomdate"] .felement > span {
+	display: inline-flex;
+    align-items: flex-end;
+    vertical-align: middle;
+    width: 100%;
+}
+.crw_formsearch.minimalism .fitem[data-groupname="bottomdate"] .felement span > span > a {
+	display: none;
+}
+
+.crw_formsearch.minimalism .fitem[data-groupname="bottomdate"] .crw_system_search_form_dategroup_separator {
+	margin: auto;
+}
+.crw_formsearch.minimalism .fitem[data-groupname="bottomdate"] .felement span > span:last-of-type > input {
+    display: none;
+}
+.crw_formsearch.minimalism .fitem[data-groupname="bottomdate"] .felement span > span:last-of-type > label {
+    top: calc(50% - 27px / 2);
+    overflow: hidden;
+    width: 23px;
+    padding: 30px 0 0;
+    background: #fff url(/theme/image.php/opentechnology/crw_system_search/1613050749/cb_1) 50% 50% no-repeat;
+    -webkit-background-size: 23px;
+    background-size: 23px;
+    border-radius: 0;
+    cursor: pointer;
+    order: -1;
+    height: 0;
+    flex-basis: 30px;
+    flex-shrink: 0;
+    text-indent: -9999px;
+}
+
+.crw_formsearch.minimalism .fitem[data-groupname="bottomdate"] .felement span > span:last-of-type > input:checked + label {
+    background: #FFF url('[[pix:crw_system_search|cb_2]]') 50% 50% no-repeat;
+}
+
+.crw_formsearch.minimalism .fitem[data-groupname="bottomprice"] .crw_system_search_form_pricegroup_separator {
+	padding: 0 10px;
+}
+.crw_formsearch.minimalism .crw_system_search_form_minprice input,
+.crw_formsearch.minimalism .crw_system_search_form_maxprice input{
+    width: calc(100% - 14px)!important;
+    padding-right: 5px!important;
+}
+.crw_formsearch.minimalism .crw_system_search_form_minprice,
+.crw_formsearch.minimalism .crw_system_search_form_maxprice{
+    margin: 0!important;
+    flex-grow: 1;
+    flex-basis: 0%!important;
+}
+.crw_formsearch.minimalism .custom-field select,
+.crw_formsearch.minimalism .fitem[data-groupname^="searchform_coursecontact_group"] select {
+	width: 100%;
+}
+.crw_formsearch.minimalism .fitem[data-groupname="bottomprice"] fieldset > div {
+	display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.crw_formsearch.minimalism form>div[data-groupname="topblock"] .felement>fieldset>.flex-wrap>.fitem:first-of-type {
+		flex-basis: 100%;
+}
+
+@media (min-width: 1124px)
+{
+	#crw_formsearch #fgroup_id_bottomdate {
+		min-width: 560px;
+	}
+}
+
+/** Медиа - запросы **/
+@media (max-width: 569px)
+{
+	#crw_formsearch #fgroup_id_bottomdate .crw_system_search_form_dategroup_separator,
+	#crw_formsearch #fgroup_id_bottomprice .crw_system_search_form_pricegroup_separator {
+		display: none;
+	}
+	.crw_formsearch.minimalism form>div[data-groupname="topblock"] .felement>fieldset>.flex-wrap>.fitem:first-of-type,
+	.crw_formsearch.minimalism form>div[data-groupname="topblock"] .felement>fieldset>.flex-wrap>.fitem.submit_magnifier {
+		margin-bottom: 10px;
+	}
+}
+@media (min-width: 570px)
+{
+	.crw_formsearch.minimalism .fitem[data-groupname="topblock"] > div:first-of-type + .felement > fieldset > .flex-wrap {
+		flex-wrap: nowrap!important;
+	}
+	#crw_formsearch.minimalism .fitem[data-groupname="bottomdate"] fieldset > div > .fitem {
+		flex-basis: calc(100% / 2 - 15px);
+		margin: 0;
+		min-width: 250px;
+	}
+	#crw_formsearch #fgroup_id_bottomdate .crw_system_search_form_dategroup_separator {
+		width: 16px;
+	}
+}
+
+@media (max-width: 1023px)
+{
+	.crw_formsearch.default #fgroup_id_topblock .form-group:first-of-type {
+		width: 420px;
+	}
+	
+	#crw_formsearch.default #id_topblock_crws ~ .form-autocomplete-suggestions {
+		width: 420px;
+	}
+}
+
+@media (max-width: 767px)
+{
+	#crw_formsearch.default #id_topblock_crws + .form-autocomplete-selection {
+		text-align: left;
+	}
+	
+	.crw_formsearch.default #fgroup_id_topblock .form-group:first-of-type {
+		width: calc(100% - 35px);
+	}
+	
+	#crw_formsearch.default #id_topblock_crws ~ .form-autocomplete-suggestions {
+		width: calc(100% - 55px);
+	    margin-left: 18px;
+	    text-align: left;
+	}
+	#page-content .crw_formsearch.default #id_topblock_submitbutton {
+		margin-left: 0;
+	}
+}
+
+@media (min-width: 576px) {
+	.crw_formsearch .mform > .form-group {
+	    margin-left: 0;
+	    margin-right: 0
+	}
+}
+
+
+@media (max-width: 425px) {
+	
+	#crw_formsearch.default {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#crw_formsearch.default #id_topblock_crws + .form-autocomplete-selection + div > input[type=text] {
+		width: 100%;
+	}
+	#crw_formsearch.default #id_topblock_crws ~ .form-autocomplete-suggestions {
+	    width: calc(100% - 20px);
+	    margin-left: auto;
+	}
+	#crw_formsearch.default select.searchform_coursecontact,
+	#crw_formsearch.default.fullsearch .custom-field select.custom-field-filter,
+	#crw_formsearch.default #fitem_id_searchform_filter_tag input[type=text] {
+		min-width: 285px;
+	}
+	
+	#local_crw .crw-search-results.form-autocomplete-suggestions li {
+		padding: 10px 5px;
+	}
+	#local_crw .crw-search-results.form-autocomplete-suggestions li .hint-wrapper[data-image="1"] .hint-image {
+		margin-right: 10px;
+	}
+	#local_crw .crw-search-results.form-autocomplete-suggestions li .hint-wrapper[data-image="1"] .hint-area {
+		display: none;
+	}
+	#local_crw .crw-search-results.form-autocomplete-suggestions li .hint-wrapper[data-image="1"] div.hint-area + div {
+		margin-top: 0;
+	}
+}

@@ -1,0 +1,581 @@
+ul.format_opentechnology_sections {
+	position: relative;
+    margin: 0;
+    width: 100%;
+    list-style-type: none;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+ul.format_opentechnology_sections li.section,
+ul.format_opentechnology_sections #course-format-tools,
+ul.format_opentechnology_sections .slideNumbers {
+	position: relative;
+	display: inline-block;
+    margin: 0px 0px 5px 0px;
+    padding: 0;
+    list-style: none;
+    
+	width:100%;
+	
+	flex-basis:100%;
+    flex-grow: 0;
+    flex-shrink: 1;
+}
+ul.format_opentechnology_sections .slideNumbers {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+ul.format_opentechnology_sections li.section .left {
+	float: left;
+	display: block;
+}
+
+ul.format_opentechnology_sections li.section .right {
+	float: right;
+	display: block;
+	text-align: right;
+}
+
+ul.format_opentechnology_sections li.section h3.sectionname {
+	float: none;
+	display: block;
+}
+
+ul.format_opentechnology_sections li.section li.activity {
+	clear: both;
+}
+
+ul.format_opentechnology_sections li.section .content ul.section {
+	margin: 0;
+}
+
+ul.format_opentechnology_sections li.section .content {
+	padding: 10px;
+}
+
+ul.format_opentechnology_sections .content .summary ul, 
+ul.format_opentechnology_sections .content .summarytext ul {
+    list-style: disc outside none;
+}
+
+ul.format_opentechnology_sections .content .summary ol, 
+ul.format_opentechnology_sections .content .summarytext ol {
+    list-style: decimal outside none;
+}
+
+ul.format_opentechnology_sections li.activity > div {
+	position: relative;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.clear {
+	clear: both;
+}
+
+ul.format_opentechnology_sections div.sectionhead h3 {
+	position: relative;
+}
+
+ul.format_opentechnology_sections div.sectionhead h3.align-left {
+	text-align: left;
+}
+
+ul.format_opentechnology_sections div.sectionhead h3.align-center {
+	text-align: center;
+}
+
+ul.format_opentechnology_sections div.sectionhead h3.align-right {
+	text-align: right;
+}
+
+ul.format_opentechnology_sections img.iconlarge {
+	vertical-align: middle;
+}
+
+
+/***********************/
+/*сворачивание разделов*/
+/***********************/
+
+.format_opentechnology_toggleall_wrapper {
+	text-align: right;
+}
+
+.format_opentechnology_toggleall_wrapper .toggleall_collapse_button:before {
+    background-image: url([[pix:format_opentechnology|toggleall_collapse]]);
+    background-size: contain;
+    content: '';
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+}
+
+.format_opentechnology_toggleall_wrapper .toggleall_expand_button:before {
+    background-image: url([[pix:format_opentechnology|toggleall_expand]]);
+    background-size: contain;
+    content: '';
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+}
+
+ul.format_opentechnology_sections div.sectionhead .the_header {
+    display: block;
+    position: relative;
+}
+
+ul.format_opentechnology_sections div.sectionhead div.toggle_icon {
+    cursor: pointer;
+    position: relative;
+    padding: 0 0 100% 0;
+}
+
+ul.format_opentechnology_sections .toggle .toggle_icon.closed {
+    background-image: url([[pix:format_opentechnology|toggle_collapse]]);
+    display: block;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+ul.format_opentechnology_sections .toggle .toggle_icon.open {
+    background-image: url([[pix:format_opentechnology|toggle_expand]]);
+    display: block;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+ul.format_opentechnology_sections .toggle.toggle_open .toggle_icon.closed,
+ul.format_opentechnology_sections .toggle.toggle_closed .toggle_icon.open {
+	display: none;
+}
+
+ul.format_opentechnology_sections div.sectionhead div.wrapper_toggle_icon {
+	width: 3%;
+    max-width: 50px;
+    min-width: 24px;
+    padding: 0;
+    margin: 0 auto;
+    margin-top: -10px;
+}
+
+ul.format_opentechnology_sections .toggled_section {
+    
+}
+
+ul.format_opentechnology_sections li.section > .content > .sectionbody.toggled_section > div {
+   	display: none;
+}
+
+ul.format_opentechnology_sections li.section > .content > .sectionbody.toggled_section.sectionopen  > div {
+    display: flex;
+}
+
+
+/***********************/
+/*отображение элементов*/
+/***********************/
+
+ul.format_opentechnology_sections.icon_elements_view.not-editing img.iconlarge {
+	width: 50px;
+	height: 50px;
+}
+
+ul.format_opentechnology_sections:not(.icon_elements_view) .section li.activity .mod-indent,
+ul.format_opentechnology_sections.editing .section li.activity .mod-indent {
+	display: inline-block;
+}
+
+ul.format_opentechnology_sections.icon_elements_view.not-editing .section li.activity .mod-indent {
+	display: none;
+}
+
+
+ul.format_opentechnology_sections.editing .section li.activity .activityinstance {
+	padding:0 200px 0 0;
+}
+
+ul.format_opentechnology_sections.icon_elements_view.not-editing .section li.activity .actions,
+ul.format_opentechnology_sections.icon_elements_view.not-editing .section li.activity.otformat-modindent .instancename,
+ul.format_opentechnology_sections.icon_elements_view.not-editing .section .activity .availabilityinfo
+ul.format_opentechnology_sections.icon_elements_view.not-editing .section .activity .contentafterlink {
+	display: none;
+}
+
+ul.format_opentechnology_sections.icon_elements_view.not-editing li.activity .mod-indent-outer {
+	display: block;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+ul.format_opentechnology_sections.icon_elements_view.not-editing li.activity.otformat-modindent-0,
+ul.format_opentechnology_sections.icon_elements_view.not-editing li.activity:first-of-type:not(.otformat-modindent-0),
+ul.format_opentechnology_sections.icon_elements_view.not-editing li.activity:first-of-type:not(.otformat-modindent-0) ~ li.activity.otformat-modindent {
+	float: left;
+	padding: 0 4px 10px 0;
+}
+
+ul.format_opentechnology_sections.icon_elements_view.not-editing li.activity.otformat-modindent {
+    float: right;
+    text-align: right;
+    clear: none;
+	padding: 0 0 10px 4px;
+}
+
+ul.format_opentechnology_sections.icon_elements_view.not-editing li.activity *:not(.fp-icon):not(.fp-filename-icon):not(.instancename) {
+	padding: 0;
+	text-indent: 0;
+	margin: 0;
+}
+
+ul.format_opentechnology_sections.icon_elements_view.not-editing li.activity .instancename {
+	padding-left: 10px;
+} 
+
+
+/*****************************/
+/*всплывающие блоки элементов*/
+/*****************************/
+
+.format_opentechnology_mod_info {
+	position: absolute;
+	width: 400px;
+	max-height: 200px;
+	background: #FFF;
+	padding: 10px 20px;
+	border: 1px solid #828282;
+	box-sizing: border-box;
+	overflow: auto;
+	color: #828282;
+	font-weight: 400;
+	font-size:12px;
+}
+
+.format_opentechnology_mod_info strong {
+	color: #000;
+	font-weight: 400;
+	font-size: 12px;
+}
+
+.format_opentechnology_mod_info .instancename {
+	font-size: 14px;
+	max-width: 334px;
+}
+
+.format_opentechnology_mod_info .actions,
+.format_opentechnology_mod_info .instancename {
+	display: inline-block;
+}
+
+.format_opentechnology_mod_info .actions {
+	margin-right: 8px;
+	vertical-align: top;
+}
+
+.format_opentechnology_mod_info .availabilityinfo {
+	display: block;
+}
+
+.format_opentechnology_mod_info .actions + .availabilityinfo,
+.format_opentechnology_mod_info .instancename + .availabilityinfo {
+	margin-top: 20px;
+}
+
+.format_opentechnology_mod_info .contentafterlink {
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: 1px solid #eaeaea;
+	color: #828282;
+}
+
+
+.format_opentechnology_mod_info .ajaxworking {
+	position: absolute;
+	left: 2px;
+	top: 13px;
+    width: 16px;
+    height: 16px;
+    background: url([[pix:i/ajaxloader]]) no-repeat;
+}
+
+.format_opentechnology_mod_info .actions input {
+	vertical-align: middle;
+}
+
+/***********************/
+/* отображение значков */
+/***********************/
+
+ul.format_opentechnology_sections #section-0 .mod-bages-completion {
+	display: none!important;
+}
+
+ul.format_opentechnology_sections .mod-bages-completion .cm-not-using-badge .activatebadge {
+	opacity: 0.2;
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 2px;
+}
+
+ul.format_opentechnology_sections .mod-bages-completion .cm-using-badge .activatebadge {
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 2px;
+}
+
+ul.format_opentechnology_sections.not-editing li.activity .mod-bages-completion {
+	margin-right: 10px;
+}
+
+ul.format_opentechnology_sections.not-editing li.activity .mod-bages-completion img {
+	height: 24px;
+}
+
+ul.format_opentechnology_sections.icon_elements_view.not-editing li.activity .mod-bages-completion img {
+	height: 50px;
+}
+
+
+
+
+
+/*реализация колонок для секций и внутри секций*/
+
+ul.format_opentechnology_sections li.section.cf_ot_section_lastinrow,
+ul.format_opentechnology_sections li.section.cf_ot_section_width_100,
+ul.format_opentechnology_sections #section-0,
+ul.format_opentechnology_sections #course-format-tools,
+ul.format_opentechnology_sections .slideNumbers {
+	page-break-after: always;
+	break-after: always;
+}
+#page-wrapper ul.format_opentechnology_sections li.cf_ot_fakesection_forcebreak {
+	flex-basis: 100%;
+	width: 0;
+	height: 0;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	overflow: hidden;
+	display: inline-block;
+	visibility: hidden;
+}
+
+ul.format_opentechnology_sections li.section > .content > .sectionbody > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+ul.format_opentechnology_sections li.section > .content > .sectionbody > div .mod-indent-outer {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+ul.format_opentechnology_sections li.section > .content > .sectionbody > div > * {
+	flex-basis:100%;
+    flex-grow: 0;
+    flex-shrink: 1;
+}
+
+ul.format_opentechnology_sections li.section.cf_ot_section_width_25,
+ul.format_opentechnology_sections li.section.cf_ot_section_summary_width_25 > .content > .sectionbody > div > .summary {
+	width: 25%;
+	flex-basis: 25%;
+}
+ul.format_opentechnology_sections li.section.cf_ot_section_summary_width_25 > .content > .sectionbody > div > .summary + ul.section {
+	width: 75%;
+	flex-basis: 75%;
+}
+ul.format_opentechnology_sections li.section.cf_ot_section_width_33,
+ul.format_opentechnology_sections li.section.cf_ot_section_summary_width_33 > .content > .sectionbody > div > .summary {
+	width: 33.33%;
+	flex-basis: 33.33%;
+}
+ul.format_opentechnology_sections li.section.cf_ot_section_summary_width_33 > .content > .sectionbody > div > .summary + ul.section {
+	width: 66.67%;
+	flex-basis: 66.67%;
+}
+ul.format_opentechnology_sections li.section.cf_ot_section_width_50,
+ul.format_opentechnology_sections li.section.cf_ot_section_summary_width_50 > .content > .sectionbody > div > .summary {
+	width: 50%;
+	flex-basis: 50%;
+}
+ul.format_opentechnology_sections li.section.cf_ot_section_summary_width_50 > .content > .sectionbody > div > .summary + ul.section {
+	width: 50%;
+	flex-basis: 50%;
+}
+ul.format_opentechnology_sections li.section.cf_ot_section_width_66,
+ul.format_opentechnology_sections li.section.cf_ot_section_summary_width_66 > .content > .sectionbody > div > .summary {
+	width: 66.67%;
+	flex-basis: 66.67%;
+}
+ul.format_opentechnology_sections li.section.cf_ot_section_summary_width_66 > .content > .sectionbody > div > .summary + ul.section {
+	width: 33.33%;
+	flex-basis: 33.33%;
+}
+ul.format_opentechnology_sections li.section.cf_ot_section_width_75,
+ul.format_opentechnology_sections li.section.cf_ot_section_summary_width_75 > .content > .sectionbody > div > .summary {
+	width: 75%;
+	flex-basis: 75%;
+}
+ul.format_opentechnology_sections li.section.cf_ot_section_summary_width_75 > .content > .sectionbody > div > .summary + ul.section {
+	width: 25%;
+	flex-basis: 25%;
+}
+ul.format_opentechnology_sections li.section.cf_ot_section_width_100,
+ul.format_opentechnology_sections li.section.cf_ot_section_summary_width_100 > .content > .sectionbody > div > .summary {
+	width: 100%;
+	flex-basis: 100%;
+}
+
+
+
+/*карусель*/
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing .format_opentechnology_carousel_loader {
+	background: url([[pix:i/progressbar]]) 50% 50% no-repeat;
+	height: 20px;
+	flex-basis: 100%;
+    flex-grow: 0;
+    flex-shrink: 1;
+}
+
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing {
+	display: flex;
+	flex-direction:row;
+	justify-content:flex-start;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	  
+	position:relative;
+	overflow:hidden;
+}
+
+
+
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing > li.section:not(#section-0) {
+	display: none;
+	flex-basis:1;
+	flex-grow:0;
+	flex-shrink:1;
+}
+
+ul.format_opentechnology_sections.format_opentechnology_carousel.carousel-slide.not-editing > li.section.preparetonext:not(#section-0) {
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+}
+
+ul.format_opentechnology_sections.format_opentechnology_carousel.carousel-slide.not-editing > li.section.preparetoprev:not(#section-0) {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+}
+
+ul.format_opentechnology_sections.format_opentechnology_carousel.carousel-slide.not-editing > li.section.selected:not(#section-0) {
+	opacity:0;
+	display:block;
+	animation: slide-in 1s forwards;
+	-webkit-animation: slide-in 1s forwards;
+}
+
+ul.format_opentechnology_sections.format_opentechnology_carousel.carousel-slide.not-editing > li.section.unselected:not(#section-0) {
+	position:absolute;
+	display:block;
+	transform: translateX(0%);
+	opacity:1;
+	animation: fade-out 0.75s forwards;
+	-webkit-animation: fade-out 0.75s forwards;
+}
+
+@keyframes fade-out {
+	100% { opacity:0; }
+}
+@keyframes slide-in {
+	100% { transform: translateX(0%); opacity:1; }
+}
+/*кнопки переключения слайдов*/
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing #course-format-tools,
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing .slideNumbers {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    align-content: center;
+    line-height:14px;
+    font-size: 12px;
+}
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing #course-format-tools > div,
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing .slideNumbers > div {
+    cursor: pointer;
+}
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing #course-format-tools > div.slideNumber,
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing .slideNumbers > div.slideNumber {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    align-content: center;
+    
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: center;
+    
+    transition: all 0.5s;
+}
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing #course-format-tools > div.slideNumber > div,
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing .slideNumbers > div.slideNumber > div {
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: center;
+}
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing #course-format-tools > div.slideprev,
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing #course-format-tools > div.slidenext,
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing .slideNumbers > div.slideprev,
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing .slideNumbers > div.slidenext {
+    width: 0;
+    height: 0;
+    border: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    padding: 0;
+    margin: 0;
+}
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing #course-format-tools > div.slideprev,
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing .slideNumbers > div.slideprev {
+    border-right: 15px solid #C1C1C1;
+    margin-right: 5px;
+}
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing #course-format-tools > div.slidenext,
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing .slideNumbers > div.slidenext {
+    border-left: 15px solid #C1C1C1;
+    margin-left: 5px;
+}
+
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing #course-format-tools > div.slideNumber.selected,
+ul.format_opentechnology_sections.format_opentechnology_carousel.not-editing .slideNumbers > div.slideNumber.selected {
+	background: #CCC;
+}
+
+ul.format_opentechnology_sections .section .activity .activityinstance, 
+ul.format_opentechnology_sections .section .activity .activityinstance div {
+	display: inline;
+}

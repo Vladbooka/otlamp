@@ -1,0 +1,31 @@
+.ot_usersoverview_label {
+    display: inline-block;
+    line-height: 30px;
+    font-weight: bold;
+    vertical-align: top;
+    margin-right: 5px;
+}
+table.ot_usersoverview_table {
+	width: 100%;
+}
+table.ot_usersoverview_table td,
+table.ot_usersoverview_table th {
+	padding: 5px;
+	border: 1px solid black;
+	text-align: left;
+}
+table.ot_usersoverview_table td:first-child {
+	text-align: left !important;
+}
+body.path-admin-report-ot_usersoverview form input {
+	margin-bottom: 10px !important;
+}
+.report_ot_usersoverview_button {
+	margin-bottom: 10px !important;
+}
+.ot_usersoverview_form .btn {
+	margin: 0 0 0 10px!important;
+}
+.ot_usersoverview_downloader {
+	margin: 10px 0;
+}

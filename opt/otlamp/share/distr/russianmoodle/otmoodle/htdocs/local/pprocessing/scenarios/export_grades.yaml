@@ -1,0 +1,1054 @@
+events:
+  - '\local_learninghistory\event\cm_grade_history_updated'
+  - '\local_learninghistory\event\course_grade_history_updated'
+processors:
+  - desc: заполнение переменных, использующихся сценарием, основываясь на триггере
+    type: handler
+    code: set_container_values
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.event.eventname
+          operator: "IN"
+          value:
+            - '\local_learninghistory\event\cm_grade_history_updated'
+            - '\local_learninghistory\event\course_grade_history_updated'
+    params:
+      vars:
+        itemtype: $VAR.event.other.itemtype
+        itemmodule: $VAR.event.other.itemmodule
+        cmid: $VAR.event.other.cmid
+        userid: $VAR.event.relateduserid
+        courseid: $VAR.event.courseid
+        action: $VAR.event.other.action
+  - desc: заполнение переменных, использующихся сценарием, основываясь на триггере
+    type: handler
+    code: set_container_values
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.event.eventname
+          operator: "="
+          value: '\local_pprocessing\event\daily_executed'
+      - code: is_empty
+        params: {value: $VAR.llhcm}
+        config: {invert_result: 1}
+    params:
+      vars:
+        itemtype: "mod"
+        itemmodule: $VAR.llhcm.modname
+        cmid: $VAR.llhcm.cmid
+        userid: $VAR.llhcm.userid
+        courseid: $VAR.llhcm.courseid
+        action: "update"
+  - desc: заполнение переменных, использующихся сценарием, основываясь на триггере
+    type: handler
+    code: set_container_values
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.event.eventname
+          operator: "="
+          value: '\local_pprocessing\event\daily_executed'
+      - code: is_empty
+        params: {value: $VAR.llh}
+        config: {invert_result: 1}
+    params:
+      vars:
+        itemtype: "course"
+        itemmodule: null
+        cmid: null
+        userid: $VAR.llh.userid
+        courseid: $VAR.llh.courseid
+        action: "update"
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    params: {vars: [llh, llhm, llhcm]}
+    preconditions:
+      - code: is_right
+        params:
+          check: $ENV.config.grade_itemtype
+          operator: "NOT IN"
+          value: [$VAR.itemtype, "all"]
+  - desc: если согласно настройкам выгружать оценку не надо - останавливаем
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_right
+        params:
+          check: $ENV.config.grade_itemtype
+          operator: "NOT IN"
+          value: [$VAR.itemtype, "all"]
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    preconditions:
+      - code: is_right
+        params:
+          check: $ENV.config.grade_itemmodule
+          operator: "NOT IN"
+          value: [$VAR.itemmodule, "all"]
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: если согласно настройкам выгружать оценку не надо - останавливаем
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+      - code: is_right
+        params:
+          check: $ENV.config.grade_itemmodule
+          operator: "NOT IN"
+          value: [$VAR.itemmodule, "all"]
+  - type: handler
+    code: implode
+    params:
+      pieces:
+        - "export_grades__data_mapping_user"
+        - $ENV.config.foreignkey1
+      glue: "_"
+    result_variable: data_mapping_foreignkey1
+  - type: handler
+    code: get_plugin_config
+    params:
+      plugin: "local_pprocessing"
+      name: $VAR.data_mapping_foreignkey1
+    result_variable: data_mapping_foreignkey1
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    preconditions:
+      - code: is_empty
+        params: { value: $VAR.data_mapping_foreignkey1 }
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: если не задана часть составного ключа по пользователю - останавливаем сценарий
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_empty
+        params: { value: $VAR.data_mapping_foreignkey1 }
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+      - code: is_empty
+        params: { value: $ENV.config.foreignkey2 }
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: если не задана часть составного ключа по модулю курса - останавливаем сценарий
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+      - code: is_empty
+        params: { value: $ENV.config.foreignkey2 }
+    params: { description: "Не задана часть составного ключа по модулю курса" }
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+      - code: is_empty
+        params: { value: $ENV.config.data_mapping_llhcm_cmid }
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: если не выгружается часть составного ключа по модулю курса - останавливаем сценарий
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+      - code: is_empty
+        params: { value: $ENV.config.data_mapping_llhcm_cmid }
+    params:
+      { description: "Не выгружается часть составного ключа по модулю курса" }
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: { value: $ENV.config.foreignkey3 }
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: если не задана часть составного ключа по курсу - останавливаем сценарий
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: { value: $ENV.config.foreignkey3 }
+    params: { description: "Не задана часть составного ключа по курсу" }
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: { value: $ENV.config.data_mapping_llh_courseid }
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: если не выгружается часть составного ключа по курсу - останавливаем сценарий
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: { value: $ENV.config.data_mapping_llh_courseid }
+    params: { description: "Не выгружается часть составного ключа по курсу" }
+  - desc: если оценка за модуль, получаем сведения о модуле из истории обучения
+    type: handler
+    code: get_llh_module
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+    params: { cmid: $VAR.cmid }
+    result_variable: llhm
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    preconditions:
+      - code: is_false
+        params: { value: $VAR.llhm }
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: если оценка за модуль и данные не найдены - останавливаем сценарий
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_false
+        params: { value: $VAR.llhm }
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+    params: { description: "Не найден модуль в истории обучения" }
+  - desc: получение попытки прохождения модуля
+    type: handler
+    code: get_llh_cm
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+    params:
+      userid: $VAR.userid
+      cmid: $VAR.cmid
+      status: "active"
+    result_variable: llhcm
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+      - code: is_false
+        params: { value: $VAR.llhcm }
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: если не найдено - останавливаем сценарий
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+      - code: is_false
+        params: { value: $VAR.llhcm }
+    params: {description: "Не найдена попытка прохождения модуля в истории обучения"}
+  - desc: Получение подписки, в рамках обучения по которой получена оценка
+    type: handler
+    code: get_llh
+    preconditions:
+      - code: is_empty
+        params:
+          value: $VAR.llh
+    params:
+      courseid: $VAR.courseid
+      userid: $VAR.userid
+      status: "active"
+    result_variable: llh
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    preconditions:
+      - code: is_false
+        params: { value: $VAR.llh }
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: если не найдено - останавливаем сценарий
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_false
+        params: { value: $VAR.llh }
+    params: { description: "Не найдена подписка в истории обучения" }
+  - desc: получение отформатированной оценки за модуль для импорта (обновление оценки)
+    type: handler
+    code: get_formatted_grade
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+      - code: is_right
+        params:
+          check: $VAR.action
+          operator: "="
+          value: "update"
+    params:
+      value: $VAR.llhcm.finalgrade
+      cmorcourseid: $VAR.cmid
+      itemtype: $VAR.itemtype
+      displaytype: $ENV.config.grade_format
+      decimals: 5
+    result_variable: formattedgrade
+  - desc: получение отформатированной оценки за модуль для импорта (удаление оценки)
+    type: handler
+    code: get_formatted_grade
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+      - code: is_right
+        params:
+          check: $VAR.action
+          operator: "="
+          value: "delete"
+    params:
+      value: null
+      cmorcourseid: $VAR.cmid
+      itemtype: $VAR.itemtype
+      displaytype: $ENV.config.grade_format
+      decimals: 5
+    result_variable: formattedgrade
+  - desc: получение отформатированной оценки за курс для импорта (обновление оценки)
+    type: handler
+    code: get_formatted_grade
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_right
+        params:
+          check: $VAR.action
+          operator: "="
+          value: "update"
+    params:
+      value: $VAR.llh.finalgrade
+      cmorcourseid: $VAR.courseid
+      itemtype: $VAR.itemtype
+      displaytype: $ENV.config.grade_format
+      decimals: 5
+    result_variable: formattedgrade
+  - desc: получение отформатированной оценки за курс для импорта (удаление оценки)
+    type: handler
+    code: get_formatted_grade
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_right
+        params:
+          check: $VAR.action
+          operator: "="
+          value: "delete"
+    params:
+      value: null
+      cmorcourseid: $VAR.courseid
+      itemtype: $VAR.itemtype
+      displaytype: $ENV.config.grade_format
+      decimals: 5
+    result_variable: formattedgrade
+  - desc: получение отформатированной даты оценки за модуль для импорта
+    type: handler
+    code: get_formatted_time
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+    params:
+      time: $VAR.llhcm.timemodified
+      format: $ENV.config.date_format
+    result_variable: formatteddate
+  - desc: получение отформатированной даты оценки за курс для импорта
+    type: handler
+    code: get_formatted_time
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+    params:
+      time: $VAR.llh.lastupdate
+      format: $ENV.config.date_format
+    result_variable: formatteddate
+  - desc: получение пользователя
+    type: handler
+    code: get_user
+    params: { userid: $VAR.userid }
+    result_variable: user
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    preconditions:
+      - code: is_connected
+        params: {connection: $ENV.config.connection}
+        config: {invert_result: 1}
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: нет коннекта с базой данных - останавливаем сценарий
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_connected
+        params: {connection: $ENV.config.connection}
+        config: {invert_result: 1}
+  - type: handler
+    code: implode
+    params:
+      pieces: [user, $ENV.config.foreignkey1]
+      glue:
+        source_type: "static"
+        source_value: "."
+    result_variable: foreignkey1_key
+  - type: handler
+    code: get_container_value
+    params:
+      varname: $VAR.foreignkey1_key #$VAR.user.idnumber
+    result_variable: foreignkey1
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    preconditions:
+      - code: is_empty
+        params: {value: $VAR.foreignkey1}
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: отсустствует часть составного ключа по полю профиля пользователя - останавливаем сценарий
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_empty
+        params: {value: $VAR.foreignkey1}
+  - type: handler
+    code: apply_regex
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+    params:
+      value: $ENV.config.foreignkey2
+      pattern: "/([^_]+)?(?:_)+?(.+)?/"
+      implode_glue: "."
+      flag: 2
+    result_variable: foreignkey2
+  - type: handler
+    code: apply_regex
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+    params:
+      value: $ENV.config.foreignkey3
+      pattern: "/([^_]+)?(?:_)+?(.+)?/"
+      implode_glue: "."
+      flag: 2
+    result_variable: foreignkey2
+  - type: handler
+    code: get_container_value
+    params: {varname: $VAR.foreignkey2} #$VAR.llhcm.cmid || $VAR.llh.courseid
+    result_variable: foreignkey2
+  - desc: отсустствует часть составного ключа по модулю курса или курсу - останавливаем сценарий
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_empty
+        params: {value: $VAR.foreignkey2}
+  - desc: ищем запись с оценкой за модуль во внешней базе данных
+    type: handler
+    code: db_get_record
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+    params:
+      connection: $ENV.config.connection
+      table_name: $ENV.config.table
+      conditions:
+        AND:
+          - field: $ENV.config.primarykey1
+            operator: "="
+            value: $VAR.foreignkey1
+          - field: $ENV.config.primarykey2
+            operator: "="
+            value: $VAR.foreignkey2
+    result_variable: dbrow
+  - desc: если отформатированная оценка пустая, а запись в базе есть - удаляем запись (например, удалили попытку)
+    type: handler
+    code: db_delete_records
+    preconditions:
+      - code: is_empty
+        params: {value: $VAR.formattedgrade}
+      - code: is_empty
+        params: {value: $VAR.dbrow}
+        config: {invert_result: 1}
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+    params:
+      connection: $ENV.config.connection
+      table_name: $ENV.config.table
+      conditions:
+        AND:
+          - field: $ENV.config.primarykey1
+            operator: "="
+            value: $VAR.foreignkey1
+          - field: $ENV.config.primarykey2
+            operator: "="
+            value: $VAR.foreignkey2
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    preconditions:
+      - code: is_empty
+        params: {value: $VAR.formattedgrade}
+      - code: is_empty
+        params: {value: $VAR.dbrow}
+        config: {invert_result: 1}
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: удалили запись во внешнем источнике - останавливаем сценарий
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_empty
+        params: {value: $VAR.formattedgrade}
+      - code: is_empty
+        params: {value: $VAR.dbrow}
+        config: {invert_result: 1}
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+  - desc: ищем запись с оценкой за курс во внешней базе данных (если не выгружается идентификатор модуля курса)
+    type: handler
+    code: db_get_record
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: {value: $ENV.config.data_mapping_llhcm_cmid}
+    params:
+      connection: $ENV.config.connection
+      table_name: $ENV.config.table
+      conditions:
+        AND:
+          - field: $ENV.config.primarykey1
+            operator: "="
+            value: $VAR.foreignkey1
+          - field: $ENV.config.primarykey3
+            operator: "="
+            value: $VAR.foreignkey2
+    result_variable: dbrow
+  - desc: если отформатированная оценка пустая, а запись в базе есть - удаляем запись (например, удалили попытку)
+    type: handler
+    code: db_delete_records
+    preconditions:
+      - code: is_empty
+        params: {value: $VAR.formattedgrade}
+      - code: is_empty
+        params: {value: $VAR.dbrow}
+        config: {invert_result: 1}
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: {value: $ENV.config.data_mapping_llhcm_cmid}
+    params:
+      connection: $ENV.config.connection
+      table_name: $ENV.config.table
+      conditions:
+        AND:
+          - field: $ENV.config.primarykey1
+            operator: "="
+            value: $VAR.foreignkey1
+          - field: $ENV.config.primarykey3
+            operator: "="
+            value: $VAR.foreignkey2
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    preconditions:
+      - code: is_empty
+        params: {value: $VAR.formattedgrade}
+      - code: is_empty
+        params: {value: $VAR.dbrow}
+        config: {invert_result: 1}
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: {value: $ENV.config.data_mapping_llhcm_cmid}
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: удалили запись во внешнем источнике - останавливаем сценарий
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_empty
+        params: {value: $VAR.formattedgrade}
+      - code: is_empty
+        params: {value: $VAR.dbrow}
+        config: {invert_result: 1}
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: {value: $ENV.config.data_mapping_llhcm_cmid}
+  - desc: ищем запись с оценкой за курс во внешней базе данных (если выгружается идентификатор модуля курса, то оценка за курс будет там, где идентификатор модуля курса null)
+    type: handler
+    code: db_get_record
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: {value: $ENV.config.data_mapping_llhcm_cmid}
+        config: {invert_result: 1}
+    params:
+      connection: $ENV.config.connection
+      table_name: $ENV.config.table
+      conditions:
+        AND:
+          - field: $ENV.config.primarykey1
+            operator: "="
+            value: $VAR.foreignkey1
+          - field: $ENV.config.primarykey3
+            operator: "="
+            value: $VAR.foreignkey2
+          - field: $ENV.config.data_mapping_llhcm_cmid
+            operator: "IS NULL"
+            value: ""
+    result_variable: dbrow
+  - desc: если отформатированная оценка пустая, а запись в базе есть - удаляем запись (например, удалили попытку)
+    type: handler
+    code: db_delete_records
+    preconditions:
+      - code: is_empty
+        params: {value: $VAR.formattedgrade}
+      - code: is_empty
+        params: {value: $VAR.dbrow}
+        config: {invert_result: 1}
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: {value: $ENV.config.data_mapping_llhcm_cmid}
+        config: {invert_result: 1}
+    params:
+      connection: $ENV.config.connection
+      table_name: $ENV.config.table
+      conditions:
+        AND:
+          - field: $ENV.config.primarykey1
+            operator: "="
+            value: $VAR.foreignkey1
+          - field: $ENV.config.primarykey3
+            operator: "="
+            value: $VAR.foreignkey2
+          - field: $ENV.config.data_mapping_llhcm_cmid
+            operator: "IS NULL"
+            value: ""
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    preconditions:
+      - code: is_empty
+        params: {value: $VAR.formattedgrade}
+      - code: is_empty
+        params: {value: $VAR.dbrow}
+        config: {invert_result: 1}
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: {value: $ENV.config.data_mapping_llhcm_cmid}
+        config: {invert_result: 1}
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: удалили запись во внешнем источнике - останавливаем сценарий
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_empty
+        params: {value: $VAR.formattedgrade}
+      - code: is_empty
+        params: {value: $VAR.dbrow}
+        config: {invert_result: 1}
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: {value: $ENV.config.data_mapping_llhcm_cmid}
+        config: {invert_result: 1}
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+      - code: is_empty
+        params: { value: $VAR.llhcm.finalgrade }
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: если нет оценки за модуль и мы не удаляли запись во внешнем источнике - останавливаем сценарий
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+      - code: is_empty
+        params: { value: $VAR.llhcm.finalgrade }
+    params: {description: "Нет оценки за попытку прохождения модуля в истории обучения"}
+  - desc: очищаем переменные контейнера, т.к. выполнены условия на остановку сценария
+    type: handler
+    code: clear_container_values
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: { value: $VAR.llh.finalgrade }
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: если нет оценки за курс - останавливаем сценарий
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: { value: $VAR.llh.finalgrade }
+    params: { description: "Нет оценки за курс в истории обучения" }
+  - type: handler
+    code: get_plugin_config
+    params: {plugin: "local_pprocessing"}
+    result_variable: local_pprocessing_config
+  - desc: получаем список полей, которые нужно выгрузить во внешнюю базу данных согласно настройкам
+    type: handler
+    code: array_filter
+    params:
+      array: $VAR.local_pprocessing_config
+      key_cond_operator: "LIKE"
+      key_cond_value: "export_grades__data_mapping_"
+      value_cond_operator: "<>"
+      value_cond_value: "0"
+    result_variable: mapping_data
+  - type: handler
+    code: array_flip
+    params: {array: $VAR.mapping_data}
+    result_variable: mapping_data
+  - type: handler
+    code: array_map
+    params:
+      array: $VAR.mapping_data
+      callback: "apply_regex"
+      itemparamname: "value"
+      callbackparams:
+        pattern: "/export_grades__data_mapping_([^_]*)?(?:_)?(.*)?/"
+        implode_glue: "."
+        flag: 2
+    result_variable: mapping_data
+  - type: handler
+    code: array_map
+    params:
+      array: $VAR.mapping_data
+      callback: "apply_regex"
+      itemparamname: "value"
+      callbackparams:
+        pattern: '/(user)\.(profile)(?:_)?(.*)?/'
+        implode_glue: "."
+        flag: 2
+    result_variable: mapping_data
+  - desc: заполняем массив выгружаемых полей данными из основных переменных контейнера
+    type: handler
+    code: array_map
+    params:
+      array: $VAR.mapping_data
+      callback: get_container_value
+      itemparamname: varname
+    result_variable: mapping_data
+  - desc: получим поле для выгрузки оценки за модуль курса
+    type: handler
+    code: set_container_values
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+    params: 
+      vars: {gradefield: $ENV.config.data_mapping_llhcm_finalgrade} #CmResult
+  - desc: получим поле для выгрузки оценки за курс
+    type: handler
+    code: set_container_values
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+    params:
+      vars: {gradefield: $ENV.config.data_mapping_llh_finalgrade} #CourseResult
+  - desc: получим поле для выгрузки даты оценки за модуль курса
+    type: handler
+    code: set_container_values
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+    params:
+      vars:
+        {datefield: $ENV.config.data_mapping_llhcm_timemodified} #Date
+  - desc: получим поле для выгрузки даты оценки за курс
+    type: handler
+    code: set_container_values
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+    params:
+      vars: {datefield: $ENV.config.data_mapping_llh_lastupdate} #Date
+  - type: handler
+    code: set_container_values
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+    params:
+      vars: {datefield: $ENV.config.data_mapping_llh_lastupdate} #Date
+  - type: handler
+    code: implode
+    params:
+      pieces: [dbrow, $VAR.gradefield]
+      glue: "."
+    result_variable: dbgrade #dbrow.Result
+  - type: handler
+    code: get_container_value
+    params: {varname: $VAR.dbgrade}
+    result_variable: dbgrade
+  - desc: заменим значения оценки и времени на значения в нужных форматах согласно настройкам
+    type: handler
+    code: array_replace
+    params:
+      array: $VAR.mapping_data
+      replacements:
+        $VAR.gradefield: $VAR.formattedgrade
+        $VAR.datefield: $VAR.formatteddate
+    result_variable: mapping_data
+  - desc: если выгружаем оценку за курс, убираем cmid из массива данных для экспорта
+    type: handler
+    code: unset_array_key
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: {value: $ENV.config.data_mapping_llhcm_cmid}
+        config: {invert_result: 1}
+    params:
+      array: $VAR.mapping_data
+      key: $ENV.config.data_mapping_llhcm_cmid
+    result_variable: mapping_data
+  - desc: очищаем переменные контейнера, которые больше не нужны (чтобы они не использовались в следующей итерации цикла)
+    type: handler
+    code: clear_container_values
+    params: {vars: [llh, llhm, llhcm]}
+  - desc: вставить запись, если во внешней БД еще не было
+    type: handler
+    code: db_insert_record
+    preconditions:
+      - code: is_empty
+        params: {value: $VAR.dbrow}
+      - code: is_empty
+        params: {value: $VAR.formattedgrade}
+        config: {invert_result: 1}
+    params:
+      connection: $ENV.config.connection
+      table_name: $ENV.config.table
+      field_values: $VAR.mapping_data
+  - desc: остановить сценарий, если записи во внешней БД не было (а новую запись уже вставили на предыдущем шаге)
+    type: handler
+    code: stop_scenario_execution
+    preconditions:
+      - code: is_empty
+        params: {value: $VAR.dbrow}
+  - desc: здесь мы можем оказаться только если запись была и оценка изменилась. Обновим запись во внешней БД
+    type: handler
+    code: db_update_records
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "mod"
+    params:
+      values: $VAR.mapping_data
+      connection: $ENV.config.connection
+      table_name: $ENV.config.table
+      conditions:
+        AND:
+          - field: $ENV.config.primarykey1
+            operator: "="
+            value: $VAR.foreignkey1
+          - field: $ENV.config.primarykey2
+            operator: "="
+            value: $VAR.foreignkey2
+  - desc: здесь мы можем оказаться только если запись была и оценка изменилась. Обновим запись во внешней БД
+    type: handler
+    code: db_update_records
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: {value: $ENV.config.data_mapping_llhcm_cmid}
+    params:
+      values: $VAR.mapping_data
+      connection: $ENV.config.connection
+      table_name: $ENV.config.table
+      conditions:
+        AND:
+          - field: $ENV.config.primarykey1
+            operator: "="
+            value: $VAR.foreignkey1
+          - field: $ENV.config.primarykey3
+            operator: "="
+            value: $VAR.foreignkey2
+  - desc: здесь мы можем оказаться только если запись была и оценка изменилась. Обновим запись во внешней БД
+    type: handler
+    code: db_update_records
+    preconditions:
+      - code: is_right
+        params:
+          check: $VAR.itemtype
+          operator: "="
+          value: "course"
+      - code: is_empty
+        params: {value: $ENV.config.data_mapping_llhcm_cmid}
+        config: {invert_result: 1}
+    params:
+      values: $VAR.mapping_data
+      connection: $ENV.config.connection
+      table_name: $ENV.config.table
+      conditions:
+        AND:
+          - field: $ENV.config.primarykey1
+            operator: "="
+            value: $VAR.foreignkey1
+          - field: $ENV.config.primarykey3
+            operator: "="
+            value: $VAR.foreignkey2
+          - field: $ENV.config.data_mapping_llhcm_cmid
+            operator: "IS NULL"
+            value: ""

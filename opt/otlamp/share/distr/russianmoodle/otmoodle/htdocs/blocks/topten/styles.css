@@ -1,0 +1,687 @@
+section.block_topten table.generaltable.topten-table td .block_xp-level {
+    background: url([[pix:block_xp|10]]) no-repeat;
+    background-size: 100px 100px;
+    color: #fff;
+    font-size: 4em;
+    height: 100px;
+    line-height: 110px;
+    margin: 10px auto;
+    text-align: center;
+    width: 100px;
+
+    cursor: default;
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+}
+section.block_topten table.generaltable.topten-table td .block_xp-level.small {
+    font-size: 18px;
+    background-size: cover;
+	display: inline-block;
+    margin: 0 !important;
+    width: 64px;
+    height: 64px;
+    line-height: 64px;
+}
+section.block_topten table.generaltable.topten-table td .block_xp-level.small.level-badge > img {
+	width: 64px;
+    height: 64px;
+}
+section.block_topten table.generaltable.topten-table td .block_xp-level.level-badge img {
+    width: 100px;
+}
+
+section.block_topten table.generaltable.topten-table td .block_xp-level.level-1 {
+    background-image: url([[pix:block_xp|1]]);
+}
+section.block_topten table.generaltable.topten-table td .block_xp-level.level-2 {
+    background-image: url([[pix:block_xp|2]]);
+}
+section.block_topten table.generaltable.topten-table td.block_xp-level.level-3 {
+    background-image: url([[pix:block_xp|3]]);
+}
+section.block_topten table.generaltable.topten-table td .block_xp-level.level-4 {
+    background-image: url([[pix:block_xp|4]]);
+}
+section.block_topten table.generaltable.topten-table td .block_xp-level.level-5 {
+    background-image: url([[pix:block_xp|5]]);
+}
+section.block_topten table.generaltable.topten-table td .block_xp-level.level-6 {
+    background-image: url([[pix:block_xp|6]]);
+}
+section.block_topten table.generaltable.topten-table td .block_xp-level.level-7 {
+    background-image: url([[pix:block_xp|7]]);
+}
+section.block_topten table.generaltable.topten-table td .block_xp-level.level-8 {
+    background-image: url([[pix:block_xp|8]]);
+}
+section.block_topten table.generaltable.topten-table td .block_xp-level.level-9 {
+    background-image: url([[pix:block_xp|9]]);
+}
+section.block_topten table.generaltable.topten-table td .block_xp-level.level-badge,
+section.block_topten table.generaltable.topten-table td .level-badge.small {
+    background: none;
+    height: auto;
+    width: auto;
+
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+}
+
+/* 
+section.block_topten div.content {
+    overflow: auto;
+} */
+section.block_topten table.generaltable.topten-table {
+	margin-top: 15px;
+}
+section.block_topten table.generaltable.topten-table th {
+    text-align: left !important;
+}
+section.block_topten table.generaltable.topten-table td:first-child {
+    font-size: 14px;
+	padding-left: 25px;
+	font-weight: 800;
+	color: #4e4e4e;
+}
+section.block_topten table.generaltable.topten-table tr:nth-of-type(1) td:first-child {
+    color: #e40000;
+}
+section.block_topten table.generaltable.topten-table tr:nth-of-type(2) td:first-child {
+    color: #ff6c00;
+}
+section.block_topten table.generaltable.topten-table tr:nth-of-type(3) td:first-child {
+    color: #ff9b00;
+}
+
+section.block_topten table.generaltable.topten-table tbody>tr:hover>td.lastcol,
+section.block_topten table.generaltable.topten-table tbody>tr:nth-of-type(odd):hover>td.lastcol {
+    background-color: #fff;
+    background-image: linear-gradient(90deg, #f5f5f5 0%, #f5f5f5 25%, rgba(255,255,255,0) 100%);
+}
+section.block_topten table.generaltable.topten-table tbody>tr:nth-of-type(odd)>td.lastcol {
+    background-color: #fff;
+    background-image: linear-gradient(90deg, #f9f9f9 0%, #f9f9f9 25%, rgba(255,255,255,0) 100%);
+}
+
+section.block_topten table.generaltable.topten-table th > span.block-topten-header {
+    text-align: left !important;
+    padding: 2px 4px;
+	color: #fff;
+	background: #9a9a9a;
+	font-size: 14px;
+	font-weight: 300;
+}
+section.block_topten table.generaltable.topten-table td {
+    border-top: 0;
+    vertical-align: middle;
+}
+section.block_topten table.generaltable.topten-table th:first-child,
+section.block_topten table.generaltable.topten-table td:first-child {
+    width: 1px;
+    white-space: nowrap;
+}
+section.block_topten table.generaltable.topten-table th,
+section.block_topten table.generaltable.topten-table td:first-child + td {
+	text-align: center !important;
+	width: 15%;
+}
+
+section.block_topten table.generaltable.topten-table td {
+    border-top: 0;
+    vertical-align: middle;
+}
+section.block_topten table.generaltable.topten-table td .block-toptent-crop {
+    text-align: left !important;
+}
+section.block_topten table.generaltable.topten-table td .block-toptent-crop.block-toptent-crop {
+	display: inline-block;
+    width: 64px;
+    overflow: hidden;
+}
+section.block_topten .content {
+	margin-top: 0 !important;
+}
+section.block_topten .content > h2 {
+	margin: 0;
+}
+section.block_topten table.generaltable.topten-table div.btn.table-styled-btn {
+    opacity: 0.8;
+    background-color: #470505e6 !important;
+    font-weight: 800 !important;
+    padding: 6px 8px !important;
+    min-width: 32px !important;
+    cursor: default !important;
+}
+section.block_topten table.generaltable.topten-table img.topten-avatar {
+    margin-right: 5px;
+}
+section.block_topten div.block-topten-header-info {
+    margin-top: 16px;
+	font-size: 16px;
+}
+
+svg.block-topten-pie {
+   width: 64px;
+   height: 64px;
+   transform: rotate(-90deg);
+   border-radius: 50%;
+   vertical-align: middle;
+}
+svg.block-topten-pie > circle.block-topten-pie-fill {
+    fill: #eee;
+    stroke: #87d400;
+    stroke-width: 32;
+}
+svg.block-topten-pie > circle.block-topten-pie-center {
+    fill: #fff;
+}
+svg.block-topten-pie > circle.block-topten-pie-fon {
+    fill: #f4f4f4;
+}
+svg.block-topten-pie > text.block-topten-pie-num {
+    fill: #6ea002;
+    text-anchor: middle;
+    font-size:8px;
+    font-weight:400;
+}
+
+.moodle-dialogue-confirm .confirmation-dialogue .search-form-container {
+	min-height: 10px;
+	width: 100%
+}
+.moodle-dialogue-confirm .confirmation-dialogue .search-form-container.loading {
+	pointer-events: none;
+	background-image: repeating-linear-gradient(
+		-45deg,
+	    #F5F5F5,
+	    #F5F5F5 11px,
+	    #FFF 10px,
+	    #FFF 20px
+	);
+	background-size: 28px 28px;
+	animation: loading .5s linear infinite;
+	border: 1px solid #CCC;
+}
+@keyframes loading {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 28px 0;
+  }
+}
+.moodle-dialogue-confirm .confirmation-dialogue .crw_formsearch input {
+	text-align: inherit;
+}
+.moodle-dialogue-confirm .moodle-dialogue-top_ten-courses_search .confirmation-dialogue .confirmation-buttons.form-inline {
+	display: block !important;
+}
+.moodle-dialogue-base .crw_formsearch .hidden {
+	display: inherit;
+}
+.moodle-dialogue-top_ten-courses_search {
+	left: 5vw;
+	top: 5vw;
+	right: 5vw;
+	bottom: auto;
+	position: fixed;
+	max-height: calc(100vh - 10vw);
+	min-height: 150px;
+}
+.moodle-dialogue-top_ten-courses_search .moodle-dialogue-bd {
+	overflow: auto;
+	max-height: calc(100vh - 10vw - 50px);
+	box-sizing: border-box;
+	min-height: 100px;
+}
+.moodle-dialogue-confirm .confirmation-dialogue .crw_formsearch input {
+	min-width: auto;
+}
+.moodle-dialogue-confirm .confirmation-dialogue #crw_formsearch #id_topblock_submitbutton,
+.moodle-dialogue-confirm .confirmation-dialogue #crw_formsearch #id_topblock_morebutton,
+.moodle-dialogue-confirm .confirmation-dialogue #crw_formsearch.fullsearch #fgroup_id_topblock .fgroup > #id_topblock_morelink,
+.moodle-dialogue-confirm .confirmation-dialogue #crw_formsearch #id_submitbuttonmore {
+	display: none;
+}
+.moodle-dialogue-confirm .confirmation-dialogue #crw_formsearch #id_topblock_name {
+	border-right-width: 1px;
+	margin-right: 10px;
+	padding-right: 5px;
+}
+
+.block_topten.courses_search .content,
+#block-region-side-post .block_topten.courses_search .content,
+#block-region-side-pre .block_topten.courses_search .content,
+#block-region-side-content-top .block_topten.courses_search .content,
+#block-region-side-content-bot .block_topten.courses_search .content,
+#block-region-content .block_topten.courses_search .content {
+	padding: 1% 0;
+	box-sizing: border-box;
+	overflow: visible;
+}
+
+
+/* Для обьектов */
+
+.block_topten .object_user_base, 
+.block_topten .object_user_universal{
+	padding: 20px;
+	background: #FFFFFF;
+    color: #333333;
+}
+.block_topten .object_user_base_elements, 
+.block_topten .object_user_universal_elements{
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+    width: 100%;
+}   
+
+.block_topten .object_user_base_element, 
+.block_topten .object_user_universal_element{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	width: calc(100%/3 - 10px);
+    justify-content: flex-start;
+    padding-bottom: 18px;
+    padding-top: 18px;
+    border-bottom: 1px solid #E6E6E6;
+}
+
+.block_topten .object_user_base_elements::after, 
+.block_topten .object_user_universal_elements::after{
+	content: "";
+    flex-basis: calc(100%/3 - 10px);
+}
+
+.block_topten .object_user_base_img, 
+.block_topten .object_user_universal_img{
+	margin-right: 10px;
+	width: 150px;
+    flex-shrink: 0;
+}
+
+.block_topten .object_user_base_info, 
+.block_topten .object_user_universal_info {
+	font-size: 13px;
+	width: calc(100% - 160px);
+}
+
+
+.block_topten .object_user_base_img > a, 
+.block_topten .object_user_universal_img > a{
+	display: block;
+	max-width: 150px;
+}
+
+.block_topten .object_user_base_img > a > img, 
+.block_topten .object_user_universal_img > a > img{
+	width: 100%;
+	height: auto;
+}
+
+.block_topten .object_user_base_username,
+.block_topten .object_user_universal_username {
+	font-size: 130%;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 16px
+}
+.block_topten .object_user_base_field,
+.block_topten .object_user_universal_field {
+	font-size: 100%;
+}
+
+.block_topten .object_user_base_info > div + div,
+.block_topten .object_user_universal_info > div + div {
+	margin-top: 5px;
+	display: flex;
+    align-items: flex-start;
+}
+
+.block_topten .object_user_universal_field_value {
+	margin-left: 5px;
+	word-break: break-word;
+}
+
+.block_topten .object_user_universal h1, 
+.block_topten .object_user_base h1{
+	margin-bottom: 30px;
+	margin-top: 15px;
+	font-size: 32px;
+	color: #333333;
+	font-weight: 800;
+	letter-spacing: -0.5px;
+}
+
+#block-region-side-content-top .block_topten .object_user_universal_element, 
+#block-region-side-content-top .block_topten .object_user_base_element{
+	margin-top: 10px;
+	justify-content: center;
+}
+
+.block_topten .object_user_universal_field_name_holder{
+	flex-shrink: 0;
+	width: 33%;
+	margin-left: 5px;
+	position: relative;
+	min-height: 20px;
+	background: linear-gradient(180deg, rgba(0,0,0,0) 0, rgba(0,0,0,0) 10px, #DADADA 10px, #DADADA 11px, rgba(0,0,0,0) 11px, rgba(0,0,0,0) 100%);
+}
+.block_topten .object_user_universal_field_name_holder::before {
+   display: block;
+   content: '';
+   height: 5px;
+   position: absolute;
+   top: 8px;
+   right: 0;
+   width: 1px;
+   background-color: #DADADA;
+}
+body.used-region-side-post #block-region-side-content-top .block_topten .object_user_base_element, 
+body.used-region-side-post #block-region-side-content-top .block_topten .object_user_universal_element,
+body.used-region-side-post #block-region-side-content-bot .block_topten .object_user_base_element, 
+body.used-region-side-post #block-region-side-content-bot .block_topten .object_user_universal_element,
+body.used-region-side-pre #block-region-side-content-top .block_topten .object_user_base_element, 
+body.used-region-side-pre #block-region-side-content-top .block_topten .object_user_universal_element,
+body.used-region-side-pre #block-region-side-content-bot .block_topten .object_user_base_element, 
+body.used-region-side-pre #block-region-side-content-bot .block_topten .object_user_universal_element{
+	width: calc(100%/2 - 10px);
+	justify-content: center;
+}
+#block-region-side-content-top .block_topten .object_user_base_info, 
+#block-region-side-content-top .block_topten .object_user_universal_info,
+#block-region-side-content-bot .block_topten .object_user_base_info, 
+#block-region-side-content-bot .block_topten .object_user_universal_info{
+	width: calc(78% - 10px);
+}
+#block-region-side-content-top .block_topten .object_user_base_img, 
+#block-region-side-content-top .block_topten .object_user_universal_img,
+#block-region-side-content-bot .block_topten .object_user_base_img, 
+#block-region-side-content-bot .block_topten .object_user_universal_img{
+	width: 22%; 
+}
+
+#block-region-side-pre .block_topten .object_user_base_info, 
+#block-region-side-pre .block_topten .object_user_universal_info,
+#block-region-side-post .block_topten .object_user_base_info, 
+#block-region-side-post .block_topten .object_user_universal_info{
+	width: calc(78% - 10px);
+}
+#block-region-side-pre .block_topten .object_user_base_img, 
+#block-region-side-pre .block_topten .object_user_universal_img,
+#block-region-side-post .block_topten .object_user_base_img, 
+#block-region-side-post .block_topten .object_user_universal_img{
+	width: 22%; 
+}
+
+@media only screen and (max-width: 1300px) {
+	.block_topten .object_user_base_img, 
+	.block_topten .object_user_universal_img{
+		width: 30%; 
+	}
+	.block_topten .object_user_base_info, 
+	.block_topten .object_user_universal_info{
+		width: calc(70% - 10px);
+		min-width: auto;	
+	}
+	#block-region-side-pre .block_topten .object_user_base_info, 
+	#block-region-side-pre .block_topten .object_user_universal_info,
+	#block-region-side-post .block_topten .object_user_base_info, 
+	#block-region-side-post .block_topten .object_user_universal_info{
+		width: calc(100% - 64px);
+	}
+	#block-region-side-pre .block_topten .object_user_base_img,
+	#block-region-side-pre .block_topten .object_user_universal_img,
+	#block-region-side-post .block_topten .object_user_base_img, 
+	#block-region-side-post .block_topten .object_user_universal_img{
+		width: 54px; 
+	}
+	#block-region-side-pre .block_topten .object_user_base_info>div + div, 
+	#block-region-side-pre .block_topten .object_user_universal_info>div + div,
+	#block-region-side-post .block_topten .object_user_base_info>div + div, 
+	#block-region-side-post .block_topten .object_user_universal_info>div + div {
+		margin-left: -64px;
+	}
+	#block-region-side-pre .block_topten .object_user_base_username, 
+	#block-region-side-pre .block_topten .object_user_universal_username,
+	#block-region-side-post .block_topten .object_user_base_username, 
+	#block-region-side-post .block_topten .object_user_universal_username{
+		min-height: 50px;
+	}
+}
+
+@media only screen and (max-width: 1024px) {
+	
+	.block_topten .object_user_base_elements, 
+	.block_topten .object_user_universal_elements{
+		justify-content: space-around;
+	}
+	
+	.block_topten .object_user_base_element, 
+	.block_topten .object_user_universal_element{
+	    width: calc(100%/2 - 10px);
+	    justify-content: center;
+	}
+	.block_topten .object_user_base_elements::after, 
+	.block_topten .object_user_universal_elements::after{
+    flex-basis: calc(100%/2 - 10px);
+	}
+
+	.block_topten .object_user_base_info > div + div,
+	.block_topten .object_user_universal_info > div + div {
+		margin-top: 10px;
+	}
+	.block_topten .object_user_base_info, 
+	.block_topten .object_user_universal_info{
+		width: calc(78% - 10px);
+		min-width: auto;	
+	}
+	
+	.block_topten .object_user_base_img, 
+	.block_topten .object_user_universal_img{
+		width: 22%; 
+	}
+	body.used-region-side-post #block-region-side-content-top .block_topten .object_user_base_element, 
+	body.used-region-side-post #block-region-side-content-top .block_topten .object_user_universal_element,
+	body.used-region-side-post #block-region-side-content-bot .block_topten .object_user_base_element, 
+	body.used-region-side-post #block-region-side-content-bot .block_topten .object_user_universal_element,
+	body.used-region-side-pre #block-region-side-content-top .block_topten .object_user_base_element, 
+	body.used-region-side-pre #block-region-side-content-top .block_topten .object_user_universal_element,
+	body.used-region-side-pre #block-region-side-content-bot .block_topten .object_user_base_element, 
+	body.used-region-side-pre #block-region-side-content-bot .block_topten .object_user_universal_element{
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width : 768px) {
+	.block_topten .object_user_base_element, 
+	.block_topten .object_user_universal_element {
+    	width: calc(100%/2 - 30px);
+    	justify-content: center;
+	}
+    .block_topten_caption {
+		padding-top: 2%!important;
+		padding-bottom: 2%!important;
+		left: 2%!important;
+		width: 96%!important;
+		max-width: 96%!important;
+		align-items: center!important;
+		text-align: left!important;
+    }
+    .block_topten_captiontop {
+		align-items: center!important;
+		width: 100%;
+    }
+    .block_topten_title,
+    .block_topten_description,
+    .block_topten_summary {
+    	width: 100%;
+    }
+    .block_topten .object_user_base_info, 
+	.block_topten .object_user_universal_info{
+		width: calc(78% - 10px);	
+	}
+	
+	.block_topten .object_user_base_img, 
+	.block_topten .object_user_universal_img{
+		width: 22%; 
+	}
+	#block-region-side-content-top .block_topten .object_user_base_element, 
+	#block-region-side-content-top .block_topten .object_user_universal_element,
+	#block-region-side-content-bot .block_topten .object_user_base_element, 
+	#block-region-side-content-bot .block_topten .object_user_universal_element{
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width : 767px) {
+	
+	.block_topten .slide_listitems.rm_blocksgrid ul {
+		justify-content: space-around;
+		flex-direction: column;
+		padding: 2%;
+		box-sizing: border-box;
+		flex-wrap: nowrap;
+	}
+	
+	.block_topten .slide_listitems.rm_blocksgrid ul li {
+		flex-basis: auto;
+		width: 100%;
+	}
+	
+	.block_topten .slide_listitems.rm_blocksgrid ul li.fakeitem {
+		display: none;
+		flex-basis: 0;
+	}
+	.block_topten .object_user_base_info, 
+	.block_topten .object_user_universal_info{
+		width: calc(78% - 10px);	
+	}
+	
+	.block_topten .object_user_base_img, 
+	.block_topten .object_user_universal_img{
+		width: 22%; 
+	}
+}
+@media only screen and (max-width : 639px) {
+
+	.block_topten .object_user_base_info, 
+	.block_topten .object_user_universal_info{
+		width: calc(78% - 10px);	
+	}
+	
+	.block_topten .object_user_base_img, 
+	.block_topten .object_user_universal_img{
+		width: 22%; 
+	}
+
+	.block_topten .object_user_base, 
+	.block_topten .object_user_universal {
+		padding: 10px;
+	}
+	
+	.block_topten .object_user_base_elements, 
+	.block_topten .object_user_universal_elements{
+		flex-wrap: wrap;
+	}
+	.block_topten .object_user_base_element, 
+	.block_topten .object_user_universal_element {
+		width: 100%;
+    	max-width: 320px;
+	}
+	#block-region-side-content-top .block_topten .object_user_base_element, 
+	#block-region-side-content-top .block_topten .object_user_universal_element,
+	#block-region-side-content-bot .block_topten .object_user_base_element, 
+	#block-region-side-content-bot .block_topten .object_user_universal_element,
+	#block-region-content-heading .block_topten .object_user_base_element, 
+	#block-region-content-heading .block_topten .object_user_universal_element,
+	#block-region-content-footing .block_topten .object_user_base_element, 
+	#block-region-content-footing .block_topten .object_user_universal_element,
+	#dockeditempanel .block_topten .object_user_base_element,
+	#dockeditempanel .block_topten .object_user_universal_element{
+		width: 100%;
+	}
+	#block-region-side-content-top .block_topten .object_user_base_info, 
+	#block-region-side-content-top .block_topten .object_user_universal_info,
+	#block-region-side-content-bot .block_topten .object_user_base_info, 
+	#block-region-side-content-bot .block_topten .object_user_universal_info,
+	#block-region-content-heading .block_topten .object_user_base_info, 
+	#block-region-content-heading .block_topten .object_user_universal_info,
+	#block-region-content-footing .block_topten .object_user_base_info, 
+	#block-region-content-footing .block_topten .object_user_universal_info,
+	#dockeditempanel .block_topten .object_user_base_info, 
+	#dockeditempanel .block_topten .object_user_universal_info{
+		width: calc(100% - 64px);
+	}
+	#block-region-side-content-top .block_topten .object_user_base_img,
+	#block-region-side-content-top .block_topten .object_user_universal_img,
+	#block-region-side-content-bot .block_topten .object_user_base_img, 
+	#block-region-side-content-bot .block_topten .object_user_universal_img,
+	#block-region-content-heading .block_topten .object_user_base_img,
+	#block-region-content-heading .block_topten .object_user_universal_img,
+	#block-region-content-footing .block_topten .object_user_base_img, 
+	#block-region-content-footing .block_topten .object_user_universal_img,
+	#dockeditempanel .block_topten .object_user_base_img,
+	#dockeditempanel .block_topten .object_user_universal_img{
+		width: 54px; 
+	}
+	#block-region-side-content-top .block_topten .object_user_base_info>div + div, 
+	#block-region-side-content-top .block_topten .object_user_universal_info>div + div,
+	#block-region-side-content-bot .block_topten .object_user_base_info>div + div, 
+	#block-region-side-content-bot .block_topten .object_user_universal_info>div + div,
+	#block-region-content-heading .block_topten .object_user_base_info>div + div, 
+	#block-region-content-heading .block_topten .object_user_universal_info>div + div,
+	#block-region-content-footing .block_topten .object_user_base_info>div + div, 
+	#block-region-content-footing .block_topten .object_user_universal_info>div + div,
+	#dockeditempanel .block_topten .object_user_base_info>div + div, 
+	#dockeditempanel .block_topten .object_user_universal_info>div + div {
+		margin-left: -64px;
+	}
+	#block-region-side-content-top .block_topten .object_user_base_username, 
+	#block-region-side-content-top .block_topten .object_user_universal_username,
+	#block-region-side-content-bot .block_topten .object_user_base_username, 
+	#block-region-side-content-bot .block_topten .object_user_universal_username,
+	#block-region-content-heading .block_topten .object_user_base_username, 
+	#block-region-content-heading .block_topten .object_user_universal_username,
+	#block-region-content-footing .block_topten .object_user_base_username, 
+	#block-region-content-footing .block_topten .object_user_universal_username,
+	#dockeditempanel .block_topten .object_user_base_username, 
+	#dockeditempanel .block_topten .object_user_universal_username {
+		min-height: 50px;
+	}
+}
+.block_topten .object_user_universal_info .object_user_universal_field_name{
+	background-color: #ECECEC;
+    display: inline;
+    word-wrap: normal;
+    max-width: calc(100% - 10px);
+    box-shadow: 2px 0 0 #ECECEC, -2px 0 0 #ECECEC;
+    padding: 2px 2px;
+    word-break: break-word;
+}
+#block-region-side-pre .block_topten .object_user_base_element,
+#block-region-side-post .block_topten .object_user_base_element,
+#block-region-side-pre .block_topten .object_user_universal_element ,
+#block-region-side-post .block_topten .object_user_universal_element {
+	width: 100%;
+}
+
+#block-region-side-pre .block_topten .object_user_base,
+#block-region-side-post	.block_topten .object_user_base,
+#block-region-side-pre .block_topten .object_user_universal,
+#block-region-side-post	.block_topten .object_user_universal{
+	padding: 20px 0;
+}
+	

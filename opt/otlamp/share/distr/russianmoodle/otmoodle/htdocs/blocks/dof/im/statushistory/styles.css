@@ -1,0 +1,22 @@
+
+.im_statushistory .undercode{
+	font-size: 80%;
+	margin-bottom: 0;
+}
+.im_statushistory .header-cell a{
+	font-weight: bolder;
+	display: block;
+	width: 100%;
+	cursor: pointer;
+	padding-right: 17px;
+}
+
+.im_statushistory .header-cell{
+	position: relative;
+}
+
+.im_statushistory .sort-indicator {
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+}

@@ -1,0 +1,10 @@
+{
+  "name": "moodle-atto_otiframe-button",
+  "builds": {
+    "moodle-atto_otiframe-button": {
+      "jsfiles": [
+        "button.js"
+      ]
+    }
+  }
+}

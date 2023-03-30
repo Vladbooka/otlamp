@@ -1,0 +1,165 @@
+.block_linksocial div.content div.potentialidplist div.potentialidp div.singlebutton {
+    float: left;
+    margin: 5px 5px;
+    width: auto;    
+    text-align: center;
+}
+
+.block_linksocial div.content div.potentialidplist div.potentialidp a.list {
+    float: left;
+    text-align: center;
+}
+
+.block_linksocial h2{
+    font-size: 1em;
+    text-align: center;
+}
+.block_linksocial .potentialidplist {
+	text-align: center;
+}
+.loginbox .potentialidps .potentialidplist {
+    margin-left: auto;
+    text-align: center;
+    display: inline;
+    width: 200px;
+    text-align: center;
+}
+.potentialidp {
+    display: table;
+    padding: 4px;
+}
+.linked {
+    display: table;
+}
+.available {
+    display: inline-block;
+}
+.block_linksocial .potentialidplist .oauthicon {
+  display: block;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  padding-left: 40px;
+}
+
+.oauthicon.google {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/google_sut.png");
+}
+.oauthicon.google:hover {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/google.png");
+}
+.oauthicon.facebook {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/facebook_sut.png");
+}
+.oauthicon.facebook:hover {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/facebook.png");
+}
+.oauthicon.yandex {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/yandex_sut.png");
+}
+.oauthicon.yandex:hover {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/yandex.png");
+}
+.oauthicon.vk {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/vkontakte_sut.png");
+}
+.oauthicon.vk:hover {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/vkontakte.png");
+}
+.oauthicon.odkl {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/odnoklassniki_sut.png");
+}
+.oauthicon.odkl:hover {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/odnoklassniki.png");
+}
+.oauthicon.mailru {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/mailru_sut.png");
+}
+.oauthicon.mailru:hover {
+    background-image: url("/auth/otoauth/pix/mailru.png");
+}
+.oauthicon.messenger {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/messenger_sut.png");
+}
+.oauthicon.messenger:hover {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/messenger.png");
+}
+.oauthicon.github {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/github_sut.png");
+}
+.oauthicon.github:hover {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/github.png");
+}
+.oauthicon.linkedin {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/linkedin_sut.png");
+}
+.oauthicon.linkedin:hover {
+	background-repeat: no-repeat;
+    background-image: url("/auth/otoauth/pix/linkedin.png");
+}
+
+#linksocial_wrapper_bg {
+	background: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+#linksocial_modal .linksocial_wrapper {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 5001;
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+#linksocial_modal .linksocial_message_wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    text-align: center;
+}
+#linksocial_modal .linksocial_message {
+	display: inline-block;
+	position: relative;
+    padding: 5%;
+    background: #fff;
+    overflow: auto;
+    z-index: 2;
+}
+#linksocial_modal .linksocial_message_close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    letter-spacing: 5px;
+    font-size: 20px;
+    line-height: 25px;
+    cursor: pointer;
+}

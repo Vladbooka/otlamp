@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/dof/storages/taxonomies/db" VERSION="20110921" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_taxonomies" COMMENT="Хранилище классификаторов">
+      <FIELDS>
+        <FIELD NAME="id"                TYPE="int"  LENGTH="10"  NOTNULL="true"   UNSIGNED="true" SEQUENCE="true"  />
+        <FIELD NAME="code"              TYPE="char" LENGTH="50"  NOTNULL="true"                   SEQUENCE="false" COMMENT="Название классификатора" />
+        <FIELD NAME="name"              TYPE="char" LENGTH="255" NOTNULL="true"                   SEQUENCE="false" COMMENT="Код классификатора" />
+        <FIELD NAME="description"       TYPE="char" LENGTH="255" NOTNULL="false"                  SEQUENCE="false" COMMENT="Описание классификатора" />
+        <FIELD NAME="type"              TYPE="char" LENGTH="50"  NOTNULL="true"                   SEQUENCE="false" COMMENT="Тип классификатора" />
+        <FIELD NAME="canbedeleted"    TYPE="int"  LENGTH="1"   NOTNULL="false"  DEFAULT="1"     SEQUENCE="false" COMMENT="Доступность удаления" />
+        <FIELD NAME="status"            TYPE="char" LENGTH="20"  NOTNULL="false"                  SEQUENCE="false" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary"    TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="icode"        UNIQUE="true"     FIELDS="code" />
+        <INDEX NAME="ifind"        UNIQUE="true"     FIELDS="code, type" />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

@@ -1,0 +1,14 @@
+<div class="otrl_subcategory_holder">
+	<ul>
+	{{#subcategories}}
+			<li class="otrl_category" data="{{key}}">
+				{{#hassubcat}}
+				<span class="otrl_hassubcat"><span class="otrl_square"></span>{{#subcategory}}{{name}}{{/subcategory}}</span>
+				{{/hassubcat}}
+				{{^hassubcat}}
+				<span class="otrl_nosubcat"><span class="otrl_square"></span>{{#subcategory}}{{name}}{{/subcategory}}</span>
+				{{/hassubcat}}
+			</li>
+	{{/subcategories}}
+	</ul>
+</div>

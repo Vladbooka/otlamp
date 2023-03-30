@@ -1,0 +1,40 @@
+.path-grade-report .gradeparent tr:nth-of-type(even) th.item.cell a, .path-grade-report-grader .gradeparent .heading div.item.cell a {
+    margin-left: 5px;
+    display: inline-block;
+    transform: translate(0px,-4px);
+}
+.path-grade-report .gradeparent tr.heading th.item.cell a:first-child, .path-grade-report-grader .gradeparent .heading div.item.cell a:first-child {
+    margin-left: 0px;
+    transform: unset;
+}
+.path-grade-report .gradeparent tr.heading th.item.cell a:last-child, .path-grade-report-grader .gradeparent .heading div.item.cell a:last-child {
+    display: inline-block;
+    transform: translate(-15px,-24px);
+    margin-left: 0px;
+}
+.path-grade-report-grader .gradeparent .heading div.item.cell, .path-grade-report-grader .gradeparent .heading div.header.cell, .path-grade-report-grader .gradeparent .heading div.courseitem.cell, .path-grade-report-grader .gradeparent .heading div.categoryitem.cell {
+    display: flex;
+    align-items: flex-end;
+}
+body.path-grade-report-grader .otfloater.sideonly.heading div.header {
+    width: calc(100% - 1px) !important;
+    height: calc(100% - 1px);
+    padding: 0px;
+    margin: 0;
+    justify-content: center;
+}
+.path-grade-report .gradeparent tr.heading th.header.useremail.cell {
+    vertical-align: bottom;
+}
+.path-grade-report .gradeparent tr.heading th.header#studentheader.cell {
+    vertical-align: bottom;
+}
+.path-grade-report .gradeparent tr.heading th.header.userfield.cell {
+    vertical-align: bottom;
+}
+.path-grade-report .gradeparent tr.heading th.courseitem.cell {
+    vertical-align: bottom;
+}
+.path-grade-report .gradeparent tr.heading th.categoryitem.cell {
+    vertical-align: bottom;
+}

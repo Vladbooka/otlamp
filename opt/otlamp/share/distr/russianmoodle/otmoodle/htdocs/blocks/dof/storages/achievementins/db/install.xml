@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/dof/storages/achievementins/db" VERSION="20120306" COMMENT="XMLDB file for Moodle blocks/dof/storages/achievementins"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_achievementins" COMMENT="Пользовательские достижения">
+      <FIELDS> 
+      	<FIELD NAME="id"            TYPE="int"                LENGTH="10"  NOTNULL="true"                       UNSIGNED="true"  SEQUENCE="true"  COMMENT="ID экземпляра достижения"/>
+        <FIELD NAME="achievementid" TYPE="int"                LENGTH="10"  NOTNULL="true"                       UNSIGNED="true"  SEQUENCE="false" COMMENT="ID достижения"/>
+        <FIELD NAME="userid"        TYPE="int"                LENGTH="10"  NOTNULL="true"  DEFAULT="0"          UNSIGNED="true"  SEQUENCE="false" COMMENT="ID пользователя"/>
+        <FIELD NAME="moderatorid"   TYPE="int"                LENGTH="10"  NOTNULL="false"                      UNSIGNED="true"  SEQUENCE="false" COMMENT="ID модератора"/>
+        <FIELD NAME="timecreated"   TYPE="int"                LENGTH="11"  NOTNULL="true"                       UNSIGNED="false" SEQUENCE="false" COMMENT="Дата создания"/>
+        <FIELD NAME="timechecked"   TYPE="int"                LENGTH="11"  NOTNULL="true"                       UNSIGNED="false" SEQUENCE="false" COMMENT="Дата модерации"/>
+        <FIELD NAME="userpoints"    TYPE="float" DECIMALS="4" LENGTH="16"  NOTNULL="false"                                       SEQUENCE="false" COMMENT="Баллы"/>
+        <FIELD NAME="goaldeadline"  TYPE="int"                LENGTH="11"  NOTNULL="false"                      UNSIGNED="true"  SEQUENCE="false" COMMENT="Крайний срок достижения цели"/>
+        <FIELD NAME="data"          TYPE="text"                            NOTNULL="false"                                       SEQUENCE="false" COMMENT="Данные достижения"/>
+        <FIELD NAME="status"        TYPE="char"               LENGTH="255" NOTNULL="true"  DEFAULT="notapproved"                 SEQUENCE="false" COMMENT="Статус"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="id"            UNIQUE="true"  FIELDS="id"            />
+        <INDEX NAME="achievementid" UNIQUE="false" FIELDS="achievementid" />
+        <INDEX NAME="userid"        UNIQUE="false" FIELDS="userid"        />
+        <INDEX NAME="moderatorid"   UNIQUE="false" FIELDS="moderatorid"   />
+        <INDEX NAME="timecreated"   UNIQUE="false" FIELDS="timecreated"   />
+        <INDEX NAME="timechecked"   UNIQUE="false" FIELDS="timechecked"   />
+        <INDEX NAME="status"        UNIQUE="false" FIELDS="status"        />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

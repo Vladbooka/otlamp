@@ -1,0 +1,491 @@
+.clsq_courseblock {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 10px;
+	align-items: flex-start;
+	font-size: calc(7px + 0.14vw);
+	width: 100%;
+}
+.clsq_courseblock .clsq_coursebox,
+body.content-only .clsq_courseblock .clsq_coursebox {
+	flex-basis: calc(100%/ 4 - 30px * 3/ 4);
+	flex-shrink: 0;
+	background-color: #ffffff;
+	text-decoration: none;
+	/* color: #333; */
+	border-radius: 5px;
+	-webkit-box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.25), 0 0px 20px
+		-5px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.25), 0 0px 20px -5px
+		rgba(0, 0, 0, 0.25);
+	margin-bottom: 30px;
+	position: relative;
+	transition: all 0.2s ease-in-out;
+}
+.used-region-side-pre div[role="main"] .clsq_courseblock .clsq_coursebox,
+.used-region-side-pre #block-region-side-content-top .clsq_courseblock .clsq_coursebox,
+.used-region-side-pre #block-region-side-content-bot .clsq_courseblock .clsq_coursebox,
+.used-region-side-post div[role="main"] .clsq_courseblock .clsq_coursebox,
+.used-region-side-post #block-region-side-content-top .clsq_courseblock .clsq_coursebox,
+.used-region-side-post #block-region-side-content-bot .clsq_courseblock .clsq_coursebox {
+   flex-basis: calc(100%/ 3 - 30px * 2 / 3);
+}
+.used-region-side-pre.used-region-side-post div[role="main"] .clsq_courseblock .clsq_coursebox,
+.used-region-side-pre.used-region-side-post #block-region-side-content-top .clsq_courseblock .clsq_coursebox,
+.used-region-side-pre.used-region-side-post #block-region-side-content-bot .clsq_courseblock .clsq_coursebox {
+   flex-basis: calc(100%/ 2 - 30px / 2);
+}
+.used-region-side-pre #block-region-side-pre .clsq_courseblock .clsq_coursebox {
+	flex-basis: 100%;
+	max-width: 100%;
+}
+.used-region-side-post #block-region-side-post .clsq_courseblock .clsq_coursebox {
+	flex-basis: 100%;
+	max-width: 100%;
+}
+.clsq_courseblock.light .clsq_coursebox {
+	color: #333333;
+	background-color: #ffffff;
+}
+.clsq_courseblock.dark .clsq_coursebox {
+    color: #ffffff;
+    background-color: #333333;
+}
+.clsq_courseblock .clsq_coursebox:hover {
+	transform: translateY(-10px);
+	-webkit-box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.25), 0 0px 20px
+		-5px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.25), 0 0px 20px -5px
+		rgba(0, 0, 0, 0.25);
+}
+.clsq_courseblock .clsq_coursebox.fake {
+	visibility: hidden;
+	margin-bottom: 0px;
+}
+.clsq_courseblock.background.light .clsq_coursebox {
+	text-shadow: 0px 2px 1px #FFF, 0px -2px 1px #FFF, 2px 0 1px #FFF, -2px 0 1px #FFF;
+}
+.clsq_courseblock.background.light .clsq_courseinfo_image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+    background-position: 50% 50%;
+    filter: contrast(30%) brightness(150%);
+}
+.clsq_courseblock.background.dark .clsq_courseinfo_image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+    background-position: 50% 50%;
+    filter: brightness(50%);
+}
+.clsq_courseblock .clsq_courseinfo_holder {
+	position: relative;
+	display: block;
+	height: 0px;
+	padding: 0 0 100%;
+	text-decoration: none;
+	overflow: hidden;
+}
+.clsq_courseblock .clsq_courseinfo_holder:hover {
+	text-decoration: none;
+}
+.clsq_courseblock.stretch .clsq_courseinfo_holder {
+	height: auto;
+	padding: 0 0 40px;
+}
+.clsq_courseblock.stretch .clsq_courseinfo_holder::before {
+	display: block;
+	content: '';
+	height: 0px;
+	padding: 0 0 calc(100% - 40px);
+	float: left;
+}
+.clsq_courseblock .clsq_content {
+	padding: 30px;
+}
+.clsq_courseblock .clsq_content {
+	height: 0;
+    overflow: hidden;
+    padding-bottom: calc(100% - 130px);
+}
+.clsq_courseblock.stretch .clsq_content {
+    height: auto;
+    overflow: auto;
+    padding-bottom: 30px;
+}
+.clsq_courseblock.light .clsq_content {
+    color: #191919;
+}
+.clsq_courseblock.dark .clsq_content {
+    color: #ffffff;
+}
+.clsq_courseblock .clsq_tags {
+	display: flex;
+	flex-wrap: wrap;
+	width: calc(100% + 5px);
+}
+.clsq_courseblock .clsq_tags div {
+	border-radius: 5px;
+	padding: 5px 20px;
+	margin: 0 5px 5px 0;
+	background-color: #ebebeb;
+	font-weight: 600;
+	font-size: 140%;
+}
+.clsq_courseblock.light .clsq_tags div {
+	color: #191919;
+}
+.clsq_courseblock.dark .clsq_tags div {
+    color: #191919;
+}
+.clsq_courseblock .clsq_tags div:first-letter {
+	text-transform: uppercase;
+}
+.clsq_courseblock .clsq_tags+.clsq_course_content_top_wrapper {
+	margin-top: 35px;
+}
+.clsq_courseblock .clsq_course_name {
+	margin-bottom: 15px;
+	font-weight: 700;
+	/* font-size: 22px; */
+	font-size: 220%;
+	word-break: break-word;
+}
+.clsq_courseblock .clsq_course_category_name {
+	/* font-size: 14px; */
+	font-size: 140%;
+	font-weight: 500;
+}
+.clsq_courseblock.light .clsq_course_category_name {
+	color: #666666;
+}
+.clsq_courseblock.dark .clsq_course_category_name {
+	color: #ffffff;
+}
+.clsq_courseblock .clsq_course_skills {
+	margin-top: 35px;
+	padding-bottom: 30px;
+}
+.clsq_courseblock .clsq_course_skills_header {
+	/* font-size: 18px; */
+	font-size: 180%;
+	margin-bottom: 15px;
+	font-weight: 600;
+}
+.clsq_courseblock .clsq_course_skills_item {
+	/* font-size: 14px; */
+	font-size: 140%;
+	font-weight: 500;
+}
+.clsq_courseblock.light .clsq_course_skills_item {
+	color: #666666;
+}
+.clsq_courseblock.dark .clsq_course_skills_item {
+	color: #ffffff;
+}
+.clsq_courseblock .clsq_course_content_bottom_wrapper {
+	position: absolute;
+    top: calc(100% - 100px);
+	display: flex;
+    word-break: break-all;
+    height: 40px;
+	width: calc(100% - 60px);
+    overflow: hidden;
+	justify-content: space-between;
+	margin-bottom: 30px;
+	padding-top: 30px;
+    align-items: flex-start;
+    box-sizing: content-box;
+}
+.clsq_courseblock.light .clsq_course_content_bottom_wrapper {
+	/* background-color: #ffffff;
+	-webkit-box-shadow: 0 -10px 30px 0px #ffffff;
+    box-shadow: 0 -10px 30px 0px #ffffff; */
+}
+.clsq_courseblock.light.stretch .clsq_course_content_bottom_wrapper {
+    /* background-color: #ffffff;
+    -webkit-box-shadow: 0 -10px 30px 0px #ffffff;
+    box-shadow: 0 -10px 30px 0px #ffffff; */
+}
+.clsq_courseblock.dark .clsq_course_content_bottom_wrapper {
+    /* background-color: #333333;
+    -webkit-box-shadow: 0 -10px 30px 0px #333333;
+    box-shadow: 0 -10px 30px 0px #333333; */
+}
+.clsq_courseblock.dark.stretch .clsq_course_content_bottom_wrapper {
+    /* background-color: #333333;
+    -webkit-box-shadow: 0 -10px 30px 0px #333333;
+    box-shadow: 0 -10px 30px 0px #333333; */
+}
+.clsq_courseblock.light.stretch .clsq_course_content_bottom_wrapper {
+	background-color: transparent;
+}
+.clsq_courseblock.dark.stretch .clsq_course_content_bottom_wrapper {
+    background-color: transparent;
+}
+.clsq_courseblock.stretch .clsq_course_content_bottom_wrapper {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.clsq_courseblock .clsq_course_pass_button {
+	border: 1px solid #ebebeb;
+	padding: 0 30px;
+	border-radius: 20px;
+	/* font-size: 16px; */
+	font-size: 160%;
+	line-height: 38px;
+	height: 38px;
+	flex-shrink: 0;
+	text-align: center;
+}
+.clsq_courseblock .clsq_course_price {
+	line-height: 40px;
+	/* font-size: 32px; */
+	font-size: 320%;
+	font-weight: 700;
+	letter-spacing: 2px;
+}
+.clsq_courseblock .clsq_course_price del {
+	padding-left: 2px;
+}
+
+/** Медиа-запросы **/
+@media all and (min-width: 1680px)
+{
+    .clsq_courseblock {
+    font-size: 10px;
+}
+}
+@media all and (min-width: 1440px) and (max-width: 1599px)
+{
+	.clsq_courseblock .clsq_course_content_bottom_wrapper {
+		height: 34px;
+	}
+    .clsq_courseblock .clsq_course_price {
+	    line-height: 34px;
+	    /* font-size: 30px; */
+	    font-size: 300%;
+	}
+	.clsq_courseblock .clsq_course_pass_button {
+	    padding: 0 20px;
+	    /* font-size: 14px; */
+	    font-size: 140%;
+	    line-height: 32px;
+	    height: 32px;
+	    flex-basis: 83px;
+	}
+}
+@media all and (min-width: 1024px) and (max-width: 1200px)
+{
+	.clsq_courseblock .clsq_course_content_bottom_wrapper {
+		height: 34px;
+	}
+    .clsq_courseblock .clsq_course_price {
+	    line-height: 34px;
+        /* font-size: 32px; */
+        font-size: 320%;
+    }
+    .clsq_courseblock .clsq_course_pass_button {
+        padding: 0 20px;
+        /* font-size: 14px; */
+        font-size: 140%;
+        line-height: 32px;
+        height: 32px;
+        flex-basis: 83px;
+    }
+}
+@media all and (min-width: 1024px) and (max-width: 1120px)
+{
+	.clsq_courseblock .bigint {
+        /* font-size: 24px; */
+        font-size: 240%;
+    }
+    .clsq_courseblock .mediumint {
+        /* font-size: 28px; */
+        font-size: 280%;
+    }
+}
+@media all and (min-width: 720px) and (max-width: 820px)
+{
+	.clsq_courseblock .clsq_course_content_bottom_wrapper {
+		height: 34px;
+	}
+    .clsq_courseblock .clsq_course_price {
+	    line-height: 34px;
+        /* font-size: 32px; */
+        font-size: 320%;
+    }
+    .clsq_courseblock .clsq_course_pass_button {
+        padding: 0 20px;
+        /* font-size: 14px; */
+        font-size: 140%;
+        line-height: 32px;
+        height: 32px;
+        flex-basis: 83px;
+    }
+}
+@media all and (min-width: 720px) and (max-width: 740px)
+{
+    .clsq_courseblock .bigint {
+        /* font-size: 28px; */
+        font-size: 280%;
+    }
+}
+@media all and (min-width: 1024px) and (max-width: 1439px)
+{
+	.clsq_courseblock .clsq_coursebox {
+        flex-basis: calc(100%/ 3 - 30px * 2 / 3);
+    }
+	.used-region-side-pre div[role="main"] .clsq_courseblock .clsq_coursebox {
+	   flex-basis: calc(100%/ 2 - 30px / 2);
+	}
+	.used-region-side-post div[role="main"] .clsq_courseblock .clsq_coursebox {
+	   flex-basis: calc(100%/ 2 - 30px / 2);
+	}
+	.content-only #region-bs-main-and-pre.span9 div[role="main"] .clsq_courseblock .clsq_coursebox {
+		flex-basis: calc(100%/ 2 - 30px / 2);
+	}
+	.used-region-side-post #block-region-side-content-top .clsq_courseblock .clsq_coursebox,
+	.used-region-side-post #block-region-side-content-bot .clsq_courseblock .clsq_coursebox {
+		flex-basis: calc(100%/ 2 - 30px / 2);
+	}
+	.used-region-side-pre.used-region-side-post div[role="main"] .clsq_courseblock,
+	.used-region-side-pre.used-region-side-post #block-region-side-content-top .clsq_courseblock,
+	.used-region-side-pre.used-region-side-post #block-region-side-content-bot .clsq_courseblock {
+	   justify-content: center;
+	}
+	.used-region-side-pre.used-region-side-post div[role="main"] .clsq_courseblock .clsq_coursebox,
+	.used-region-side-pre.used-region-side-post #block-region-side-content-top .clsq_courseblock .clsq_coursebox,
+	.used-region-side-pre.used-region-side-post #block-region-side-content-bot .clsq_courseblock .clsq_coursebox {
+	   flex-basis: 390px;
+	}
+}
+@media all and (min-width: 768px) and (max-width: 1023px)
+{
+	.clsq_courseblock .clsq_coursebox {
+        flex-basis: calc(100%/ 2 - 30px / 2);
+    }
+    .used-region-side-pre div[role="main"] .clsq_courseblock {
+       justify-content: center;
+    }
+    .used-region-side-pre div[role="main"] .clsq_courseblock .clsq_coursebox {
+       flex-basis: 390px;
+    }
+    .used-region-side-post div[role="main"] .clsq_courseblock {
+       justify-content: center;
+    }
+    .used-region-side-post div[role="main"] .clsq_courseblock .clsq_coursebox {
+       flex-basis: 390px;
+    }
+    .used-region-side-pre.used-region-side-post div[role="main"] .clsq_courseblock {
+       justify-content: center;
+    }
+    .content-only #region-bs-main-and-pre.span9 div[role="main"] .clsq_courseblock .clsq_coursebox {
+		flex-basis: 390px;
+	}
+	.content-only #region-bs-main-and-pre.span9 div[role="main"] .clsq_courseblock {
+		justify-content: center;
+	}
+    .used-region-side-pre.used-region-side-post div[role="main"] .clsq_courseblock .clsq_coursebox {
+       flex-basis: 100%;
+    }
+    .used-region-side-post #block-region-side-content-top .clsq_courseblock .clsq_coursebox,
+	.used-region-side-post #block-region-side-content-bot .clsq_courseblock .clsq_coursebox {
+		flex-basis: 390px;
+	}
+	.used-region-side-post #block-region-side-content-top .clsq_courseblock,
+	.used-region-side-post #block-region-side-content-bot .clsq_courseblock {
+		justify-content: center;
+	}
+	.used-region-side-pre.used-region-side-post #block-region-side-content-top .clsq_courseblock .clsq_coursebox,
+	.used-region-side-pre.used-region-side-post #block-region-side-content-bot .clsq_courseblock .clsq_coursebox {
+		flex-basis: 390px;
+	}
+	.used-region-side-pre.used-region-side-post #block-region-side-content-top .clsq_courseblock,
+	.used-region-side-pre.used-region-side-post #block-region-side-content-bot .clsq_courseblock {
+		justify-content: center;
+	}
+}
+@media all and (min-width: 720px) and (max-width: 767px)
+{
+	.clsq_courseblock .clsq_coursebox,
+	.used-region-side-pre div[role="main"] .clsq_courseblock .clsq_coursebox,
+    .used-region-side-post div[role="main"] .clsq_courseblock .clsq_coursebox,
+    .used-region-side-pre.used-region-side-post div[role="main"] .clsq_courseblock .clsq_coursebox,
+    .content-only #region-bs-main-and-pre.span9 div[role="main"] .clsq_courseblock .clsq_coursebox,
+    .used-region-side-pre #block-region-side-pre .clsq_courseblock .clsq_coursebox,
+    .used-region-side-post #block-region-side-post .clsq_courseblock .clsq_coursebox,
+    .used-region-side-post #block-region-side-content-top .clsq_courseblock .clsq_coursebox,
+	.used-region-side-post #block-region-side-content-bot .clsq_courseblock .clsq_coursebox {
+        flex-basis: calc(100%/ 2 - 30px / 2);
+    }
+}
+@media all and (min-width: 390px) and (max-width: 719px)
+{
+	.clsq_courseblock, 
+	.used-region-side-pre .clsq_courseblock, 
+	.used-region-side-post .clsq_courseblock,
+	.used-region-side-pre.used-region-side-post .clsq_courseblock,
+	.content-only #region-bs-main-and-pre.span9 div[role="main"] .clsq_courseblock,
+	.used-region-side-post #block-region-side-content-top .clsq_courseblock,
+	.used-region-side-post #block-region-side-content-bot .clsq_courseblock {
+	   justify-content: center;
+	}
+    .clsq_courseblock .clsq_coursebox, 
+    .used-region-side-pre div[role="main"] .clsq_courseblock .clsq_coursebox,
+    .used-region-side-post div[role="main"] .clsq_courseblock .clsq_coursebox,
+    .used-region-side-pre.used-region-side-post div[role="main"] .clsq_courseblock .clsq_coursebox,
+    .content-only #region-bs-main-and-pre.span9 div[role="main"] .clsq_courseblock .clsq_coursebox,
+    .used-region-side-pre #block-region-side-pre .clsq_courseblock .clsq_coursebox,
+    .used-region-side-post #block-region-side-post .clsq_courseblock .clsq_coursebox,
+    .used-region-side-post #block-region-side-content-top .clsq_courseblock .clsq_coursebox,
+	.used-region-side-post #block-region-side-content-bot .clsq_courseblock .clsq_coursebox,
+	.used-region-side-pre.used-region-side-post #block-region-side-content-top .clsq_courseblock .clsq_coursebox,
+	.used-region-side-pre.used-region-side-post #block-region-side-content-bot .clsq_courseblock .clsq_coursebox {
+        flex-basis: 390px;
+    }
+}
+@media all and (max-width: 390px)
+{
+	.clsq_courseblock, 
+    .used-region-side-pre .clsq_courseblock, 
+    .used-region-side-post .clsq_courseblock,
+    .used-region-side-pre.used-region-side-post .clsq_courseblock,
+    .content-only #region-bs-main-and-pre.span9 div[role="main"] .clsq_courseblock,
+    .used-region-side-post #block-region-side-content-top .clsq_courseblock,
+	.used-region-side-post #block-region-side-content-bot .clsq_courseblock {
+       justify-content: center;
+    }
+    .clsq_courseblock .clsq_coursebox, 
+    .used-region-side-pre div[role="main"] .clsq_courseblock .clsq_coursebox,
+    .used-region-side-post div[role="main"] .clsq_courseblock .clsq_coursebox,
+    .used-region-side-pre.used-region-side-post div[role="main"] .clsq_courseblock .clsq_coursebox,
+    .content-only #region-bs-main-and-pre.span9 div[role="main"] .clsq_courseblock .clsq_coursebox,
+    .used-region-side-post #block-region-side-content-top .clsq_courseblock .clsq_coursebox,
+	.used-region-side-post #block-region-side-content-bot .clsq_courseblock .clsq_coursebox,
+	.used-region-side-pre.used-region-side-post #block-region-side-content-top .clsq_courseblock .clsq_coursebox,
+	.used-region-side-pre.used-region-side-post #block-region-side-content-bot .clsq_courseblock .clsq_coursebox {
+        flex-basis: 100%;
+    }
+}
+@media all and (max-width: 374px)
+{
+    .clsq_courseblock .clsq_course_content_bottom_wrapper {
+        top: calc(100% - 92px);
+        height: 32px;
+    }
+    .clsq_courseblock .clsq_course_price {
+        line-height: 32px;
+    }
+    .clsq_courseblock .clsq_course_pass_button {
+        padding: 0 15px;
+        line-height: 30px;
+        height: 30px;
+    }
+}
+
+

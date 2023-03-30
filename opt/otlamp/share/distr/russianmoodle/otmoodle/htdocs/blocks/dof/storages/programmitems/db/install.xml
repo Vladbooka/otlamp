@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/dof/storages/programmitems/db" VERSION="20101220" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_programmitems" COMMENT="элементы учебной программы - учебные дисциплины/предметы.">
+      <FIELDS>
+        <FIELD NAME="id"                        TYPE="int"   LENGTH="10"     NOTNULL="true"  UNSIGNED="true"  SEQUENCE="true"               NEXT="programmid"/>
+        <FIELD NAME="programmid"                TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="id"                        NEXT="agenum" COMMENT="id программы"/>
+        <FIELD NAME="agenum"                    TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="programmid"                NEXT="courseclsid" COMMENT="номер учебного периода, от начала обучения по программе на который назначена дисциплина"/>
+        <FIELD NAME="courseclsid"               TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="agenum"                    NEXT="name" COMMENT="id по таблице coursecls"/>
+        <FIELD NAME="name"                      TYPE="char"  LENGTH="255"    NOTNULL="false" SEQUENCE="false" PREVIOUS="courseclsid"        NEXT="code"                          COMMENT="название дисциплины"/>
+        <FIELD NAME="code"                      TYPE="char"  LENGTH="255"    NOTNULL="false" SEQUENCE="false" PREVIOUS="name"               NEXT="mdlcourse"                     COMMENT="код дисциплины"/>
+        <FIELD NAME="mdlcourse"                 TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="code"                      NEXT="type" COMMENT="id курса в moodle"/>
+        <FIELD NAME="type"                      TYPE="char"  LENGTH="20"     NOTNULL="false" SEQUENCE="false" COMMENT="тип"                 PREVIOUS="mdlcourse"                 NEXT="required"/>
+        <FIELD NAME="required"                  TYPE="char"  LENGTH="10"     NOTNULL="false" SEQUENCE="false" PREVIOUS="type"               NEXT="maxcredit"                     COMMENT="обязательный курс"/>
+        <FIELD NAME="maxcredit"                 TYPE="int"   LENGTH="5"      NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="required"                  NEXT="maxduration" COMMENT="зачетные единицы трудоемкости (максимальное количество кредитов за курс, ЗЕТ)"/>
+        <FIELD NAME="maxduration"               TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="maxcredit"                 NEXT="hours" COMMENT="максимальная продолжительность курса от начальной подписки"/>
+        <FIELD NAME="hours"                     TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="maxduration"               NEXT="hourstheory" COMMENT="часов всего"/>
+        <FIELD NAME="hourstheory"               TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="hours"                     NEXT="hourspractice" COMMENT="часов лекций (Лек)"/>
+        <FIELD NAME="hourspractice"             TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="hourstheory"               NEXT="eduweeks" COMMENT="часов практики (Пр)"/>
+        <FIELD NAME="eduweeks"                  TYPE="int"   LENGTH="3"      NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="hourspractice"             NEXT="instrlevelid" COMMENT="количество учебных недель/циклов"/>
+        <FIELD NAME="instrlevelid"              TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="eduweeks"                  NEXT="gradelevel" COMMENT="id уровня компоненты"/>
+        <FIELD NAME="gradelevel"                TYPE="char"  LENGTH="20"     NOTNULL="false" SEQUENCE="false" PREVIOUS="instrlevelid"       NEXT="scale"/>
+        <FIELD NAME="scale"                     TYPE="char"  LENGTH="255"    NOTNULL="false" SEQUENCE="false" PREVIOUS="gradelevel"         NEXT="mingrade"                      COMMENT="диапазон или перечисленные через запятую возможной итоговой оценки, пустая строка если оценка не предусмотрена"/>
+        <FIELD NAME="mingrade"                  TYPE="char"  LENGTH="255"    NOTNULL="false" SEQUENCE="false" PREVIOUS="scale"              NEXT="lessonscale"                   COMMENT="минимальная (для диапазона) или начальная слева (для перечисления) оценка, при которой курс считается завершенным. Если не указано, курс считается завершенным при выставлении любой оценки."/>
+        <FIELD NAME="lessonscale"               TYPE="char"  LENGTH="255"    NOTNULL="false" SEQUENCE="false" PREVIOUS="mingrade"           NEXT="mingrade"                      COMMENT="диапазон или перечисленные через запятую возможной оценки за занятие, пустая строка если оценка не предусмотрена"/>
+        <FIELD NAME="lessonpassgrade"           TYPE="char"  LENGTH="255"    NOTNULL="false" SEQUENCE="false" PREVIOUS="lessonscale"        NEXT="sname"                         COMMENT="минимальная (для диапазона) или начальная слева (для перечисления) оценка, при которой занятие считается завершенным. Если не указано, занятие считается завершенным при выставлении любой оценки."/>
+        <FIELD NAME="sname"                     TYPE="char"  LENGTH="255"    NOTNULL="false" SEQUENCE="false" PREVIOUS="lessonpassgrade"    NEXT="scode"                         COMMENT="название в источнике/стандарте"/>
+        <FIELD NAME="scode"                     TYPE="char"  LENGTH="255"    NOTNULL="false" SEQUENCE="false" PREVIOUS="sname"              NEXT="status"                        COMMENT="код в источнике/стандарте"/>
+        <FIELD NAME="status"                    TYPE="char"  LENGTH="20"     NOTNULL="false" SEQUENCE="false" PREVIOUS="scode"              NEXT="departmentid"                  COMMENT="статус"/>
+        <FIELD NAME="departmentid"              TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="status"                    NEXT="about" COMMENT="структурное подразделение, ответственное за реализацию дисциплины"/>
+        <FIELD NAME="about"                     TYPE="text"  LENGTH="medium" NOTNULL="false" SEQUENCE="false" PREVIOUS="departmentid"       NEXT="notice"                        COMMENT="описание дисциплины"/>
+        <FIELD NAME="notice"                    TYPE="text"  LENGTH="small"  NOTNULL="false" SEQUENCE="false" PREVIOUS="about"              NEXT="controltypeid"                 COMMENT="заметка о дисциплины для внутреннего пользования"/>
+        <FIELD NAME="controltypeid"             TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="notice"                    NEXT="hoursweek" COMMENT="тип итогового контроля по данному курсу"/>
+        <FIELD NAME="hoursweek"                 TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="controltypeid"             NEXT="explanatory" COMMENT="количество часов в неделю"/>
+        <FIELD NAME="explanatory"               TYPE="text"  LENGTH="big"    NOTNULL="false" SEQUENCE="false" PREVIOUS="hoursweek"          NEXT="gradesyncenabled"              COMMENT="пояснительная записка"/>
+        <FIELD NAME="gradesyncenabled"          TYPE="int"   LENGTH="1"      NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="explanatory"               NEXT="incjournwithoutgrade" COMMENT="синхронизация оценок разрешена"/>
+        <FIELD NAME="incjournwithoutgrade"      TYPE="int"   LENGTH="1"      NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="gradesyncenabled"          NEXT="incjournwithunsatisfgrade" COMMENT="включать в ведомость пользователей без оценки или не подписанных на курс"/>
+        <FIELD NAME="incjournwithunsatisfgrade" TYPE="int"   LENGTH="1"      NOTNULL="false" DEFAULT="1"      UNSIGNED="true"               SEQUENCE="false"                     PREVIOUS="incjournwithoutgrade" NEXT="altgradeitem" COMMENT="включать в ведомость пользователей с неудовлетворительной оценкой"/>
+        <FIELD NAME="altgradeitem"              TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="incjournwithunsatisfgrade" NEXT="metasyncon" COMMENT="использовать другой grade_items"/>
+        <FIELD NAME="metasyncon"                TYPE="char"  LENGTH="10"     NOTNULL="false" SEQUENCE="false" DEFAULT="0"                   PREVIOUS="altgradeitem"              NEXT="metaprogrammitemid"/>
+        <FIELD NAME="metaprogrammitemid"        TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="metasyncon"                NEXT="billingtext"/>
+        <FIELD NAME="billingtext"               TYPE="text"  LENGTH="big"    NOTNULL="false" SEQUENCE="false" PREVIOUS="metaprogrammitemid" NEXT="billingrules"/>
+        <FIELD NAME="billingrules"              TYPE="text"  LENGTH="big"    NOTNULL="false" SEQUENCE="false" PREVIOUS="billingtext"        NEXT='salfactor'/>
+        <FIELD NAME="salfactor"                 TYPE="float" LENGTH="6"      NOTNULL="true"  DEFAULT="0"      UNSIGNED="true"               SEQUENCE="false"                     DECIMALS="2" PREVIOUS="billingrules" NEXT="hourslab" COMMENT="поправочный зарплатный коэффициент для дисциплины"/>
+        <FIELD NAME="hourslab"                  TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="salfactor"                 NEXT="hoursind" COMMENT="часов лабораторных (Лаб)"/>
+        <FIELD NAME="hoursind"                  TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="hourslab"                  NEXT="hourscontrol" COMMENT="часов самостоятельной работы слушателя (СРС)"/>
+        <FIELD NAME="hourscontrol"              TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              PREVIOUS="hoursind"                  NEXT="autohours" COMMENT="часов контроля (Контроль)"/>
+        <FIELD NAME="autohours"                 TYPE="int"   LENGTH="1"      NOTNULL="true"  DEFAULT="1"      UNSIGNED="true"               SEQUENCE="false"                     PREVIOUS="hourscontrol" NEXT="hoursclassroom" COMMENT="&quot;Автоматически расчитывать количества Часов всего&quot;"/>
+        <FIELD NAME="hoursclassroom"            TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              NEXT="studentslimit"                 PREVIOUS="autohours" COMMENT="часов аудиторных"/>
+        <FIELD NAME="studentslimit"             TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              DEFAULT="0"                          NEXT="selfenrol" PREVIOUS="hoursclassroom" COMMENT="Лимит актуальных подписок на дисциплину"/>
+        <FIELD NAME="selfenrol"                 TYPE="int"   LENGTH="3"      NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              DEFAULT="0"                          NEXT="verificationrequested" PREVIOUS="studentslimit" COMMENT="Поддержка самозаписи на учебный процесс"/>
+        <FIELD NAME="verificationrequested"     TYPE="int"   LENGTH="1"      NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              DEFAULT="0"                          NEXT="coursetemplateversion" PREVIOUS="selfenrol" COMMENT="Запрошено согласование (ожидание проверки)"/>
+        <FIELD NAME="coursetemplateversion"     TYPE="int"   LENGTH="10"     NOTNULL="false" UNSIGNED="true"  SEQUENCE="false"              DEFAULT="0"                          PREVIOUS="verificationrequested" COMMENT="Версия шаблона курса"/>
+        <FIELD NAME="courselinktype"            TYPE="char"  LENGTH="10"     NOTNULL="false" SEQUENCE="false" COMMENT="Тип связи с курсом мудл"/>
+        <FIELD NAME="coursegradesconversation"  TYPE="text"   		         NOTNULL="false" SEQUENCE="false" COMMENT="Параметры конвертации оценки за курс из СДО" />
+        <FIELD NAME="modulegradesconversation"  TYPE="text"         	     NOTNULL="false" SEQUENCE="false" COMMENT="Параметры конвертации оценки за занятия из СДО" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iprogrammid"                UNIQUE="false" FIELDS="programmid"                NEXT="iagenum"/>
+        <INDEX NAME="iagenum"                    UNIQUE="false" FIELDS="agenum"                    PREVIOUS="iprogrammid"                NEXT="icourseclsid"/>
+        <INDEX NAME="icourseclsid"               UNIQUE="false" FIELDS="courseclsid"               PREVIOUS="iagenum"                    NEXT="iname"/>
+        <INDEX NAME="iname"                      UNIQUE="false" FIELDS="name"                      PREVIOUS="icourseclsid"               NEXT="icode"/>
+        <INDEX NAME="icode"                      UNIQUE="false" FIELDS="code"                      PREVIOUS="iname"                      NEXT="imdlcourse"/>
+        <INDEX NAME="imdlcourse"                 UNIQUE="false" FIELDS="mdlcourse"                 PREVIOUS="icode"                      NEXT="itype"/>
+        <INDEX NAME="itype"                      UNIQUE="false" FIELDS="type"                      PREVIOUS="imdlcourse"                 NEXT="irequired"/>
+        <INDEX NAME="irequired"                  UNIQUE="false" FIELDS="required"                  PREVIOUS="itype"                      NEXT="ihours"/>
+        <INDEX NAME="ihours"                     UNIQUE="false" FIELDS="hours"                     PREVIOUS="irequired"                  NEXT="ihourstheory"/>
+        <INDEX NAME="ihourstheory"               UNIQUE="false" FIELDS="hourstheory"               PREVIOUS="ihours"                     NEXT="ihourspractice"/>
+        <INDEX NAME="ihourspractice"             UNIQUE="false" FIELDS="hourspractice"             PREVIOUS="ihourstheory"               NEXT="ieduweeks"/>
+        <INDEX NAME="ieduweeks"                  UNIQUE="false" FIELDS="eduweeks"                  PREVIOUS="ihourspractice"             NEXT="iinstrlevelid"/>
+        <INDEX NAME="iinstrlevelid"              UNIQUE="false" FIELDS="instrlevelid"              PREVIOUS="ieduweeks"                  NEXT="igradelevel"/>
+        <INDEX NAME="igradelevel"                UNIQUE="false" FIELDS="gradelevel"                PREVIOUS="iinstrlevelid"              NEXT="isname"/>
+        <INDEX NAME="isname"                     UNIQUE="false" FIELDS="sname"                     PREVIOUS="igradelevel"                NEXT="iscode"/>
+        <INDEX NAME="iscode"                     UNIQUE="false" FIELDS="scode"                     PREVIOUS="isname"                     NEXT="istatus"/>
+        <INDEX NAME="istatus"                    UNIQUE="false" FIELDS="status"                    PREVIOUS="iscode"                     NEXT="idepartmentid"/>
+        <INDEX NAME="idepartmentid"              UNIQUE="false" FIELDS="departmentid"              PREVIOUS="istatus"                    NEXT="icontroltypeid"/>
+        <INDEX NAME="icontroltypeid"             UNIQUE="false" FIELDS="controltypeid"             PREVIOUS="idepartmentid"              NEXT="igradesyncenabled"/>
+        <INDEX NAME="igradesyncenabled"          UNIQUE="false" FIELDS="gradesyncenabled"          PREVIOUS="icontroltypeid"             NEXT="iincjournwithoutgrade"/>
+        <INDEX NAME="iincjournwithoutgrade"      UNIQUE="false" FIELDS="incjournwithoutgrade"      PREVIOUS="igradesyncenabled"          NEXT="iincjournwithunsatisfgrade"/>
+        <INDEX NAME="iincjournwithunsatisfgrade" UNIQUE="false" FIELDS="incjournwithunsatisfgrade" PREVIOUS="iincjournwithoutgrade"      NEXT="imetaprogrammitems"/>
+        <INDEX NAME="imetaprogrammitems"         UNIQUE="false" FIELDS="metaprogrammitemid"        PREVIOUS="iincjournwithunsatisfgrade" NEXT="isalfactor"/>
+        <INDEX NAME="isalfactor"                 UNIQUE="false" FIELDS="salfactor"                 PREVIOUS="imetaprogrammitems"         NEXT="iselfenrol"/>
+        <INDEX NAME="iselfenrol"                 UNIQUE="false" FIELDS="selfenrol"                 PREVIOUS="isalfactor"                 NEXT="iverificationrequested"/>
+        <INDEX NAME="iverificationrequested"     UNIQUE="false" FIELDS="verificationrequested"     PREVIOUS="iselfenrol"				 NEXT="icoursetemplateversion"/>
+        <INDEX NAME="icoursetemplateversion"     UNIQUE="false" FIELDS="coursetemplateversion"     PREVIOUS="iverificationrequested"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

@@ -1,0 +1,12 @@
+<div class="otrl_section_selection">
+	<div class="otrl_category_holder">
+		<ul class="otrl_sources">
+			{{# sourcesinfo}}
+			{{#is_active}}
+			<li class="otrl_source" {{#features}}data-feature-{{.}}="1"{{/features}}>{{sourcename}}</li>
+			{{/is_active}}
+			{{/ sourcesinfo}}
+		</ul>
+		<div id="otrl_category_selection" style="display:none"></div>
+	</div>
+</div>

@@ -1,0 +1,57 @@
+/**
+ * Moodle forms HTML isn't changeable via renderers (yet?) so this
+ * .less file imports styles from the bootstrap $variables file and
+ * adds them to the existing Moodle form CSS ids and classes.
+ *
+ */
+ 
+ .mform {
+ 	&.full-width-labels {
+ 		@include narrow-form-styles();
+ 	}
+ 	.form-group.femptylabel {
+ 		div.col-md-3:first-child {
+ 			flex: 0;
+    		max-width: none;
+ 		}
+ 		div.col-md-9:last-child {
+ 			flex: 0 0 100%;
+   			max-width: 100%;
+ 		}
+ 	}
+ 	.fcontainer {
+ 		.fields_filter_setting {
+ 			.form-group {
+ 				.fitem {
+ 					margin-bottom: 5px;
+ 				}
+		 		div.col-md-3:first-child {
+		 			flex: none;
+		    		max-width: none;
+		 		}
+		 		div.col-md-9:last-child {
+		 			flex: 0 0 100%;
+		   			max-width: 100%;
+		 		}
+ 			}
+ 			display: inline-block;
+			width: calc(100% / 3 - 22px);
+			min-width: 300px;
+			max-width: 400px;
+			padding: 20px;
+			margin-bottom: 20px;
+			margin-right: 20px;
+			box-sizing: border-box;
+			border: 1px solid #666;
+			background: #F5F5F5;
+ 		}
+ 	}
+ 	&.no-air {
+ 		.form-group {
+ 			margin: 0;
+ 			> div {
+ 				padding: 0;
+ 			}
+ 		}
+	}
+ }

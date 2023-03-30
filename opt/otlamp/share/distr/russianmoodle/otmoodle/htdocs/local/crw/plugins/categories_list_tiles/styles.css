@@ -1,0 +1,230 @@
+/* 
+ * Общие свойства плагина
+ */
+ 
+.crw_clearboth {
+	clear: both;
+	position: relative;
+}
+
+/* Хлебные крошки */
+#nav-menu li {
+	float: left;
+}
+
+/* Плитка категорий */
+.crw_cs_catblock {
+	margin: 0 0 10px calc(-1% + 10px);
+	padding: 0;
+	position: relative;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.crw_cs_cattile {
+	display: -moz-inline-box;
+    display: inline-block;
+    vertical-align: top;
+	padding: 0 0 0 1%;
+	margin-bottom: 10px;
+	position: relative;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	text-decoration: none;
+}
+
+.crw_cs_cattile:hover {
+	text-decoration: none;
+}
+
+.crw_cs_cattile_img {
+	width: 100%;
+	position: relative;
+	padding: 0 0 75% 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+	-webkit-transition: all 1s;
+	-moz-transition: all 1s;
+	transition: all 1s;
+	-webkit-filter: grayscale(100%);
+}
+
+.crw_cs_cattile:hover .crw_cs_cattile_img {
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.8);
+	-webkit-filter: grayscale(0%);
+}
+
+.crw_cs_cattile_title {
+	font-weight: normal;
+	padding: 5px 0;
+}
+
+.crw_catblock_icon_wrap {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	display: table-cell;
+	vertical-align: top;
+	line-height: 0px;
+	font-size: 0px;
+}
+
+.crw_catblock_icon {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.crw_cs_caticonblock_title {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	display: table-cell;
+	vertical-align: middle;
+	padding: 0 20px;
+}
+
+.crw_cs_caticonblock {
+	display: block;
+	float: left;
+	width: 15%;
+	padding: 10px 0 10px 1%;
+	position: relative;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	text-decoration: none;
+	border-top: 1px solid #efefef;
+	overflow: hidden;
+}
+.crw_catblock_clearboth {
+	height: 0;
+}
+
+.crw_cs_catblocktitle {
+	display: inline-block;
+	line-height: 40px;
+	margin: 0;
+	padding: 0 5px;
+	font-size: 24px;
+	font-weight: 300;
+    border-radius: 0;
+	background: #555;
+	color: #fff;
+    box-sizing: border-box;
+}
+
+.crw_cs_catblocktitleicons {
+	display: inline-block;
+	padding: 0 10px;
+	color: #404040;
+	font-size: 1.25em;
+	background: #efefef;
+	border-top: 2px solid rgb([[setting:firstcolor]]);
+}
+
+
+.crw_cs_cattile.cp_courseline1 {
+	width: calc(100% / 1);
+}
+.crw_cs_cattile.cp_courseline2 {
+	width: calc(100% / 2);
+}
+.crw_cs_cattile.cp_courseline3 {
+	width: calc(100% / 3);
+}
+.crw_cs_cattile.cp_courseline4 {
+	width: calc(100% / 4);
+}
+.crw_cs_cattile.cp_courseline5 {
+	width: calc(100% / 5);
+}
+.crw_cs_cattile.cp_courseline6 {
+	width: calc(100% / 6);
+}
+.crw_cs_cattile.cp_courseline7 {
+	width: calc(100% / 7);
+}
+.crw_cs_cattile.cp_courseline8 {
+	width: calc(100% / 8);
+}
+
+
+@media (max-width: 1720px)
+{
+	.crw_cs_cattile.cp_courseline8 {
+	    width: calc(100% / 7);
+	}
+}
+
+@media (max-width: 1440px)
+{
+	.crw_cs_cattile.cp_courseline7,
+	.crw_cs_cattile.cp_courseline8 {
+	    width: calc(100% / 6);
+	}
+}
+
+@media (max-width: 1280px)
+{
+	.crw_cs_cattile.cp_courseline6,
+	.crw_cs_cattile.cp_courseline7,
+	.crw_cs_cattile.cp_courseline8 {
+	    width: calc(100% / 5);
+	}
+}
+
+@media (max-width: 1024px)
+{
+	.crw_cs_cattile.cp_courseline5,
+	.crw_cs_cattile.cp_courseline6,
+	.crw_cs_cattile.cp_courseline7,
+	.crw_cs_cattile.cp_courseline8 {
+	    width: calc(100% / 4);
+	}
+}
+
+@media (max-width: 768px)
+{
+	.crw_cs_cattile.cp_courseline4,
+	.crw_cs_cattile.cp_courseline5,
+	.crw_cs_cattile.cp_courseline6,
+	.crw_cs_cattile.cp_courseline7,
+	.crw_cs_cattile.cp_courseline8 {
+	    width: calc(100% / 3);
+	}
+}
+
+@media (max-width: 480px)
+{
+	.crw_cs_cattile.cp_courseline3,
+	.crw_cs_cattile.cp_courseline4,
+	.crw_cs_cattile.cp_courseline5,
+	.crw_cs_cattile.cp_courseline6,
+	.crw_cs_cattile.cp_courseline7,
+	.crw_cs_cattile.cp_courseline8 {
+	    width: calc(100% / 2);
+	}
+}
+
+@media (max-width: 320px)
+{
+	.crw_cs_cattile.cp_courseline2,
+	.crw_cs_cattile.cp_courseline3,
+	.crw_cs_cattile.cp_courseline4,
+	.crw_cs_cattile.cp_courseline5,
+	.crw_cs_cattile.cp_courseline6,
+	.crw_cs_cattile.cp_courseline7,
+	.crw_cs_cattile.cp_courseline8 {
+	    width: calc(100% / 1);
+	}
+}

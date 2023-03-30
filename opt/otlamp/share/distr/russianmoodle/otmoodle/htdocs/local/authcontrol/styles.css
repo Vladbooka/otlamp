@@ -1,0 +1,96 @@
+.local_authcontrol_content .local_authcontrol_popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    user-select: none;
+}
+.local_authcontrol_content .local_authcontrol_popup .local_authcontrol_popuptext {
+    visibility: hidden;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 100%;
+    width: 100px;
+    margin-left: -120%;
+}
+.local_authcontrol_content .local_authcontrol_popup .local_authcontrol_popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 80%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+.local_authcontrol_content .local_authcontrol_popup .local_authcontrol_show {
+    visibility: visible;
+}
+.local_authcontrol_content .local_authcontrol_delimiter {
+	border: 0;
+    border-bottom: 1px solid #fff;
+    margin: 5px 0;
+}
+.local_authcontrol_content .local_authcontrol_input_password {
+	width: 80px !important;
+	padding: 0 !important;
+	padding-top: 4px !important;
+	border: 0 !important;
+	margin: 2px 0 2px 0 !important;
+}
+.local_authcontrol_content .local_authcontrol_button_password {
+    padding: 4px !important;
+    margin: 2px 0 2px 0 !important;
+	cursor: pointer;
+	background-color: #8A8F88;
+}
+.local_authcontrol_content .local_authcontrol_reset_form_hidden {
+	display:none;
+}
+.local_authcontrol_content table .felement.fcheckbox {
+    margin-left: 0;
+}
+.local_authcontrol_content table .fitemtitle {
+	width: 0 !important;
+}
+.local_authcontrol_content table .felement.fcheckbox span, .local_authcontrol_content .fitem.fitem_fcheckbox.femptylabel, 
+        .local_authcontrol_content table .felement.fcheckbox span input,
+            .local_authcontrol_content tbody .fitem.fitem_fcheckbox.femptylabel.checkboxgroup1 .felement.fcheckbox {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.local_authcontrol_content table .local_authcontrol_searching {
+	width: 100% !important;
+}
+.local_authcontrol_content .local_authcontrol_select_all {
+	cursor: pointer;
+}
+.local_authcontrol_content tbody .fitem.fitem_fcheckbox.femptylabel.checkboxgroup1 .fitemtitle {
+	display: none !important;
+}
+@media all and (max-width: 1336px) {
+    .local_authcontrol_content .local_authcontrol_actions {
+        display :none;
+    }
+}
+@media all and (max-width: 1172px) {
+    .local_authcontrol_content .local_authcontrol_role {
+       display: none; 
+    }
+}
+@media all and (max-width: 900px) {
+	.local_authcontrol_content .local_authcontrol_role {
+	   display: none; 
+	}
+}
+@media all and (max-width: 380px) {
+    .local_authcontrol_content .local_authcontrol_group, .local_authcontrol_content .local_authcontrol_username,
+        .local_authcontrol_content .local_authcontrol_context {
+       display: none; 
+    }
+}

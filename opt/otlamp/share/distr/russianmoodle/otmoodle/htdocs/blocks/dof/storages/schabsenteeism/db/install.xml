@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/dof/storages/schabsenteeism/db" VERSION="20110921" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_schabsenteeism" COMMENT="Таблица причин отсутствия на занятии">
+      <FIELDS>
+        <FIELD NAME="id"          TYPE="int"  LENGTH="10"  NOTNULL="true"              UNSIGNED="true" SEQUENCE="true"  />
+        <FIELD NAME="name"        TYPE="char" LENGTH="255" NOTNULL="false"                             SEQUENCE="false" COMMENT="Название причины отсутствия"           />
+        <FIELD NAME="ownerid"     TYPE="int"  LENGTH="10"  NOTNULL="true"  DEFAULT="0" UNSIGNED="true" SEQUENCE="false" COMMENT="Персона-владелец причины для приватного использования" />
+        <FIELD NAME="unexplained" TYPE="int"  LENGTH="1"   NOTNULL="true"  DEFAULT="0" UNSIGNED="true" SEQUENCE="false" COMMENT="Причина (Уважительная/Неуважительная)" />
+        <FIELD NAME="status"      TYPE="char" LENGTH="20"  NOTNULL="false"                             SEQUENCE="false" COMMENT="Статус"                                />      
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary"    TYPE="primary" FIELDS="id"/>
+        <KEY NAME="fk_ownerid" TYPE="foreign" FIELDS="ownerid" REFTABLE="block_dof_s_persons" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iname"        UNIQUE="false"    FIELDS="name"        />
+        <INDEX NAME="iownerid"     UNIQUE="false"    FIELDS="ownerid"     />
+        <INDEX NAME="iunexplained" UNIQUE="false"    FIELDS="unexplained" />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

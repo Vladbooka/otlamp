@@ -1,0 +1,283 @@
+/* 3.5 styles */
+
+/** Header color */
+.toolbar-background-md,
+.toolbar-background-ios,
+.toolbar-background-wp {
+    background-color: [[setting:color_header_topbasecolor]];
+    background-image: [[setting:header_dockpanel_texture]];
+    color: [[setting:color_header_topbasecolor_text]];
+}
+core-ion-tab.core-dashboard-handler .core-tabs-content-container core-tab[aria-labelledby="core-tab-1-tab"] core-sitehome-index ion-item.item {
+	position: relative;
+	padding-top: 75px;
+}
+core-ion-tab.core-dashboard-handler .core-tabs-content-container core-tab[aria-labelledby="core-tab-1-tab"] core-sitehome-index ion-item.item::before {
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+	content: '';
+	width: 100%;
+	height: 75px;
+    background-color: [[setting:color_header_backgroundcolor]];
+	background-image: [[setting:header_backgroundimage]];
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 200% auto;
+}
+
+core-ion-tab.core-dashboard-handler .core-tabs-content-container core-tab[aria-labelledby="core-tab-1-tab"] core-sitehome-index ion-item.item::after {
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+	content: '';
+	width: 100%;
+	height: 75px;
+    background-image: [[setting:header_logoimage_compact]];
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: auto calc(100% - 10px);
+}
+
+/*
+.toolbar-md::after,
+.toolbar-ios::after,
+.toolbar-wp::after {
+    display: block;
+    content: '';
+    height: 75px;
+    background-color: [[setting:color_header_backgroundcolor]];
+    background-image: [[setting:header_logoimage_compact]];
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: auto calc(100% - 10px);
+}
+*/
+
+.toolbar-title-md,
+.toolbar-title-ios,
+.toolbar-title-wp {
+    color: [[setting:color_header_topbasecolor_text]];
+}
+
+/* Tabbar color */
+.tabs-md .tabbar,
+.tabs-ios .tabbar,
+.tabs-wp .tabbar {
+    background-color: [[setting:color_content_elementscolor]];
+    color: [[setting:color_content_elementscolor_text]];
+}
+
+/* Tabbar button color */
+.tabs-md .tab-button, 
+.tabs-md ion-app.app-root .core-tabs-bar .tab-slide, 
+ion-app.app-root .core-tabs-bar .tabs-md .tab-slide,
+.tabs-ios .tab-button, 
+.tabs-ios ion-app.app-root .core-tabs-bar .tab-slide, 
+ion-app.app-root .core-tabs-bar .tabs-ios .tab-slide,
+.tabs-wp .tab-button, 
+.tabs-wp ion-app.app-root .core-tabs-bar .tab-slide, 
+ion-app.app-root .core-tabs-bar .tabs-wp .tab-slide {
+    background-color: [[setting:color_content_elementscolor]];
+    color: [[setting:color_content_elementscolor_text]];
+}
+.tabs-md .tab-button-icon,
+.tabs-ios .tab-button-icon,
+.tabs-wp .tab-button-icon {
+    background-color: [[setting:color_content_elementscolor]];
+    color: [[setting:color_content_elementscolor_text]];
+}
+
+/* Tabbar hovered buttons */
+.tabs-md .tab-button:hover, 
+.tabs-md ion-app.app-root .core-tabs-bar .tab-slide:hover, 
+ion-app.app-root .core-tabs-bar .tabs-md .tab-slide:hover,
+.tabs-ios .tab-button:hover, 
+.tabs-ios ion-app.app-root .core-tabs-bar .tab-slide:hover, 
+ion-app.app-root .core-tabs-bar .tabs-ios .tab-slide:hover,
+.tabs-wp .tab-button:hover, 
+.tabs-wp ion-app.app-root .core-tabs-bar .tab-slide:hover, 
+ion-app.app-root .core-tabs-bar .tabs-wp .tab-slide:hover,
+.tabs-md .tab-button:focus, 
+.tabs-md ion-app.app-root .core-tabs-bar .tab-slide:focus, 
+ion-app.app-root .core-tabs-bar .tabs-md .tab-slide:focus,
+.tabs-ios .tab-button:focus, 
+.tabs-ios ion-app.app-root .core-tabs-bar .tab-slide:focus, 
+ion-app.app-root .core-tabs-bar .tabs-ios .tab-slide:focus,
+.tabs-wp .tab-button:focus, 
+.tabs-wp ion-app.app-root .core-tabs-bar .tab-slide:focus, 
+ion-app.app-root .core-tabs-bar .tabs-wp .tab-slide:focus,
+.tabs-md .tab-button:active, 
+.tabs-md ion-app.app-root .core-tabs-bar .tab-slide:active, 
+ion-app.app-root .core-tabs-bar .tabs-md .tab-slide:active,
+.tabs-ios .tab-button:active, 
+.tabs-ios ion-app.app-root .core-tabs-bar .tab-slide:active, 
+ion-app.app-root .core-tabs-bar .tabs-ios .tab-slide:active,
+.tabs-wp .tab-button:active, 
+.tabs-wp ion-app.app-root .core-tabs-bar .tab-slide:active, 
+ion-app.app-root .core-tabs-bar .tabs-wp .tab-slide:active {
+    background-color: [[setting:color_content_elementscolor_active]];
+    color: [[setting:color_content_elementscolor_active_text]];
+}
+.tabs-md .tab-button:hover .tab-button-icon,
+.tabs-md ion-app.app-root .core-tabs-bar .tab-slide:hover .tab-button-icon, 
+ion-app.app-root .core-tabs-bar .tabs-md .tab-slide:hover .tab-button-icon,
+.tabs-ios .tab-button:hover .tab-button-icon,
+.tabs-ios ion-app.app-root .core-tabs-bar .tab-slide:hover .tab-button-icon, 
+ion-app.app-root .core-tabs-bar .tabs-ios .tab-slide:hover .tab-button-icon,
+.tabs-wp .tab-button:hover .tab-button-icon, 
+.tabs-wp ion-app.app-root .core-tabs-bar .tab-slide:hover .tab-button-icon, 
+ion-app.app-root .core-tabs-bar .tabs-wp .tab-slide:hover .tab-button-icon,
+.tabs-md .tab-button:focus .tab-button-icon,
+.tabs-md ion-app.app-root .core-tabs-bar .tab-slide:focus .tab-button-icon, 
+ion-app.app-root .core-tabs-bar .tabs-md .tab-slide:focus .tab-button-icon,
+.tabs-ios .tab-button:focus .tab-button-icon,
+.tabs-ios ion-app.app-root .core-tabs-bar .tab-slide:focus .tab-button-icon, 
+ion-app.app-root .core-tabs-bar .tabs-ios .tab-slide:focus .tab-button-icon,
+.tabs-wp .tab-button:focus .tab-button-icon, 
+.tabs-wp ion-app.app-root .core-tabs-bar .tab-slide:focus .tab-button-icon, 
+ion-app.app-root .core-tabs-bar .tabs-wp .tab-slide:focus .tab-button-icon,
+.tabs-md .tab-button:active .tab-button-icon,
+.tabs-md ion-app.app-root .core-tabs-bar .tab-slide:active .tab-button-icon, 
+ion-app.app-root .core-tabs-bar .tabs-md .tab-slide:active .tab-button-icon,
+.tabs-ios .tab-button:active .tab-button-icon,
+.tabs-ios ion-app.app-root .core-tabs-bar .tab-slide:active .tab-button-icon, 
+ion-app.app-root .core-tabs-bar .tabs-ios .tab-slide:active .tab-button-icon,
+.tabs-wp .tab-button:active .tab-button-icon, 
+.tabs-wp ion-app.app-root .core-tabs-bar .tab-slide:active .tab-button-icon, 
+ion-app.app-root .core-tabs-bar .tabs-wp .tab-slide:active .tab-button-icon {
+    background-color: [[setting:color_content_elementscolor_active]];
+    color: [[setting:color_content_elementscolor_active_text]];
+}
+
+/* Tabbar selected button color */
+.tabs-md .tab-button[aria-selected=true], 
+.tabs-md ion-app.app-root .core-tabs-bar .tab-slide[aria-selected=true], 
+ion-app.app-root .core-tabs-bar .tabs-md .tab-slide[aria-selected=true],
+.tabs-ios .tab-button[aria-selected=true], 
+.tabs-ios ion-app.app-root .core-tabs-bar .tab-slide[aria-selected=true], 
+ion-app.app-root .core-tabs-bar .tabs-ios .tab-slide[aria-selected=true],
+.tabs-wp .tab-button[aria-selected=true], 
+.tabs-wp ion-app.app-root .core-tabs-bar .tab-slide[aria-selected=true], 
+ion-app.app-root .core-tabs-bar .tabs-wp .tab-slide[aria-selected=true] {
+    background-color: [[setting:color_content_elementscolor_active]];
+    color: [[setting:color_content_elementscolor_active_text]];
+}
+.tabs-md .tab-button[aria-selected=true] .tab-button-icon, 
+.tabs-md ion-app.app-root .core-tabs-bar .tab-slide[aria-selected=true] .tab-button-icon, 
+ion-app.app-root .core-tabs-bar .tabs-md .tab-slide[aria-selected=true] .tab-button-icon,
+.tabs-ios .tab-button[aria-selected=true] .tab-button-icon, 
+.tabs-ios ion-app.app-root .core-tabs-bar .tab-slide[aria-selected=true] .tab-button-icon, 
+ion-app.app-root .core-tabs-bar .tabs-ios .tab-slide[aria-selected=true] .tab-button-icon,
+.tabs-wp .tab-button[aria-selected=true] .tab-button-icon, 
+.tabs-wp ion-app.app-root .core-tabs-bar .tab-slide[aria-selected=true] .tab-button-icon, 
+ion-app.app-root .core-tabs-bar .tabs-wp .tab-slide[aria-selected=true] .tab-button-icon {
+    background-color: [[setting:color_content_elementscolor_active]];
+    color: [[setting:color_content_elementscolor_active_text]];
+}
+
+/* Выбранная вкладка - как цвет ссылок (отличается от текста) */
+ion-app.app-root .core-tabs-bar .tab-slide[aria-selected=true] {
+    color: [[setting:color_links_color]]!important;
+    border-bottom-color: [[setting:color_links_color]]!important;
+}
+
+/* Кнопки (например, в лекции)*/
+.button-md,
+.button-ios,
+.button-wp,
+.fab-ios,
+.fab-md,
+.fab-wp {
+	background-color: [[setting:color_content_elementscolor]];
+    color: [[setting:color_content_elementscolor_text]];
+}
+.button-md:hover:not(.disable-hover),
+.button-ios:hover:not(.disable-hover),
+.button-wp:hover:not(.disable-hover) {
+	background-color: [[setting:color_content_elementscolor_active]];
+    color: [[setting:color_content_elementscolor_active_text]];
+    border-color: [[setting:color_content_elementscolor_active]];
+}
+.button-md-light:hover:not(.disable-hover),
+.button-ios-light:hover:not(.disable-hover),
+.button-wp-light:hover:not(.disable-hover) {
+    color: [[setting:color_content_elementscolor_active]];
+}
+
+ion-app.app-root .core-button-select.button-md, 
+ion-app.app-root .core-button-select.select-md, 
+ion-app.app-root ion-select.core-button-select.button-md, 
+ion-app.app-root ion-select.core-button-select.select-md,
+ion-app.app-root .core-button-select.button-ios, 
+ion-app.app-root .core-button-select.select-ios, 
+ion-app.app-root ion-select.core-button-select.button-ios, 
+ion-app.app-root ion-select.core-button-select.select-ios,
+ion-app.app-root .core-button-select.button-wp, 
+ion-app.app-root .core-button-select.select-wp, 
+ion-app.app-root ion-select.core-button-select.button-wp, 
+ion-app.app-root ion-select.core-button-select.select-wp {
+	background-color: [[setting:color_content_elementscolor]];
+}
+
+
+ion-app.app-root.md .button-md-light,
+ion-app.app-root.ios .button-ios-light,
+ion-app.app-root.wp .button-wp-light {
+    color: [[setting:color_content_elementscolor_text]];
+}
+
+.button-outline-md,
+.button-outline-ios,
+.button-outline-wp {
+    border-color: [[setting:color_content_elementscolor]];
+    background-color: #ffffff;
+    color: [[setting:color_content_elementscolor]];
+}
+
+.button-clear-md,
+.button-clear-ios,
+.button-clear-wp {
+  background-color: transparent;
+  color: [[setting:color_content_elementscolor]];
+}
+
+
+
+/* Список радиобаттонов, выбранный пункт */
+.item-radio-checked.item-md ion-label,
+.item-radio-checked.item-ios ion-label,
+.item-radio-checked.item-wp ion-label {
+	color: [[setting:color_links_color]];
+}
+.radio-md .radio-checked,
+.radio-ios .radio-checked,
+.radio-wp .radio-checked {
+	border-color: [[setting:color_links_color]];
+}
+.radio-md .radio-inner,
+.radio-ios .radio-inner,
+.radio-wp .radio-inner {
+	background-color: [[setting:color_links_color]];
+}
+
+
+/* Нераскрытый выпадающий список */
+ion-app.app-root ion-select {
+	color: [[setting:color_links_color]];
+}
+/* Выбранный пункт в раскрытом выпадающем списке*/
+ion-app.app-root.md .action-sheet-md .action-sheet-selected,
+ion-app.app-root.ios .action-sheet-ios .action-sheet-selected,
+ion-app.app-root.wp .action-sheet-wp .action-sheet-selected {
+	color: [[setting:color_links_color]];
+}
+
+/* цвет текста кнопки в алерт-батоне */
+.alert-md .alert-button,
+.alert-ios .alert-button,
+.alert-wp .alert-button {
+	color: [[setting:color_content_elementscolor]];
+}

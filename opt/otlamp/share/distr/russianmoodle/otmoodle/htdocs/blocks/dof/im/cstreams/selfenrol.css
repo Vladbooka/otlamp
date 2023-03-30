@@ -1,0 +1,28 @@
+@CHARSET "UTF-8";
+form.selfenrol #fgroup_id_cstreams .felement {
+    margin-left: 0px;
+}
+form.selfenrol #fitem_id_nosubmit_checkbox_controller1 .felement {
+    margin-left: 0px;
+}
+form.selfenrol .fitem .felement {
+    margin-left: 0px;
+}
+form.selfenrol #fgroup_id_buttonar {
+    background-color: transparent;
+    border-top: none;
+}
+form.selfenrol .fitem div.fitemtitle {
+    text-align: left;
+}
+form.selfenrol .form_selfenrol_blocks {
+    display: inline-block;
+    width: 245px;
+    border: 1px solid #4d7f40;
+    margin: 10px 10px 0 0;
+    padding: 7px;
+    text-align: center;
+}
+form.selfenrol .form_selfenrol_bottom_line {
+    border-bottom: 1px solid #e5e5e5;
+}

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/event3kl/db" VERSION="2021042900" COMMENT="XMLDB file for Moodle mod/event3kl"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+    <TABLES>
+	    <TABLE NAME="event3kl" COMMENT="event3kl instances">
+	      <FIELDS>
+	        <FIELD NAME="id"           TYPE="int"  LENGTH="10"  NOTNULL="true"  UNSIGNED="true" SEQUENCE="true" />
+	        <FIELD NAME="course"       TYPE="int"  LENGTH="10"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false"/>
+        	<FIELD NAME="name"         TYPE="char" LENGTH="255" NOTNULL="true"                  SEQUENCE="false"             COMMENT="name field for moodle instances"/>
+        	<FIELD NAME="intro"        TYPE="text"              NOTNULL="true"                  SEQUENCE="false"             COMMENT="The description of the otmutualassessment. This field is used by feature MOD_INTRO."/>
+        	<FIELD NAME="introformat"  TYPE="int"  LENGTH="4"   NOTNULL="true"                  SEQUENCE="false" DEFAULT="0" COMMENT="The format of the description field of the otmutualassessment. This field is used by feature MOD_INTRO."/>
+	        <FIELD NAME="provider"     TYPE="char" LENGTH="255" NOTNULL="false" UNSIGNED="true" SEQUENCE="false"             COMMENT="provider of instance (trueconf, webinar, bigbluebutton, etc)"/>
+	        <FIELD NAME="providerdata" TYPE="text"              NOTNULL="false"                 SEQUENCE="false"             COMMENT="json-encoded provider config"/>
+	        <FIELD NAME="format"       TYPE="char" LENGTH="255" NOTNULL="false" UNSIGNED="true" SEQUENCE="false"             COMMENT="foramt of the event (common, individual, groups)"/>
+	        <FIELD NAME="formatdata"   TYPE="text"              NOTNULL="false"                 SEQUENCE="false"             COMMENT="json-encoded format config"/>
+	        <FIELD NAME="datemode"     TYPE="char" LENGTH="255" NOTNULL="false" UNSIGNED="true" SEQUENCE="false"             COMMENT="date mode of the event"/>
+	        <FIELD NAME="datemodedata" TYPE="text"              NOTNULL="false"                 SEQUENCE="false"             COMMENT="json-encoded datemode config"/>
+	        <FIELD NAME="timecreated"  TYPE="int"  LENGTH="10"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false"/>
+	        <FIELD NAME="timemodified" TYPE="int"  LENGTH="10"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false"/>
+	      </FIELDS>
+	      <KEYS>
+	        <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key"/>
+	      </KEYS>
+	      <INDEXES>
+	        <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
+	      </INDEXES>
+	    </TABLE>
+	    
+	    <TABLE NAME="event3kl_sessions" COMMENT="instance sessions">
+	        <FIELDS>
+	            <FIELD NAME="id"                 TYPE="int"  LENGTH="10"  NOTNULL="true"  UNSIGNED="true" SEQUENCE="true"/>
+	            <FIELD NAME="name"               TYPE="char" LENGTH="255" NOTNULL="false" UNSIGNED="true" SEQUENCE="false"/>
+	            <FIELD NAME="startdate"          TYPE="int"  LENGTH="10"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false"/>
+	            <FIELD NAME="overridenstartdate" TYPE="int"  LENGTH="10"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false"/>
+	            <FIELD NAME="offereddate"        TYPE="int"  LENGTH="10"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="предложенная учащимся дата проведения мероприятия"/>
+	            <FIELD NAME="maxmembers"         TYPE="int"  LENGTH="10"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="максимально допустимое число участников (0 - не ограничено)"/>
+	            <FIELD NAME="event3klid"         TYPE="int"  LENGTH="10"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false"/>
+	            <FIELD NAME="groupid"            TYPE="int"  LENGTH="10"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="преподаватель может создавать подгруппы только в своих группах, система должна помнить внутри какой группы был создан этот сеанс"/>
+	            <FIELD NAME="status"             TYPE="char" LENGTH="255" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="plan, active, finished; статус обновляется при взаимодействии с инстансом (например при открытии инстанса модуля)"/>
+	            <FIELD NAME="extid"              TYPE="char" LENGTH="255" NOTNULL="false" UNSIGNED="true" SEQUENCE="false"/>
+	            <FIELD NAME="pendingrecs"        TYPE="int"  LENGTH="1"   NOTNULL="false" UNSIGNED="true" SEQUENCE="false"/>
+	            <FIELD NAME="timecreated"        TYPE="int"  LENGTH="10"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false"/>
+	        	<FIELD NAME="timemodified"       TYPE="int"  LENGTH="10"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false"/>
+	        </FIELDS>
+	        <KEYS>
+	            <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+	        	<KEY NAME="event3klid" TYPE="foreign" FIELDS="event3klid" REFTABLE="event3kl" REFFIELDS="id"/>
+	        </KEYS>
+	        <INDEXES>
+	            <INDEX NAME="startdate" UNIQUE="false" FIELDS="startdate"/>
+	            <INDEX NAME="status" UNIQUE="false" FIELDS="status"/>
+	        </INDEXES>
+	    </TABLE>    
+	    
+	    <TABLE NAME="event3kl_session_members" COMMENT="information about session members">
+	      <FIELDS>
+	        <FIELD NAME="id"              TYPE="int" LENGTH="10" NOTNULL="true"  UNSIGNED="true" SEQUENCE="true"/>
+	        <FIELD NAME="sessionid"       TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false"/>
+	        <FIELD NAME="userid"          TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false"/>
+	        <FIELD NAME="calendareventid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false"/>
+	        <FIELD NAME="attendance"      TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="отметка о посещении занятия"/>
+	        <FIELD NAME="timecreated"     TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false"/>
+	        <FIELD NAME="timemodified"    TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false"/>
+	      </FIELDS>
+	      <KEYS>
+	        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+	        <KEY NAME="sessionid" TYPE="foreign" FIELDS="sessionid" REFTABLE="event3kl_sessions" REFFIELDS="id"/>
+	      </KEYS>
+	      <INDEXES>
+	        <INDEX NAME="attendance" UNIQUE="false" FIELDS="sessionid, attendance"/>
+	      </INDEXES>
+	    </TABLE>
+    </TABLES>
+</XMLDB>
+
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/notgraded/db" VERSION="2017030200" COMMENT="XMLDB file for Moodle block notgraded tables">
+  <TABLES>
+    <TABLE NAME="block_notgraded_gradercache" COMMENT="To store not graded assigns and quiz-essays counts per grader">
+      <FIELDS>
+        <FIELD NAME="id" 				TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" />
+        <FIELD NAME="graderid" 			TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" DEFAULT="0" />
+        <FIELD NAME="countnotgraded" 	TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" DEFAULT="0" />
+        <FIELD NAME="lastupdate" 		TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" DEFAULT="0" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key for notgraded"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="grader" 			UNIQUE="true" 	FIELDS="graderid" />
+        <INDEX NAME="countnotgraded" 	UNIQUE="false" 	FIELDS="countnotgraded" />
+        <INDEX NAME="lastupdate" 		UNIQUE="false" 	FIELDS="lastupdate" />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

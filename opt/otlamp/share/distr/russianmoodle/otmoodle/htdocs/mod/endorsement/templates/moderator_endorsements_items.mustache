@@ -1,0 +1,34 @@
+<table class="generaltable">
+{{#items}}
+	<tr class="mod_endorsement_item" data-item-id="{{id}}" data-item-status="{{status}}">
+		<td class="mod_endorsement_item_cell mod_endorsement_item_cell_moderator_tools">
+			<div class="mod_endorsement_item_field mod_endorsement_item_moderator_tools">
+				{{{moderator_tools}}}
+			</div>
+		</td>
+		<td class="mod_endorsement_item_cell" class=" mod_endorsement_item_cell_username">
+			<div class="mod_endorsement_item_field mod_endorsement_item_username">
+				{{username}}
+			</div>
+			<div class="mod_endorsement_item_field mod_endorsement_item_pubdate">
+				{{pubdate}}
+			</div>
+		</td>
+		<td class="mod_endorsement_item_cell mod_endorsement_item_cell_text">
+			<div class="mod_endorsement_item_field mod_endorsement_item_text">
+				{{{text}}}
+			</div>
+		</td>
+		<td class="mod_endorsement_item_cell mod_endorsement_item_cell_areaitemname">
+			<div class="mod_endorsement_item_field mod_endorsement_item_areaitemname">
+				<span>{{areaname}}: </span>{{areaitemname}}
+			</div>
+			{{#sourcename}}
+			<div class="mod_endorsement_item_field mod_endorsement_item_sourcename">
+				<span>{{#str}}feedback_source, mod_endorsement{{/str}}: </span>{{sourcetype}} "{{sourcename}}"
+			</div>
+			{{/sourcename}}
+		</td>
+	</tr>
+{{/items}}
+</table>

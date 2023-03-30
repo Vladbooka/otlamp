@@ -1,0 +1,6 @@
+.editor_atto_content div.otspoiler::before {
+    content: '[[';
+}
+.editor_atto_content div.otspoiler::after {
+    content: ']]';
+}

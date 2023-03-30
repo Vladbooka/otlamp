@@ -1,0 +1,20 @@
+<div class="text-right p-0 py-4" >
+	<button class="restore-default-config btn btn-primary">{{#str}}config_restore_defaults, local_otcontrolpanel{{/str}}</a>
+</div>
+<div class="card" style="width: 50%; min-width: 320px;">
+	<h5 class="card-header">{{#str}}views, local_otcontrolpanel{{/str}}</h5>
+	<ul class="views list-group list-group-flush">
+		{{#views}}
+		<li class="list-group-item {{#view-editdisabled}}text-muted{{/view-editdisabled}}" data-view-code="{{view-code}}" data-view-edit-disabled="{{#view-editdisabled}}1{{/view-editdisabled}}{{^view-editdisabled}}0{{/view-editdisabled}}">
+			{{#view-editdisabled}}
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+			  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"></path>
+			</svg>
+			{{/view-editdisabled}}
+			{{view-displayname}}
+			<span class="spinner spinner-grow spinner-grow-sm d-none" role="status" aria-hidden="true"></span>
+			<span class="text-muted pull-right">Полей: {{fields-count}}</span>
+		</li>
+		{{/views}}
+	</ul>
+</div>

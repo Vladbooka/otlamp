@@ -1,0 +1,64 @@
+
+{{! Примеры использования кастомных полей в кастомных шаблонах не списком, а вручную выбирая требуемые поля }}
+
+{{#course_custom_fields}}
+{{#element}}
+{{#name_specname}}
+<div>
+	<span>{{label}}: </span>
+	{{#several_values}}
+	{{#value}}
+	<span>{{{.}}}</span>
+	{{/value}}
+	{{/several_values}}
+	
+	{{^several_values}}
+	<span>{{{value}}}</span>
+	{{/several_values}}
+</div>
+{{/name_specname}}
+{{/element}}
+{{/course_custom_fields}}
+
+
+{{#course_custom_fields}}
+{{#element}}
+{{#name_specname}}
+{{#index_1}}
+<div>
+	<span>{{label}}: </span>
+	<span>{{{value}}}</span>
+</div>
+{{/index_1}}
+{{/name_specname}}
+{{/element}}
+{{/course_custom_fields}}
+
+
+
+<div>
+	<span>Уровень образования: </span>
+	<span>
+	
+	{{#course_custom_fields}}
+		{{#index_element}}
+			{{#basename_speclevel}}
+				{{{value}}}{{^last}}, {{/last}}
+			{{/basename_speclevel}}
+		{{/index_element}}
+	{{/course_custom_fields}}
+	
+	</span>
+</div>
+
+
+{{#course_custom_fields}}
+{{#element}}
+{{#name_speclevel[1]}}
+<div>
+	<span>{{label}}: </span>
+	<span>{{{value}}}</span>
+</div>
+{{/name_speclevel[1]}}
+{{/element}}
+{{/course_custom_fields}}

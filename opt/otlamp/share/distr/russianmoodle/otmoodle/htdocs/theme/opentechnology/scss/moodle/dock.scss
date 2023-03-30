@@ -1,0 +1,103 @@
+#page-header.dock-has-items ~ #dock .buttons_container {
+	min-height: 50px;
+}
+
+#dock {
+	display: none;
+	position: absolute;
+    top: 60px;
+    height:50px;
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+    padding: 0;
+	background-color: transparent;
+	z-index: 101;
+	
+	#dockeditempanel {
+		
+		position: absolute;
+		overflow-y: auto;
+	    overflow-x: hidden;
+	    margin: 0 0 10px 0;
+	    padding: 15px;
+	    box-shadow: none;
+	    border: 1px solid rgba(0,0,0,.2);
+	    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+	    -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+	    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+	    -webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    box-sizing: border-box;
+	    max-width: 100vw;
+	    min-width: 280px;
+	    width: 400px;
+	    background: $ot-blocks-bg;
+	    color: $ot-blocks-color;
+	
+		&.dockitempanel_hidden {
+			display: none;
+		}
+		.drop-here-message {
+			display: none;
+		}
+		&.ready-to-drop {
+			display: block;
+			&.dockitempanel_hidden {
+				display: block;
+			}
+			.drop-here-message {
+				display: block;
+			}
+		}
+		
+		.block {
+			display: none;
+			
+			&.active {
+				display: block;
+			    border: none;
+			    padding: 0;
+			    margin: 0!important;
+			}
+		}
+	}
+	
+	.buttons_container {
+		.dockeditem {
+			&.ready {
+				cursor: pointer;
+			}
+			&.active, 
+			&:hover {
+				.dockedtitle {
+					&.iconview {
+						h2 {
+							color: $ot-dock-dockeditem-iconview-hover-color;
+						}
+						background-color: $ot-dock-dockeditem-iconview-hover-bg;
+					}
+					
+					h2 {
+						color: $ot-dock-dockeditem-textview-hover-color;
+					}
+					background-color: $ot-dock-dockeditem-textview-hover-bg;
+				}
+			}
+			
+			.dockedtitle {
+				&.iconview {
+					h2 {
+						color: $ot-dock-dockeditem-iconview-color;
+					}
+					background-color: $ot-dock-dockeditem-iconview-bg;
+				}
+				
+				h2 {
+					color: $ot-dock-dockeditem-textview-color;
+				}
+				background-color: $ot-dock-dockeditem-textview-bg;
+			}
+		}
+	}
+}

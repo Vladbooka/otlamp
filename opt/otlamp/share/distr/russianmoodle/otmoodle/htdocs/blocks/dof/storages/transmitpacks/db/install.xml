@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/dof/storages/transmitpacks/db" VERSION="20110921" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_transmitpacks" COMMENT="Хранилище пакетов настроек для обмена данными">
+      <FIELDS>
+        <FIELD NAME="id"                TYPE="int"  LENGTH="10"     NOTNULL="true"   UNSIGNED="true" SEQUENCE="true"  />
+        <FIELD NAME="config"            TYPE="text" LENGTH="medium" NOTNULL="true"                   SEQUENCE="false" COMMENT="Полная конфигурация пакета в JSON" />
+        <FIELD NAME="name"              TYPE="char" LENGTH="255"    NOTNULL="true"                   SEQUENCE="false" COMMENT="Наименование пакета" />
+        <FIELD NAME="description"       TYPE="text" LENGTH="small"  NOTNULL="false"                  SEQUENCE="false" COMMENT="Описание пакета" />
+        <FIELD NAME="sortorder"         TYPE="int"  LENGTH="2"      NOTNULL="false"                  SEQUENCE="false" COMMENT="Порядок сортировки и исполнения" />
+        <FIELD NAME="lastlaunchdate"    TYPE="int"  LENGTH="10"     NOTNULL="false"                  SEQUENCE="false" COMMENT="Дата последнего запуска пакета" />
+        <FIELD NAME="status"            TYPE="char" LENGTH="20"     NOTNULL="false"                  SEQUENCE="false" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="istatus" UNIQUE="false" FIELDS="status" />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

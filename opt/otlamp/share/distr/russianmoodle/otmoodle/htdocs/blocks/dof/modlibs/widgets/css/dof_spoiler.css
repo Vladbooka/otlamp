@@ -1,0 +1,18 @@
+.dof_spoiler_wrapper .dof_spoiler_control {
+	display: none;
+}
+.dof_spoiler_wrapper .dof_spoiler_content {
+    display: none;
+}
+.dof_spoiler_wrapper .dof_spoiler_control:checked ~ .dof_spoiler_content {
+    display: block;
+}
+.dof_spoiler_wrapper {
+	position: relative;
+}
+.dof_spoiler_wrapper > label {
+	z-index: 1;
+}
+.dof_spoiler_wrapper > div {
+	z-index: 2;
+}

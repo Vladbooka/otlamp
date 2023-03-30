@@ -1,0 +1,108 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+Array
+(
+    [elements] => Array
+        (
+            [0] => Array
+                (
+                    [user_fields] => Array
+				        (
+				            [0] => stdClass Object
+				                (
+				                    [shortname] => username
+				                    [displayvalue] => azimow
+				                    [value] => azimow
+				                    [name] => Логин
+				                    [user_field_username] => 1
+				                )                   
+                             ...
+                             [22] => stdClass Object
+				                (
+				                    [shortname] => lastattestationdate
+				                    [value] => 0
+				                    [name] => Дата последней аттестации
+				                    [type] => datetime
+				                    [user_profilefield_lastattestationdate] => 1
+				                )
+				             ...   
+                    [template_fields] => Array
+				        (
+				            [0] => stdClass Object
+				                (
+				                    [shortname] => img
+				                    [displayvalue] => //html
+				                    [value] => 
+				                    [name] => Изображение пользователя
+				                    [template_field_img] => 1
+				                )
+				
+				            [1] => stdClass Object
+				                (
+				                    [shortname] => fullname
+				                    [displayvalue] => Азимов Айзек
+				                    [value] => Азимов Айзек
+				                    [name] => Ф.И.О.
+				                    [template_field_fullname] => 1
+				                )
+				
+				        )
+					[additionfields] => Array
+				        (
+				            [0] => Array
+				                (
+				                    [field] => stdClass Object
+				                        (
+				                            [shortname] => username
+				                            [displayvalue] => azimow
+				                            [value] => azimow
+				                            [name] => Логин
+				                            [user_field_username] => 1
+				                        )
+				
+				                    [text_field] => 
+				                    [field_0] => 1
+				                )
+						       ...                             
+}}
+<div class="object_user_universal">
+<div class="object_user_universal_elements">
+{{#elements}}
+	<div class="object_user_universal_element">
+		<div class="object_user_universal_img">
+		 {{#template_fields}}{{#template_field_img}}{{{displayvalue}}}{{/template_field_img}}{{/template_fields}}
+		</div>
+		<div class="object_user_universal_info">
+			<div class="object_user_universal_username">{{#template_fields}}{{#template_field_fullname}}{{displayvalue}}{{/template_field_fullname}}{{/template_fields}}</div>
+			{{#additionfields}}
+			{{#field_0}}
+				{{< block_topten/universal_field }}
+					{{$prefix}}object_user_universal{{/prefix}}
+				{{/block_topten/universal_field }}
+			{{/field_0}}
+			{{#field_1}}
+				{{< block_topten/universal_field }}
+					{{$prefix}}object_user_universal{{/prefix}}
+				{{/block_topten/universal_field }}
+			{{/field_1}}
+			{{/additionfields}}
+		</div>
+	</div>
+{{/elements}}
+</div>
+</div>

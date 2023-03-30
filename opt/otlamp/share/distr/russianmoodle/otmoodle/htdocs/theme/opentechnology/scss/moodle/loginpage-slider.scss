@@ -1,0 +1,183 @@
+/* Страница авторизации */
+
+body.loginpage_slider {
+	
+	padding-bottom: 0!important;
+	
+	#maincontent {
+	    display: none;
+	}
+	
+	#footer_wrapper {
+	    height: auto!important;
+	    position: absolute;
+	    bottom: 0;
+	    left: 0;
+
+		.copyright_wrapper {
+		    margin: 0;
+		}
+	}
+	
+	#footer_content {
+		padding: 0;
+	}
+	.loginpage_slider_images {
+		position: fixed;
+		z-index:0;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		
+		& > .loginpage_slider_image {
+		    position: absolute;
+		    width: 100%;
+		    height: 100%;
+		    top: 0;
+		    left: 0;
+		    opacity: 0;
+		    background-size: cover !important;
+		    background-repeat: no-repeat;
+		    background-position: center center;
+		    -webkit-transition: 1s ease-in-out;
+		    -moz-transition: 1s ease-in-out;
+		    -o-transition: 1s ease-in-out;
+		    transition: 1s ease-in-out;
+
+			&:first-child {
+			    opacity: 1;
+			}
+		}
+		
+	}
+	.header_text {
+	    box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    -webkit-box-sizing: border-box;
+	    max-width: 100%;
+	}
+	#page-content  .loginbox {
+	    background-color: $ot-content-bg;
+	    color: $ot-content-color;
+	    position: relative;
+	    margin: 0;
+	}
+	#loginpage-region-main {
+		& > input {
+		    display: none;
+			&:checked + label {
+			    background-color: $ot-content-btn-primary-hover-bg;
+			    color: $ot-content-btn-primary-hover-color;
+			}
+		}
+		& > label {
+		    padding: 10px;
+		    width: 50%;
+		    display: block;
+		    margin: 0;
+		    box-sizing: border-box;
+		    -moz-box-sizing: border-box;
+		    -webkit-box-sizing: border-box;
+		    float: left;
+		    background-color: $ot-content-btn-primary-bg;
+		    color: $ot-content-btn-primary-color;
+		    text-align: center;
+		    cursor: pointer;
+		}
+		& > div {
+		    clear: both;
+		}
+	}
+	
+	#loginbox_tab_login:checked ~ div {
+		.signuppanel {
+		    display: none;
+		}
+		.loginpanel {
+		    display: block;
+		}
+	}
+	#loginbox_tab_signup:checked ~ div {
+		.signuppanel {
+		    display: block;
+		}
+		.loginpanel {
+		    display: none;
+		}
+	}
+	
+	.loginpanel,
+	.signuppanel {
+	    width: 100%!important;
+	}
+	.f_copyright_text {
+	    background-color: $ot-footer-bg;
+	    color: $ot-footer-color;
+	    padding: 10px 10px 10px 0;
+	    box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    -webkit-box-sizing: border-box;
+	}
+	
+	.loginpanel {
+		& > h2 {
+		    display: none;
+		}
+		.loginform .form-label {
+		    text-align: left;
+		    width: auto;
+		    white-space: nowrap;
+		    float: none;
+		}
+		.loginform .form-input {
+		    text-align: left;
+		    width: auto;
+		    float: none;
+		}
+		.form-input input {
+			width: 20em;
+			max-width: 95%;
+		}
+		.rememberpass {
+		    text-align: left;
+		}
+		.forgetpass {
+		    float: left;
+		    margin-top: 10px;
+		}
+		.desc {
+		   text-align: left;
+		}
+		.guestsub {
+			text-align: left;
+			margin: 0;
+			
+			.desc {
+			   display: inline-block;
+			   vertical-align: middle;
+			   margin: 0;
+			}
+		}
+		#guestlogin {
+		   display: inline-block;
+		    vertical-align: middle;
+		}
+	}
+	#page-content{
+		margin-bottom: 63px;
+		
+		.loginbox {
+			width: 100%;
+		    max-width: 560px;
+		    border: none;
+		}
+		
+		.modal {
+			width: auto;
+		}
+	}
+	#loginpage-header #h_rightblock_wrapper {
+		flex: auto;
+	}
+}

@@ -1,0 +1,35 @@
+<div class="crw_ci_courseblock_cfiles">
+{{#gallery.images}}
+	{{#main}}
+	<div class="crw_ci_courseblock_image_preview" id="crw_ci_image_preview" style="background-image: url({{url}})"></div>
+	<div class="crw_ci_courseblock_image_preview_modal_wrap" id="crw_ci_image_preview_modal_wrap">
+		<div class="crw_ci_courseblock_image_preview_modal" id="crw_ci_image_preview_modal" style="background-image: url({{url}})"></div>
+	</div>
+	{{/main}}
+{{/gallery.images}}
+{{^gallery.one_image}}
+	<div class="crw_ci_courseblock_gallery_thumbnails">
+	{{#gallery.images}}
+		<div class="crw_ci_courseblock_image" title="{{name}}" data-src="{{url}}" style="background-image: url({{url}})"></div>
+	{{/gallery.images}}
+	</div>
+{{/gallery.one_image}}
+{{#gallery.has_files}}
+	<div class="crw_ci_courseblock_fileslist">
+	{{#gallery.files}}
+		<div class="coursefile fp-filename-icon">
+			<a href="{{url}}">
+				<span class="fp-icon">{{# pix }} {{icon}}, moodle, {{name}} {{/ pix }}</span>
+				<span class="fp-filename">{{name}}</span>
+			</a>
+		</div>
+	{{/gallery.files}}
+	</div>
+{{/gallery.has_files}}
+</div>
+{{#js}}
+// Initialise the JS.
+require(['local_crw/crw_gallery'], function(Gallery) {
+    Gallery.init();
+});
+{{/js}}

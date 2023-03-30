@@ -1,0 +1,271 @@
+.block.block_mylearninghistory table.generaltable tbody tr td.cell {
+    text-align: left !important;
+    vertical-align: super;
+}
+
+.block.block_mylearninghistory table.generaltable {
+    width: 100%;
+}
+
+.block.block_mylearninghistory table.generaltable th {
+    text-align: left !important;
+    padding-top: 0;
+    font-weight: 300;
+    border: none;
+}
+.block.block_mylearninghistory table.generaltable th span {
+    display: inline-block;
+    background-color: #E8E8E8;
+    padding: 5px;
+    position: relative;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+.block.block_mylearninghistory table.generaltable th span::after {
+	position: absolute;
+    display: block;
+    content: '';
+    left: 0;
+    top: 100%;
+    width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 10px 10px 0 0;
+	border-color: #e8e8e8 transparent transparent transparent;
+}
+
+.block.block_mylearninghistory .learninghistorylinks {
+	padding: 3px 0;
+}
+
+.block.block_mylearninghistory a#html_student_courses_completed_header::before {
+    content: "↓";
+    display: inline-block;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 0 7px 0 0;
+}
+
+.block.block_mylearninghistory a#html_student_courses_completed_header.collapsed::before {
+	content: "→";
+    display: inline-block;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 0 7px 0 0;
+}
+.block.block_mylearninghistory #html_student_courses_completed {
+	visibility: visible;
+}
+.block.block_mylearninghistory #html_student_courses_completed.collapse {
+	visibility: hidden;
+}
+.block.block_mylearninghistory #html_student_courses_completed.show.collapse {
+    visibility: visible;
+}
+
+.block.block_mylearninghistory .block_mylearninghistory_progressbar {
+	position: relative;
+	border: none;
+	min-height:20px;
+}
+.block.block_mylearninghistory .block_mylearninghistory_progressbar::before {
+	content: '';
+	position: absolute;
+	display: block;
+	bottom: 0;
+	width: 100%;
+	height: 0;
+	background-color: #e8e8e8;
+	transition: height 0.25s ease-out;
+}
+.block.block_mylearninghistory .block_mylearninghistory_progressbar.jsed::before {
+	height: 4px;
+}
+.block.block_mylearninghistory .block_mylearninghistory_progressbar_inner {
+    white-space: nowrap;
+    background: transparent;
+    width: 100%;
+    display: block;
+    padding-bottom: 5px;
+}
+.block.block_mylearninghistory .block_mylearninghistory_progressbar.jsed > .after {
+	position: absolute;
+	display: block;
+	height: 4px;
+	bottom: 0;
+    width: 0;
+    background-color: #87d400;
+}
+
+.block.block_mylearninghistory tbody td.cell.c0 > a::before {
+	background: url([[pix:block_mylearninghistory|grades]]) left center no-repeat;
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.block.block_mylearninghistory .lh-grade,
+#page-wrapper .block.block_mylearninghistory a.lh-grade {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	margin-left: auto;
+	margin-right: 5px;
+	font-weight: 600;
+	color: #fff;
+	flex-direction: row;
+}
+.block.block_mylearninghistory .gradeoverflowauto .lh-grade {
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+
+.block.block_mylearninghistory .gradeoverflowhidden .lh-grade-current {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 24px;
+	padding: 0 0 0 5px;
+	box-sizing: border-box;
+	background-color: #7dbc19;
+}
+.block.block_mylearninghistory .gradeoverflowhidden .lh-grade-current:last-of-type {
+	padding: 0 5px;
+}
+
+.block.block_mylearninghistory .gradeoverflowhidden .lh-grade-divider {
+	display: inline-block;
+	width: 18px;
+	height: 24px;
+	background-image: linear-gradient(105deg, #7dbc19 0%, #7dbc19 calc(50% - 1px),
+		#fff 50%, #fff calc(50% + 1px), #797f70 calc(50% + 2px), #797f70 100%);
+}
+
+.block.block_mylearninghistory .gradeoverflowhidden .lh-grade-max {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 24px;
+	padding: 0 5px 0 0;
+	box-sizing: border-box;
+	background-color: #797f70;
+}
+
+.block.block_mylearninghistory .gradeoverflowauto .lh-grade-current {
+    background-color: #7dbc19;
+    line-height: 18px;
+    position: relative;
+    border-bottom: 2px solid #FFF;
+    padding: 3px 7px;
+    display: inline-block;
+    text-align: left;
+}
+.block.block_mylearninghistory .gradeoverflowauto .lh-grade-current::before,
+.block.block_mylearninghistory .gradeoverflowauto .lh-grade-current::after {
+    content: '';
+    display: block;
+    left: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-style: solid;
+}
+.block.block_mylearninghistory .gradeoverflowauto .lh-grade-current::before {
+    bottom: -32px;
+    border-width: 32px 9px 0 0;
+    border-color: #fff transparent transparent transparent;
+    z-index: 1;
+}
+.block.block_mylearninghistory .gradeoverflowauto .lh-grade-current::after {
+    bottom: -26px;
+    border-width: 26px 7px 0 0;
+    border-color: #7dbc19 transparent transparent transparent;
+    z-index: 2;
+}
+.block.block_mylearninghistory .gradeoverflowauto .lh-grade-max {
+    background-color: #797f70;
+    line-height: 18px;
+    position: relative;
+    padding: 3px 7px 3px 13px;
+    display: inline-block;
+    text-align: left;
+    border-left: 2px solid #fff;
+}
+
+.block.block_mylearninghistory .content h2::before {
+    background: url([[pix:block_mylearninghistory|btn-crw]]) left center no-repeat;
+    content: "";
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+    vertical-align: -2px;
+    margin-right: 10px;
+}
+
+.block.block_mylearninghistory tbody td.cell.c0 a > span.has_before_icon {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.block.block_mylearninghistory table.generaltable td {
+    border: 0px;
+}
+
+.block.block_mylearninghistory .content h2 {
+	margin: 40px 3px;
+}
+
+.block.block_mylearninghistory .content h3 {
+	padding: 3px;
+	color: #333;
+	margin-top: 40px;
+	font-size: 16px;
+	font-weight: 400;
+}
+#page-wrapper .block.block_mylearninghistory #html_student_courses_completed_header, 
+#page-wrapper .block.block_mylearninghistory #html_student_courses_completed_header:hover, 
+#page-wrapper .block.block_mylearninghistory #html_student_courses_completed_header:active, 
+#page-wrapper .block.block_mylearninghistory #html_student_courses_completed_header:focus {
+	margin-top: 40px;
+	cursor: pointer;
+}
+
+.block.block_mylearninghistory table.generaltable {
+	position: relative;
+}
+.block.block_mylearninghistory table.generaltable::after {
+    display: block;
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    height: 1px;
+    width: 100%;
+    background: #E8E8E8;
+}
+
+.moodle-dialogue-base .coursesfilter .learning_courses_filter fieldset.hidden,
+.moodle-dialogue-base .coursesfilterrules .learning_courses_filter_rules fieldset.hidden,
+.moodle-dialogue-base .coursesfilter .teaching_courses_filter fieldset.hidden,
+.moodle-dialogue-base .coursesfilterrules .teaching_courses_filter_rules fieldset.hidden {
+	visibility: inherit;
+	display: inherit;
+}
+
+.moodle-dialogue-base .coursesfilterrules .mform.learning_courses_filter_rules .fitem .felement.fgroup,
+.moodle-dialogue-base .coursesfilterrules .mform.learning_courses_filter_rules .fitem .felement.fsubmit,
+.moodle-dialogue-base .coursesfilterrules .mform.teaching_courses_filter_rules .fitem .felement.fgroup,
+.moodle-dialogue-base .coursesfilterrules .mform.teaching_courses_filter_rules .fitem .felement.fsubmit {
+	margin-left: 0;
+}
+
+.moodle-dialogue-base .coursesfilterrules .mform.learning_courses_filter_rules .fgroup > span,
+.moodle-dialogue-base .coursesfilterrules .mform.teaching_courses_filter_rules .fgroup > span {
+	display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}

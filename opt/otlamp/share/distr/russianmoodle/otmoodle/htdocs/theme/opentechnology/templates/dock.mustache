@@ -1,0 +1,15 @@
+<div id="dock" role="menubar" aria-label="{{#str}}blocks{{/str}}">
+	<div class="buttons_container">
+		<div class="dockeditem_container">
+		    {{#dockeditems}}{{> theme_opentechnology/dockeditem }}{{/dockeditems}}
+		</div>
+	</div>
+	<div id="dockeditempanel" class="dockitempanel_hidden">
+		<div class="drop-here-message">{{#str}}dock_ready_to_drop, theme_opentechnology{{/str}}</div>
+		<div class="dockeditempanel_content blockcolumn {{#hasblocks}} has-blocks {{/hasblocks}}">
+        	<section data-region="blocks-column" class="d-print-none" aria-label="{{#str}}blocks{{/str}}">		
+		    {{{blockshtml}}}
+		    </section>
+		</div>
+	</div>
+</div>

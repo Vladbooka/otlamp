@@ -1,0 +1,39 @@
+.rate_course_pixrating {
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	border-bottom: 1px solid #EEE;
+}
+
+.rate_course_pixrating img {
+	padding-bottom: 15px;
+	max-width: 100%;
+}
+
+.rate_course_rate {
+	padding: 15px;
+	text-align: center;
+}
+
+.rate_course_rate img {
+	padding-bottom: 15px;
+}
+
+.rate_course_rate form {
+	padding-top: 15px;
+	margin-top: 15px;
+	border-top: 1px solid #EEE;
+}
+
+span.rate_course_rating_users {
+	display: inline-block;
+	padding: 0 5px;
+	background: #ffe810;
+}
+
+.block_rate_course {
+    text-align: center;
+}
+
+.block_rate_course div > a, .block_rate_course div > a:hover {
+	color: #FFFFFF;
+}

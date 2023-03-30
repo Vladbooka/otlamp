@@ -1,0 +1,83 @@
+.gridsetter_row {
+	height: 100px;
+	background: #ddd;
+	margin: 5px 0 5px 0;
+	width: calc(100% - 50px);
+	position: relative;
+}
+.gridsetter_cell {
+    position: relative;
+    box-sizing: border-box;
+    height: 100%;
+    display: inline-block;
+    border: 5px solid #ddd;
+    background: #5193c7;
+    text-align: left;
+    vertical-align: top;
+}
+.gridsetter_cell::after {
+	content: attr(data-length);
+    position: absolute;
+    bottom: 8px;
+    right: 3px;
+    bottom: 0px;
+    padding: 10px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 120%;
+}
+.gridsetter_controls > .btn {
+	display: inline-block;
+    cursor: pointer;
+    margin: 1px 2px;
+    padding: 4px 12px;
+	width: 32px;
+	font-weight: bold;
+    font-size: 120%;
+    vertical-align: top;
+        box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #FFFFFF;
+}
+.gridsetter_controls > .btn.disabled {
+	opacity: .65;
+    cursor: default!important;
+}
+.gridsetter_controls > div.gridsetter_addrow {
+    background-color: #69A05A;
+}
+.gridsetter_controls > div.gridsetter_removerow {
+    background-color: #f44336;
+}
+.gridsetter_cell > .btn {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    cursor: pointer;
+    margin: 1px 2px;
+    padding: 4px 12px;
+	width: 32px;
+	font-weight: bold;
+    font-size: 120%;
+    vertical-align: top;
+        box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #FFFFFF;
+}
+.gridsetter_cell > .btn.disabled {
+	opacity: .65;
+    cursor: default!important;
+}
+.gridsetter_cell > div.gridsetter_cell_increase {
+    background-color: #69A05A;
+}
+.gridsetter_cell > div.gridsetter_cell_decrease {
+    background-color: #f44336;
+}
+.gridsetter_row_add {
+	position: absolute;
+    left: 100%;
+    top: 0;
+}

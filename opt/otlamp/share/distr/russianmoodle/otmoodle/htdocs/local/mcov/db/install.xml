@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/mcov/db" VERSION="20200506" COMMENT="XMLDB file for Moodle local/mcov" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd" >
+  <TABLES>
+    <TABLE NAME="local_mcov" COMMENT="Значения настраиваемых полей объектов" >
+      <FIELDS>
+        <FIELD NAME="id"        TYPE="int"  LENGTH="10"     NOTNULL="true"  SEQUENCE="true"  COMMENT="Идентификатор записи" 	UNSIGNED="true" />
+        <FIELD NAME="entity"    TYPE="char" LENGTH="32"     NOTNULL="true"  SEQUENCE="false" COMMENT="Наименование сущности" 					/>
+        <FIELD NAME="objid"     TYPE="int"  LENGTH="10"     NOTNULL="true"  SEQUENCE="false" COMMENT="ID объекта сущности"  	UNSIGNED="true" />
+        <FIELD NAME="prop"      TYPE="char" LENGTH="48"     NOTNULL="true"  SEQUENCE="false" COMMENT="Код свойства объекта" 					/>
+        <FIELD NAME="value"     TYPE="text" LENGTH="medium" NOTNULL="true"  SEQUENCE="false" COMMENT="Значение свойства" 						/>
+        <FIELD NAME="searchval" TYPE="char" LENGTH="232"    NOTNULL="true"  SEQUENCE="false" COMMENT="Значение для поиска" 						/>
+        <FIELD NAME="sortval"   TYPE="int"  LENGTH="10"     NOTNULL="false" SEQUENCE="false" COMMENT="Значение для сортировки" 					/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="entity_objid_prop_searchval_sortval" UNIQUE="false" FIELDS="entity, objid, prop, searchval, sortval" />
+        <INDEX NAME="entity_objid_prop" 				  UNIQUE="true"  FIELDS="entity, objid, prop" />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

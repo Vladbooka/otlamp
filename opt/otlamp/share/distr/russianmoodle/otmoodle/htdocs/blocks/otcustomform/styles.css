@@ -1,0 +1,21 @@
+.mform.otcustomform.loading {
+	pointer-events: none;
+	
+	background-image: repeating-linear-gradient(
+		-45deg,
+	    #F5F5F5,
+	    #F5F5F5 11px,
+	    #FFF 10px,
+	    #FFF 20px
+	);
+	background-size: 28px 28px;
+	animation: loading .5s linear infinite;
+}
+@keyframes loading {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 28px 0;
+  }
+}

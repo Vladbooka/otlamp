@@ -1,0 +1,13 @@
+<div class="dropdown d-inline">
+	<button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		{{#str}} ac_add, local_opentechnology {{/str}}
+	</button>
+	<div class="dropdown-menu">
+		{{#logicalgroups}}
+			<button class="dropdown-item add-item" type="button" data-type="logicalgroup" data-code="{{code}}">{{displayname}}</button>
+		{{/logicalgroups}}
+		{{#comparisonoperators}}
+			<button class="dropdown-item add-item" type="button" data-type="comparisonoperator" data-code="{{code}}">{{displayname}}</button>
+		{{/comparisonoperators}}
+	</div>
+</div>

@@ -1,0 +1,253 @@
+.block_myinfo_wrapper {
+	/*overflow: auto;*/
+}
+
+.block_myinfo_user_picture_wrapper,
+.block_myinfo_user_fullname_wrapper,
+.block_myinfo_counters_wrapper,
+.block_myinfo_profilefields_wrapper {
+	display: block;
+	float: left;
+	vertical-align: top;
+	padding: 5px 0;
+	box-sizing: border-box;
+}
+
+
+
+.block_myinfo_user_picture_wrapper {
+	width: 250px;
+}
+.block_myinfo_user_picture_img {
+	width: 250px;
+	height: 250px;
+}
+
+
+
+
+.block_myinfo_user_fullname_wrapper {
+	width: calc(100% - 270px);
+	margin-left: 20px;
+	border-bottom: 1px solid #EAEAEA;
+	padding-bottom: 11px;
+	margin-bottom: 15px;
+	font-size: 22px;
+	line-height: 30px;
+	color: #7C7C7C;
+	min-width: 230px;
+}
+.block_myinfo_user_fullname_wrapper:before {
+	content:'';
+	display: inline-block;
+	height: 30px;
+	width: 30px;
+	background-image: url([[pix:block_myinfo|profile]]);
+	background-repeat: no-repeat;
+	background-position: 0 50%;
+	vertical-align: bottom;
+}
+
+
+.block_myinfo_counters_wrapper {
+	width: calc(50% - 250px);
+	min-width: 240px;
+	padding-left: 10px;
+	margin-left: 10px;
+	box-sizing: border-box;
+}
+.block_myinfo_counters_counter {
+	display: block;
+	min-height: 35px;
+	color: #4D4D4D;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.block_myinfo_counters_counter + .block_myinfo_counters_counter {
+	margin-top: 4px;
+}
+.block_myinfo_counters_counter_hidden {
+	display: none;
+}
+.block_myinfo_counters_counter_value {
+	position: relative;
+	display: inline-block;
+	height: 35px;
+	width: 35px;
+	margin-right: 5px;
+	vertical-align: middle;
+    line-height: 35px;
+    text-align: center;
+	background: #CCC;
+	color: #FFF;
+}
+.block_myinfo_counters_counter_value.loading:before {
+	position: absolute;
+	display: block;
+	content:'';
+	bottom:0;
+	width: 100%;
+	height: 5px;
+	margin:0;
+	
+	background-image:
+		linear-gradient(
+		-45deg,
+		rgba(255, 255, 255, 0.7) 25%,
+		rgba(0, 0, 0, 0.1) 25%,
+		rgba(0, 0, 0, 0.1) 50%,
+		rgba(255, 255, 255, 0.7) 50%,
+		rgba(255, 255, 255, 0.7) 75%,
+		rgba(0, 0, 0, 0.1) 75%,
+		rgba(0, 0, 0, 0.1)
+	);
+	background-size:20px 20px;
+	animation:move 1s linear infinite;
+	overflow: hidden;
+}
+
+@keyframes move{
+  0% {
+  	background-position: 0 0;
+  }
+  100% {
+  	background-position: 20px 20px;
+  }
+}
+
+.block_myinfo_counters_unread .block_myinfo_counters_counter_value,
+.block_myinfo_counters_notgraded .block_myinfo_counters_counter_value {
+	background: #69a05a;
+	color: #FFF;
+}
+.block_myinfo_counters_plan .block_myinfo_counters_counter_value {
+	background: #b94a48;
+	color: #FFF;
+}
+
+.block_myinfo_counters_counter_value::after {
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	text-align: center;
+	content: attr(data-value);
+}
+
+.block_myinfo_counters_plan:hover,
+.block_myinfo_counters_plan:focus,
+.block_myinfo_counters_plan:active {
+	overflow: visible;
+	position: relative;
+}
+
+.block_myinfo_counters_plan .block_myinfo_counters_counter_value::after {
+	content: attr(data-value)"%";
+}
+.block_myinfo_counters_plan .block_myinfo_counters_counter_value[data-value="100"]::after {
+	font-size: 12px;
+}
+
+
+.block_myinfo_counters_counter_label_wrapper {
+	display: inline-block;
+    width: calc(100% - 40px);
+}
+.block_myinfo_counters_plan:hover .block_myinfo_counters_counter_label_wrapper,
+.block_myinfo_counters_plan:focus .block_myinfo_counters_counter_label_wrapper,
+.block_myinfo_counters_plan:active .block_myinfo_counters_counter_label_wrapper {
+	position: absolute;
+	top: 0px;
+	left: 35px;
+	padding: 0 0 10px 0;
+	background: #FFF;
+	border: 1px solid #b94a48;
+	border-top: none;
+	width: auto;
+}
+
+
+.block_myinfo_counters_counter_label {
+	display: inline-block;
+	background: transparent;
+	line-height: 35px;
+	padding: 0;
+	vertical-align: middle;
+    text-overflow: ellipsis;
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.block_myinfo_counters_plan:hover .block_myinfo_counters_counter_label,
+.block_myinfo_counters_plan:focus .block_myinfo_counters_counter_label,
+.block_myinfo_counters_plan:active .block_myinfo_counters_counter_label {
+	display: inline-block;
+	background: #b94a48;
+	line-height: 35px;
+	padding: 0 7px;
+	color: #FFF;
+}
+
+
+.block_myinfo_counters_counter_additional {
+	display: none;
+    box-sizing: border-box;
+}
+.block_myinfo_counters_plan:hover .block_myinfo_counters_counter_additional,
+.block_myinfo_counters_plan:focus .block_myinfo_counters_counter_additional,
+.block_myinfo_counters_plan:active .block_myinfo_counters_counter_additional {
+	display: block;
+	padding: 0 15px;
+}
+.block_myinfo_counters_counter_additional a {
+	display: block;
+	margin-top: 10px;
+	cursor: pointer;
+}
+.block_myinfo_counters_counter_additional a + a {
+	margin-top: 5px;
+}
+
+
+.block_myinfo_profilefields_wrapper {
+	min-width: 240px;
+	padding-left: 10px;
+	margin-left: 10px;
+	box-sizing: border-box;
+}
+.block_myinfo_profilefields_profilefield {
+	line-height: 30px;
+	color: #7b7b7b;
+}
+.block_myinfo_profilefields_profilefield_value {
+	color: #4d4d4d;
+	display: inline-block;
+	vertical-align: top;
+}
+
+
+@media (max-width: 991px) {
+	.block_myinfo_user_picture_wrapper,
+	.block_myinfo_user_fullname_wrapper,
+	.block_myinfo_profilefields_wrapper {
+		float: none;
+		width: 100%;
+		margin-left: 0;
+		padding-left:0;
+		border: none;
+		text-align: center;
+	}
+	
+	.block_myinfo_counters_wrapper {
+		float: none;
+		width: 220px;
+		min-width: auto;
+		margin: 0 auto;
+		padding-left: 0;
+		border: none;
+		background: #F5F5F5;
+	}
+}

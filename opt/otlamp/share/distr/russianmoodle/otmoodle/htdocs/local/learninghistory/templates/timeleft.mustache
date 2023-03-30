@@ -1,0 +1,17 @@
+<div class="ajax-monitoring-active">
+	{{< local_learninghistory/timeleft-inner}}
+		{{$color}}success{{/color}}
+		{{$status}}active{{/status}}
+		{{$statusstring}}{{#str}} ajax_monitoring_active, local_learninghistory {{/str}}{{/statusstring}}
+	{{/local_learninghistory/timeleft-inner}}
+</div>
+<div class="ajax-monitoring-inactive">
+	{{< local_learninghistory/timeleft-inner}}
+		{{$color}}danger{{/color}}
+		{{$status}}inactive{{/status}}
+		{{$statusstring}}{{#str}} ajax_monitoring_inactive, local_learninghistory {{/str}}{{/statusstring}}
+	{{/local_learninghistory/timeleft-inner}}
+</div>
+<div class="ajax-monitoring-disabled">
+	{{> local_learninghistory/timeleft-inner}}
+</div>

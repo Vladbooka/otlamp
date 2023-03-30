@@ -1,0 +1,12 @@
+{{< mod_event3kl/confirm_modal}}
+	{{$btnin}}<i class="fa fa-trash-o" style="font-size: 1.2em"></i>{{/btnin}}
+	{{$modalid}}deleteConfirmationModal{{id}}{{/modalid}}
+	{{$modaltitle}}{{#str}} delete_session_title, mod_event3kl{{/str}}{{/modaltitle}}
+	{{$modalbody}}{{#str}} delete_session_body, mod_event3kl{{/str}}{{/modalbody}}
+	{{$modalfooter}}
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">
+			{{#str}} delete_session_cancel, mod_event3kl{{/str}}
+		</button>
+		{{{form_delete_session}}}
+	{{/modalfooter}}
+{{/mod_event3kl/confirm_modal}}

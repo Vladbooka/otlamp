@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/dof/storages/sync/db" VERSION="20130417" COMMENT="XMLDB file for Moodle blocks/dof/storages/sync"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_sync" COMMENT="Реестр синхронизаций">
+      <FIELDS>
+        <FIELD NAME="id"             TYPE="int"  LENGTH="10"     NOTNULL="true"  UNSIGNED="true" SEQUENCE="true" />
+        <FIELD NAME="downptype"      TYPE="char" LENGTH="40"     NOTNULL="true"                  SEQUENCE="false" COMMENT="Тип внутреннего плагина"/>
+        <FIELD NAME="downpcode"      TYPE="char" LENGTH="40"     NOTNULL="false"                 SEQUENCE="false" COMMENT="Код внутреннего плагина" />
+        <FIELD NAME="downsubstorage" TYPE="char" LENGTH="40"     NOTNULL="false"                 SEQUENCE="false" COMMENT="Код внутреннего субсправочника" />
+        <FIELD NAME="downid"         TYPE="char" LENGTH="40"     NOTNULL="false"                 SEQUENCE="false" COMMENT="ID внутреннего объекта" />
+        <FIELD NAME="upptype"        TYPE="char" LENGTH="40"     NOTNULL="false"                 SEQUENCE="false" COMMENT="Тип внешнего плагина" />
+        <FIELD NAME="uppcode"        TYPE="char" LENGTH="40"     NOTNULL="false"                 SEQUENCE="false" COMMENT="Код внешнего плагина" />
+        <FIELD NAME="upsubstorage"   TYPE="char" LENGTH="40"     NOTNULL="false"                 SEQUENCE="false" COMMENT="Код внешнего субсправочника" />
+        <FIELD NAME="upid"           TYPE="char" LENGTH="40"     NOTNULL="false"                 SEQUENCE="false" COMMENT="ID внешнего объекта" />
+        <FIELD NAME="direct"         TYPE="char" LENGTH="8"      NOTNULL="false"                 SEQUENCE="false" COMMENT="Направление последней синхронизации (up, down)" /> 
+        <FIELD NAME="lasttime"       TYPE="int"  LENGTH="11"     NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="Timestamp последней синхронизации" />
+        <FIELD NAME="lastoperation"  TYPE="char" LENGTH="10"     NOTNULL="false"                 SEQUENCE="false" COMMENT="Последняя синхронизация (connect, create, update, delete, unsync)" />
+        <FIELD NAME="downhash"       TYPE="text" LENGTH="medium" NOTNULL="false"                 SEQUENCE="false" COMMENT="Хеш значимых данных внутреннего объекта после синхронизации" />
+        <FIELD NAME="uphash"         TYPE="text" LENGTH="medium" NOTNULL="false"                 SEQUENCE="false" COMMENT="Хеш значимых данных внешнего объекта после синхронизации" />        
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="idownptype"      UNIQUE="false" FIELDS="downptype" />
+        <INDEX NAME="idownpcode"      UNIQUE="false" FIELDS="downpcode" />
+        <INDEX NAME="idownsubstorage" UNIQUE="false" FIELDS="downsubstorage" />
+        <INDEX NAME="idownid"         UNIQUE="false" FIELDS="downid" />
+        <INDEX NAME="iupptype"        UNIQUE="false" FIELDS="upptype" />
+        <INDEX NAME="iuppcode"        UNIQUE="false" FIELDS="uppcode" />
+        <INDEX NAME="iupsubstorage"   UNIQUE="false" FIELDS="upsubstorage" />
+        <INDEX NAME="iupid"           UNIQUE="false" FIELDS="upid" />
+        <INDEX NAME="idirect"         UNIQUE="false" FIELDS="direct" />
+        <INDEX NAME="ilasttime"       UNIQUE="false" FIELDS="lasttime" />
+        <INDEX NAME="ilastoperation"  UNIQUE="false" FIELDS="lastoperation" />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

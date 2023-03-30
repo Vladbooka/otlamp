@@ -1,0 +1,77 @@
+
+<header id="page-header" class="{{ themedata.headerclasses }}">
+
+	{{#themedata.header_top_text}}
+	<div class="headertext_wrapper">
+		<div class="container{{ themedata.widthfactorclass }} {{ themedata.pageback_h_text_unlimit_width }}">
+    		<div class="row">
+    			<div class="col-md-12">
+    				{{{ themedata.header_top_text }}}
+    			</div>
+    		</div>
+		</div>
+	</div>
+	{{/themedata.header_top_text}}
+
+	<div class="wrapper">
+        <div id="h_top_wrapper" class="h_top_wrapper container{{ themedata.widthfactorclass }}  {{ themedata.pageback_header_unlimit_width }}">
+        
+       		{{#themedata.cml_top_left}}
+   			{{{ themedata.custommenu }}}
+       		{{/themedata.cml_top_left}}
+       		
+       		{{#themedata.cml_top_right}}
+   			{{{ themedata.custommenu }}}
+       		{{/themedata.cml_top_right}}
+       		
+            <div id="h_top" class="h_top">
+               	<div id="h_leftblock_wrapper" class="h_leftblock_wrapper">
+               	
+		       		{{#themedata.cml_above_logo}}
+	       			{{{ themedata.custommenu }}}
+		       		{{/themedata.cml_above_logo}}
+		       		
+           			{{{themedata.header_logoimage}}}
+           			
+		       		{{#themedata.cml_under_logo}}
+	       			{{{ themedata.custommenu }}}
+		       		{{/themedata.cml_under_logo}}
+		       		
+               	</div>
+               	<div id="h_rightblock_wrapper" class="h_rightblock_wrapper {{ themedata.caret_class }}">
+               	
+		       		{{#themedata.cml_above_usermenu}}
+	       			{{{ themedata.custommenu }}}
+		       		{{/themedata.cml_above_usermenu}}
+               		
+                   	{{> theme_opentechnology/header-usernav }}
+
+		       		{{#themedata.cml_under_usermenu}}
+	       			{{{ themedata.custommenu }}}
+		       		{{/themedata.cml_under_usermenu}}
+
+               	</div>
+           	</div>
+
+       		{{#themedata.cml_bottom_left}}
+   			{{{ themedata.custommenu }}}
+       		{{/themedata.cml_bottom_left}}
+       		
+       		{{#themedata.cml_bottom_right}}
+   			{{{ themedata.custommenu }}}
+       		{{/themedata.cml_bottom_right}}
+
+       	</div>
+    </div>
+    <div class="dock_bg_wrapper">
+        <div id="dock_bg" class="container{{ themedata.widthfactorclass }} {{ themedata.pageback_dockpanel_unlimit_width }}">
+        
+        	{{{ themedata.dockheading }}}
+        	
+       		{{#themedata.dock_lang_menu}}
+   			{{{ output.lang_menu }}}
+       		{{/themedata.dock_lang_menu}}
+       		
+       	</div>
+   	</div>
+</header>

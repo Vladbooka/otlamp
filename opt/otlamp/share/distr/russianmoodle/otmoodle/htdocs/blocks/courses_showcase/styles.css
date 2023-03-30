@@ -1,0 +1,10 @@
+body.theme-ot .block.block_courses_showcase, 
+body.theme-ot #block-region-side-post .block.block_courses_showcase, 
+body.theme-ot #block-region-side-pre .block.block_courses_showcase, 
+body.theme-ot #block-region-side-content-top .block.block_courses_showcase, 
+body.theme-ot #block-region-content .block.block_courses_showcase, 
+body.theme-ot #block-region-side-content-bot .block.block_courses_showcase, 
+body.theme-ot #block-region-content .block.block_courses_showcase {
+	padding: 0;
+    border: 0;
+}

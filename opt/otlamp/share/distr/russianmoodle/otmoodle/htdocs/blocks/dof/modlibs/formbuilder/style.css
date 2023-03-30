@@ -1,0 +1,63 @@
+form.dof_formbuilder .formanchor {
+	display: none;
+}
+form.dof_formbuilder input.sectiontrigger {
+    display: none;
+}
+form.dof_formbuilder input.sectiontrigger + div.sectionwrapper {
+    display: none;
+}
+form.dof_formbuilder input.sectiontrigger:checked + div.sectionwrapper {
+    display: block;
+}
+form.dof_formbuilder ul.nav-tabs li {
+    position: relative
+}
+form.dof_formbuilder ul.nav-tabs label {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+/*
+.dof_im_hse_students_filter {
+	margin: 0 10px;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+}
+.dof_im_hse_students_filter .fitem_fgroup .fitemtitle {
+	display: none!important;
+}
+.dof_im_hse_students_filter .fitem_fgroup .fgroup {
+	margin-left: 0!important;
+}
+.dof_im_hse_students_filter .dof_im_hse_students_filter input {
+	margin: 0 2px;
+}
+.dof_page_description {
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 10px 20px;
+}
+table a > img {
+	position: realtive;
+	display: inline-block;
+	margin: 0 2px;
+}
+.dof_modal_wrapper {
+	margin: 0;
+}
+.table_import_error {
+	color: #b94a48;
+}
+.table_import_message {
+	color: #3c763d;
+}*/

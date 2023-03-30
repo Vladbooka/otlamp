@@ -1,0 +1,25 @@
+.dof_agroups_itoggrades_tdgroupped {
+	border-left:1px solid #DDD;
+}
+.dof_agroups_itoggrades_studentindex {
+	width: 20px;
+}
+.dof_agroups_itoggrades_studentname {
+	width: 200px;
+}
+.dof_agroups_itoggrades_legend_header,
+.dof_agroups_itoggrades_agenumage_header {
+	text-align: left; 
+	margin: 30px 0 20px 0;
+	font-size: 24px;
+	font-weight: 600;
+}
+.dof_agroups_itoggrades_summarytable_header {
+	text-align: left; 
+	margin: 20px 0 20px 0;
+	font-size: 20px;
+	font-weight: 400;
+}
+.dof_agroups_itoggrades_table table {
+	width: auto;
+}

@@ -1,0 +1,254 @@
+/**
+ * System styles
+ */
+
+.sc-invisible { display: none; position: absolute; left: -9999px; visibility: hidden; }
+.sc-clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+
+/**
+ * Modal
+ */
+
+.sc-modal-background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top : 0;
+  left: 0;
+  z-index: 100;
+}
+
+.sc-modal-wrapper {
+  position: absolute;
+  z-index: 101;
+}
+
+/**
+ * Side button
+ */
+
+.sc-side-right, .sc-side-left {
+  top: 50%;
+  position: fixed;
+  cursor: pointer;
+}
+
+.sc-side-right {
+  left: 100%; 
+  margin-left: -34px;
+}
+.sc-side-left {
+  left: 0; 
+  margin-left: -2px;
+}
+
+.sc-side-button1 {
+  width: 36px;
+  height: 308px;
+  /*background-image: url( ../images/bttn1.png ); */
+  margin-top: -270px;
+}
+.sitecall_button {
+	text-align: center;
+    margin: 10px 0;
+}
+.sc-side-button3 {
+  width: 36px;
+  height: 228px;
+  /*background-image: url( ../images/bttn3.png ); */
+  margin-top: 50px;
+}
+.sc-modal-background {
+  background-color: rgba(0, 0, 0, 0.5);
+  /*background-image: url( ../images/blackOp.png );*/
+}
+
+.sc-modal-wrapper {
+  width: 450px;
+  background-color: #fff;
+}
+
+.sc-modal-wrapper * {
+  font-family: Ubuntu Light,Arial,sans-serif; 
+  font-weight: 200;
+  font-size: 14px;
+}
+
+.sc-modal-wrapper  a {
+  color: rgb(24, 112, 164);
+}
+
+/**
+ * Header
+ */
+
+.sc-modal-header {
+  /*background-image: url( ../images/Cubes.png );*/
+  background-color: rgb(24, 112, 164);
+}
+
+.sc-modal-header > h3 {
+  color: #fff;
+  font-size: 20px;
+  padding: 10px 10px 10px 20px;
+  float: left;
+  margin: 0;
+  line-height: 40px;
+}
+
+.sc-modal-header > .sc-modal-close {
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  /*background-image: url( ../images/dockclose.svg );*/
+  float: right;
+  margin: 17px 20px 0px;
+}
+
+
+/**
+ * Content
+ */
+
+.sc-modal-content{
+  padding: 0px 20px 20px;
+}
+
+.sc-add-header{
+  font-size: 16px;
+  margin: 20px 0 0;
+}
+
+/**
+ * Form styles
+ */
+
+.sc-modal label {
+  color: #000;
+  font-weight: 200;
+  margin: 0 0 5px;
+}
+
+.sc-modal .sc-form-disabled label {
+  color: #B7B7B8;
+}
+
+.sc-form-item {
+  color: #000;
+}
+
+.sc-form-item-wrapper {
+  color: #000;
+}
+
+.sc-form-item-wrapper input{
+  margin: 2px 5px 0 0;
+}
+
+textarea.sc-form-item,
+input[type=text].sc-form-item {
+  width: calc(100% - 12px);
+  background: #fff;
+  padding: 2px 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #333;
+  resize: none;
+}
+textarea.sc-form-item:focus,
+input[type=text].sc-form-item:focus {
+  border-color: rgb(77, 127, 64);
+}
+
+select.sc-form-item.sc-field-disabled,
+textarea.sc-form-item.sc-field-disabled,
+input[type=text].sc-form-item.sc-field-disabled{
+  border-color: #B7B7B8;
+  color: #B7B7B8;
+}
+
+select.sc-form-item {
+  width: 100%;
+  color: #000;
+  background: #fff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000;
+}
+
+select.sc-form-item option {
+  color: #000;
+  padding: 2px 5px;
+}
+
+select.sc-form-item:focus {
+  border-color: rgb(77, 127, 64);
+}
+
+.button {
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  text-decoration: none;
+  padding: 0.8em 1em calc(0.8em + 3px);
+  border-width: 0;
+  border-radius: 3px;
+  background: none repeat scroll 0% 0% rgb(105, 160, 90);
+  box-shadow: 0px -3px rgb(77, 127, 64) inset;
+  -webkit-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+}
+
+.button:hover {
+  background: none repeat scroll 0% 0% rgb(77, 127, 64);
+}
+
+.sc-form-submit {
+  float: left;
+  margin-top: 10px;
+}
+
+.sc-form-submit:focus{
+  outline: 0;
+  border: 0;
+}
+
+
+.button.sc-modal-close {
+  float: right;
+  margin-top: 10px;
+}
+
+.sc-success-message {
+  font-size: 16px;
+}
+
+/**
+ * Status styles
+ */
+
+.sc-status {
+  display: block;
+  font-size: 12px;
+  height: 15px;
+}
+.sc-status.sc-form-status {height: auto; margin: 8px 0; font-size: 14px;}
+.sc-status.sc-item-ok { color: rgb(77, 127, 64); }
+.sc-status.sc-item-error { color: rgb(255, 0, 0); }
+
+.sc-form-item.sc-item-ok { border-color: rgb(77, 127, 64) !important; }
+.sc-form-item-wrapper.sc-item-ok {border: 1px solid rgb(77, 127, 64); }
+
+.sc-form-item.sc-item-error { border-color: rgb(255, 0, 0) !important; }
+.sc-form-item-wrapper.sc-item-error {border: 1px solid rgb(255, 0, 0); }
+
+/**
+ * Медиа-запросы
+ */
+@media (max-width: 480px)
+{
+    .sc-modal-wrapper {
+	   max-width: 320px;
+    }
+}

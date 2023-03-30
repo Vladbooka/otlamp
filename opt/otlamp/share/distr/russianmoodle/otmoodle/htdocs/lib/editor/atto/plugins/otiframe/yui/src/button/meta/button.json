@@ -1,0 +1,7 @@
+{
+    "moodle-atto_otiframe-button": {
+        "requires": [
+            "moodle-editor_atto-plugin"
+        ]
+    }
+}

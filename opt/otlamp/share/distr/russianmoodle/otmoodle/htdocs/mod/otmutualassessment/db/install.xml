@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/otmutualassessment/db" VERSION="2020012700" COMMENT="XMLDB file for Moodle mod/otmutualassessment"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+    <TABLES>	
+
+    <TABLE NAME="otmutualassessment" COMMENT="otmutualassessment table" NEXT="otmutualassessment_grades">
+      <FIELDS>
+        <FIELD NAME="id"                  TYPE="int"  LENGTH="10"     NOTNULL="true"   UNSIGNED="true"  SEQUENCE="true"         COMMENT="id of the table"/>
+        <FIELD NAME="course"              TYPE="int"  LENGTH="10"     NOTNULL="true"   UNSIGNED="true"  DEFAULT="0"             SEQUENCE="false"   COMMENT="course id where module was added"/>
+        <FIELD NAME="name"                TYPE="char" LENGTH="255"    NOTNULL="true"   SEQUENCE="false" COMMENT="name field for moodle instances"/>
+        <FIELD NAME="intro"               TYPE="text" NOTNULL="true"  SEQUENCE="false" COMMENT="The description of the otmutualassessment. This field is used by feature MOD_INTRO."/>
+        <FIELD NAME="introformat"         TYPE="int"  LENGTH="4"      NOTNULL="true"   DEFAULT="0" SEQUENCE="false" COMMENT="The format of the description field of the otmutualassessment. This field is used by feature MOD_INTRO."/>
+        <FIELD NAME="timecreated"         TYPE="int"  LENGTH="10"     NOTNULL="true"   UNSIGNED="true"  DEFAULT="0"             SEQUENCE="false"/>
+        <FIELD NAME="timemodified"        TYPE="int"  LENGTH="10"     NOTNULL="true"   UNSIGNED="true"  DEFAULT="0"             SEQUENCE="false"/>
+        <FIELD NAME="strategy"            TYPE="char" LENGTH="255"    NOTNULL="true"   SEQUENCE="false" COMMENT="Assessment strategy"/>
+        <FIELD NAME="grade"               TYPE="int"  LENGTH="10"     NOTNULL="true"   DEFAULT="0"      SEQUENCE="false"        COMMENT="The maximum grade for this otmutualassessment. Can be negative to indicate the use of a scale."/>
+        <FIELD NAME="gradingmode"         TYPE="int"  LENGTH="10"     NOTNULL="true"   DEFAULT="1"      SEQUENCE="false"        COMMENT="How to calculate grade"/>
+        <FIELD NAME="completionsetgrades" TYPE="int"  LENGTH="2"      NOTNULL="true"   DEFAULT="0"      SEQUENCE="false"        COMMENT="If this field is set to 1, then the activity will be automatically marked as 'complete' once the user grades other participants."/>
+        <FIELD NAME="options"             TYPE="text" LENGTH="medium" NOTNULL="false"  SEQUENCE="false" COMMENT="Custom options for strategy, format is base64(json_encode())"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key for whiteboard"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="byname" UNIQUE="false" FIELDS="name"/>
+        <INDEX NAME="bycourse" UNIQUE="false" FIELDS="course"/>
+      </INDEXES>
+    </TABLE>
+    
+    <TABLE NAME="otmutualassessment_points" COMMENT="Информация по выставленным баллам">
+      <FIELDS>
+        <FIELD NAME="id"                   TYPE="int" LENGTH="10" NOTNULL="true"  SEQUENCE="true"  COMMENT="Идентификатор записи"/>
+        <FIELD NAME="otmutualassessmentid" TYPE="int" LENGTH="10" NOTNULL="true"  SEQUENCE="false" COMMENT="Идентификатор инстанса модуля курса"/>
+        <FIELD NAME="grader"               TYPE="int" LENGTH="10" NOTNULL="true"  SEQUENCE="false" COMMENT="Идентификатор оценщика"/>
+        <FIELD NAME="graded"               TYPE="int" LENGTH="10" NOTNULL="true"  SEQUENCE="false" COMMENT="Идентификатор оцениваемого"/>
+        <FIELD NAME="groupid"              TYPE="int" LENGTH="10" NOTNULL="true"  SEQUENCE="false" COMMENT="Идентификатор группы пользователя"/>
+        <FIELD NAME="point"                TYPE="int" LENGTH="10" NOTNULL="true"  DEFAULT="0"      SEQUENCE="false" COMMENT="Выставленный балл"/>
+        <FIELD NAME="timecreated"          TYPE="int" LENGTH="10" NOTNULL="true"  DEFAULT="0"      SEQUENCE="false" COMMENT="Время выставления баллов в первый раз"/>
+        <FIELD NAME="timemodified"         TYPE="int" LENGTH="10" NOTNULL="true"  DEFAULT="0"      SEQUENCE="false" COMMENT="Время последнего обновления баллов"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key for whiteboard"/>
+      </KEYS>
+      <INDEXES>
+      	<INDEX NAME="bygrader" UNIQUE="false" FIELDS="grader"/>
+        <INDEX NAME="bygraded" UNIQUE="false" FIELDS="graded"/>
+      </INDEXES>
+    </TABLE>
+    
+    <TABLE NAME="otmutualassessment_grades" COMMENT="Информация по оценкам">
+      <FIELDS>
+        <FIELD NAME="id"                   TYPE="int"    LENGTH="10" NOTNULL="true"  SEQUENCE="true"  COMMENT="Идентификатор записи"/>
+        <FIELD NAME="otmutualassessmentid" TYPE="int"    LENGTH="10" NOTNULL="true"  SEQUENCE="false" COMMENT="Идентификатор инстанса модуля курса"/>
+        <FIELD NAME="userid"               TYPE="int"    LENGTH="10" NOTNULL="true"  SEQUENCE="false" COMMENT="Идентификатор пользователя"/>
+        <FIELD NAME="grade"                TYPE="number" LENGTH="10" NOTNULL="false" DEFAULT="0"      SEQUENCE="false" DECIMALS="5" COMMENT="The numerical grade for this otmutualassessment. Can be determined by scales/advancedgradingforms etc but will always be converted back to a floating point number."/>
+        <FIELD NAME="timecreated"          TYPE="int"    LENGTH="10" NOTNULL="true"  DEFAULT="0"      SEQUENCE="false" COMMENT="Время выставления оценки в первый раз"/>
+        <FIELD NAME="timemodified"         TYPE="int"    LENGTH="10" NOTNULL="true"  DEFAULT="0"      SEQUENCE="false" COMMENT="Время последнего обновления оценки"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key for whiteboard"/>
+      </KEYS>
+      <INDEXES>
+      	<INDEX NAME="byuserid" UNIQUE="false" FIELDS="userid"/>
+      </INDEXES>
+    </TABLE>
+    
+    <TABLE NAME="otmutualassessment_statuses" COMMENT="Информация по статусам оценщиков">
+      <FIELDS>
+        <FIELD NAME="id"                   TYPE="int"  LENGTH="10" NOTNULL="true"  SEQUENCE="true"  COMMENT="Идентификатор записи"/>
+        <FIELD NAME="otmutualassessmentid" TYPE="int"  LENGTH="10" NOTNULL="true"  SEQUENCE="false" COMMENT="Идентификатор инстанса модуля курса"/>
+        <FIELD NAME="userid"               TYPE="int"  LENGTH="10" NOTNULL="true"  SEQUENCE="false" COMMENT="Идентификатор пользователя"/>
+        <FIELD NAME="groupid"              TYPE="int"  LENGTH="10" NOTNULL="true"  SEQUENCE="false" COMMENT="Идентификатор группы пользователя"/>
+        <FIELD NAME="status"               TYPE="char" LENGTH="40" NOTNULL="true"  SEQUENCE="false" COMMENT="Статус оценщика"/>
+        <FIELD NAME="timecreated"          TYPE="int"  LENGTH="10" NOTNULL="true"  DEFAULT="0"      SEQUENCE="false" COMMENT="Время выставления статуса в первый раз"/>
+        <FIELD NAME="timemodified"         TYPE="int"  LENGTH="10" NOTNULL="true"  DEFAULT="0"      SEQUENCE="false" COMMENT="Время последнего обновления статуса"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key for whiteboard"/>
+      </KEYS>
+      <INDEXES>
+      	<INDEX NAME="byuserid" UNIQUE="false" FIELDS="userid"/>
+        <INDEX NAME="bystatus" UNIQUE="false" FIELDS="status"/>
+      </INDEXES>
+    </TABLE>
+        
+    </TABLES>
+</XMLDB>
+
+

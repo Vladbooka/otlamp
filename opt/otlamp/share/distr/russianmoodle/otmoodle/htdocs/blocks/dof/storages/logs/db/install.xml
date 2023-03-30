@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/dof/storages/logs/db" VERSION="20120307" COMMENT="XMLDB file for Moodle blocks/dof/storages/logs"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_logs" COMMENT="Логи деканата">
+      <FIELDS>
+        <FIELD NAME="id"         TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true"  SEQUENCE="true"                           NEXT="logtype"         COMMENT="Идентификатор записи (Совпадает с названием файла лога)" />
+        <FIELD NAME="logtype"    TYPE="char" LENGTH="20"    NOTNULL="true"                   SEQUENCE="false"    PREVIOUS="id"         NEXT="ptype"           COMMENT="Тип логгера" />
+        <FIELD NAME="ptype"      TYPE="char" LENGTH="20"    NOTNULL="true"                   SEQUENCE="false"    PREVIOUS="logtype"    NEXT="pcode"           COMMENT="Тип плагина" />
+        <FIELD NAME="pcode"      TYPE="char" LENGTH="20"    NOTNULL="true"                   SEQUENCE="false"    PREVIOUS="ptype"      NEXT="subcode"         COMMENT="Код плагина" />
+        <FIELD NAME="subcode"    TYPE="char" LENGTH="20"    NOTNULL="true"                   SEQUENCE="false"    PREVIOUS="pcode"      NEXT="objid"           COMMENT="Код процесса" />
+        <FIELD NAME="objid"      TYPE="int"  LENGTH="10"    NOTNULL="false"                  SEQUENCE="false"    PREVIOUS="subcode"    NEXT="personid"        COMMENT="Идентификатор объекта" />
+        <FIELD NAME="personid"   TYPE="int"  LENGTH="10"    NOTNULL="false"                  SEQUENCE="false"    PREVIOUS="objid"      NEXT="config"          COMMENT="Идентификатор инициитора лога" />
+        <FIELD NAME="config"     TYPE="char" LENGTH="20"    NOTNULL="false"                  SEQUENCE="false"    PREVIOUS="personid"   NEXT="hash"            COMMENT="Сериализованные конфиги" />
+        <FIELD NAME="hash"       TYPE="char" LENGTH="20"    NOTNULL="false"                  SEQUENCE="false"    PREVIOUS="config"     NEXT="timestart"       COMMENT="Хэш" />
+        <FIELD NAME="timestart"  TYPE="char" LENGTH="20"    NOTNULL="false"                  SEQUENCE="false"    PREVIOUS="hash"       NEXT="timeend"         COMMENT="Дата начала запуска лога в unix timestamp" />
+        <FIELD NAME="timeend"    TYPE="char" LENGTH="20"    NOTNULL="false"                  SEQUENCE="false"    PREVIOUS="timestart"  NEXT="status"          COMMENT="Дата окончания записи лога в unix timestamp" />
+        <FIELD NAME="status"     TYPE="char" LENGTH="20"    NOTNULL="false"                  SEQUENCE="false"    PREVIOUS="timeend"                           COMMENT="Статус процесса логирования" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ilogtype"   UNIQUE="false" FIELDS="logtype" />
+        <INDEX NAME="iplug"      UNIQUE="false" FIELDS="ptype,pcode" />
+        <INDEX NAME="isubcode"   UNIQUE="false" FIELDS="subcode" />
+        <INDEX NAME="ipersonid"  UNIQUE="false" FIELDS="personid" />
+        <INDEX NAME="itime"      UNIQUE="false" FIELDS="timestart,timeend" />
+        <INDEX NAME="istatus"    UNIQUE="false" FIELDS="status" />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

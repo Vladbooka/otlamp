@@ -1,0 +1,18 @@
+{{#has_categories}}
+<div class="otrl_cat1nd">
+	<div class="otrl_cat1nd_holder">
+		<ul>
+		{{#cat1nd}}
+			<li class="otrl_category0" data="{{key}}" data-has-children="{{#hassubcat}}true{{/hassubcat}}{{^hassubcat}}false{{/hassubcat}}">
+				<a href="#{{match}}">{{#category}}{{name}}{{/category}}</a>
+				<span class="otrl_sub_cat_open">{{# pix }} dotes, mod_otresourcelibrary, Icon OtRL {{/ pix }}</span>
+			</li>
+		{{/cat1nd}}
+		</ul>
+	</div>
+	<div class="otrl_cat2nd">
+		<div class="otrl_margin24"></div>
+		<div id="otrl_subcategories"></div>
+	</div>
+</div>
+{{/has_categories}}

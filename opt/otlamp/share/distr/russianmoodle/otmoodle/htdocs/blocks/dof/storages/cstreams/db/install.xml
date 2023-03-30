@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/dof/storages/cstreams/db" VERSION="20110921" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_cstreams" COMMENT="учебный поток">
+      <FIELDS>
+        <FIELD NAME="id"                  TYPE="int"    LENGTH="10"                  NOTNULL="true"              UNSIGNED="true"  SEQUENCE="true"  />
+        <FIELD NAME="name"                TYPE="char"   LENGTH="255"                 NOTNULL="false"                              SEQUENCE="false" COMMENT="имя учебного процесса"/>
+        <FIELD NAME="description"         TYPE="text"   LENGTH="medium"              NOTNULL="false"                              SEQUENCE="false" COMMENT="описание учебного процесса"/>
+        <FIELD NAME="ageid"               TYPE="int"    LENGTH="10"                  NOTNULL="false"             UNSIGNED="true"  SEQUENCE="false" COMMENT="id учебного переиода"/>
+        <FIELD NAME="programmitemid"      TYPE="int"    LENGTH="10"                  NOTNULL="false"             UNSIGNED="true"  SEQUENCE="false" COMMENT="id дисциплины"/>
+        <FIELD NAME="teacherid"           TYPE="int"    LENGTH="10"                  NOTNULL="false"             UNSIGNED="true"  SEQUENCE="false" COMMENT="id преподавателя по таблице persons"/>
+        <FIELD NAME="departmentid"        TYPE="int"    LENGTH="10"                  NOTNULL="false"             UNSIGNED="true"  SEQUENCE="false" COMMENT="id подразделения, которому принадлежит учебный процесс"/>
+        <FIELD NAME="appointmentid"       TYPE="int"    LENGTH="10"                  NOTNULL="false"             UNSIGNED="true"  SEQUENCE="false" COMMENT="Хранит id назначения на должность в таблице appointments"/>
+        <FIELD NAME="mdlgroup"            TYPE="int"    LENGTH="10"                  NOTNULL="false"             UNSIGNED="true"  SEQUENCE="false" COMMENT="id группы moodle, соответствующей учебному потоку"/>
+        <FIELD NAME="eduweeks"            TYPE="int"    LENGTH="3"                   NOTNULL="false"             UNSIGNED="true"  SEQUENCE="false" COMMENT="количество учебных недель/циклов"/>
+        <FIELD NAME="begindate"           TYPE="int"    LENGTH="10"                  NOTNULL="false"             UNSIGNED="true"  SEQUENCE="false" COMMENT="дата и время, когда учебный процесс был впервые переведен в состояние &quot;идет обучение&quot; по UTC"/>
+        <FIELD NAME="enddate"             TYPE="int"    LENGTH="10"                  NOTNULL="false"             UNSIGNED="true"  SEQUENCE="false" COMMENT="дата и время окончания по UTC, когда учебный процесс был в последний раз выведен из состояния &quot;идет обучения&quot;"/>
+        <FIELD NAME="status"              TYPE="char"   LENGTH="20"                  NOTNULL="false"                              SEQUENCE="false" COMMENT="статус"             />
+        <FIELD NAME="hours"               TYPE="int"    LENGTH="10"                  NOTNULL="false"             UNSIGNED="true"  SEQUENCE="false" COMMENT="количество часов отведенных для потока"/>
+        <FIELD NAME="hoursweek"           TYPE="int"    LENGTH="10"                  NOTNULL="false"             UNSIGNED="true"  SEQUENCE="false" COMMENT="количество часов в неделю"/>
+        <FIELD NAME="hoursweekinternally" TYPE="number" LENGTH="6"      DECIMALS="2" NOTNULL="false"             UNSIGNED="true"  SEQUENCE="false" COMMENT="часов в неделю очно"/>
+        <FIELD NAME="code"                TYPE="char"   LENGTH="255"                 NOTNULL="false"                              SEQUENCE="false" COMMENT="Код учебного процесса"/>
+		<FIELD NAME="hoursweekdistance"   TYPE="number" LENGTH="6"      DECIMALS="2" NOTNULL="false"             UNSIGNED="true"  SEQUENCE="false" COMMENT="количество часов в неделю дистанционно"/>
+        <FIELD NAME="explanatory"         TYPE="text"   LENGTH="medium"              NOTNULL="false"                              SEQUENCE="false" COMMENT="пояснительная записка"/>
+		<FIELD NAME="lastgradesync"       TYPE="int"    LENGTH="10"                  NOTNULL="false"             UNSIGNED="true"  SEQUENCE="false" COMMENT="дата последней синхронизации оценок"/>
+      	<FIELD NAME="salfactor"           TYPE="float"  LENGTH="6"      DECIMALS="2" NOTNULL="true"  DEFAULT="0" UNSIGNED="true"  SEQUENCE="false" COMMENT="поправочный зарплатный коэффициент для учебного процесса"/>
+      	<FIELD NAME="substsalfactor"      TYPE="float"  LENGTH="6"      DECIMALS="2" NOTNULL="true"  DEFAULT="0" UNSIGNED="true"  SEQUENCE="false" COMMENT="замещающий поправочный коэффициент для учебного процесса"/>
+      	<FIELD NAME="selfenrol"           TYPE="int"    LENGTH="1"                   NOTNULL="false" DEFAULT="0" UNSIGNED="true"  SEQUENCE="false" COMMENT="разрешена ли самозапись"/>
+      	<FIELD NAME="studentslimit"       TYPE="int"    LENGTH="10"                  NOTNULL="false"             UNSIGNED="true"  SEQUENCE="false" COMMENT="количество разрешенных подписок по самозаписи"/>
+      	<FIELD NAME="mdlcourse"           TYPE="int"    LENGTH="10"                  NOTNULL="false"             UNSIGNED="true"  SEQUENCE="false" COMMENT="id курса в moodle"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iageid"                  UNIQUE="false" FIELDS="ageid"               NEXT="iprogrammitemid"/>
+        <INDEX NAME="iprogrammitemid"         UNIQUE="false" FIELDS="programmitemid"      PREVIOUS="iageid"                  NEXT="iteacherid"/>
+        <INDEX NAME="iteacherid"              UNIQUE="false" FIELDS="teacherid"           PREVIOUS="iprogrammitemid"         NEXT="idepartmentid"/>
+        <INDEX NAME="idepartmentid"           UNIQUE="false" FIELDS="departmentid"        PREVIOUS="iteacherid"              NEXT="imdlgroup"/>
+        <INDEX NAME="imdlgroup"               UNIQUE="false" FIELDS="mdlgroup"            PREVIOUS="idepartmentid"           NEXT="ibegindate"/>
+        <INDEX NAME="ibegindate"              UNIQUE="false" FIELDS="begindate"           PREVIOUS="imdlgroup"               NEXT="ienddate"/>
+        <INDEX NAME="ienddate"                UNIQUE="false" FIELDS="enddate"             PREVIOUS="ibegindate"              NEXT="istatus"/>
+        <INDEX NAME="istatus"                 UNIQUE="false" FIELDS="status"              PREVIOUS="ienddate"                NEXT="mdl_blocdofscstr_app_ix"/>
+        <INDEX NAME="mdl_blocdofscstr_app_ix" UNIQUE="false" FIELDS="appointmentid"       PREVIOUS="istatus"                 NEXT="ilastgradesync"/>
+		<INDEX NAME="ilastgradesync"          UNIQUE="false" FIELDS="lastgradesync"       PREVIOUS="mdl_blocdofscstr_app_ix" NEXT="ihoursweekinternally"/>
+		<INDEX NAME="ihoursweekinternally"    UNIQUE="false" FIELDS="hoursweekinternally" PREVIOUS="ilastgradesync"          NEXT="isalfactor"/>        
+      	<INDEX NAME="isalfactor"              UNIQUE="false" FIELDS="salfactor"           PREVIOUS="ihoursweekinternally"    NEXT="isubstsalfactor"/>
+      	<INDEX NAME="isubstsalfactor"         UNIQUE="false" FIELDS="substsalfactor"      PREVIOUS="isalfactor"              NEXT="iselfenrol"/>
+      	<INDEX NAME="iselfenrol"              UNIQUE="false" FIELDS="selfenrol"           PREVIOUS="isubstsalfactor"/>
+      	<INDEX NAME="iname"                   UNIQUE="false" FIELDS="name"                PREVIOUS="iselfenrol"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

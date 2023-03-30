@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMLDB PATH="enrol/sitecall/db" VERSION="20150316" COMMENT="XMLDB file for Moodle enrol/sitecall"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+  	     <TABLE NAME="enrol_sitecall" COMMENT="Информация о заявках на подписку">
+            <FIELDS>
+                <FIELD NAME="id"         TYPE="int"  COMMENT="Идентификатор заявки"       LENGTH="10"    NOTNULL="true"  UNSIGNED="true"  SEQUENCE="true"                        NEXT="userid"     />
+                <FIELD NAME="userid"     TYPE="int"  COMMENT="Идентификатор пользователя" LENGTH="10"    NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="id"         NEXT="courseid"   />
+                <FIELD NAME="courseid"   TYPE="int"  COMMENT="Идентификатор курса"        LENGTH="10"    NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="userid"     NEXT="firstname"  />
+                <FIELD NAME="firstname"  TYPE="char" COMMENT="Имя"                        LENGTH="255"   NOTNULL="true"                   SEQUENCE="false" PREVIOUS="courseid"   NEXT="lastname"   />
+                <FIELD NAME="lastname"   TYPE="char" COMMENT="Фамилия"                    LENGTH="255"   NOTNULL="true"                   SEQUENCE="false" PREVIOUS="firstname"  NEXT="email"      />
+                <FIELD NAME="email"      TYPE="char" COMMENT="Электронная почта"          LENGTH="255"   NOTNULL="false"                  SEQUENCE="false" PREVIOUS="lastname"   NEXT="date"       />
+                <FIELD NAME="date"       TYPE="int"  COMMENT="Дата получения заявки"      LENGTH="10"    NOTNULL="true"                   SEQUENCE="false" PREVIOUS="email"      NEXT="additional" />
+                <FIELD NAME="additional" TYPE="text" COMMENT="Дополнительная информация"  LENGTH="small" NOTNULL="false"                  SEQUENCE="false" PREVIOUS="date"       NEXT="status"     />
+                <FIELD NAME="status"     TYPE="char" COMMENT="Статус заявки"              LENGTH="255"   NOTNULL="false"                  SEQUENCE="false" PREVIOUS="additional"                   />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="id"        UNIQUE="true"  FIELDS="id"                             NEXT="userid"    />
+                <INDEX NAME="userid"    UNIQUE="false" FIELDS="userid"    PREVIOUS="id"        NEXT="courseid" />
+                <INDEX NAME="courseid"    UNIQUE="false" FIELDS="userid"  PREVIOUS="userid"    NEXT="firstname" />
+                <INDEX NAME="firstname" UNIQUE="false" FIELDS="firstname" PREVIOUS="courseid"  NEXT="lastname"  />
+                <INDEX NAME="lastname"  UNIQUE="false" FIELDS="lastname"  PREVIOUS="firstname" NEXT="email"     />
+                <INDEX NAME="email"     UNIQUE="false" FIELDS="email"     PREVIOUS="lastname"  NEXT="date"      />
+                <INDEX NAME="date"      UNIQUE="false" FIELDS="date"      PREVIOUS="email"     NEXT="status"    />
+                <INDEX NAME="status"    UNIQUE="false" FIELDS="status"    PREVIOUS="date"                       />
+            </INDEXES>
+	   </TABLE>
+  </TABLES>
+</XMLDB>

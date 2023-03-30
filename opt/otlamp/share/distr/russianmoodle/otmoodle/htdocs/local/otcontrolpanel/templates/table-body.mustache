@@ -1,0 +1,12 @@
+{{#body}}
+<tbody>
+	{{#rows}}
+	<tr data-record-id="{{id}}">
+		{{$statecolumntd}}{{/statecolumntd}}
+		{{#cells}}
+		<td class="{{#classes}}{{.}}{{/classes}}">{{{value}}}</td>
+		{{/cells}}
+	</tr>
+	{{/rows}}
+</tbody>
+{{/body}}

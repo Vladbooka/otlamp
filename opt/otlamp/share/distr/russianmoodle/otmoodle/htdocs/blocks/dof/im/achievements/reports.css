@@ -1,0 +1,81 @@
+.report-group-name {
+	font-size: 20px;
+	line-height: 24px;
+	margin-bottom: 10px;
+}
+
+table.rtreport.idp_summary,
+table.rtreport.idp_personalized {
+	border: 0;
+}
+table.rtreport.idp_summary th,
+table.rtreport.idp_personalized th,
+table.rtreport.idp_summary td,
+table.rtreport.idp_personalized td {
+	border: 0;
+    border-top: 1px solid #ddd;
+}
+
+table.rtreport.idp_summary th,
+table.rtreport.idp_personalized th {
+	text-align: center;
+	font-weight: 600;
+}
+
+table.rtreport.idp_summary td.header-cell,
+table.rtreport.idp_personalized td.header-cell,
+table.rtreport.idp_summary th.header-cell,
+table.rtreport.idp_personalized th.header-cell {
+	text-align: left;
+	font-weight: 600;
+}
+table.rtreport.idp_summary td.body-cell,
+table.rtreport.idp_personalized td.body-cell {
+	text-align: center;
+}
+
+table.rtreport.idp_summary tr.department td.department-name {
+	position: relative;
+}
+table.rtreport.idp_summary tr.department:not([data-department-level="0"]) td.department-name::before {
+	display:block;
+	content: '';
+	position: absolute;
+	width: 8px;
+	height: 15px;
+	border: 1px solid #BEBEBE;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	top: 2px;
+	left: -6px;
+}
+table.rtreport.idp_summary tr.department[data-department-level="1"] td.department-name {
+	padding-left: 25px;
+}
+table.rtreport.idp_summary tr.department[data-department-level="1"] td.department-name::before{
+	margin-left: 15px;
+}
+table.rtreport.idp_summary tr.department[data-department-level="2"] td.department-name {
+	padding-left: 45px;
+}
+table.rtreport.idp_summary tr.department[data-department-level="2"] td.department-name::before{
+	margin-left: 35px;
+}
+table.rtreport.idp_summary tr.department[data-department-level="3"] td.department-name {
+	padding-left: 65px;
+}
+table.rtreport.idp_summary tr.department[data-department-level="3"] td.department-name::before{
+	margin-left: 55px;
+}
+table.rtreport.idp_summary tr.department[data-department-level="4"] td.department-name {
+	padding-left: 85px;
+}
+table.rtreport.idp_summary tr.department[data-department-level="4"] td.department-name::before{
+	margin-left: 75px;
+}
+table.rtreport.idp_summary tr.department[data-department-level="5"] td.department-name {
+	padding-left: 105px;
+}
+table.rtreport.idp_summary tr.department[data-department-level="5"] td.department-name::before{
+	margin-left: 95px;
+}

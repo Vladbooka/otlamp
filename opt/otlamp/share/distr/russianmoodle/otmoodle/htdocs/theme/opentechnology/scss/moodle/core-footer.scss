@@ -1,0 +1,48 @@
+#page-footer {
+    
+    @include ot-zone-a((
+		link-color:			$ot-footer-link-color,
+		link-hover-color:	$ot-footer-link-hover-color,
+    ));
+	
+	@include ot-zone-buttons((
+		primary-bg: 						$ot-footer-btn-primary-bg,
+		primary-border: 					$ot-footer-btn-primary-border,
+		primary-color: 						$ot-footer-btn-primary-color,
+		primary-brightness-config: 			$ot-footer-btn-primary-brightness-config,
+		primary-hover-bg: 					$ot-footer-btn-primary-hover-bg,
+		primary-hover-border: 				$ot-footer-btn-primary-hover-border,
+		primary-hover-color: 				$ot-footer-btn-primary-hover-color,
+		primary-hover-brightness-config: 	$ot-footer-btn-primary-hover-brightness-config,
+		primary-active-bg: 					$ot-footer-btn-primary-hover-bg,
+		primary-active-border: 				$ot-footer-btn-primary-hover-border,
+		primary-active-color: 				$ot-footer-btn-primary-hover-color,
+		primary-active-brightness-config: 	$ot-footer-btn-primary-hover-brightness-config,
+		secondary-bg: 						$ot-footer-btn-secondary-bg,
+		secondary-border: 					$ot-footer-btn-secondary-border,
+		secondary-color: 					$ot-footer-btn-secondary-color,
+		secondary-brightness-config: 		$ot-footer-btn-secondary-brightness-config,
+		secondary-hover-bg: 				$ot-footer-btn-secondary-hover-bg,
+		secondary-hover-border: 			$ot-footer-btn-secondary-hover-border,
+		secondary-hover-color: 				$ot-footer-btn-secondary-hover-color,
+		secondary-hover-brightness-config: 	$ot-footer-btn-secondary-hover-brightness-config,
+		secondary-active-bg: 				$ot-footer-btn-secondary-hover-bg,
+		secondary-active-border: 			$ot-footer-btn-secondary-hover-border,
+		secondary-active-color: 			$ot-footer-btn-secondary-hover-color,
+		secondary-active-brightness-config:	$ot-footer-btn-secondary-hover-brightness-config,
+		link-color:							$ot-footer-link-color,
+		link-hover-color:					$ot-footer-link-hover-color,
+	));
+	
+	@include ot-zone-pagination((
+		bg: 					$ot-footer-pagination-bg,
+		border-color: 			$ot-footer-pagination-border-color,
+		color: 					$ot-footer-pagination-color,
+		hover-bg: 				$ot-footer-pagination-hover-bg,
+		hover-border-color: 	$ot-footer-pagination-hover-border-color,
+		hover-color:			$ot-footer-pagination-hover-color,
+		active-bg:				$ot-footer-pagination-hover-bg,
+		active-border-color:	$ot-footer-pagination-hover-border-color,
+		active-color:			$ot-footer-pagination-hover-color
+	));
+}

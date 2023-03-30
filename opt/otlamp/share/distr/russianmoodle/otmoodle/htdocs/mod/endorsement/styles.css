@@ -1,0 +1,200 @@
+.mod_endorsement_list_link {
+	margin: 15px auto;
+}
+.mod_endorsement_list_header {
+	font-size: 20px;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+.mod_endorsement_items_header {
+	font-size: 20px;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+.mod_endorsement_item {
+	background-color: #F5F5F5;
+	padding: 10px;
+}
+.mod_endorsement_item + .mod_endorsement_item {
+	margin-top: 15px;
+}
+
+.mod_endorsement_item_field_pubdate {
+	text-align: right;
+	font-size: 12px;
+}
+.mod_endorsement_items_onemore {
+	margin-top: 20px;
+}
+.mod_endorsement_item_field_username {
+	font-weight: bold;
+}
+
+.mod_endorsement_form_add_item #fitem_id_content {
+	flex-direction: column;
+}
+.mod_endorsement_form_add_item #fitem_id_content div:first-child label + div.ml-md-auto {
+	margin-left: 0!important;
+}
+.mod_endorsement_form_add_item form.mform > div.form-group {
+	margin-left: 0;
+}
+.mod_endorsement_form_add_item .mform .fitem div.fitemtitle {
+	width: auto;
+    float: none;
+    text-align: left;
+}
+.mod_endorsement_form_add_item .mform .fitem .felement {
+	margin-left: 0;
+}
+.mod_endorsement_form_add_item .mform .fitem.fitem_fsubmit {
+	float: left;
+}
+.mod_endorsement_form_add_item .mform .fitem.fitem_fsubmit:after {
+	display: none;
+}
+.mod_endorsement_form_add_item .mform .fdescription.required {
+	margin-left: 0;
+	clear: both;
+}
+
+.mod_endorsement_publication_success {
+	margin: 15px auto;
+    padding: 10px;
+    background-color: #e0fbf1;
+    border: 1px solid #8bc1af;
+}
+
+.mod_endorsement_publication_failed {
+	margin: 15px auto;
+    padding: 10px;
+    background-color: #fbe0e0;
+    border: 1px solid #c18b8b;
+}
+
+.mod_endorsement_list.moderatorside .mod_endorsement_item_sourcename {
+	color: #666;
+}
+.mod_endorsement_list.moderatorside .mod_endorsement_items table {
+	width: 100%;
+}
+.mod_endorsement_list.moderatorside .mod_endorsement_item_cell {
+	padding: 10px;
+	position: relative;
+}
+.mod_endorsement_list.moderatorside .mod_endorsement_item_cell_moderator_tools.loading {
+	background: #F9F9F9;
+	color: #BBB;
+	pointer-events: none;
+	background-image: repeating-linear-gradient(
+		-45deg,
+	    #F5F5F5,
+	    #F5F5F5 11px,
+	    #FFF 10px,
+	    #FFF 20px
+	);
+	background-size: 28px 28px;
+	animation: loading .5s linear infinite;
+}
+.statuses-filter {
+	margin-top: 2px;
+}
+@keyframes loading {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 28px 0;
+  }
+}
+
+html.yui3-js-enabled #page-wrapper form input.submit_change_course[type="submit"] {
+	display: none;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_cell_moderator_tools {
+	width: 60px;
+	box-sizing: content-box;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools .current-status-name {
+	vertical-align: top;
+	margin-left: 10px;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools .fitem {
+	float: left;
+	margin: 0;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools .fitem .col-md-3 {
+	display: none;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools .fitem .col-md-9,
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools .fitem .col-md-9 > .form-check {
+	padding: 0;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools #fitem_id_save {
+	display: none;
+}
+.mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools .fitem div.fitemtitle {
+	display: none;
+}
+.mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools .fitem .felement {
+	margin: 0;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools .fitem_fradio .felement > span {
+	margin: 0;
+}
+
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools label {
+	display: none;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools label.ready {
+	display: inline-block;
+	height: 20px;
+	width: 19px;
+    background-color: #ccc;
+    padding: 0;
+    cursor: pointer;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools label.ready + * {
+	display: none!important;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools input[type=radio] {
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools input[type=radio] + label > .statusimg {
+	display: inline-block;
+	width: 19px;
+	height: 20px;
+	vertical-align: top;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools input[type=radio][value=new] + label > .statusimg {
+	background: url([[pix:mod_endorsement|snewg]]) 50% 50% no-repeat;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools input[type=radio][value=accepted] + label > .statusimg {
+	background: url([[pix:mod_endorsement|sacceptedg]]) 50% 50% no-repeat;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools input[type=radio][value=rejected] + label > .statusimg {
+	background: url([[pix:mod_endorsement|srejectedg]]) 50% 50% no-repeat;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools input[type=radio][value=new]:checked + label > .statusimg {
+	background: url([[pix:mod_endorsement|snew]]) 50% 50% no-repeat;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools input[type=radio][value=accepted]:checked + label > .statusimg {
+	background: url([[pix:mod_endorsement|saccepted]]) 50% 50% no-repeat;
+}
+html.yui3-js-enabled .mod_endorsement_list.moderatorside .mod_endorsement_item_moderator_tools input[type=radio][value=rejected]:checked + label > .statusimg {
+	background: url([[pix:mod_endorsement|srejected]]) 50% 50% no-repeat;
+}
+
+/*
+.mod_endorsement_list.moderatorside .mod_endorsement_items {
+	display: table;
+}
+.mod_endorsement_list.moderatorside .mod_endorsement_items .mod_endorsement_item {
+	display: table-row;
+}
+.mod_endorsement_list.moderatorside .mod_endorsement_items .mod_endorsement_item .mod_endorsement_item_field {
+	display: table-cell;
+}*/

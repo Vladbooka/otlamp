@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/quiz_teacher_feedback/db" VERSION="2017032418" COMMENT="Файл объявления таблиц"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_quiz_teacher_feedback" COMMENT="Комментарии преподавателей" >
+      <FIELDS>
+        <FIELD NAME="id"             TYPE="int"                LENGTH="10"        NOTNULL="true"             UNSIGNED="true"  SEQUENCE="true"  COMMENT=""   />
+        <FIELD NAME="qaid"           TYPE="int"                LENGTH="10"        NOTNULL="true"                              SEQUENCE="false" COMMENT="ID попытки прохождения вопроса"  />
+        <FIELD NAME="feedback"       TYPE="text"               LENGTH="medium"    NOTNULL="true"                              SEQUENCE="false" COMMENT="Отзыв"  />
+        <FIELD NAME="feedbackformat" TYPE="int"                LENGTH="10"        NOTNULL="true" DEFAULT="0"                  SEQUENCE="false" COMMENT="Формат отзыва" />
+      	<FIELD NAME="grade"          TYPE="float" DECIMALS="5" LENGTH="10"        NOTNULL="false"                             SEQUENCE="false" COMMENT="Оценка" />
+      	<FIELD NAME="completed"      TYPE="int"                LENGTH="10"        NOTNULL="true" DEFAULT="0"                  SEQUENCE="false" COMMENT="Флаг завершения ответа пользователя по вопросу" />
+      	<FIELD NAME="needsgrading"   TYPE="int"                LENGTH="1"         NOTNULL="true" DEFAULT="0"                  SEQUENCE="false" COMMENT="Флаг необходимости в оценке ответа" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iqaid"      UNIQUE="false" FIELDS="qaid" />
+        <INDEX NAME="igrade"     UNIQUE="false" FIELDS="grade" />
+        <INDEX NAME="icompleted" UNIQUE="false" FIELDS="completed" />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

@@ -1,0 +1,69 @@
+#questionnpcmrstatistics .qtext-cell {
+	position: relative;
+	overflow: hidden;
+    min-width: 300px;
+    width: 25%;
+    height: 40px;
+    line-height: 20px;
+}
+#questionnpcmrstatistics .qtext-cell .qtext-expander {
+	display: none;
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	height: 0;
+	width: 0;
+	border-bottom: 0;
+	border-top: 9px solid #AAA;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+#questionnpcmrstatistics .qtext-cell .qtext-expander::after {
+	display: block;
+	content: '';
+	position: absolute;
+	top: -8px;
+	left: -4px;
+	height: 0;
+	width: 0;
+	border-bottom: 0;
+	border-top: 7px solid #FFF;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+#questionnpcmrstatistics td.qtext-cell.collapsed .qtext-expander,
+#questionnpcmrstatistics td.qtext-cell.collapsed .qtext-expander::after,
+#questionnpcmrstatistics td.qtext-cell.expanded .qtext-expander::after {
+	display: block;
+}
+#questionnpcmrstatistics td.qtext-cell.expanded .qtext-expander {
+	display: block;
+	transform: rotate(180deg);
+}
+
+#questionnpcmrstatistics .qtext-cell.expanded .fulltext {
+	display: block;
+	position: static;
+}
+#questionnpcmrstatistics .qtext-cell.collapsed .fulltext {
+	display: block;
+	position: absolute;
+}
+
+#questionnpcmrstatistics .qtext-cell .qtext,
+#questionnpcmrstatistics .qtext-cell.collapsed .qtext,
+#questionnpcmrstatistics .qtext-cell.expanded .qtext + .fulltext {
+	display: block;
+}
+#questionnpcmrstatistics .qtext-cell.expanded .qtext,
+#questionnpcmrstatistics .qtext-cell .fulltext,
+#questionnpcmrstatistics .qtext-cell.collapsed .qtext + .fulltext {
+	display: none;
+}
+.fulltext-toggler {
+	margin: 10px 0 5px 0;
+}

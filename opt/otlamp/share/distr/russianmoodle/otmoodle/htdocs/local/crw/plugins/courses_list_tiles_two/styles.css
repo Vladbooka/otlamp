@@ -1,0 +1,202 @@
+.cltt_clearboth {
+    clear: both;
+    position: relative;
+}
+.cltt_contentblock {
+    position: relative;
+    clear: both;
+    width: 100%;
+}
+.cltt_contentblock .cltt_coursebox {
+    position: relative;
+    width: 100%;
+    padding: 0 10px 20px 10px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: -moz-inline-box;
+    display: inline-block;
+    vertical-align: bottom;
+    min-width: 200px;
+}
+
+.cltt_contentblock .cltt_courseline_1 {
+    width: 100%;
+}
+
+.cltt_contentblock .cltt_courseline_2 {
+    width: 50%;
+}
+
+.cltt_contentblock .cltt_courseline_3 {
+    width: 33%;
+}
+
+.cltt_contentblock .cltt_courseline_4 {
+    width: 25%;
+}
+
+.cltt_contentblock .cltt_courseline_5 {
+    width: 20%;
+}
+
+.cltt_contentblock .cltt_courseline_6 {
+    width: 16%;
+}
+
+.cltt_contentblock .cltt_courseline_7 {
+    width: 14%;
+}
+
+.cltt_contentblock .cltt_courseline_8 {
+    width: 11%;
+}
+
+.cltt_coursebox .cltt_courseimagebox {
+    width: 30%;
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    float: left;
+}
+.cltt_coursebox .cltt_courseimg {
+    width: 100%;
+    position: relative;
+    padding: 0 0 75% 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background-size: cover !important;
+    clear: both;
+}
+
+
+.cltt_coursebox .cltt_coursename {
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: #303131;
+    color: #fff;
+    padding: 5px;
+    line-height: 20px;
+    margin: -30px 0 0 0;
+}
+
+.cltt_coursebox a:hover {
+    text-decoration: none;
+}
+
+.cltt_coursebox .cltt_course_infoblock {
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    line-height: 140%;
+    text-align: right;
+}
+
+.cltt_coursebox .cltt_coursestartdate {
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 2px 0 0 16px;
+    width: 59%;
+    font-size: 80%;
+    color: #303131;
+    display: inline-block;
+    vertical-align: bottom;
+    text-transform: lowercase;
+    background: url("/local/crw/plugins/courses_list_tiles_two/assets/clock.png") left center no-repeat;
+    background-size: auto 15px;
+    text-align: left;
+}
+.cltt_titleblock {
+	display: none;
+}
+.cltt_coursebox .cltt_coursestartdate span {
+    color: #f67e3d;
+}
+.cltt_coursebox .cltt_courseprice {
+    position: relative;
+    padding: 2px 5px 0 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: #f15041;
+    color: #fff;
+    font-size: 120%;
+    text-align: center;
+    width: 40%;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: bottom;
+    text-align: center;
+}
+.cltt_coursebox .cltt_courseprice:before {
+    background: linear-gradient(to top right, rgba(0,0,0,0), rgba(0,0,0,0) 48%, #f15041 52%, #f15041) 0 0 no-repeat;
+    background-size: 100% 10px;
+    content: '';
+    width: 50%;
+    height: 10px;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    z-index: 1;
+}
+.cltt_coursebox .cltt_courseprice:after {
+    background: linear-gradient(to top left, rgba(0,0,0,0), rgba(0,0,0,0) 48%, #f15041 52%, #f15041) 0 0 no-repeat;
+    background-size: 100% 10px;
+    content: '';
+    width: 50%;
+    height: 10px;
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+    z-index: 1;
+}
+.cltt_coursebox .cltt_courseprice_text {
+    position: relative;
+    padding: 2px 5px 0 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: #f67e3d;
+    color: #fff;
+    font-size: 80%;
+    text-align: center;
+    width: 40%;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: bottom;
+    text-align: center;
+}
+.cltt_coursebox .cltt_courseprice_text:before {
+    background: linear-gradient(to top right, rgba(0,0,0,0), rgba(0,0,0,0) 48%, #f67e3d 52%, #f67e3d) 0 0 no-repeat;
+    background-size: 100% 10px;
+    content: '';
+    width: 50%;
+    height: 10px;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    z-index: 1;
+}
+.cltt_coursebox .cltt_courseprice_text:after {
+    background: linear-gradient(to top left, rgba(0,0,0,0), rgba(0,0,0,0) 48%, #f67e3d 52%, #f67e3d) 0 0 no-repeat;
+    background-size: 100% 10px;
+    content: '';
+    width: 50%;
+    height: 10px;
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+    z-index: 1;
+}
+.cltt_courseprice_sign {
+	font-size:80%;
+}

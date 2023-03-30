@@ -1,0 +1,471 @@
+/** OT vars **/
+
+// Bootstrap variables
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+$blue:    #1177d1 !default;
+$indigo:  #6610f2 !default;
+$purple:  #613d7c !default;
+$pink:    #e83e8c !default;
+$red:     #d43f3a !default;
+$orange:  #f0ad4e !default;
+$yellow:  #ff7518 !default;
+$green:   #398439 !default;
+$teal:    #20c997 !default;
+$cyan:    #5bc0de !default;
+
+$primary:       $blue !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $orange !default;
+$danger:        $red !default;
+$secondary:     $gray-400 !default;
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;
+
+@function is_bright($color, $threshold: $yiq-contrasted-threshold) {
+	$r: red($color);
+	$g: green($color);
+	$b: blue($color);
+
+	$yiq: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+
+	@if ($yiq >= $threshold) {
+		@return true;
+	} @else {
+		@return false;
+	}
+}
+
+@function calc-brightnesslevel-invert-pair($color, $brightnessconfig: 0) {
+	@if ($brightnessconfig == 1) {
+		// сильное затемнение
+		@return 0.31, 0;
+	} @else if ($brightnessconfig == 2) {
+		// затемнение
+		@return 0.665, 0;
+	} @else if ($brightnessconfig == 3) {
+		// без изменений
+		@return 1, 0;
+	} @else if ($brightnessconfig == 4) {
+		// осветление
+		@return 0, 0.75;
+	} @else if ($brightnessconfig == 5) {
+		// сильное осветление
+		@return 0, 1;
+	} @else {
+		// в предыдущих версиях СДО порог контрастности вычислялся таким же образом и был настроен на 190
+		// он здесь ближе к действительности, потому что на светлом фоне будут светло-серые иконки, а не темные 
+		// поэтому и порог контрастности сдвигается
+		// но мы меняем не для всех стилей порог на модифицированный, а только при вычислении для иконок  
+		@if (is_bright($color, 190)) {
+			@return 1, 0;
+		} @else {
+			@return 0, 1;
+		}
+	}
+}
+
+@mixin ot-brightness-filter($bgcolor, $brightnessconfig: 0, $hover: false) {
+
+	@if ($bgcolor != null)
+	{
+	    $settings: calc-brightnesslevel-invert-pair($bgcolor, $brightnessconfig);
+	    $invertpct: nth($settings, 2);
+	    @if ($hover) {
+	    	@if ($invertpct > 0.66) {
+	    		$invertpct: $invertpct - 0.33;
+	    	} @else {
+	    		$invertpct: $invertpct + 0.33;
+	    	}
+	    }
+    	$invertpct: $invertpct * 100%;
+		filter: brightness(nth($settings, 1)) invert($invertpct);
+		$brightness: nth($settings, 1) * 100%;
+		-moz-filter: brightness($brightness) invert($invertpct);
+		-webkit-filter: brightness($brightness) invert($invertpct);
+		-ms-filter: brightness($brightness) invert($invertpct);
+		-o-filter: brightness($brightness) invert($invertpct);
+	}
+}
+@mixin ot-zone-a($ot-zone-a-colors) {
+	/* определение для зоны своего цвета ссылок*/
+	a {
+		color: map-get($ot-zone-a-colors, 'link-color');
+
+		@include hover() {
+			color: map-get($ot-zone-a-colors, 'link-hover-color');
+		}
+	}
+	/* из-за того, что вес селектора для ссылок увеличился, стандартные стили для других элементов со ссылками 
+	   будут переопределены, а нам в чистом виде менять только цвет текста нельзя, поэтому пока возвращаем как было */
+	.dropdown-item {
+		color: $dropdown-link-color;
+		@include hover-focus() {
+			color: $dropdown-link-hover-color;
+		}
+		&.active,
+		&:active {
+			color: $dropdown-link-active-color;
+		}
+		&.disabled,
+		&:disabled {
+			color: $dropdown-link-disabled-color;
+		}
+	}
+	.page-link {
+		color: $pagination-color;
+		&:hover {
+			color: $pagination-hover-color;
+		}
+	}
+	.page-item {
+		&.active .page-link {
+			color: $pagination-active-color;
+		}
+		&.disabled .page-link {
+			color: $pagination-disabled-color;
+		}
+	}
+	
+	/* починим табы, которые сломались из-за мощного селектора на ссылки */
+	.nav-tabs {
+		.nav-link.active,
+		.nav-item.show .nav-link {
+			color: $nav-tabs-link-active-color;
+			background-color: $nav-tabs-link-active-bg;
+			border-color: $nav-tabs-link-active-border-color;
+		}
+	}
+
+	.nav-pills {
+		.nav-link.active,
+		.show > .nav-link {
+			color: $nav-pills-link-active-color;
+			background-color: $nav-pills-link-active-bg;
+		}
+	}
+	
+	@include media-breakpoint-down(sm) {
+		.nav-tabs,
+    	.nav-pills {
+    		.nav-link {
+    			&.active {
+    				@include button-outline-variant($gray-600);
+    			}
+    		}
+    	}
+	}
+}
+@mixin narrow-form-styles {
+	/* Переопределения стилей форм для отображения в узких местах */ 
+	padding-left: 5px;
+
+	.form-group.fitem.row {
+		margin-left: 0;
+		
+		& > .col-md-3, 
+		& > .col-md-9 {
+			flex: none;
+			width: 100%;
+			max-width: 100%;
+			padding-left: 0;
+		}
+	}
+	fieldset {
+		margin-left: 0;
+	}
+	legend {
+		font-size: 1.2rem;
+	}
+	@media (max-width: 1200px) {
+		legend {
+		    font-size: calc(.8rem + .5vw);
+		}
+	}
+}
+
+@mixin ot-zone-button-styles($ot-zone-btn-colors, $color, $outline: false) {
+
+	// цвета для дефолтных кнопок не настраиваются - захардкожены серые (универсальное решение)
+	$default: (
+		default-bg: $gray-600,
+		default-border: $gray-600,
+		default-color: $white,
+		default-brightness-config: 0,
+		default-hover-bg: $gray-500,
+		default-hover-border: $gray-600,
+		default-hover-color: $white,
+		default-hover-brightness-config: 0,
+		default-active-bg: $gray-500,
+		default-active-border: $gray-600,
+		default-active-color: $white,
+		default-active-brightness-config: 0
+	);
+	$ot-zone-btn-colors: map-merge($ot-zone-btn-colors, $default);
+	
+	@if not $enable-shadows {
+		box-shadow: none;
+	}
+	
+	@if not $outline {
+	
+		@include button-variant(
+			map-get($ot-zone-btn-colors, '#{$color}-bg'), 
+			map-get($ot-zone-btn-colors, '#{$color}-border'),
+			map-get($ot-zone-btn-colors, '#{$color}-hover-bg'),
+			map-get($ot-zone-btn-colors, '#{$color}-hover-border'),
+			map-get($ot-zone-btn-colors, '#{$color}-active-bg'),
+			map-get($ot-zone-btn-colors, '#{$color}-active-border')
+		);
+		
+		color: map-get($ot-zone-btn-colors, '#{$color}-color');
+		
+		&.disabled,
+		&:disabled {
+			color: map-get($ot-zone-btn-colors, '#{$color}-color');
+		}
+	
+		&::before,
+		&::after,
+		.icon {
+			@include ot-brightness-filter(
+				map-get($ot-zone-btn-colors, '#{$color}-bg'), 
+				map-get($ot-zone-btn-colors, '#{$color}-brightness-config')
+			);
+		}
+		&::before {
+			margin-right: 5px;
+		}
+		
+	} @else {
+	
+	    @include button-outline-variant(
+			map-get($ot-zone-btn-colors, '#{$color}-bg'),
+	    	map-get($ot-zone-btn-colors, '#{$color}-hover-color'),
+			map-get($ot-zone-btn-colors, '#{$color}-active-bg'),
+			map-get($ot-zone-btn-colors, '#{$color}-active-border')
+	    );
+	    
+    }
+
+	&:hover,
+	&:focus,
+	&.focus,
+	&:active {
+		color: map-get($ot-zone-btn-colors, '#{$color}-hover-color');
+		&::before,
+		&::after,
+		.icon {
+			@include ot-brightness-filter(
+				map-get($ot-zone-btn-colors, '#{$color}-hover-bg'), 
+				map-get($ot-zone-btn-colors, '#{$color}-hover-brightness-config')
+			);
+		}
+		
+		&::before {
+			margin-right: 5px;
+		}
+	}
+		
+	&:not(:disabled):not(.disabled):active,
+	&:not(:disabled):not(.disabled).active,
+	.show > &.dropdown-toggle {
+		color: map-get($ot-zone-btn-colors, '#{$color}-active-color');
+	}
+
+}
+@mixin ot-zone-buttons($ot-zone-btn-colors) {
+    
+	a.btn {
+		@include plain-hover-focus() {
+			text-decoration: none;
+		}
+	}
+	
+    /* стили, чтобы перебить идиотские стили из плагинов, делающие зеленые кнопки для класса button */
+	.button:not(.btn) {
+		@extend .btn;
+		@include ot-zone-button-styles($ot-zone-btn-colors, 'default');
+	}
+	
+	/* мы оказались не готовы к выделению кнопки в форме быстрого поиска в отдельный стиль, поэтому primary */
+	.simplesearchform .btn-submit {
+		@include ot-zone-button-styles($ot-zone-btn-colors, 'primary');
+	}
+	
+    @each $color in primary,secondary,default {
+		.btn-#{$color} {
+			@include ot-zone-button-styles($ot-zone-btn-colors, $color);
+		}
+    }
+	
+    @each $color in primary,secondary,default {
+		.btn-outline-#{$color} {
+			@include ot-zone-button-styles($ot-zone-btn-colors, $color, true);
+		}
+    }
+    
+	.btn-link {
+  		font-weight: $font-weight-light;
+		color: map-get($ot-zone-btn-colors, 'link-color');
+	
+		@include hover() {
+			color: map-get($ot-zone-btn-colors, 'link-hover-color');
+		}
+	}
+}
+
+@mixin ot-zone-pagination($ot-zone-pagination-colors) {
+	.page-link {
+		background-color: map-get($ot-zone-pagination-colors, 'bg');
+		color: map-get($ot-zone-pagination-colors, 'color');
+		border-color: map-get($ot-zone-pagination-colors, 'border-color');
+		
+		&:hover {
+			background-color: map-get($ot-zone-pagination-colors, 'hover-bg');
+			color: map-get($ot-zone-pagination-colors, 'hover-color');
+			border-color: map-get($ot-zone-pagination-colors, 'hover-border-color');
+		}
+	}
+	.page-item {
+		&.active .page-link {
+			background-color: map-get($ot-zone-pagination-colors, 'active-bg');
+			color: map-get($ot-zone-pagination-colors, 'active-color');
+			border-color: map-get($ot-zone-pagination-colors, 'active-border-color');
+		}
+		&+.page-item {
+		    margin-left: 2px;
+		}
+	}
+}
+
+@function ot-darken($color, $amount) {
+	@if (alpha($color) == 0 or $color == 'transparent')
+	{
+		$result: rgba(0,0,0,0.15); 
+	} @else {
+		$result: darken($color, $amount);
+	}
+	@return $result; 
+}
+@function ot-lighten($color, $amount) {
+	@if (alpha($color) == 0 or $color == 'transparent')
+	{
+		$result: rgba(255,255,255,0.15);
+	} @else {
+		$result: lighten($color, $amount);
+	}
+	@return $result; 
+}
+
+@function ot-color-yiq($color, $backcolor: $color, $dark: $yiq-text-dark, $light: $yiq-text-light) {
+
+	@if (alpha($color) == 0 or $color == 'transparent')
+	{
+		$color: $backcolor;
+	}
+	@if (alpha($color) == 0 or $color == 'transparent')
+	{
+		$color: $white;
+	}
+	@if (alpha($color) < 0.5)
+	{// сюда мы попадем только если у цвета есть прозрачность, но он не прозрачен
+		// подмешаем в фоновый цвет немного нашего цвета, чтобы на основе получившегося делать вывод о контрастности
+		$color: mix($color, $backcolor, alpha($color)*100%);
+	}
+	@return color-yiq($color, $dark, $light); 
+}
+
+@function ot-link-color($backcolor, $color: false, $amount: 10%, $tryfixlighten:25) {
+	@if ($color != false) {
+	
+		/* 
+			на 3.5 у ссылок было фиксированное значение светлоты 25, по умолчанию пытаемся сохранить это поведение, но
+			проверяем, чтобы цвет получился контрастным. Если нет - попытаемся изменить на $amount,
+			если не получится - просто подберем контрастный светлый или темный
+		*/
+		@if (round($tryfixlighten) == $tryfixlighten) {
+			$color: hsl(hue($color), saturation($color), $tryfixlighten);
+		}
+		
+		$backisbright: is_bright($backcolor);
+		$colorisbright: is_bright($color);
+		
+		@if ($backisbright != $colorisbright) {
+			// предложенный цвет контрастный - отлично
+			@return $color;
+		}
+		
+		@if ($backisbright) {
+			// фон был ярким (и цвет тоже) - попробуем затемнить цвет
+			$color: ot-darken($color, $amount);
+		} @else {
+			// фон был тусклым (и цвет тоже) - попробуем осветлить цвет
+			$color: ot-lighten($color, $amount);
+		}
+		
+		@if (is_bright($backcolor) != is_bright($color)) {
+			// получился контрастный - отлично
+			@return $color;
+		}
+	}
+	// сюда мы попадем только если не был передан желаемый цвет 
+	// или из него не получилось сделать контрастный с заданным шагом
+	@return ot-color-yiq($backcolor); 
+}
+
+@mixin recolor($color: #000, $opacity: 1) {
+  $r: red($color) / 255;
+  $g: green($color) / 255;
+  $b: blue($color) / 255;
+  $a: $opacity;
+
+  // grayscale fallback if SVG from data url is not supported
+  $lightness: lightness($color);
+
+  // color filter
+  $svg-filter-id: "recolor";
+  filter: url('data:image/svg+xml;utf8,\
+    <svg xmlns="http://www.w3.org/2000/svg">\
+      <filter id="#{$svg-filter-id}" color-interpolation-filters="sRGB">\
+        <feColorMatrix type="matrix" values="\
+          0 0 0 0 #{$r}\
+          0 0 0 0 #{$g}\
+          0 0 0 0 #{$b}\
+          0 0 0 #{$a} 0\
+        "/>\
+      </filter>\
+    </svg>\
+    ##{$svg-filter-id}');
+}
+
+$yiq-contrasted-threshold:  190 !default;
+$yiq-text-dark:             $gray-800 !default;
+$yiq-text-light:            $white !default;
+
+$enable-rounded: false !default;
+$enable-shadows: true !default;
+$btn-box-shadow: none !default;
+ 
+$link-decoration: none !default;
+$link-hover-decoration: underline !default;
+
+
+$btn-font-weight: 300 !default;
+
+$body-bg: $white !default;
+$dashboard-bg: $body-bg !default;
+
+$force-btn-primary: false !default;
+$force-btn-secondary: false !default;

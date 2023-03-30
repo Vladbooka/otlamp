@@ -1,0 +1,62 @@
+{{^ no_data}}
+{{#resources}}
+<div class="otrl_material" data="{{key}}">
+	<div class="spoiler-wrap disabled">
+		<div class="material_header">
+			<div class="triangle_holder spoiler-head"></div>
+			{{#printable_properties}}
+			{{#title}}
+			<div class="material_name spoiler-head">
+				<h4 class="name">{{{value}}}</h4>
+			</div>
+			{{/title}}
+			{{/printable_properties}}
+			<div class="otrl_material_btn_holder form-inline justify-content-around">
+				<input type="button" class="btn btn-primary" value="{{# str }} select_btn, mod_otresourcelibrary {{/ str }}">
+				{{#allowviewbyparameter}}
+				<input type="button" class="btn btn-secondary"  value="{{# str }}go_to_view_btn, mod_otresourcelibrary {{/ str }}">
+				{{/allowviewbyparameter}}
+			</div>
+		</div>
+		<div class="spoiler-body">
+			{{#printable_properties}}
+			{{^title}}
+			<div class="printable-property printable-property-{{code}}">
+				{{#name}}<div class="pp-name">{{name}}: </div>{{/name}}
+				<div class="pp-value">{{{value}}}</div>
+			</div>
+			{{/title}}
+			{{/printable_properties}}
+			<div class="anchors">
+				{{#features}}
+				<div class="anchor_fragment">
+					{{#fragment_pointer_available}}
+					{{# str }} material_fragment, mod_otresourcelibrary {{/ str }} <input type="text" name="material_fragment" class="input_anchor form-control">
+					{{/fragment_pointer_available}}
+				</div>
+				<div class="anchor_chapter">
+					{{#chapter_pointer_available}}
+					{{# str }} material_chapter, mod_otresourcelibrary {{/ str }} <input type="text" name="material_chapter" class="input_anchor form-control">
+					{{/chapter_pointer_available}}
+				</div>
+				<div class="anchor_pagenum">
+					{{#pagenum_pointer_available}}
+					{{# str }} material_pagenum, mod_otresourcelibrary {{/ str }} <input type="text" name="material_pagenum" class="input_anchor form-control">
+					{{/pagenum_pointer_available}}
+				</div>
+				{{/features}}
+				<div class="otrl_material_sourсe">{{sourcename}}</div>
+			</div>
+		</div>
+	</div>
+</div>
+{{/resources}}
+{{# more_results}}
+<div id="otrl_more_holder">
+	<div>{{# str }} more, mod_otresourcelibrary {{/ str }}</div>
+</div>
+{{/ more_results}}
+{{/ no_data}}
+{{# no_data}}
+<div class="otrl_no_find_data">{{# str }} no_data, mod_otresourcelibrary {{/ str }}</div>
+{{/ no_data}}

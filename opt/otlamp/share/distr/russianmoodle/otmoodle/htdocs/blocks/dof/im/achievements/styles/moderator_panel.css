@@ -1,0 +1,11 @@
+#moderator_panel_table th,
+#moderator_panel_table .header-cell{
+	position: relative;
+	padding-right: 17px;
+}
+
+#moderator_panel_table .sort-indicator {
+    position: absolute;
+    right: 5px;
+    bottom: calc(50% - 10px);
+}

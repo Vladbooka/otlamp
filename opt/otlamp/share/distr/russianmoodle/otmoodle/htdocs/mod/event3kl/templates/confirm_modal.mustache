@@ -1,0 +1,17 @@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{$modalid}}confirmModal{{/modalid}}">
+	{{$btnin}}confirm{{/btnin}}
+</button>
+<div class="modal fade" id="{{$modalid}}confirmModal{{/modalid}}" tabindex="-1" role="dialog" aria-labelledby="{{$modalid}}confirmModal{{/modalid}}Label" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="{{$modalid}}confirmModal{{/modalid}}Label">{{$modaltitle}}{{/modaltitle}}</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">{{$modalbody}}{{/modalbody}}</div>
+			<div class="modal-footer">{{$modalfooter}}{{/modalfooter}}</div>
+		</div>
+	</div>
+</div>

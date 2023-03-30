@@ -1,0 +1,10 @@
+{
+  "name": "moodle-availability_otcomparison-form",
+  "builds": {
+    "moodle-availability_otcomparison-form": {
+      "jsfiles": [
+        "form.js"
+      ]
+    }
+  }
+}

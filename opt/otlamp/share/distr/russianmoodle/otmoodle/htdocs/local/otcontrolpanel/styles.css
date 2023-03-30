@@ -1,0 +1,192 @@
+.moodle-dialogue-base form.actionform .hidden {
+    display: inherit;
+}
+.otcp_actionform .moodle-dialogue-bd {
+	max-height: calc(100vh - 54px - 2em);
+	overflow-y: auto;
+}
+.otcp_actionform .mform fieldset.collapsible legend a.fheader {
+	margin-left: 0;
+}
+/*
+.bootstrap-table .fixed-table-container .table.baTable .th-inner {
+	padding: 0;
+}*/
+.bootstrap-table .fixed-table-container .table thead th,
+.bootstrap-table .fixed-table-container .table tbody td {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+.bootstrap-table .fixed-table-container .table-sm thead th,
+.bootstrap-table .fixed-table-container .table-sm tbody td {
+	padding: .3rem .75rem;;
+}
+.otcontrolpanel .bsTable thead tr th,
+.otcontrolpanel .bsTable tbody tr td.bs-checkbox  {
+	background-color: #f9f9f9;
+}
+.otcontrolpanel .bootstrap-table .fixed-table-container .bsTable thead th .th-inner {
+    white-space: normal;
+}
+
+
+.otcontrolpanel .filterform-header {
+	font-size: 1.4em;
+	font-weight: 600;
+	margin: 15px 0;
+	padding: 5px 0;
+}
+
+
+
+.otcontrolpanel .shortlist + .shortlistToggler {
+	display: block;
+	margin: 0;
+    padding: .3rem .75rem;
+    text-decoration: underline;
+    cursor: pointer;
+    background-color: #fff;
+}
+.otcontrolpanel .shortlist + .shortlistToggler:hover {
+    text-decoration: none;
+}
+.otcontrolpanel .shortlist .list-group-item[data-rownumgt5="1"] {
+    display: none;
+}
+.otcontrolpanel .shortlist-switcher {
+	display: none;
+}
+.otcontrolpanel .shortlist-switcher:checked + .shortlist .list-group-item[data-rownumgt5="1"] {
+    display: block;
+}
+.otcontrolpanel .shortlist-switcher:checked ~ .shortlistToggler {
+	display: none;
+}
+
+
+
+.otcontrolpanel_config .views > li:not([data-view-edit-disabled="1"]):hover {
+	background-color: #F5F5F5;
+	cursor: pointer;
+}
+
+@keyframes scaleout {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0)
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0
+    }
+}
+
+.otcontrolpanel_config .entities .entity .fields,
+.otcontrolpanel_config .entities .entity .relations,
+.otcontrolpanel_config .entities .entity .relations .fields {
+	padding: 0 20px;
+}
+
+
+
+
+/* оформление таблицы bootstrap-table */
+
+#page-wrapper .bootstrap-table .page-list .page-size + .caret {
+	vertical-align: top;
+}
+.bootstrap-table .page-list .dropdown-menu > li > a {
+	transition: none;
+}
+.bootstrap-table .fixed-table-toolbar .input-group {
+	width: auto;
+}
+
+.bootstrap-table button[name="advancedSearch"] i.glyphicon,
+.bootstrap-table button[aria-label="Export"] i.glyphicon {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image: none;
+}
+.bootstrap-table button[aria-label="Export"] .caret {
+	margin-top: auto;
+}
+.bootstrap-table button[name="advancedSearch"] i.glyphicon.glyphicon-chevron-down::before {
+    content: "\f078";
+}
+.bootstrap-table button[aria-label="Export"] i.glyphicon.glyphicon-export::before {
+    content: "\f019";
+}
+
+
+
+
+body.path-admin-local-otcontrolpanel .modal-header {	
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+}
+body.path-admin-local-otcontrolpanel .modal-header .modal-title {
+	margin: 0;
+}
+body.path-admin-local-otcontrolpanel .modal-header .close {
+    padding: 1rem 1rem;
+    margin: -1rem -1rem -1rem auto;
+}
+body.path-admin-local-otcontrolpanel button.close {
+	padding: 0;
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+body.path-admin-local-otcontrolpanel .close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+}
+body.path-admin-local-otcontrolpanel .modal-body .form-group.row {
+	margin-left: 0;
+}
+body.path-admin-local-otcontrolpanel .modal-body .form-horizontal .control-label {
+	text-align: left;
+}
+
+
+
+/* мой маленький бутстрап */
+
+.otcontrolpanel .list-group-flush {
+	-webkit-margin-start: 0;
+}
+.otcontrolpanel .list-group.list-group-sm .list-group-item {
+    padding: .3rem .75rem;
+}
+.otcontrolpanel .list-group.list-group-striped > *:nth-of-type(odd){
+    background-color: #f9f9f9;
+}
+.otcontrolpanel .list-group.list-group-striped > *:nth-of-type(even){
+    background-color: #FFF;
+}
+.otcontrolpanel .list-group.list-group-noborder .list-group-item {
+	border: 0;
+}

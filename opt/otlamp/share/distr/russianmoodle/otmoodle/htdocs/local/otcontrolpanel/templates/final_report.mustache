@@ -1,0 +1,14 @@
+<div class="p-3 mb-2 bg-warning text-dark" style="padding:1rem; margin-bottom:.5rem; background-color:#ffc107; color:#343a40;">
+	{{#str}}action_report_warning, local_otcontrolpanel{{/str}}
+</div>
+
+{{#messages_count}}
+	<div class="p-3 mb-2 bg-light text-dark" style="padding:1rem; margin-bottom:.5rem; background-color:#f8f9fa; color:#343a40;">
+		<h3>{{#str}}action_report_header, local_otcontrolpanel{{/str}}</h3>
+		<ul class="list-group list-group-sm">
+			{{#messages}}
+			<li class="list-group-item">{{.}}</li>
+			{{/messages}}
+		</ul>
+	</div>
+{{/messages_count}}

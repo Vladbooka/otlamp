@@ -1,0 +1,21 @@
+{{< local_otcontrolpanel/table}}
+	{{$tableclasses}}{{tableclasses}} bsTable{{/tableclasses}}
+	{{$statecolumnth}}<th data-field="state" data-checkbox="true"></th>{{/statecolumnth}}
+	{{$statecolumntd}}<td></td>{{/statecolumntd}}
+	{{$dataattrs}}
+		{{dataattrs}}
+		data-search="true"
+		data-advanced-search="true"
+		data-id-table="adv_tbl_{{id}}"
+		data-checkbox-header="false"
+		data-pagination="true"
+		data-toolbar=".toolbar"
+		data-toolbar-align="right"
+		data-page-list="[10, 25, 50, 100, all]"
+	{{/dataattrs}}
+{{/local_otcontrolpanel/table}}
+{{#js}}
+require(['local_otcontrolpanel/bstable'], function(bsTable) {
+	bsTable.init('#{{#table}}{{id}}{{/table}}', {{contextid}});
+});
+{{/js}}

@@ -1,0 +1,93 @@
+.report_activetime_table {
+	min-width: 100%;
+}
+.report_activetime_table .actions_caption.header {
+	min-width: 160px;
+}
+.report_activetime_table .username_caption.header {
+    min-width: 160px;
+}
+.report_activetime_table .mod_caption.header {
+    max-width: 160px;
+    min-width: 120px;
+}
+.report_activetime_table .mod_caption.header {
+	padding: 4px 5px 8px 5px;
+    vertical-align: bottom;
+    word-wrap: break-word;
+}
+.report_activetime_table .modactivetimesumm_caption.header {
+	min-width: 160px;
+}
+.report_activetime_table .courseactivetime_caption.header {
+	min-width: 160px;
+}
+.report_activetime_table .username.cell {
+	vertical-align: middle;
+}
+.report_activetime_table .userfield.cell {
+    vertical-align: middle;
+}
+.report_activetime_table .categoryname.cell {
+    vertical-align: middle;
+}
+.report_activetime_table .coursename.cell {
+    vertical-align: middle;
+}
+.report_activetime_table .coursegrade.cell {
+    vertical-align: middle;
+}
+.report_activetime_table .courseactivetime.cell {
+    vertical-align: middle;
+}
+.report_activetime_table .modactivetimesumm.cell {
+    vertical-align: middle;
+}
+.report_activetime_table .modulename.cell {
+    vertical-align: middle;
+}
+.report_activetime_table .moduleitem.cell {
+    vertical-align: middle;
+    max-width: 160px;
+    min-width: 120px;
+}
+.report_activetime_table .activetimeitem.cell {
+    vertical-align: middle;
+}
+.report_activetime_table .attemptsitem.cell {
+    vertical-align: middle;
+}
+.report_activetime_table .completionitem.cell {
+    vertical-align: middle;
+}
+.report_activetime_table.generaltable thead th {
+	font-weight: normal;
+}
+.report_activetime_table.generaltable tbody>tr:nth-child(odd)>td:nth-child(odd) {
+	background: none;
+}
+.report_activetime_table.generaltable tbody>tr:nth-child(odd)>td {
+	background: none;
+}
+.report_activetime_table.generaltable tbody>tr:hover>td {
+	background: none;
+}
+.report_activetime_table.generaltable tbody>tr:nth-child(odd):hover>td {
+	background: none;
+}
+.report_activetime_table.generaltable tbody>tr:hover>td.lastcol {
+	background: none;
+}
+.report_activetime_table.generaltable tbody>tr:nth-child(odd):hover>td.lastcol {
+	background: none;
+}
+.report_activetime_table.generaltable tbody>tr:nth-child(odd)>td.lastcol:nth-child(odd)
+{
+	background: none;
+}
+.report_activetime_table tbody tr.greyrow, .report_activetime_table tbody tr.greyrow td {
+	background-color: #F9F9F9;
+}
+.report_activetime_table.generaltable td {
+	border-right: 1px dashed #e0e0e0;
+}

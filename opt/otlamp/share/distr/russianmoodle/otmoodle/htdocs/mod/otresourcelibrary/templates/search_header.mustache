@@ -1,0 +1,35 @@
+<div id="otrl_search_header">
+	<div id="otrl_search_header_column_left">
+		<div id="otrl_searchinput_holder">
+			<input class="form-control" name="otrl_searchinput" type="text" placeholder="{{# str }} search_placeholder, mod_otresourcelibrary {{/ str }}">
+			<input class="btn btn-primary otrl_search_button" value="{{# str }} search, mod_otresourcelibrary {{/ str }}" type="button">
+		</div>
+		<div class="otrl_select_category_holder">
+			<div class="otrl_select_category">
+				{{# pix }} bibl, mod_otresourcelibrary, Icon OtRL {{/ pix }}
+				{{# str }} select_all, mod_otresourcelibrary {{/ str }}
+			</div>
+			<div class="otrl_breadcrumbs"></div>
+			<input type="button" class="btn btn-primary btn-select-category" value="{{# str }} select_btn, mod_otresourcelibrary {{/ str }}" style="display: none">
+		</div>
+	</div>
+	<div id="otrl_search_header_column_right">
+	<!--
+	Тут будут дополнительные настройки ресурса
+		<h4>{{# str }} additional_sort, mod_otresourcelibrary {{/ str }}</h4>
+		<div id="otrl_meta_data">
+			{{meta_data}}
+		</div>
+		-->	
+	</div>	
+</div>
+<hr class="otrl_hr">
+<div class="otrl_search_content">
+	<div class="otrl-section-selection-container"></div>
+	<div class="otrl-search-results-holder">
+		<h1>{{# str }} search_heder_text, mod_otresourcelibrary {{/ str }}</h1>
+		<div id="search_results">
+			{{# str }} search_result_text, mod_otresourcelibrary {{/ str }}
+		</div>
+	</div>
+</div>

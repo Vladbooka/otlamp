@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/otshare/db" VERSION="20110831" COMMENT="XMLDB файл плагина Moodle block/otshare"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_otshare_shared_data" COMMENT="Слайды">
+      <FIELDS>
+        <FIELD NAME="id"                TYPE="int"  LENGTH="10"     UNSIGNED="true" NOTNULL="true"  SEQUENCE="true"/>
+        <FIELD NAME="userid"            TYPE="int"  LENGTH="10"     UNSIGNED="true" NOTNULL="true"  SEQUENCE="false"             COMMENT="ID пользователя"/>
+        <FIELD NAME="timecreated"       TYPE="int"  LENGTH="10"     UNSIGNED="true" NOTNULL="false" SEQUENCE="false"             COMMENT="Дата создания"/>
+        <FIELD NAME="data"              TYPE="text"                                 NOTNULL="false" SEQUENCE="false"             COMMENT="Сериализованные данные"/>
+        <FIELD NAME="hash"              TYPE="char" LENGTH="12"                      NOTNULL="false" SEQUENCE="false"             COMMENT="Хэш от данных"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary"          TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iuserid"       UNIQUE="false" FIELDS="userid"       />
+        <INDEX NAME="itimecreated"  UNIQUE="false" FIELDS="timecreated"   />
+        <INDEX NAME="ihash"         UNIQUE="false" FIELDS="hash"        />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

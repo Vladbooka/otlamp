@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <table name="auth_db_ext_table">
+        <column>id</column>
+        <column>username</column>
+        <column>password</column>
+        <column>firstname</column>
+        <column>lastname</column>
+        <column>email</column>  
+        <row>
+            <value>1</value>
+	        <value>unit_test_user</value>
+	        <value>unit_test_user_password</value>
+	        <value>unit_test_user_firstname</value>
+	        <value>unit_test_user_lastname</value>
+	        <value>unit_test_user@email.utest</value>
+        </row>
+    </table>
+</dataset>

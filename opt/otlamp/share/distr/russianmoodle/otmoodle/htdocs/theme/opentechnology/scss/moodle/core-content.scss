@@ -1,0 +1,133 @@
+
+
+
+#page-wrapper {
+    
+    @include ot-zone-a((
+		link-color:			$ot-content-link-color,
+		link-hover-color:	$ot-content-link-hover-color,
+    ));
+	
+	@include ot-zone-buttons((
+		primary-bg: 						$ot-content-btn-primary-bg,
+		primary-border: 					$ot-content-btn-primary-border,
+		primary-color: 						$ot-content-btn-primary-color,
+		primary-brightness-config: 			$ot-content-btn-primary-brightness-config,
+		primary-hover-bg: 					$ot-content-btn-primary-hover-bg,
+		primary-hover-border: 				$ot-content-btn-primary-hover-border,
+		primary-hover-color: 				$ot-content-btn-primary-hover-color,
+		primary-hover-brightness-config: 	$ot-content-btn-primary-hover-brightness-config,
+		primary-active-bg: 					$ot-content-btn-primary-hover-bg,
+		primary-active-border: 				$ot-content-btn-primary-hover-border,
+		primary-active-color: 				$ot-content-btn-primary-hover-color,
+		primary-active-brightness-config: 	$ot-content-btn-primary-hover-brightness-config,
+		secondary-bg: 						$ot-content-btn-secondary-bg,
+		secondary-border: 					$ot-content-btn-secondary-border,
+		secondary-color: 					$ot-content-btn-secondary-color,
+		secondary-brightness-config: 		$ot-content-btn-secondary-brightness-config,
+		secondary-hover-bg: 				$ot-content-btn-secondary-hover-bg,
+		secondary-hover-border: 			$ot-content-btn-secondary-hover-border,
+		secondary-hover-color: 				$ot-content-btn-secondary-hover-color,
+		secondary-hover-brightness-config: 	$ot-content-btn-secondary-hover-brightness-config,
+		secondary-active-bg: 				$ot-content-btn-secondary-hover-bg,
+		secondary-active-border: 			$ot-content-btn-secondary-hover-border,
+		secondary-active-color: 			$ot-content-btn-secondary-hover-color,
+		secondary-active-brightness-config:	$ot-content-btn-secondary-hover-brightness-config,
+		link-color:							$ot-content-link-color,
+		link-hover-color:					$ot-content-link-hover-color,
+	));
+	
+	@include ot-zone-pagination((
+		bg: 					$ot-content-pagination-bg,
+		border-color: 			$ot-content-pagination-border-color,
+		color: 					$ot-content-pagination-color,
+		hover-bg: 				$ot-content-pagination-hover-bg,
+		hover-border-color: 	$ot-content-pagination-hover-border-color,
+		hover-color:			$ot-content-pagination-hover-color,
+		active-bg:				$ot-content-pagination-hover-bg,
+		active-border-color:	$ot-content-pagination-hover-border-color,
+		active-color:			$ot-content-pagination-hover-color
+	));
+}
+
+
+body.path-course-view #page-wrapper .course-content > ul {
+	& > li > .content {
+		.sectionname,
+		.sectionhead {
+			&, a {
+				background-color: $ot-content-headings-bg;
+			    color: $ot-content-headings-color;
+			    display: block;
+			    margin: 0;
+				padding: 0 5px;
+				overflow: hidden;
+				line-height: 40px;
+			}
+		}
+	}
+	
+	.wrapper_toggle_icon {
+	    position: absolute;
+	    top: 19px;
+	    width: 23px;
+	    min-width: 23px;
+	    left: 0px;
+		@include ot-brightness-filter($ot-content-headings-bg, $ot-content-headings-brightness-config);
+	}
+}
+
+#page-content #region-main {
+    background-color: $ot-content-bg;
+	/* 
+		в отличие от классической темы, у нас справа могут быть блоки, а контент ограничен шириной сайта
+		поэтому под контент должно быть не более 100% места. 
+		Часто этого мало, пора что-то менять, но не во время миграции :)
+	 */
+	max-width: 100%;
+	/*
+	Глядя на некоторые отчеты хотелось добавить прокрутку, чтобы контент не уходил под блоки в правой колонке
+	Но протестировать все интерфейсы повторно нет возможности, а на 3.5 контент уходил под блоки. это жжж не спроста?
+	overflow-x: auto;
+	*/
+}
+
+
+.moodle-dialogue-base .moodle-dialogue .moodle-dialogue-bd {
+	a {
+		color: $ot-content-link-color;
+
+		@include hover() {
+			color: $ot-content-link-hover-color;
+		}
+	}
+	
+	@include ot-zone-buttons((
+		primary-bg: 						$ot-content-btn-primary-bg,
+		primary-border: 					$ot-content-btn-primary-border,
+		primary-color: 						$ot-content-btn-primary-color,
+		primary-brightness-config: 			$ot-content-btn-primary-brightness-config,
+		primary-hover-bg: 					$ot-content-btn-primary-hover-bg,
+		primary-hover-border: 				$ot-content-btn-primary-hover-border,
+		primary-hover-color: 				$ot-content-btn-primary-hover-color,
+		primary-hover-brightness-config: 	$ot-content-btn-primary-hover-brightness-config,
+		primary-active-bg: 					$ot-content-btn-primary-hover-bg,
+		primary-active-border: 				$ot-content-btn-primary-hover-border,
+		primary-active-color: 				$ot-content-btn-primary-hover-color,
+		primary-active-brightness-config: 	$ot-content-btn-primary-hover-brightness-config,
+		secondary-bg: 						$ot-content-btn-secondary-bg,
+		secondary-border: 					$ot-content-btn-secondary-border,
+		secondary-color: 					$ot-content-btn-secondary-color,
+		secondary-brightness-config: 		$ot-content-btn-secondary-brightness-config,
+		secondary-hover-bg: 				$ot-content-btn-secondary-hover-bg,
+		secondary-hover-border: 			$ot-content-btn-secondary-hover-border,
+		secondary-hover-color: 				$ot-content-btn-secondary-hover-color,
+		secondary-hover-brightness-config: 	$ot-content-btn-secondary-hover-brightness-config,
+		secondary-active-bg: 				$ot-content-btn-secondary-hover-bg,
+		secondary-active-border: 			$ot-content-btn-secondary-hover-border,
+		secondary-active-color: 			$ot-content-btn-secondary-hover-color,
+		secondary-active-brightness-config:	$ot-content-btn-secondary-hover-brightness-config,
+		link-color:							$ot-content-link-color,
+		link-hover-color:					$ot-content-link-hover-color,
+	));
+}

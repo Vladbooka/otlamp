@@ -1,0 +1,196 @@
+.loginbox .potentialidps .potentialidplist {
+    margin-left: auto;
+    display: inline-block;
+    vertical-align: top;
+    width: auto;
+    text-align: center;
+    margin: 0!important;
+    
+}
+.potentialidp {
+    display: inline-block!important;
+    vertical-align: top;
+    padding: 5px;
+}
+.oauthicon{
+  display: block;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  padding-left: 40px;
+}
+.oauthicon.google {
+    background: url("/auth/otoauth/pix/google_sut.png");
+}
+.oauthicon.google:hover {
+    background: url("/auth/otoauth/pix/google.png");
+}
+.oauthicon.google_corporate {
+    background: url("/auth/otoauth/pix/google_corporate_sut.png");
+}
+.oauthicon.google_corporate:hover {
+    background: url("/auth/otoauth/pix/google_corporate.png");
+}
+.oauthicon.facebook {
+    background: url("/auth/otoauth/pix/facebook_sut.png");
+}
+.oauthicon.facebook:hover {
+    background: url("/auth/otoauth/pix/facebook.png");
+}
+.oauthicon.yandex {
+    background: url("/auth/otoauth/pix/yandex_sut.png");
+}
+.oauthicon.yandex:hover {
+    background: url("/auth/otoauth/pix/yandex.png");
+}
+.oauthicon.vk {
+    background: url("/auth/otoauth/pix/vkontakte_sut.png");
+}
+.oauthicon.vk:hover {
+    background: url("/auth/otoauth/pix/vkontakte.png");
+}
+.oauthicon.odkl {
+    background: url("/auth/otoauth/pix/odnoklassniki_sut.png");
+}
+.oauthicon.odkl:hover {
+    background: url("/auth/otoauth/pix/odnoklassniki.png");
+}
+.oauthicon.mailru {
+    background: url("/auth/otoauth/pix/mailru_sut.png");
+}
+.oauthicon.mailru:hover {
+    background: url("/auth/otoauth/pix/mailru.png");
+}
+.oauthicon.messenger {
+    background: url("/auth/otoauth/pix/messenger_sut.png");
+}
+.oauthicon.messenger:hover {
+    background: url("/auth/otoauth/pix/messenger.png");
+}
+.oauthicon.github {
+    background: url("/auth/otoauth/pix/github_sut.png");
+}
+.oauthicon.github:hover {
+    background: url("/auth/otoauth/pix/github.png");
+}
+.oauthicon.linkedin {
+    background: url("/auth/otoauth/pix/linkedin_sut.png");
+}
+.oauthicon.linkedin:hover {
+    background: url("/auth/otoauth/pix/linkedin.png");
+}
+
+/* Привязанные кнопки */
+.googlelinked {
+    background: url("/auth/otoauth/pix/google.png");
+}
+.facebooklinked {
+    background: url("/auth/otoauth/pix/facebook.png");
+}
+.yandexlinked {
+    background: url("/auth/otoauth/pix/yandex.png");
+}
+.vklinked {
+    background: url("/auth/otoauth/pix/vkontakte.png");
+}
+.odkllinked {
+    background: url("/auth/otoauth/pix/odnoklassniki.png");
+}
+.mailrulinked {
+    background: url("/auth/otoauth/pix/mailru.png");
+}
+.messengerlinked {
+    background: url("/auth/otoauth/pix/messenger.png");
+}
+.githublinked {
+    background: url("/auth/otoauth/pix/github.png");
+}
+.linkedinlinked {
+    background: url("/auth/otoauth/pix/linkedin.png");
+}
+.google_corporate {
+	background: url("/auth/otoauth/pix/google_corporate.png");
+}
+
+
+
+
+
+.custom_providers {
+	margin: 30px 0;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 945px;
+}
+.custom_provider {
+    display: flex;
+    flex-direction: column;
+    
+    flex-basis: 300px;
+    margin: 5px 15px 5px 0;
+    padding: 5px 0 5px 20px;
+    border-left: 1px solid #ddd;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+.custom_provider > * + * {
+    margin-top: 10px;
+}
+.custom_provider_name {
+	font-size: 20px;
+	line-height: 1;
+	font-weight: 600;
+}
+.custom_provider_status {
+	margin-left: 5px;
+	padding: 0 5px;
+	border-radius: 5px;
+	vertical-align: super;
+	font-size: 12px;
+	line-height: 20px;
+	color: #FFF;
+	background-color: #999;
+}
+
+.custom_provider_overriden {
+    display: inline-block;
+    background-color: red;
+    color: #FFF;
+    border-radius: 50%;
+    font-weight: 700;
+    margin-left: 5px;
+    padding: 0;
+    vertical-align: super;
+    font-size: 12px;
+    line-height: 15px;
+    height: 15px;
+    width: 15px;
+    text-align: center;
+    cursor: help;
+} 
+
+.custom_provider_line_content {
+	flex-grow: 1;
+}
+.custom_provider_description {
+	font-size: 12px;
+	line-height: 1;
+	color: #666;
+}
+
+.custom_provider_line_actions {
+	text-align: right;
+    font-size: 12px;
+    margin: inherit 10px;
+}
+.custom_provider_line_actions > * + * {
+	margin-left: 10px;
+}
+textarea.custom_provider_textarea {
+    max-width: calc(100vw - 15px);
+    width: 450px;
+    height: 150px;
+    box-sizing: border-box;
+}

@@ -1,0 +1,89 @@
+.mform.reset_site_identifier .fitem .felement {
+	margin-left: 0;
+}
+
+.local_opentechnology_data {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.local_opentechnology_data > div {
+	flex-basis: 0;
+	flex-grow: 1;
+	max-width: 800px;
+}
+.local_opentechnology_data > div + div {
+	margin-left: 20px;
+}
+
+.techinfo {
+	max-width: 800px;
+}
+
+.techinfo-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.techinfo-item.techinfo-ot-release {
+    font-weight: 400;
+    font-size: 24px;
+    padding: 20px 0;
+    justify-content: flex-start;
+}
+
+.techinfo-item:nth-of-type(2n) {
+	background-color: rgba(0,0,0,.05);
+}
+
+.techinfo-item:nth-of-type(2n) {
+	border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.techinfo-item:nth-of-type(2n-1) {
+	border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+.techinfo-item > div {
+	padding: 5px;
+}
+
+.techinfo-report-coursesize-comment {
+	margin-top: 15px;
+	font-size: 12px;
+}
+
+.form-item .form-setting-without-label {
+	margin-left: 0;
+}
+
+@media (max-width: 768px)
+{
+	.local_opentechnology_data {
+		flex-direction: column;
+	}
+	
+	.local_opentechnology_data > div {
+		flex-basis: 100%;
+	}
+	
+	.local_opentechnology_data > div + div {
+		margin: 0;
+	}
+}
+
+.techinfo tr.blinkingbg {
+	-webkit-animation: blinkingbg 4s linear infinite;
+	animation: blinkingbg 4s linear infinite;
+}
+
+@-webkit-keyframes blinkingbg{
+	0% {background: #FF9A93}
+	50% {background: #FFFFFF}
+	100% {background: #FF9A93}
+}
+
+@keyframes blinkingbg{
+	0% {background: #FF9A93}
+	50% {background: #FFFFFF}
+	100% {background: #FF9A93}
+}

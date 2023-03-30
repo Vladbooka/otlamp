@@ -1,0 +1,113 @@
+.transmitpacks {
+	padding: 10px;
+	background-color: #F9F9F9;
+}
+.transmitpacks-description {
+	margin-bottom: 10px;
+}
+.transmitpacks-not-found {
+	font-style: italic;
+	text-align: center;
+}
+
+.pack {
+	position: relative;
+	border: 1px solid #DDD;
+	margin-bottom: 10px;
+	background: #F5F5F5;
+	color: #BBB;
+	padding: 10px;
+	cursor: move;
+}
+
+.pack:last-of-type {
+	margin-bottom: 0;
+}
+
+.pack.active {
+	color: #333;
+	border: 1px solid #CCC;
+}
+
+.transmitpacks.sorting,
+.pack.in-process,
+.pack.active.in-process {
+	background: #F9F9F9;
+	color: #BBB;
+	pointer-events: none;
+	background-image: repeating-linear-gradient(
+		-45deg,
+	    #F5F5F5,
+	    #F5F5F5 11px,
+	    #FFF 10px,
+	    #FFF 20px
+	);
+	background-size: 28px 28px;
+	animation: loading .5s linear infinite;
+}
+@keyframes loading {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 28px 0;
+  }
+}
+
+.packname {
+	font-weight: 600;
+}
+
+.packsummary, .packtools {
+	display: inline-block;
+	vertical-align: top;
+}
+.packsummary {
+	width: calc(100% - 110px);
+}
+.packtools-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+    color: #333;
+    cursor: auto;
+}
+.packtools-wrapper::before {
+	display: inline-block;
+	content: attr(data-label);
+	height: 30px;
+	min-width: 100px;
+	text-align: center;
+	line-height: 30px;
+	background-color: #FFF;
+	outline: 1px solid #CCC;
+	padding: 0 10px;
+	box-sizing: border-box;
+}
+.packtools {
+    display: none;
+}
+.packtools-wrapper:hover .packtools {
+	display: block;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    border-left: 1px solid #CCC;
+    border-top: 1px solid #CCC;
+}
+
+.packtool {
+	white-space: nowrap;
+    border-right: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    text-align: right;
+    background-color: #FFF;
+    padding: 0 10px;
+    cursor: pointer;
+}
+.packtool:hover {
+	background-color: #F9F9F9;
+}

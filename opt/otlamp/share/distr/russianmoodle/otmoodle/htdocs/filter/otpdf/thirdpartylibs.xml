@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<libraries>
+    <library>
+        <location>lib/pdfjs</location>
+        <name>PDF.js</name>
+        <version>1.9.426</version>
+        <license>Apache License, Version 2.0</license>
+    </library>
+</libraries>

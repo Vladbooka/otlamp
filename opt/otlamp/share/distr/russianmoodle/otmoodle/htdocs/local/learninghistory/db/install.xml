@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/learninghistory/db" VERSION="20150204" COMMENT="XMLDB file for Moodle local/learninghistory"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="local_learninghistory" COMMENT="История оценок пользователей по курсам">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="coursefullname" TYPE="char" LENGTH="254" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="courseshortname" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="finalgrade" TYPE="number" LENGTH="10" NOTNULL="false" SEQUENCE="false" DECIMALS="5"/>
+        <FIELD NAME="coursefinalgrade" TYPE="number" LENGTH="10" NOTNULL="false" SEQUENCE="false" DECIMALS="5"/>
+        <FIELD NAME="coursecompletion" TYPE="int" LENGTH="1" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="completion" TYPE="number" LENGTH="10" NOTNULL="false" SEQUENCE="false" DECIMALS="5"/>
+        <FIELD NAME="begindate" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="enddate" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="32" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="lastupdate" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="enroltype" TYPE="char" LENGTH="64" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="previd" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="graderestored" TYPE="int" LENGTH="1" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="activetime" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="atlastupdate" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="courseid" UNIQUE="false" FIELDS="courseid"/>
+        <INDEX NAME="userid" UNIQUE="false" FIELDS="userid"/>
+        <INDEX NAME="finalgrade" UNIQUE="false" FIELDS="finalgrade"/>
+        <INDEX NAME="completion" UNIQUE="false" FIELDS="completion"/>
+        <INDEX NAME="begindate" UNIQUE="false" FIELDS="begindate"/>
+        <INDEX NAME="enddate" UNIQUE="false" FIELDS="enddate"/>
+        <INDEX NAME="status" UNIQUE="false" FIELDS="status"/>
+        <INDEX NAME="lastupdate" UNIQUE="false" FIELDS="lastupdate"/>
+      </INDEXES>
+    </TABLE>
+    
+    <TABLE NAME="llhistory_properties" COMMENT="Локальные настройки курсов, задаваемые историей обучения" >
+      <FIELDS>
+        <FIELD NAME="id"       TYPE="int"  LENGTH="10"     NOTNULL="true" UNSIGNED="true"  SEQUENCE="true"                                 NEXT="type"   />
+        <FIELD NAME="courseid" TYPE="int"  LENGTH="10"     NOTNULL="true" SEQUENCE="false" COMMENT="ID курса"          PREVIOUS="id"       NEXT="name"   />
+        <FIELD NAME="name"     TYPE="char" LENGTH="30"     NOTNULL="true" SEQUENCE="false" COMMENT="Название свойства" PREVIOUS="courseid" NEXT="value"  />
+        <FIELD NAME="value"    TYPE="text" LENGTH="medium" NOTNULL="true" SEQUENCE="false" COMMENT="Значение свойства" PREVIOUS="name"                 />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="courseid" UNIQUE="false" FIELDS="courseid"                     NEXT="name"   />
+        <INDEX NAME="name"     UNIQUE="false" FIELDS="name"     PREVIOUS="courseid" NEXT="svalue" />
+      </INDEXES>
+    </TABLE>
+    
+    <TABLE NAME="local_learninghistory_cm" COMMENT="История пользователей по элементам курса">
+      <FIELDS>
+        <FIELD NAME="id"            TYPE="int"    LENGTH="10" NOTNULL="true"  SEQUENCE="true"/>
+        <FIELD NAME="llid"          TYPE="int"    LENGTH="10" NOTNULL="true"  SEQUENCE="false" DEFAULT="0"/>
+        <FIELD NAME="cmid"          TYPE="int"    LENGTH="10" NOTNULL="true"  SEQUENCE="false" DEFAULT="0"/>
+        <FIELD NAME="contextid"     TYPE="int"    LENGTH="10" NOTNULL="true"  SEQUENCE="false" DEFAULT="0"/>
+        <FIELD NAME="userid"        TYPE="int"    LENGTH="10" NOTNULL="true"  SEQUENCE="false" DEFAULT="0"/>
+        <FIELD NAME="attemptnumber" TYPE="int"    LENGTH="10" NOTNULL="true"  SEQUENCE="false" DEFAULT="0"/>
+        <FIELD NAME="activetime"    TYPE="int"    LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="atlastupdate"  TYPE="int"    LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="status"        TYPE="char"   LENGTH="32" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="completion"    TYPE="int"    LENGTH="1"  NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="rawgrade"      TYPE="number" LENGTH="10" NOTNULL="false" SEQUENCE="false" DECIMALS="5"  COMMENT="If the grade is a float value (or has been converted to one)"/>
+        <FIELD NAME="rawgrademax"   TYPE="number" LENGTH="10" NOTNULL="true"  SEQUENCE="false" DEFAULT="100" DECIMALS="5" COMMENT="The maximum allowable grade when this was created"/>
+        <FIELD NAME="rawgrademin"   TYPE="number" LENGTH="10" NOTNULL="true"  SEQUENCE="false" DEFAULT="0"   DECIMALS="5" COMMENT="The minimum allowable grade when this was created"/>
+        <FIELD NAME="rawscaleid"    TYPE="int"    LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="If this grade is based on a scale, which one was it?"/>
+        <FIELD NAME="scalesnapshot" TYPE="text"   NOTNULL="false" SEQUENCE="false" COMMENT="Scale cast"/>
+        <FIELD NAME="finalgrade"    TYPE="float"  LENGTH="10" NOTNULL="false" SEQUENCE="false" DECIMALS="5"/>
+        <FIELD NAME="timecreated"   TYPE="int"    LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="timemodified"  TYPE="int"    LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="alluserhistory"       UNIQUE="false" FIELDS="userid,status,attemptnumber,atlastupdate"/>
+        <INDEX NAME="userhistorybycm"      UNIQUE="false" FIELDS="cmid,userid,status,attemptnumber,atlastupdate"/>
+        <INDEX NAME="userhistorybycontext" UNIQUE="false" FIELDS="contextid,userid,status,attemptnumber,atlastupdate"/>
+      </INDEXES>
+    </TABLE>
+    
+    <TABLE NAME="local_learninghistory_module" COMMENT="История изменения модулей курса">
+      <FIELDS>
+        <FIELD NAME="id"            TYPE="int"    LENGTH="10"  NOTNULL="true"  SEQUENCE="true"/>
+        <FIELD NAME="cmid"          TYPE="int"    LENGTH="10"  NOTNULL="true"  SEQUENCE="false" DEFAULT="0"/>
+        <FIELD NAME="courseid"      TYPE="int"    LENGTH="10"  NOTNULL="true"  SEQUENCE="false" DEFAULT="0"/>
+        <FIELD NAME="section"       TYPE="int"    LENGTH="10"  NOTNULL="true"  SEQUENCE="false" DEFAULT="0"/>
+        <FIELD NAME="status"        TYPE="char"   LENGTH="32"  NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="name"          TYPE="char"   LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="modname"       TYPE="char"   LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="timecreated"   TYPE="int"    LENGTH="10"  NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="timemodified"  TYPE="int"    LENGTH="10"  NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="cmbystatus" UNIQUE="false" FIELDS="courseid,cmid,status"/>
+      </INDEXES>
+    </TABLE>
+    
+  </TABLES>
+</XMLDB>

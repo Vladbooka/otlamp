@@ -1,0 +1,111 @@
+events:
+    - '\local_pprocessing\event\daily_executed'
+processors:
+    -
+        type: handler
+        code: get_plugin_config
+        params:
+            plugin: local_pprocessing
+            name: export_grades__grade_itemtype
+        result_variable: grade_itemtype
+    -
+        type: handler
+        code: get_recordset_sql
+        preconditions:
+            -
+                code: is_right
+                params:
+                    check: $VAR.grade_itemtype
+                    operator: 'IN'
+                    value:
+                        - 'mod'
+                        - 'all'
+        params:
+            sql: "SELECT llhcm.*, llhm.modname, llhm.courseid 
+                    FROM {local_learninghistory_cm} llhcm
+               LEFT JOIN {local_learninghistory_module} llhm
+                      ON llhcm.cmid=llhm.cmid
+                   WHERE llhm.modname IS NOT NULL AND llhm.courseid IS NOT NULL AND llhcm.status = :status1 AND (llhm.status = :status2 OR llhm.id IS NULL) AND (llhcm.finalgrade IS NOT NULL AND llhcm.finalgrade NOT IN (0.00000,0,''))"
+            params: 
+                status1: 'active'
+                status2: 'active'
+        result_variable: llhcm_rs
+    -
+        type: iterator
+        code: iterator_based
+        preconditions:
+            -
+                code: is_right
+                params:
+                    check: $VAR.grade_itemtype
+                    operator: 'IN'
+                    value:
+                        - 'mod'
+                        - 'all'
+        params:
+            rs: $VAR.llhcm_rs
+        config:
+            scenario: export_grades
+            iterate_item_var_name: llhcm
+    -
+        type: handler
+        code: recordset_close
+        preconditions:
+            -
+                code: is_right
+                params:
+                    check: $VAR.grade_itemtype
+                    operator: 'IN'
+                    value:
+                        - 'mod'
+                        - 'all'
+        params:
+            rs: $VAR.llhcm_rs
+    -
+        type: handler
+        code: get_recordset_sql
+        preconditions:
+            -
+                code: is_right
+                params:
+                    check: $VAR.grade_itemtype
+                    operator: 'IN'
+                    value:
+                        - 'course'
+                        - 'all'
+        params:
+            sql: "SELECT * FROM {local_learninghistory} WHERE courseid IS NOT NULL AND status = :status AND (finalgrade IS NOT NULL AND finalgrade NOT IN (0.00000,0,''))"
+            params: {status: 'active'}
+        result_variable: llh_rs
+    -
+        type: iterator
+        code: iterator_based
+        preconditions:
+            -
+                code: is_right
+                params:
+                    check: $VAR.grade_itemtype
+                    operator: 'IN'
+                    value:
+                        - 'course'
+                        - 'all'
+        params:
+            rs: $VAR.llh_rs
+        config:
+            scenario: export_grades
+            iterate_item_var_name: llh
+    -
+        type: handler
+        code: recordset_close
+        preconditions:
+            -
+                code: is_right
+                params:
+                    check: $VAR.grade_itemtype
+                    operator: 'IN'
+                    value:
+                        - 'course'
+                        - 'all'
+        params:
+            rs: $VAR.llh_rs
+        

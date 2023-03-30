@@ -1,0 +1,25 @@
+.catlb_clearboth {
+	clear: both;
+	position: relative;
+}
+
+.catlb_categories_list_block {
+    display: none;
+}
+aside .catlb_categories_list_block {
+	display: block;
+}
+
+.catlb_category_item {
+	padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    width: 100%;
+    display: inline-block;
+}
+.catlb_category_item:hover {
+    text-decoration: none;
+}
+.catlb_category_name span {
+    padding: 0 5px 0 0;
+}

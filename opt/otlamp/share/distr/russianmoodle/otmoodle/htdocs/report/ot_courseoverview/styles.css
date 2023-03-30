@@ -1,0 +1,7 @@
+.path-admin-report-ot_courseoverview .link-admin,
+.path-admin-report-ot_courseoverview .link-cohort {
+	display: block;
+}
+.path-admin-report-ot_courseoverview .link-category {
+	display: inline-block;
+}

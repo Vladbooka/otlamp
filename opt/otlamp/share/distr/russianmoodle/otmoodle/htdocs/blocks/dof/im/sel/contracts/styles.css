@@ -1,0 +1,25 @@
+#form_sel_list_editor {
+	display: block;
+	width:100%;
+	margin: 0px;
+}
+#form_sel_list_editor #id_selids-table-header table {
+	width: 100%;
+}
+#form_sel_list_editor #id_selids-table-header table div, #form_sel_list_editor #id_selids-table-header .btn-cancel {
+	margin-left:0%;
+}
+#form_sel_list_editor #id_selids-table-header table div .fitemtitle {
+	margin: 0;
+	width: 0;
+}
+#form_sel_list_editor #id_selids-table-header table tr .fselect {
+	height: 0;
+}
+#form_sel_list_editor #id_selids-table-header table div .fitemtitle + .felement.fadvcheckbox {
+	margin: 0;
+	padding: 0;
+}
+#form_sel_list_editor #id_selids-table-header table div .fitemtitle + .felement.fadvcheckbox span {
+	margin: 0;
+}

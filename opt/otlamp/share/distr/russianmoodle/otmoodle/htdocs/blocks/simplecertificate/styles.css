@@ -1,0 +1,36 @@
+.block_simplecertificate_certificate {
+    display: inline-block;
+}
+.block_simplecertificate_certificate:hover {
+	background:#F5F5F5;
+}
+.block_simplecertificate_certificate:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+}
+.block_simplecertificate_certificate {
+    display: block;
+}
+.block_simplecertificate_image {
+	display:block;
+	float:left;
+	width: 42px;
+	height: 66px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+.block_simplecertificate_data {
+	display:block;
+	float:left;
+	padding-left: 10px;
+	width: 205px;
+	font-size:12px;
+}
+.block_simplecertificate_createdate {
+	color:#999;
+}

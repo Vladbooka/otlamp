@@ -1,0 +1,10 @@
+{
+  "name": "moodle-availability_counter-form",
+  "builds": {
+    "moodle-availability_counter-form": {
+      "jsfiles": [
+        "form.js"
+      ]
+    }
+  }
+}

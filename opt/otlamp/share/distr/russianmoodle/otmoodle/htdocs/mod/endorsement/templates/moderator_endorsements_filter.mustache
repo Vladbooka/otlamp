@@ -1,0 +1,23 @@
+<form method="GET" action="{{#formaction}}{{formaction}}{{/formaction}}">
+{{#courses_count}}
+	<div>
+		{{courses_title}}
+		<select name="courseid" onchange="this.form.submit()">
+		{{#courses}}
+			<option value="{{id}}" {{#active}}selected{{/active}}>{{fullname}}</option>
+		{{/courses}}
+		</select>
+		<input type="submit" class="submit_change_course"/>
+	</div>
+{{/courses_count}}
+
+{{#statuses_count}}
+	<div class="statuses-filter">
+	{{statuses_title}}
+	{{#statuses}}
+		<a href="{{link}}" class="btn btn-primary {{#active}}disabled{{/active}}">{{name}}</a>
+		{{#active}}{{#code}}<input type="hidden" name="status" value="{{code}}" />{{/code}}{{/active}}
+	{{/statuses}}
+	</div>
+{{/statuses_count}}
+</form>

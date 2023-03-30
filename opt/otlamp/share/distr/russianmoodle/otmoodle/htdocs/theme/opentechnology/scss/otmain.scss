@@ -1,0 +1,58 @@
+// Установка дефолтных значений переменных (наш pre)
+// Инициализация наших миксинов и функций
+@import "../../opentechnology/scss/otpre";
+
+// Импорт из классика их pre
+@import "../../classic/scss/classic/pre";
+
+// Импорт копии первой части персета классической темы, распиленного пополам 
+// для возможности переопреления жестко заданных настроек до подключения бутстрапа
+@import "../../opentechnology/scss/classic-preset-beginning";
+
+// Переопределение настроек жестко заданных классиком
+// И определение настроек необходимых при инициализации наших переменных 
+// (использующих в качестве дефолтного значения - бутстраповские переменные)
+// я бы разместил в наш файл variables, но он не работает при подключении до бутстрапа :(
+$dropdown-bg: $white;
+$dropdown-link-hover-bg: #E6E6E6;
+$dropdown-link-hover-color: #333333;
+$navbar-height: 15px;
+
+// Import FontAwesome.
+@import "../../classic/scss/fontawesome";
+
+// Import All of Bootstrap
+@import "../../classic/scss/bootstrap";
+
+// Import Core moodle CSS
+@import "../../classic/scss/moodle";
+
+// Импорт копии второй части персета классической темы, распиленного пополам 
+@import "../../opentechnology/scss/classic-preset-ending";
+
+// Импорт из классика их post 
+// @import "../../classic/scss/classic/post";
+@import "../../opentechnology/scss/classic-post";
+
+// Инициализация наших переменных
+// По неизвестной мне причине не работает если импортировать до бутстрапа
+// я бы разместил до...
+@import "../../opentechnology/scss/moodle/variables";
+
+// Импорт наших основных стилей
+@import "../../opentechnology/scss/moodle/core";
+@import "../../opentechnology/scss/moodle/core-header";
+@import "../../opentechnology/scss/moodle/core-content";
+@import "../../opentechnology/scss/moodle/core-navbar";
+@import "../../opentechnology/scss/moodle/core-footer";
+@import "../../opentechnology/scss/moodle/blocks";
+@import "../../opentechnology/scss/moodle/dock";
+@import "../../opentechnology/scss/moodle/forms";
+@import "../../opentechnology/scss/moodle/collapsiblesection";
+@import "../../opentechnology/scss/moodle/atto";
+@import "../../opentechnology/scss/moodle/loginpage-slider";
+@import "../../opentechnology/scss/moodle/message";
+
+// Переопределение стилей чужих плагинов
+@import "../../opentechnology/scss/moodle/component/block_tags";
+

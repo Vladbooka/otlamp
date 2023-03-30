@@ -1,0 +1,15 @@
+{{#table}}
+{{#body}}
+<input type="checkbox" id="{{id}}-shortlist-switcher" class="shortlist-switcher" />
+<ul id="{{id}}" class="shortlist list-group list-group-flush list-group-striped list-group-noborder list-group-sm">
+{{#rows}}
+<li data-record-id="{{id}}" data-rownumgt5="{{rownumgt5}}" class="list-group-item">{{#cells}}{{{value}}}{{^lastcell}}; {{/lastcell}}{{/cells}}</li>
+{{/rows}}
+</ul>
+{{#rowscountgt5}}
+<label for="{{id}}-shortlist-switcher" class="shortlistToggler">
+	{{#str}}shortstring_show_all, local_otcontrolpanel{{/str}}
+</label>
+{{/rowscountgt5}}
+{{/body}}
+{{/table}}

@@ -1,0 +1,26 @@
+{{#user_have_access_to_course}}
+	<div class="crw_buttonholder">
+		<a href="{{course_url}}" class="button btn btn-primary">{{#str}} link_viewcourse, local_crw {{/str}}</a>
+	</div>
+{{/user_have_access_to_course}}
+
+{{#display_login_url}}
+	<div class="crw_buttonholder">
+		<a href="{{logindata.loginurl}}" class="button btn btn-primary ot-login-button">{{#str}} link_login_moodle, local_crw {{/str}}</a>
+		{{#logindata.cansignup}}
+			<a href="{{logindata.signupurl}}" class="button btn btn-primary">{{#str}} link_signup_moodle, local_crw {{/str}}</a>
+		{{/logindata.cansignup}}
+	</div>
+{{/display_login_url}}
+
+{{#display_guest_access_to_course}}
+	<div class="crw_buttonholder">
+		<a href="{{course_url}}" class="button btn btn-primary">{{#str}} link_viewguestcourse, local_crw {{/str}}</a>
+	</div>
+{{/display_guest_access_to_course}}
+
+{{#display_enrol_forms}}
+	<div class="crw_ci_courseblock_enrols">
+		{{#enrol_forms}}{{{html}}}{{/enrol_forms}}
+	</div>
+{{/display_enrol_forms}}

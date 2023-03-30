@@ -1,0 +1,62 @@
+.block.block_otslider, 
+#block-region-side-post .block.block_otslider,
+#block-region-side-pre .block.block_otslider, 
+#block-region-side-content-top .block.block_otslider, 
+#block-region-content .block.block_otslider, 
+#block-region-side-content-bot .block.block_otslider, 
+#block-region-content .block.block_otslider {
+	height: auto;
+    position: static;
+    padding: 0;
+}
+
+.block.block_otslider > .header,
+#block-region-side-post .block.block_otslider > .header,
+#block-region-side-pre .block.block_otslider > .header,
+#block-region-side-content-top .block.block_otslider > .header,
+#block-region-side-content-bot .block.block_otslider > .header,
+#block-region-content .block.block_otslider > .header {
+	padding: 20px 20px 0 20px;	
+}
+
+/* у слайдера не стандартное отображение и отступы у этого блока не нужны */
+.block.block_otslider:not(.block_with_controls) > .card-body.p-3 {
+	padding: 0!important;
+}
+
+/* у слайдера не стандартное отображение и отступы у этого блока не нужны */
+.block.block_otslider:not(.block_with_controls) .content.mt-3 {
+	margin-top: 0!important;
+}
+.block.block_otslider .content {
+	position: static;
+}
+
+.block.block_otslider .footer > .footer-info {
+	padding: 50px 0;
+	text-align: center;
+	margin: 0;
+}
+body.editing .block_otslider[data-replace_requested='1'] {
+	display: block;
+	padding-bottom: 0!important;
+	height: auto!important;
+}
+body.editing .block_otslider[data-replace_requested='1'] .content {
+	position: static;
+}
+.block_otslider[data-replace_requested='1'],
+.block_otslider .otslider[data-replace_requested='1'] {
+	display: none;
+}
+body.editing .block.block_otslider[data-replace_requested='1'] .footer {
+	display: block;
+}
+.block_otslider > .header+.content, 
+#block-region-side-post .block_otslider > .header+.content, 
+#block-region-side-pre .block_otslider > .header+.content, 
+#block-region-side-content-top .block_otslider > .header+.content, 
+#block-region-side-content-bot .block_otslider > .header+.content, 
+#block-region-content .block_otslider > .header+.content {
+	margin-top: 0;
+}

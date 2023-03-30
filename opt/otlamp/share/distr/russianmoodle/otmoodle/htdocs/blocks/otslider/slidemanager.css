@@ -1,0 +1,14 @@
+fieldset[id$=_slide_header] {
+	position: relative;
+}
+fieldset[id$=_slide_header] legend.ftoggler {
+	background: #F5F5F5;
+}
+fieldset[id$=_slide_header] .fitem_actionbuttons:not([id$=_submit]) {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+.otslider-manager-form #fgroup_id_createslide {
+	flex-direction: column;
+}

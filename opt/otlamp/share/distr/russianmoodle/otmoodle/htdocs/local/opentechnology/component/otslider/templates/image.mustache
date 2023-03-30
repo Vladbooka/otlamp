@@ -1,0 +1,33 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+<div 
+	class = "otslider_slide" 
+	data-type = "image" 
+	data-parallax =  "{{#slideoptions}}{{parallax}}{{/slideoptions}}" 
+	data-backgroundpositiontop = "{{#slideoptions}}{{backgroundpositiontop}}{{/slideoptions}}" 
+	data-zoomview = "{{#slideoptions}}{{zoomview}}{{/slideoptions}}"
+> 
+	<div {{#imageurl}}style = "background-image: url({{{imageurl}}})"{{/imageurl}} 
+		class = "{{#slideoptions}}{{#hasvalidimage}}otslider_image{{/hasvalidimage}}{{^hasvalidimage}}otslider_noimage{{/hasvalidimage}}{{/slideoptions}}"></div>
+	<div class = "otslider_caption" style="{{#styles}}{{style}};{{/styles}}">
+	<div class = "otslider_captiontop" style="align-items: {{alignflex}}">
+			{{#slideoptions}}{{#title}}<div class = "otslider_title">{{{title}}}</div>{{/title}}{{/slideoptions}}
+			{{#slideoptions}}{{#description}}<div class = "otslider_description">{{{description}}}</div>{{/description}}{{/slideoptions}}
+		</div>
+		{{#slideoptions}}{{#summary}}<div class = "otslider_summary">{{{summary}}}</div>{{/summary}}{{/slideoptions}}	
+	</div>
+</div>

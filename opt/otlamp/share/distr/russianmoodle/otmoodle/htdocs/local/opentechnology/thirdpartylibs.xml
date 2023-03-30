@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<libraries>
+    <library>
+        <location>component/phpamqplib/classes</location>
+        <name>php-amqplib</name>
+        <version>2.9.1</version>
+        <license>GNU LESSER GENERAL PUBLIC LICENSE Version 2.1</license>
+    </library>
+    <library>
+        <location>component/phpword/classes</location>
+        <name>PHPWord</name>
+        <version>0.15.0</version>
+        <license>GNU Lesser General Public License version 3</license>
+    </library>
+    <library>
+        <location>component/yaml/classes</location>
+        <name>Yaml Component</name>
+        <version>3.4.0</version>
+        <license></license>
+    </library>
+</libraries>

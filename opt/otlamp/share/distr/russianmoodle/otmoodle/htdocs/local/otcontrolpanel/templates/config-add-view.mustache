@@ -1,0 +1,11 @@
+<div class="card">
+	<div class="card-body">
+		<h5 class="card-title">{{#str}}adding_new_view, local_otcontrolpanel{{/str}}</h5>
+		<select id="adding-entity">
+			{{#entities}}
+				<option value="{{entity-code}}">{{entity-displayname}}</option>
+			{{/entities}}
+		</select>
+		<input type="button" class="btn btn-primary" value="{{#str}}add_new_view, local_otcontrolpanel{{/str}}">
+	</div>
+</div>

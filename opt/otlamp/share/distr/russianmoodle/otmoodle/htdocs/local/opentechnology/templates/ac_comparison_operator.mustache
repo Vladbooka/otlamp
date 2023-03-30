@@ -1,0 +1,41 @@
+{{#comparisonoperator}}
+	<fieldset class="ac-item" data-code="{{code}}" data-type="comparisonoperator">
+		<legend>
+			<span data-toggle="tooltip" data-placement="bottom" title="{{description}}">{{displayname}}</span>
+			{{>local_opentechnology/ac_remove_btn}}
+		</legend>
+		<div class="content">
+			{{#arguments}}
+				<div class="input-group" data-index="{{index}}">
+					<div class="input-group-prepend">
+						{{#currentreplacement}}
+							<button class="btn btn-secondary dropdown-toggle replacement-type" data-code="{{code}}" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								{{#icon}}<i class="icon fa fa-{{icon}} fa-fw"></i>{{/icon}}
+								{{^icon}}{{displayname}}{{/icon}}
+							</button>
+						{{/currentreplacement}}
+					    <div class="dropdown-menu">
+						{{#replacements}}
+							<button class="dropdown-item change-arg" type="button" data-code="{{code}}">
+								{{#icon}}<i class="icon fa fa-{{icon}} fa-fw"></i>{{/icon}} {{displayname}}
+							</button>
+						{{/replacements}}
+						</div>
+					</div>
+					{{#replacements}}
+						{{#propertiescount}}
+							<select class="custom-select operator-arg" data-replacement-code="{{code}}" {{^current}}style="display: none"{{/current}}>
+								{{#properties}}
+									<option {{#selected}}selected{{/selected}} data-selected="{{selected}}" value="{{code}}">{{displayname}}</option>
+								{{/properties}}
+							</select>
+						{{/propertiescount}}
+						{{^propertiescount}}
+							<input type="text" class="form-control operator-arg" data-replacement-code="{{code}}" value="{{value}}" {{^current}}style="display: none"{{/current}}/>
+						{{/propertiescount}}
+					{{/replacements}}
+				</div>
+			{{/arguments}}
+		</div>
+	</fieldset>
+{{/comparisonoperator}}

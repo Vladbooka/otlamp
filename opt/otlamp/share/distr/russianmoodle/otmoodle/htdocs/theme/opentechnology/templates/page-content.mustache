@@ -1,0 +1,61 @@
+<div id="page-content" class="row {{#hassidepreblocks}} blocks-pre {{/hassidepreblocks}} {{#hassidepostblocks}} blocks-post {{/hassidepostblocks}} d-print-block">
+    <div id="region-main-box" class="region-main">
+        {{#hasregionmainsettingsmenu}}
+        <div id="region-main-settings-menu" class="d-print-none {{#hasblocks}}has-blocks{{/hasblocks}}">
+            <div> {{{ output.region_main_settings_menu }}} </div>
+        </div>
+        {{/hasregionmainsettingsmenu}}
+        <section id="region-main" class="region-main-content" aria-label="{{#str}}content{{/str}}">
+            {{#hasregionmainsettingsmenu}}
+                <div class="region_main_settings_menu_proxy"></div>
+            {{/hasregionmainsettingsmenu}}
+            {{#display_sectionheader}}
+            	{{{ themedata.sectionheader }}}
+        	{{/display_sectionheader}}
+        	{{#display_region_sidecontenttop}}
+            	{{{ sidecontenttopblocks }}}
+            {{/display_region_sidecontenttop}}
+            {{#display_page_heading}}
+	            {{^themedata.dockheading}}
+	            	<div class="headermain">{{{ output.page_heading }}}</div>
+	            {{/themedata.dockheading}}
+            {{/display_page_heading}}
+            {{#display_course_content_header}}
+            	{{{ output.course_content_header }}}
+        	{{/display_course_content_header}}
+            {{#display_collapsiblesection_cmid}}
+            	{{{ themedata.collapsiblesection_cmid }}}
+        	{{/display_collapsiblesection_cmid}}
+            
+            {{{ output.main_content }}}
+            
+            {{#display_activity_navigation}}
+            	{{{ output.activity_navigation }}}
+        	{{/display_activity_navigation}}
+            {{#display_course_content_footer}}
+            	{{{ output.course_content_footer }}}
+        	{{/display_course_content_footer}}
+        	
+        	{{#display_region_sidecontentbot}}
+            	{{{ sidecontentbotblocks }}}
+        	{{/display_region_sidecontentbot}}
+        </section>
+    </div>
+    
+	{{#display_region_sidepre}}
+    <div class="columnleft blockcolumn {{#hassidepreblocks}} has-blocks {{/hassidepreblocks}}">
+        <section data-region="blocks-column" class="d-print-none" aria-label="{{#str}}blocks{{/str}}">
+            {{{ sidepreblocks }}}
+        </section>
+    </div>
+	{{/display_region_sidepre}}
+
+
+	{{#display_region_sidepost}}
+    <div class="columnright blockcolumn {{#hassidepostblocks}} has-blocks {{/hassidepostblocks}}">
+        <section data-region="blocks-column" class="d-print-none" aria-label="{{#str}}blocks{{/str}}">
+            {{{ sidepostblocks }}}
+        </section>
+    </div>
+	{{/display_region_sidepost}}
+</div>

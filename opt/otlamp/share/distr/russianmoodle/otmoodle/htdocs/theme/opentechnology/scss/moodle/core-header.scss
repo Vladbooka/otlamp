@@ -1,0 +1,258 @@
+#page-header {
+
+	.h_top_wrapper {
+	    background-color: $ot-header-bg;
+	    color: $ot-header-color;
+    }
+    
+    @include ot-zone-a((
+		link-color:			$ot-header-link-color,
+		link-hover-color:	$ot-header-link-hover-color,
+    ));
+    
+	@include ot-zone-buttons((
+		primary-bg: 						$ot-header-btn-primary-bg,
+		primary-border: 					$ot-header-btn-primary-border,
+		primary-color: 						$ot-header-btn-primary-color,
+		primary-brightness-config: 			$ot-header-btn-primary-brightness-config,
+		primary-hover-bg: 					$ot-header-btn-primary-hover-bg,
+		primary-hover-border: 				$ot-header-btn-primary-hover-border,
+		primary-hover-color: 				$ot-header-btn-primary-hover-color,
+		primary-hover-brightness-config: 	$ot-header-btn-primary-hover-brightness-config,
+		primary-active-bg: 					$ot-header-btn-primary-hover-bg,
+		primary-active-border: 				$ot-header-btn-primary-hover-border,
+		primary-active-color: 				$ot-header-btn-primary-hover-color,
+		primary-active-brightness-config: 	$ot-header-btn-primary-hover-brightness-config,
+		secondary-bg: 						$ot-header-btn-secondary-bg,
+		secondary-border: 					$ot-header-btn-secondary-border,
+		secondary-color: 					$ot-header-btn-secondary-color,
+		secondary-brightness-config: 		$ot-header-btn-secondary-brightness-config,
+		secondary-hover-bg: 				$ot-header-btn-secondary-hover-bg,
+		secondary-hover-border: 			$ot-header-btn-secondary-hover-border,
+		secondary-hover-color: 				$ot-header-btn-secondary-hover-color,
+		secondary-hover-brightness-config: 	$ot-header-btn-secondary-hover-brightness-config,
+		secondary-active-bg: 				$ot-header-btn-secondary-hover-bg,
+		secondary-active-border: 			$ot-header-btn-secondary-hover-border,
+		secondary-active-color: 			$ot-header-btn-secondary-hover-color,
+		secondary-active-brightness-config:	$ot-header-btn-secondary-hover-brightness-config,
+		link-color:							$ot-header-link-color,
+		link-hover-color:					$ot-header-link-hover-color,
+	));
+	
+	@include ot-zone-pagination((
+		bg: 					$ot-header-pagination-bg,
+		border-color: 			$ot-header-pagination-border-color,
+		color: 					$ot-header-pagination-color,
+		hover-bg: 				$ot-header-pagination-hover-bg,
+		hover-border-color: 	$ot-header-pagination-hover-border-color,
+		hover-color:			$ot-header-pagination-hover-color,
+		active-bg:				$ot-header-pagination-hover-bg,
+		active-border-color:	$ot-header-pagination-hover-border-color,
+		active-color:			$ot-header-pagination-hover-color
+	));
+}
+#h_leftblock_wrapper {
+	.header_logoimage img {
+	
+		width: 100%;
+		height: auto;
+		margin: auto;
+		
+		&.logo {
+			display: inline-block;
+			max-width: 420px;
+		}
+		&.compact-logo {
+			display: none;
+			max-width: 240px;
+		}
+		
+	}
+}
+#h_rightblock_wrapper {
+
+	&.nocaret .usernav .navbar-nav .popover-region:last-of-type::after {
+		display: none;
+	}
+	
+	.usernav .navbar-nav {
+		flex-direction: row-reverse;
+		.popover-region {
+			.popover-region-toggle {
+			 	img.icon {
+					@include ot-brightness-filter($ot-header-bg, $ot-header-brightness-config);
+					
+				}
+				&:hover img.icon {
+					@include ot-brightness-filter($ot-header-bg, $ot-header-brightness-config, true);
+				}
+			}
+			&::after {
+			    display: inline-block;
+			    content: '';
+			    background-color: #606060;
+			    width: 1px;
+			    height: 32px;
+			    position: absolute;
+			    top: 4px;
+			    left: 0;
+		    }
+		}
+	}
+	
+	.search-input-wrapper {
+		&.expanded {
+			> div {
+				background-color: $ot-header-btn-primary-hover-bg;
+			}
+			> form > input[name="q"],
+			&:hover > form > input[name="q"] {
+				border: 1px solid $ot-header-btn-primary-hover-bg;
+			}
+			
+			&::after,
+			&:hover::after,
+			{
+				border-right: 10px solid $ot-header-btn-primary-hover-bg;
+			}
+		}
+		> div > img {
+			@include ot-brightness-filter($ot-header-btn-primary-bg, $ot-header-btn-primary-brightness-config);
+		}
+	}
+	
+	.usermenu {
+		.login a {
+			&,
+			&:hover,
+			&:focus,
+			&:active {
+				position: relative;
+			    float: right;
+			    width: auto;
+			    padding: 0 12px;
+			    line-height:40px;
+			    text-align: center;
+			    height: 40px;
+			}
+		}
+		
+		.moodle-actionmenu .dropdown-toggle .caret {
+			@include ot-brightness-filter($ot-header-bg, $ot-header-brightness-config);
+		}
+		
+		.dropdown-toggle {
+			background-color: $ot-header-usermenu-ddtoggle-bg;
+			color: $ot-header-usermenu-ddtoggle-color;
+			
+			&:hover {
+				background-color: $ot-header-usermenu-ddtoggle-hover-bg;
+				color: $ot-header-usermenu-ddtoggle-hover-color;
+				
+				.avatar.current img {
+					filter: brightness(110%);
+				}
+			}
+			
+		}
+		.dropdown-menu {
+			background-color: $ot-header-usermenu-ddmenu-bg;
+			color: $ot-header-usermenu-ddmenu-color;
+		}
+		.dropdown-item {
+			background-color: $ot-header-usermenu-ddmenu-bg;
+			color: $ot-header-usermenu-ddmenu-color;
+			padding: 0 1.25rem;
+			line-height: 30px;
+			
+			@include hover-focus() {
+				color: $ot-header-usermenu-ddmenu-hover-color;
+				@include gradient-bg($ot-header-usermenu-ddmenu-hover-bg);
+			}
+			
+			&.active,
+			&:active {
+				color: $ot-header-usermenu-ddmenu-hover-color;
+				@include gradient-bg($ot-header-usermenu-ddmenu-hover-bg);
+			}
+		}
+	}
+}
+
+@include media-breakpoint-down(lg) {
+	#h_rightblock_wrapper .usernav .navbar-nav .popover-region:last-of-type::after {
+		display: none;
+	}
+}
+
+
+#custommenu_wrapper li.nav-item {
+	
+	line-height: 30px;
+    
+	.nav-link {
+		background-color: $ot-header-custommenu-item-bg;
+		color: $ot-header-custommenu-item-color;
+		padding-top: 0;
+		padding-bottom: 0;
+		&:hover {
+			background-color: $ot-header-custommenu-item-hover-bg;
+			color: $ot-header-custommenu-item-hover-color;
+		}
+
+		&.dropdown-toggle {
+			background-color: $ot-header-custommenu-ddtoggle-bg;
+			color: $ot-header-custommenu-ddtoggle-color;
+			
+			&:hover {
+				background-color: $ot-header-custommenu-ddtoggle-hover-bg;
+				color: $ot-header-custommenu-ddtoggle-hover-color;
+			}
+		}
+	}
+	.dropdown-menu {
+		background-color: $ot-header-custommenu-ddmenu-bg;
+		color: $ot-header-custommenu-ddmenu-color;
+		@include box-shadow($dropdown-box-shadow);
+		border: 1px solid $ot-header-custommenu-ddtoggle-bg;
+	}
+	.dropdown-item {
+		background-color: $ot-header-custommenu-ddmenu-bg;
+		color: $ot-header-custommenu-ddmenu-color;
+		padding: 0 1.25rem;
+		font-size: 0.8em;
+		
+		@include hover-focus() {
+			color: $ot-header-custommenu-ddmenu-hover-color;
+			@include gradient-bg($ot-header-custommenu-ddmenu-hover-bg);
+		}
+		
+		&.active,
+		&:active {
+			color: $ot-header-custommenu-ddmenu-hover-color;
+			@include gradient-bg($ot-header-custommenu-ddmenu-hover-bg);
+		}
+	}
+}
+
+@each $location in '0', '1', '5', '6' {
+	#h_custommenu_wrapper[data-location='#{$location}'] .custom_menu_wrapper > ul {
+		justify-content: flex-start;
+		& > li.nav-item {
+    		margin: 0 6px 6px 0;
+		}
+	}
+}
+@each $location in '2', '4', '7', '8' {
+	#h_custommenu_wrapper[data-location='#{$location}'] .custom_menu_wrapper > ul {
+		justify-content: flex-end;
+		& > li.nav-item {
+    		margin: 0 0 6px 6px;
+		}
+	}
+}
+@each $location in '1', '4', '6', '7' {
+	#h_custommenu_wrapper[data-location='#{$location}'] {
+		z-index: 104;
+	}
+}

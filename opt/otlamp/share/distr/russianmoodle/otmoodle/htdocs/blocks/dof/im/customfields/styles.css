@@ -1,0 +1,78 @@
+#form_customfields_list_editor #fgroup_id_customfieldsids fieldset > span {
+	display: block;
+}
+#form_customfields_list_editor .customfields-listeditor fieldset div,
+#form_customfields_list_editor .customfields-listeditor fieldset {
+	margin: 0;
+}
+#form_customfields_list_editor #id_submitbutton {
+	display: none;
+}
+#form_customfields_list_editor table .fitemtitle {
+	display: none;
+}
+#form_customfields_list_editor table .fitem, #form_customfields_list_editor table .felement {
+	margin: 0;
+}
+#form_customfields_list_editor table th {
+    vertical-align: middle;
+}
+#id_freeprogrammsbcs {
+	min-height: 300px;
+}
+
+.customfields_selfenrol_form .fitem_actionbuttons .felement {
+	margin-left: 0!important;
+}
+.dof_customfield_sort_handler {
+	cursor: move;
+}
+
+tr.dof_customfield_item .dof_customfield_sort_handler img {
+	visibility: hidden;
+}
+tr.dof_customfield_item:hover .dof_customfield_sort_handler img {
+	visibility: visible;
+}
+
+.dof_customfields_sorting {
+	position: relative;
+	max-height: inherit;
+	overflow: hidden;
+}
+.dof_customfields_sorting::before {
+	position: absolute;
+	display: block;
+	content: '';
+	top: 0;
+	right: 0;
+	bottom:0;
+	left: 0;
+	background: rgba(0,0,0,0.5);
+	color: #FFF;
+	z-index:9999;
+}
+.dof_customfields_sorting::after {
+	display: block;
+    position: absolute;
+    content: '';
+    top: calc(50% - 34px);
+    left: calc(50% - 34px);
+	border: 8px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 8px solid #3498db;
+	width: 60px;
+	height: 60px;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+	z-index:9999;
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

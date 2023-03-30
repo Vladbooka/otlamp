@@ -1,0 +1,15 @@
+.manage-content-link {
+	margin: 15px 0;
+}
+textarea.otexternaldata_textarea {
+    max-width: calc(100vw - 15px);
+    width: 450px;
+    height: 150px;
+    box-sizing: border-box;
+}
+.block_otexternaldata .block_action.notitle {
+	text-align: right;
+}
+.otexternaldata_textarea textarea {
+    resize: auto;
+} 

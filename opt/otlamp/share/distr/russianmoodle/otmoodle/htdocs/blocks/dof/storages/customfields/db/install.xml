@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/dof/storages/customfields/db" VERSION="20120306" COMMENT="XMLDB file for Moodle blocks/dof/storages/customfields"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_customfields" COMMENT="Дополнительные поля">
+      <FIELDS> 
+          <FIELD NAME="id"           TYPE="int"  LENGTH="10"    NOTNULL="true"              UNSIGNED="true"  SEQUENCE="true"  COMMENT="ID дополнительного поля"/>
+          <FIELD NAME="code"         TYPE="char" LENGTH="255"   NOTNULL="true"                               SEQUENCE="false" COMMENT="Код дополнительного поля (уникальный в подразделении)"/>
+          <FIELD NAME="name"         TYPE="char" LENGTH="255"   NOTNULL="true"                               SEQUENCE="false" COMMENT="Имя дополнительного поля, отображаемое пользователю"/>
+          <FIELD NAME="description"  TYPE="text" LENGTH="small" NOTNULL="true"                               SEQUENCE="false" COMMENT="Описание поля, подсказка, отображается пользователю"/>
+          <FIELD NAME="departmentid" TYPE="int"  LENGTH="10"    NOTNULL="false" DEFAULT="0" UNSIGNED="true"  SEQUENCE="false" COMMENT="ID подразделения"/>
+          <FIELD NAME="linkpcode"    TYPE="char" LENGTH="255"   NOTNULL="true"              UNSIGNED="true"  SEQUENCE="false" COMMENT="Код хранилища, к объектам которого привязывается шаблон поля"/>
+          <FIELD NAME="type"         TYPE="char" LENGTH="255"   NOTNULL="true"                               SEQUENCE="false" COMMENT="Тип поля"/>
+          <FIELD NAME="defaultvalue" TYPE="text" LENGTH="small" NOTNULL="false"                              SEQUENCE="false" COMMENT="Значение поля по умолчанию"/>
+          <FIELD NAME="required"     TYPE="int"  LENGTH="1"     NOTNULL="false" DEFAULT="0" UNSIGNED="false" SEQUENCE="false" COMMENT="Флаг обязательного поля"/>
+          <FIELD NAME="moderation"   TYPE="int"  LENGTH="1"     NOTNULL="false" DEFAULT="0" UNSIGNED="false" SEQUENCE="false" COMMENT="Флаг необходимости модерации поля"/>
+          <FIELD NAME="options"      TYPE="text" LENGTH="small" NOTNULL="true"                               SEQUENCE="false" COMMENT="Дополнительные данные поля"/>
+          <FIELD NAME="status"       TYPE="char" LENGTH="255"   NOTNULL="true"                               SEQUENCE="false" COMMENT="Статус дополнительного поля"/>
+          <FIELD NAME="sortorder" 	 TYPE="int"  LENGTH="10"    NOTNULL="false" DEFAULT="0" UNSIGNED="true"  SEQUENCE="false" COMMENT="Порядок сортировки"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id"           TYPE="primary" FIELDS="id" />
+        <KEY NAME="departmentid" TYPE="foreign" FIELDS="departmentid" REFTABLE="block_dof_s_departments" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="id"         UNIQUE="true"  FIELDS="id"                 />
+        <INDEX NAME="fullcode"   UNIQUE="false" FIELDS="code, departmentid" />
+        <INDEX NAME="name"       UNIQUE="false" FIELDS="name"               />
+        <INDEX NAME="linkpcode"  UNIQUE="false" FIELDS="linkpcode"          />
+        <INDEX NAME="type"       UNIQUE="false" FIELDS="type"               />
+        <INDEX NAME="required"   UNIQUE="false" FIELDS="required"           />
+        <INDEX NAME="moderation" UNIQUE="false" FIELDS="moderation"         />
+        <INDEX NAME="status"     UNIQUE="false" FIELDS="status"             />
+        <INDEX NAME="sortorder"  UNIQUE="false" FIELDS="sortorder"          />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

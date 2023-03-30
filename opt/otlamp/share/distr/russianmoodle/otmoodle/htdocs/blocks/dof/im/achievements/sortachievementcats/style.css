@@ -1,0 +1,29 @@
+#sortachievementcats #sortachievementcats_submit {
+	display: none;
+}
+#achievementcats_sort_area ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+#achievementcats_sort_area ul li {
+	border: 1px solid #CCC;
+	background: #EEE;
+	color: #000;
+	margin: 0 0 5px;
+	padding: 0 5px;
+	min-height: 30px;
+	line-height: 30px;
+	font-size: 18px; 
+	cursor: pointer;
+}
+#achievementcats_sort_area ul li.sortachievementcat_placeholder {
+	border: 1px solid #EDA;
+	background: #FEA;
+	color: #000;
+	margin: 0 0 5px;
+	padding: 0 5px;
+	min-height: 30px;
+	line-height: 30px;
+	font-size: 18px;
+}

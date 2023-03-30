@@ -1,0 +1,10 @@
+{
+    "name": "moodle-atto_otspoiler-button",
+    "builds": {
+        "moodle-atto_otspoiler-button": {
+            "jsfiles": [
+                "button.js"
+            ]
+        }
+    }
+}

@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+.dof_dropblock_wrapper .dof_context_menu_label {
+	display: inline-block;
+}
+.dof_dropblock_wrapper .dof_context_menu_label > div > span {
+    border-bottom: 1px dashed #AAA;
+    line-height: 19px;
+    color: #3e3e3e;
+}
+.dof_dropblock.dof_context_menu_content .dof_context_menu_item {
+    min-width: 250px;
+    max-width: 300px;
+    border-bottom: 1px solid #EEE;
+}
+.dof_dropblock.dof_context_menu_content .dof_context_menu_item.dof_context_menu_item_link a div {
+    padding: 5px 10px;
+}

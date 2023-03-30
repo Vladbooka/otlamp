@@ -1,0 +1,38 @@
+.editor_atto_menu .atto_otfontcolor_button.open ul.dropdown-menu {
+    width: 400px;
+    padding: 5px;
+    line-height: 0;
+    box-sizing: content-box;
+}
+.editor_atto_menu .atto_otfontcolor_button.open ul.dropdown-menu>li {
+	display: inline-block;
+	width: 20px;
+}
+.editor_atto_menu .atto_otfontcolor_button.open ul.dropdown-menu>li>a {
+	padding: 0;
+	margin: 0;
+}
+.editor_atto_menu .atto_otfontcolor_button.open ul.dropdown-menu>li>a>.atto_otfontcolor_color {
+	position: relative;
+	width: 20px;
+	height: 20px;
+}
+.editor_atto_menu .atto_otfontcolor_button.open ul.dropdown-menu>li>a>.atto_otfontcolor_color::after {
+	position: absolute;
+	display: block;
+	content: '';
+	top: 10px;
+	left: 10px;
+	height: 0;
+	width: 0;
+	background-color: inherit;
+	z-index: 1;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	transition: all 0.1s ease-in-out;
+}
+.editor_atto_menu .atto_otfontcolor_button.open ul.dropdown-menu>li>a:hover>.atto_otfontcolor_color::after {
+	top: -10px;
+	left: -10px;
+	width: 40px;
+	height: 40px;
+}

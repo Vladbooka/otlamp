@@ -1,0 +1,83 @@
+
+a {
+  color: $link-color;
+
+  @include hover() {
+    color: $link-hover-color;
+  }
+}
+
+textarea {
+    resize: auto;
+}
+.custom-select {
+	max-width: 100%;
+}
+
+@include media-breakpoint-up(sm) {
+    #region-main {
+        border: none;
+    }
+}
+
+/* 
+	например в ручном оценивании без clearfix всё едет
+	в управлении тестом - результаты - оценивание вручную - оценить все попытки у какой-нибудь из попыток с эссе 
+*/
+.clearfix,
+#page-mod-quiz-report #manualgradingform.mform .clearfix {
+    *zoom: 1;
+    &:before, &:after {
+    	display: table;
+	    content: "";
+	    line-height: 0;
+    }
+    &:after {
+		clear: both;
+	}
+}
+
+.collapsible-section-htop-wrapper, 
+#page-header .headertext_wrapper, 
+#page-header .wrapper, 
+#page-header .dock_bg_wrapper, 
+.page-navbar-wrapper, 
+#blocks-content-heading-wrapper, 
+.collapsible-section-ctop-wrapper, 
+#page-wrapper, 
+#blocks-content-footing-wrapper, 
+.collapsible-section-cbot-wrapper, 
+#page-footer .footerborder-wrapper, 
+#page-footer .footer-content-wrapper {
+	.container-fluid {
+		max-width: 1720px;
+	}
+}
+
+.btn-group-xs > .btn, 
+.btn.btn-xs {
+	@include button-size($btn-padding-y-xs, $btn-padding-x-xs, $btn-font-size-xs, $btn-line-height-xs, $btn-border-radius-xs);
+}
+
+#adminsettings .form-label .form-shortname {
+    /* иначе на маленьких экранах длинные коды полей системных настроек начинают налезать на остальной контент */
+	word-break: break-word;
+}
+
+.availability-field .availability-list label {
+	/* иначе форматирование в ограничениях доступа едет (каждый элемент с новой строки) */
+	display: inline-flex;
+}
+.availability-plugincontrols select {
+	/* иначе селекты с длинными опциями (например бейджи при наличии курсов с длинным названием) вылезают за пределы разумного */
+    width: auto;
+    max-width: 200px;
+}
+
+.course-content .current::before {
+	/* иначе стиль :target::before ломает отображение выделенной секции в курсе */
+	height: auto;
+	margin: auto;
+	/* иначе при наличии левой колонки отметка выделенной секции улетает под неё */
+	left: 0;
+}

@@ -1,0 +1,130 @@
+.cls_clearboth {
+    clear: both;
+    position: relative;
+}
+.cls_coursesblock {
+    position: relative;
+    clear: both;
+    width: 98%;
+}
+.cls_coursesblock .cls_coursebox {
+    position: relative;
+    clear: both;
+    width: 100%;
+    padding: 0 0 40px 0;
+    margin: 0 0 40px 0;
+    border-bottom: 1px solid #ccc;
+}
+.cls_coursebox .cls_courseimagebox {
+    width: 30%;
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    float: left;
+}
+.cls_coursebox .cls_courseimagebox a {
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.cls_coursebox .cls_course_image {
+    width: 100%;
+    position: relative;
+    padding: 0 0 75% 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background-size: cover !important;
+}
+.cls_course_titleblock {
+	margin: 0 0 10px 0;
+}
+.cls_coursebox .cls_courseinfobox {
+    width: 69%;
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    float: right;
+}
+.cls_coursebox .cls_coursename {
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 0;
+}
+.cls_coursebox .cls_course_infoblock {
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 0;
+}
+.cls_coursebox .cls_courseinfobox a:hover {
+    text-decoration: none;
+}
+.cls_coursebox .cls_course_infoblock img {
+    display: inline;
+    vertical-align: top;
+}
+.cls_coursebox .cls_course_startdate {
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    float: left;
+    font-size: 16px;
+    line-height: 100%;
+    padding: 0;
+    margin: 0 15px 0 0;
+}
+.cls_coursebox .cls_course_price {
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    float: left;
+    font-size: 16px;
+    line-height: 100%;
+    padding: 0;
+    margin: 0 5px 0 0;
+}
+.cls_coursebox .cls_course_enrolmenticons {
+    position: relative;
+    float: right;
+}
+.cls_coursebox .cls_course_descriptionblock {
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    clear: both;
+    padding: 20px 0 0 0;
+}
+.cls_coursebox .cls_coursemorebitton {
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    clear: both;
+    text-align: right;
+    display: block;
+    float: right;
+}
+@media (max-width: 420px) {
+	.cls_coursebox .cls_courseimagebox,
+	.cls_coursebox .cls_courseinfobox {
+		width: 100%;
+    	text-align: initial;
+    	float: none;
+	}
+	.cls_course_titleblock {
+		text-align: center;
+	}
+}
